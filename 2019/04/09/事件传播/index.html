@@ -96,21 +96,25 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+  <meta name="description" content="事件的传播 JavaScript 教程  通常讲的事件冒泡，是事件传播的一个阶段，在最开始，网景公司的浏览器和ie对事件的捕获流程并不一致，Netscape使用自父元素开始向内捕获子元素，ie使用自子元素开始向外捕获父元素，w3c为了兼容性提出了规范，捕获元素最开始从父元素到子元素（捕获阶段），再从子元素到父元素（冒泡阶段）。 给标签注册监听事件既addEventListener时，可以在回调函数">
+<meta name="keywords" content="事件冒泡，事件捕获">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件传播">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/事件传播/index.html">
 <meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="事件的传播 JavaScript 教程  通常讲的事件冒泡，是事件传播的一个阶段，在最开始，网景公司的浏览器和ie对事件的捕获流程并不一致，Netscape使用自父元素开始向内捕获子元素，ie使用自子元素开始向外捕获父元素，w3c为了兼容性提出了规范，捕获元素最开始从父元素到子元素（捕获阶段），再从子元素到父元素（冒泡阶段）。 给标签注册监听事件既addEventListener时，可以在回调函数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-20T05:51:15.569Z">
+<meta property="og:updated_time" content="2019-04-14T02:14:15.211Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="事件传播">
+<meta name="twitter:description" content="事件的传播 JavaScript 教程  通常讲的事件冒泡，是事件传播的一个阶段，在最开始，网景公司的浏览器和ie对事件的捕获流程并不一致，Netscape使用自父元素开始向内捕获子元素，ie使用自子元素开始向外捕获父元素，w3c为了兼容性提出了规范，捕获元素最开始从父元素到子元素（捕获阶段），再从子元素到父元素（冒泡阶段）。 给标签注册监听事件既addEventListener时，可以在回调函数">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/09/事件传播/">
 
 
 
@@ -120,7 +124,7 @@
   };
 </script>
 
-  <title>tags | 刘勇的博客</title>
+  <title>事件传播 | 刘勇的博客</title>
   
 
 
@@ -223,7 +227,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -299,137 +303,207 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/事件传播/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">tags
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
+          <h1 class="post-title" itemprop="name headline">事件传播
+
               
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-              目前共计 14 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              
-                <a href="/tags/CSS/" style="font-size: 12px; color: #ccc">CSS</a> <a href="/tags/Flex/" style="font-size: 12px; color: #ccc">Flex</a> <a href="/tags/Markdown/" style="font-size: 12px; color: #ccc">Markdown</a> <a href="/tags/Vue/" style="font-size: 12px; color: #ccc">Vue</a> <a href="/tags/antd/" style="font-size: 12px; color: #ccc">antd</a> <a href="/tags/element-ui/" style="font-size: 12px; color: #ccc">element-ui</a> <a href="/tags/react/" style="font-size: 12px; color: #ccc">react</a> <a href="/tags/习惯/" style="font-size: 12px; color: #ccc">习惯</a> <a href="/tags/习惯，计算思维/" style="font-size: 12px; color: #ccc">习惯，计算思维</a> <a href="/tags/事件冒泡，事件捕获/" style="font-size: 12px; color: #ccc">事件冒泡，事件捕获</a> <a href="/tags/巴西柔术/" style="font-size: 30px; color: #111">巴西柔术</a> <a href="/tags/数据结构，链表，数组/" style="font-size: 12px; color: #ccc">数据结构，链表，数组</a> <a href="/tags/目标/" style="font-size: 12px; color: #ccc">目标</a> <a href="/tags/算法，数组，链表/" style="font-size: 12px; color: #ccc">算法，数组，链表</a>
-              
-            </div>
-          </div>
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-09 14:52:47" itemprop="dateCreated datePublished" datetime="2019-04-09T14:52:47+08:00">2019-04-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-14 10:14:15" itemprop="dateModified" datetime="2019-04-14T10:14:15+08:00">2019-04-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="事件的传播"><a href="#事件的传播" class="headerlink" title="事件的传播"></a>事件的传播</h1><blockquote>
+<p><a href="https://wangdoc.com/javascript/events/model.html#%E4%BA%8B%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD" target="_blank" rel="noopener">JavaScript 教程</a></p>
+</blockquote>
+<p>通常讲的事件冒泡，是事件传播的一个阶段，在最开始，网景公司的浏览器和ie对事件的捕获流程并不一致，<br>Netscape使用自父元素开始向内捕获子元素，<br>ie使用自子元素开始向外捕获父元素，<br>w3c为了兼容性提出了规范，捕获元素最开始从父元素到子元素（捕获阶段），再从子元素到父元素（冒泡阶段）。</p>
+<p>给标签注册监听事件既addEventListener时，可以在回调函数内部添加stopPropagation方法阻止事件传播。</p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/事件冒泡，事件捕获/" rel="tag"># 事件冒泡，事件捕获</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/05/柔术训练笔记-防木村/" rel="next" title="柔术训练笔记-防木村">
+                <i class="fa fa-chevron-left"></i> 柔术训练笔记-防木村
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/14/关于批评与自我批评/" rel="prev" title="关于批评与自我批评">
+                关于批评与自我批评 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -458,8 +532,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -603,6 +686,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件的传播"><span class="nav-number">1.</span> <span class="nav-text">事件的传播</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
