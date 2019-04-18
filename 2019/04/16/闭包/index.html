@@ -96,14 +96,18 @@
 
 
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="关于闭包的理解理解闭包，首先要清楚垃圾回收 垃圾回收JavaScript高级程序设计中，对垃圾回收描述如下： 原理是找出那些不在使用的变量，然后释放其占用的内存。为此，垃圾收集器会在固定的时间间隔，周期性的进行垃圾回收。 那么，理解一个函数（函数作用域）中所定义的局部变量的声明周期就很重要。 函数在定义时，函数并没有被执行，函数体内的代码就没有效果。 函数调用时，函数体内的代码才开始执行，此时代码">
+<meta name="keywords" content="闭包，垃圾回收，作用域">
+<meta property="og:type" content="article">
 <meta property="og:title" content="闭包">
 <meta property="og:url" content="http://yoursite.com/2019/04/16/闭包/index.html">
 <meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="关于闭包的理解理解闭包，首先要清楚垃圾回收 垃圾回收JavaScript高级程序设计中，对垃圾回收描述如下： 原理是找出那些不在使用的变量，然后释放其占用的内存。为此，垃圾收集器会在固定的时间间隔，周期性的进行垃圾回收。 那么，理解一个函数（函数作用域）中所定义的局部变量的声明周期就很重要。 函数在定义时，函数并没有被执行，函数体内的代码就没有效果。 函数调用时，函数体内的代码才开始执行，此时代码">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-16T06:24:10.656Z">
+<meta property="og:updated_time" content="2019-04-18T07:50:56.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="闭包">
+<meta name="twitter:description" content="关于闭包的理解理解闭包，首先要清楚垃圾回收 垃圾回收JavaScript高级程序设计中，对垃圾回收描述如下： 原理是找出那些不在使用的变量，然后释放其占用的内存。为此，垃圾收集器会在固定的时间间隔，周期性的进行垃圾回收。 那么，理解一个函数（函数作用域）中所定义的局部变量的声明周期就很重要。 函数在定义时，函数并没有被执行，函数体内的代码就没有效果。 函数调用时，函数体内的代码才开始执行，此时代码">
 
 
 
@@ -366,8 +370,42 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-18 15:50:56" itemprop="dateModified" datetime="2019-04-18T15:50:56+08:00">2019-04-18</time>
+              
+            
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -397,7 +435,30 @@
       
 
       
-        
+        <h2 id="关于闭包的理解"><a href="#关于闭包的理解" class="headerlink" title="关于闭包的理解"></a>关于闭包的理解</h2><p>理解闭包，首先要清楚垃圾回收</p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>JavaScript高级程序设计中，对垃圾回收描述如下：</p>
+<p>原理是找出那些不在使用的变量，然后释放其占用的内存。为此，垃圾收集器会在固定的时间间隔，周期性的进行垃圾回收。</p>
+<p>那么，理解一个函数（函数作用域）中所定义的局部变量的声明周期就很重要。</p>
+<p>函数在定义时，函数并没有被执行，函数体内的代码就没有效果。</p>
+<p>函数调用时，函数体内的代码才开始执行，此时代码跳转到函数定义时。此时，就会新建一个作用域（注意，是函数定义时的作用域而不是函数调用时）。</p>
+<p>在函数作用域内，我们把函数内的arguments及定义的变量（局部变量），打包成活动对象，此时垃圾回收器将会对其进行标记（进入环境），当函数执行完毕后，会被标记（离开环境）。注意，因为垃圾回收器时定时回收，此时只是标记并没有被回收。</p>
+<p>当垃圾回收器的周期到达回收时，他会对所有的变量进行表示（我要回收你），然后对当前作用域中的变量以及被当前作用域中的变量引用的变量去除标记（我不回收你了）。然后回收。</p>
+<p>所以，垃圾回收器的工作机制就是定期打标签，把被引用的就都去掉标签，然后回收掉有标签的。</p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>在es5中，js只有全局作用域和函数作用域（es6中使用let关键词会把let外{}包裹的部分变为一个块级作用域）。</p>
+<p>作用域内可以访问作用域外的变量，反之则不行。</p>
+<h2 id="闭包时到底发生了什么"><a href="#闭包时到底发生了什么" class="headerlink" title="闭包时到底发生了什么"></a>闭包时到底发生了什么</h2><p>当一个函数定义时，函数体内的代码可以暂时忽略。</p>
+<p>函数调用时，会跳转到函数定义时所在的作用域，并把作用域内的arguments伪数组及内部定义的变量打包成一个活动对象（如果内部定义了函数，那么这个活动函数也会被打包到对象内）。</p>
+<p>因为js的垃圾回收机制是标记清除，如果最终这个对象没有引用了，就被清除。</p>
+<p>但是，如果函数内部定义了一个函数，并且这个函数在外部被引用了，那么垃圾回收机制就不能把外部函数的活动对象标记清除，外部函数的活动对象就保存下来了。</p>
+<p>那么在函数外部调用这个内部函数，因为也会在内部上执行创建活动对象，标记活动对象，清除活动对象这个过程。</p>
+<p>因为内部函数的活动对象是内部函数作用域的变量，正好外部函数的活动对象还清除不了，所以就可以访问外部函数的活动对象。把这个对象保存的东西拿过来用。</p>
+<p>这就应该是闭包了。</p>
+<p>总结一下，只要内部函数指向了外部函数的外部，外部函数执行完之后的活动对象就不会被回收。</p>
+<p>所以，缺点显而易见，影响自动垃圾回收，占用内存。</p>
+<p>但是也可以使用这个特性来定义私有变量，因为只能通过内部函数访问到外部函数的活动对象。</p>
+<p>最后，解决占用内存的办法也很简单，就是不在让外部函数的外面引用内部函数，这样垃圾回收机制就会进行标记，清空内存。</p>
+<p>所以，看一个变量在不在可以分析它的生命周期及所处的作用域。</p>
+
       
     </div>
 
@@ -417,6 +478,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/闭包，垃圾回收，作用域/" rel="tag"># 闭包，垃圾回收，作用域</a>
+          
+        </div>
       
 
       
@@ -483,8 +550,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -581,7 +657,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -634,6 +714,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于闭包的理解"><span class="nav-number">1.</span> <span class="nav-text">关于闭包的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收"><span class="nav-number">2.</span> <span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number">3.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包时到底发生了什么"><span class="nav-number">4.</span> <span class="nav-text">闭包时到底发生了什么</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
