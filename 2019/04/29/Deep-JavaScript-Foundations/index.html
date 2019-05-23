@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="刘勇的博客">
 <meta property="og:description" content="介绍(Introduction)我们为什么要深入了解JavaScript？我们现在有了babel，我们有typescript，问什么还要学习JavaScript？ 我们为什么要深入了解JavaScript？我们现在有了babel，我们有typescript，问什么还要学习JavaScript？无论是vue、react、angular，都是建立在js之上的，并不能脱离js的范畴。js有的特性他们也有">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-29T03:56:38.554Z">
+<meta property="og:updated_time" content="2019-05-12T23:55:51.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deep JavaScript Foundations">
 <meta name="twitter:description" content="介绍(Introduction)我们为什么要深入了解JavaScript？我们现在有了babel，我们有typescript，问什么还要学习JavaScript？ 我们为什么要深入了解JavaScript？我们现在有了babel，我们有typescript，问什么还要学习JavaScript？无论是vue、react、angular，都是建立在js之上的，并不能脱离js的范畴。js有的特性他们也有">
@@ -366,12 +366,24 @@
                 
               
 
-              <time title="创建时间：2019-04-29 11:42:32 / 修改时间：11:56:38" itemprop="dateCreated datePublished" datetime="2019-04-29T11:42:32+08:00">2019-04-29</time>
+              <time title="创建时间：2019-04-29 11:42:32" itemprop="dateCreated datePublished" datetime="2019-04-29T11:42:32+08:00">2019-04-29</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-13 07:55:51" itemprop="dateModified" datetime="2019-05-13T07:55:51+08:00">2019-05-13</time>
               
             
           </span>
@@ -521,7 +533,7 @@
 <p>在这里作者也举例了-0的应用实例：如果设计了一款游戏，想要让速度代表汽车行进方向，那么当汽车停止时，我们就需要0和-0来判断汽车停止时的行进方向。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.sign(<span class="number">-3</span>)       <span class="comment">// -1</span></span><br><span class="line"><span class="built_in">Math</span>.sign(<span class="number">3</span>)        <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Math</span>.sign(<span class="number">-0</span>)       <span class="comment">// -0   注意这里！</span></span><br><span class="line"><span class="built_in">Math</span>.sign(<span class="number">0</span>)        <span class="comment">// 0   注意这里！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// "fix" Math.sign(...)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sign</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> v !== <span class="number">0</span> ? <span class="built_in">Math</span>.sign(v) : <span class="built_in">Object</span>.is(v, <span class="number">0</span>) ? <span class="number">-1</span> : <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sign(<span class="number">-3</span>)            <span class="comment">// -1</span></span><br><span class="line">sign(<span class="number">3</span>)             <span class="comment">// 1</span></span><br><span class="line">sign(<span class="number">-0</span>)            <span class="comment">// -1</span></span><br><span class="line">sign(<span class="number">0</span>)             <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 <h3 id="基本对象-Fundamental-Objects"><a href="#基本对象-Fundamental-Objects" class="headerlink" title="基本对象(Fundamental Objects)"></a>基本对象(Fundamental Objects)</h3><p>基本对象(Fundamental Objects)也称作内置对象(Built-In Objects)或者原生功能(Native Functions)。</p>
-<p>在一下功能中，作者建议一定要使用new关键字调用(可以看出，首字母均为大写，说明是一种构造函数)</p>
+<p>在以下功能中，作者建议一定要使用new关键字调用(可以看出，首字母均为大写，说明是一种构造函数)</p>
 <ul>
 <li>Object()</li>
 <li>Array()</li>
@@ -530,7 +542,7 @@
 <li>RegExp()</li>
 <li>Error()</li>
 </ul>
-<p>一下是作者不建议使用new关键字的</p>
+<p>以下是作者不建议使用new关键字的</p>
 <ul>
 <li>String()</li>
 <li>Number()</li>
@@ -539,7 +551,7 @@
 <h2 id="强制类型转换-Coercion"><a href="#强制类型转换-Coercion" class="headerlink" title="强制类型转换(Coercion)"></a>强制类型转换(Coercion)</h2><h3 id="抽象运算-Abstract-Operations"><a href="#抽象运算-Abstract-Operations" class="headerlink" title="抽象运算(Abstract Operations)"></a>抽象运算(Abstract Operations)</h3><blockquote>
 <p>这些操作不是ECMAScript语言的一部分;在这里定义它们仅仅是为了帮助ECMAScript语言的语义规范。在整个规范中定义了其他更专门化的抽象操作。<br>These operations are not a part of the ECMAScript language; they are defined here to solely to aid the specification of the semantics of the ECMAScript language. Other, more specialized abstract operations are defined throughout this specification.</p>
 </blockquote>
-<p>这段讲的就是js中的一些列抽象操作，主要就是类型转换(Type Conversion)，我们一般把js的类型转换成为强制类型转换(Coercion)，或则隐式类型转换，目前看来，这几个术语表达的应该是同一件事，及js自动进行的一系列操作。</p>
+<p>这段讲的就是js中的一些列抽象操作，主要就是类型转换(Type Conversion)，我们一般把js的类型转换称为强制类型转换(Coercion)，或隐式类型转换，目前看来，这几个术语表达的应该是同一件事，及js自动进行的一系列操作。</p>
 <h4 id="ToPrimitive-hint-7-1-1"><a href="#ToPrimitive-hint-7-1-1" class="headerlink" title="ToPrimitive(hint) (7.1.1)"></a>ToPrimitive(hint) (7.1.1)</h4><blockquote>
 <p>抽象操作ToPrimitive接受输入参数和可选参数PreferredType。抽象操作ToPrimitive将其输入参数转换为非Object类型。如果一个对象能够转换为多个基本类型，它可以使用可选提示PreferredType来支持该类型。<br>The abstract operation ToPrimitive takes an input argument and an optional argument PreferredType. The abstract operation ToPrimitive converts its input argument to a non-Object type. If an object is capable of converting to more than one primitive type, it may use the optional hint PreferredType to favour that type.</p>
 </blockquote>
@@ -615,7 +627,7 @@
 </blockquote>
 <p>在这里，作者提出了他的观点：</p>
 <blockquote>
-<p>Useful: when the reader is focused on what’s important<br>Dangerous: when the reader can’t tell what will happen<br>Better: when the reader understands the code<br>作者还认为：<br>故意避免使用可以提高代码可读性的特性是不负责任的<br>It is irresponsible to knowingly avoid usage of a feature that can improve code readability</p>
+<p>Useful: when the reader is focused on what’s important(读者能够关注到重点部分)<br>Dangerous: when the reader can’t tell what will happen(读者不知道发生了什么)<br>Better: when the reader understands the code(读者完全理解代码的意图)<br>作者还认为：<br>故意避免使用可以提高代码可读性的特性是不负责任的<br>It is irresponsible to knowingly avoid usage of a feature that can improve code readability</p>
 </blockquote>
 <h2 id="Equality"><a href="#Equality" class="headerlink" title="Equality"></a>Equality</h2><h3 id="Double-amp-Triple-Equals"><a href="#Double-amp-Triple-Equals" class="headerlink" title="Double &amp; Triple Equals"></a>Double &amp; Triple Equals</h3><p>一般我们把==成为松散比较或者不严格比较，===成为严格比较。</p>
 <blockquote>
@@ -1123,7 +1135,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
