@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Getting Started with Full StackCourse IntroductionSlides Part 1 Things you’ll learn Learn how to use Node and Bash to create shell scripts Learn advanced Nginx configuration Common server vulnerabilib">
+<meta name="keywords" content="FrontEndMasters,NodeJs,HTTPS,HTTP&#x2F;2,Websockets,Nginx,Databases">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Full-Stack-for-Front-Ends-Part-2">
+<meta property="og:url" content="http://yoursite.com/2019/06/22/Full-Stack-for-Front-Ends-Part-2/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Getting Started with Full StackCourse IntroductionSlides Part 1 Things you’ll learn Learn how to use Node and Bash to create shell scripts Learn advanced Nginx configuration Common server vulnerabilib">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://imgs.xkcd.com/comics/exploits_of_a_mom.png">
+<meta property="og:updated_time" content="2019-06-22T01:58:22.956Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Full-Stack-for-Front-Ends-Part-2">
+<meta name="twitter:description" content="Getting Started with Full StackCourse IntroductionSlides Part 1 Things you’ll learn Learn how to use Node and Bash to create shell scripts Learn advanced Nginx configuration Common server vulnerabilib">
+<meta name="twitter:image" content="https://imgs.xkcd.com/comics/exploits_of_a_mom.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/22/Full-Stack-for-Front-Ends-Part-2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Full-Stack-for-Front-Ends-Part-2 | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘勇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/22/Full-Stack-for-Front-Ends-Part-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Full-Stack-for-Front-Ends-Part-2
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-22 09:56:18 / 修改时间：09:58:22" itemprop="dateCreated datePublished" datetime="2019-06-22T09:56:18+08:00">2019-06-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Getting-Started-with-Full-Stack"><a href="#Getting-Started-with-Full-Stack" class="headerlink" title="Getting Started with Full Stack"></a>Getting Started with Full Stack</h2><h3 id="Course-Introduction"><a href="#Course-Introduction" class="headerlink" title="Course Introduction"></a>Course Introduction</h3><p><a href="jemyoung.com/fefs2">Slides</a></p>
+<p><a href="jemyoung.com/fefs">Part 1</a></p>
+<h4 id="Things-you’ll-learn"><a href="#Things-you’ll-learn" class="headerlink" title="Things you’ll learn"></a>Things you’ll learn</h4><ul>
+<li>Learn how to use Node and Bash to create shell scripts</li>
+<li>Learn advanced Nginx configuration</li>
+<li>Common server vulnerabilibies and how to mitigate them</li>
+<li>How to add HTTPS to your server</li>
+<li>Understand databases</li>
+<li>Containers and automating deployments<a id="more"></a>
+<h3 id="Full-Stack-for-Frontend-Part-1-Recap-amp-Purpose"><a href="#Full-Stack-for-Frontend-Part-1-Recap-amp-Purpose" class="headerlink" title="Full Stack for Frontend Part 1 Recap &amp; Purpose"></a>Full Stack for Frontend Part 1 Recap &amp; Purpose</h3></li>
+</ul>
+<h4 id="Recap"><a href="#Recap" class="headerlink" title="Recap"></a>Recap</h4><ul>
+<li>How the internet works<ul>
+<li>domain =&gt; IP address</li>
+</ul>
+</li>
+<li>Command line basics<ul>
+<li><code>ping</code></li>
+<li><code>traceroute</code></li>
+<li><code>vi</code></li>
+</ul>
+</li>
+<li>How to create and manage a web server</li>
+<li>Create a deploy system for a Node app</li>
+<li>Build a basic web page</li>
+</ul>
+<h4 id="Why-full-stack"><a href="#Why-full-stack" class="headerlink" title="Why full stack"></a>Why full stack</h4><p>emm.. a lot of reasons…</p>
+<h2 id="Server-Setup"><a href="#Server-Setup" class="headerlink" title="Server Setup"></a>Server Setup</h2><h3 id="Basic-Server-Setup-Updating-and-User-Permissions"><a href="#Basic-Server-Setup-Updating-and-User-Permissions" class="headerlink" title="Basic Server Setup, Updating and User Permissions"></a>Basic Server Setup, Updating and User Permissions</h3><ol>
+<li><a href="https://docs.google.com/presentation/d/1FPpbZ919vt8e1k2EGPd7BKhDlHao79ykvYLfDcMOsMo/edit#slide=id.g15d90c66a5_0_75" target="_blank" rel="noopener">Create a new Ubuntu server</a><br>a. Use Ubuntu 16.04.x<br>b. Be sure to use an SSH key</li>
+<li><a href="https://docs.google.com/presentation/d/1FPpbZ919vt8e1k2EGPd7BKhDlHao79ykvYLfDcMOsMo/edit#slide=id.g15e0fb5a48_1_172" target="_blank" rel="noopener">Point domain to new server</a></li>
+<li><a href="https://docs.google.com/presentation/d/1FPpbZ919vt8e1k2EGPd7BKhDlHao79ykvYLfDcMOsMo/edit#slide=id.g15e0fb5a48_2_87" target="_blank" rel="noopener">Log into server as root</a></li>
+<li><a href="https://docs.google.com/presentation/d/1FPpbZ919vt8e1k2EGPd7BKhDlHao79ykvYLfDcMOsMo/edit#slide=id.g15e0fb5a48_2_127" target="_blank" rel="noopener">Update server</a></li>
+<li><a href="https://docs.google.com/presentation/d/1FPpbZ919vt8e1k2EGPd7BKhDlHao79ykvYLfDcMOsMo/edit#slide=id.g15e0fb5a48_2_127" target="_blank" rel="noopener">Add a new user ‘test’</a></li>
+<li><a href="https://docs.google.com/presentation/d/1FPpbZ919vt8e1k2EGPd7BKhDlHao79ykvYLfDcMOsMo/edit#slide=id.g15e0fb5a48_2_127" target="_blank" rel="noopener">Grant ‘test’ sudo access</a></li>
+<li>Switch to ‘test’ user</li>
+</ol>
+<h3 id="Node-setup-and-installation"><a href="#Node-setup-and-installation" class="headerlink" title="Node setup and installation"></a>Node setup and installation</h3><h4 id="update-apt-repo-for-nodejs"><a href="#update-apt-repo-for-nodejs" class="headerlink" title="update apt repo for nodejs"></a>update apt repo for nodejs</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -</span><br></pre></td></tr></table></figure>
+<p><a href="https://explainshell.com/explain?cmd=curl+-sL" target="_blank" rel="noopener">explain shell</a></p>
+<h4 id="install-nodejs-and-npm"><a href="#install-nodejs-and-npm" class="headerlink" title="install nodejs and npm"></a>install nodejs and npm</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nodejs</span><br></pre></td></tr></table></figure>
+<h4 id="check-npm-directory"><a href="#check-npm-directory" class="headerlink" title="check npm directory"></a>check npm directory</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config get prefix</span><br></pre></td></tr></table></figure>
+<p><strong>If the npm directory is not /usr/local, follow instructions <a href="https://docs.npmjs.com/getting-started/fixing-npm-permissions#option-2-change-npms-default-directory-to-another-directory" target="_blank" rel="noopener">here</a></strong>.</p>
+<p>更改npm安装目录主要是权限问题。如果安装在全局文件夹下，需要sudo权限才能安装全局包。</p>
+<h4 id="install-forever-module"><a href="#install-forever-module" class="headerlink" title="install forever module"></a>install forever module</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g forever</span><br></pre></td></tr></table></figure>
+<h4 id="change-working-directory"><a href="#change-working-directory" class="headerlink" title="change working directory"></a>change working directory</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www</span><br></pre></td></tr></table></figure>
+<h4 id="更改文件夹权限"><a href="#更改文件夹权限" class="headerlink" title="更改文件夹权限"></a>更改文件夹权限</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R <span class="variable">$USER</span>:<span class="variable">$USER</span> /var/www</span><br></pre></td></tr></table></figure>
+<h4 id="clone-repo"><a href="#clone-repo" class="headerlink" title="clone repo"></a>clone repo</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/young/fsfe2.git</span><br></pre></td></tr></table></figure>
+<h4 id="change-working-directory-again"><a href="#change-working-directory-again" class="headerlink" title="change working directory again"></a>change working directory again</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> fsfe2</span><br></pre></td></tr></table></figure>
+<h4 id="install-module"><a href="#install-module" class="headerlink" title="install module"></a>install module</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
+<h2 id="Server-Security"><a href="#Server-Security" class="headerlink" title="Server Security"></a>Server Security</h2><h3 id="Security-Overview"><a href="#Security-Overview" class="headerlink" title="Security Overview"></a>Security Overview</h3><ul>
+<li>Control access<ul>
+<li>Strong authentication</li>
+<li>Firewalls</li>
+<li>user/file permissions</li>
+</ul>
+</li>
+<li>Secure your applications<ul>
+<li>Keep software up to date</li>
+<li>limit application use</li>
+</ul>
+</li>
+</ul>
+<h3 id="Adding-SSH-keys"><a href="#Adding-SSH-keys" class="headerlink" title="Adding SSH keys"></a>Adding SSH keys</h3><h4 id="create-a-new-directory"><a href="#create-a-new-directory" class="headerlink" title="create a new directory"></a>create a new directory</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.ssh</span><br></pre></td></tr></table></figure>
+<h4 id="paste-public-key-into-authorized-keys-file"><a href="#paste-public-key-into-authorized-keys-file" class="headerlink" title="paste public key into authorized_keys file"></a>paste <strong>public</strong> key into <em>authorized_keys</em> file</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<p><strong>Be sure to test logging in with your new user</strong>.</p>
+<h3 id="Security-Setting"><a href="#Security-Setting" class="headerlink" title="Security Setting"></a>Security Setting</h3><ol>
+<li>Add a password for root<ul>
+<li>use the <code>passwd</code> command</li>
+</ul>
+</li>
+<li><a href="https://docs.google.com/presentation/d/1FPpbZ919vt8e1k2EGPd7BKhDlHao79ykvYLfDcMOsMo/edit#slide=id.g18b69b3036_0_249" target="_blank" rel="noopener">Disable root login</a></li>
+<li><a href="https://docs.google.com/presentation/d/1FPpbZ919vt8e1k2EGPd7BKhDlHao79ykvYLfDcMOsMo/edit#slide=id.g18b69b3036_0_249" target="_blank" rel="noopener">Disable password login</a></li>
+</ol>
+<h3 id="Firewalls"><a href="#Firewalls" class="headerlink" title="Firewalls"></a>Firewalls</h3><p><a href="https://nmap.org/" target="_blank" rel="noopener">nmap</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap YOUR_SERVER_IP</span><br></pre></td></tr></table></figure>
+<h3 id="Firewall-configurations-iptables"><a href="#Firewall-configurations-iptables" class="headerlink" title="Firewall configurations: iptables"></a>Firewall configurations: iptables</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-A</code> append rule</li>
+<li><code>-p</code> protocol(tcp, icmp)</li>
+<li><code>--dport</code> destination port</li>
+<li><code>-j</code> jump(DROP, REJECT, ACCEPT, LOG)</li>
+</ul>
+<h4 id="Create-an-iptable-rule-to-block-all-outgoing-HTTP-connections"><a href="#Create-an-iptable-rule-to-block-all-outgoing-HTTP-connections" class="headerlink" title="Create an iptable rule to block all outgoing HTTP connections"></a>Create an iptable rule to block all outgoing HTTP connections</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A OUTPUT -p tcp --dport 80 -j REJECT</span><br></pre></td></tr></table></figure>
+<h4 id="Create-an-iptable-rule-to-only-allow-icmp-connections-on-port-892-from-the-IP-address-192-0-0-1"><a href="#Create-an-iptable-rule-to-only-allow-icmp-connections-on-port-892-from-the-IP-address-192-0-0-1" class="headerlink" title="Create an iptable rule to only allow icmp connections on port 892 from the IP address 192.0.0.1"></a>Create an iptable rule to only allow icmp connections on port 892 from the IP address 192.0.0.1</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -s 192.0.0.1 -p icmp --dport 892 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h3 id="Firewall-configurations-UFW-and-GUI-options"><a href="#Firewall-configurations-UFW-and-GUI-options" class="headerlink" title="Firewall configurations: UFW and GUI options"></a>Firewall configurations: UFW and GUI options</h3><p>There has to be a better way!</p>
+<h4 id="ufw-uncomplicated-firewall"><a href="#ufw-uncomplicated-firewall" class="headerlink" title="ufw - uncomplicated firewall"></a>ufw - uncomplicated firewall</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow ssh</span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br></pre></td></tr></table></figure>
+<p>Create a ufw rule to block all outgoing HTTP connections</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw reject out http</span><br></pre></td></tr></table></figure>
+<h4 id="GUI"><a href="#GUI" class="headerlink" title="GUI"></a>GUI</h4><p>Degital Ocean的Droplets下的networking下的firewalls选项</p>
+<h3 id="Automatic-Updates"><a href="#Automatic-Updates" class="headerlink" title="Automatic Updates"></a>Automatic Updates</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install unattended-upgrades</span><br></pre></td></tr></table></figure>
+<p><code>/etc/apt/apt.conf.d/20auto-upgrades</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">APT::Periodic::Update-Package-Lists <span class="string">"1"</span>;</span><br><span class="line">APT::Periodic::Unattended-Upgrade <span class="string">"1"</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="https://wiki.debian.org/UnattendedUpgrades" target="_blank" rel="noopener">https://wiki.debian.org/UnattendedUpgrades</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apt/apt.conf.d/50unattended-upgrades</span><br></pre></td></tr></table></figure>
+<h3 id="Fail2ban-Exercise"><a href="#Fail2ban-Exercise" class="headerlink" title="Fail2ban: Exercise"></a>Fail2ban: Exercise</h3><h4 id="Install-fail2ban"><a href="#Install-fail2ban" class="headerlink" title="Install fail2ban"></a>Install fail2ban</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install fail2ban</span><br></pre></td></tr></table></figure>
+<h4 id="Copy-jail-file"><a href="#Copy-jail-file" class="headerlink" title="Copy jail file"></a>Copy jail file</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local</span><br></pre></td></tr></table></figure>
+<h3 id="Edit-configuration-file"><a href="#Edit-configuration-file" class="headerlink" title="Edit configuration file"></a>Edit configuration file</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/fail2ban/jail.local</span><br></pre></td></tr></table></figure>
+<p><em>WARNING</em>!</p>
+<p>If you misconfigure fail2ban, you can lock yourself out of your server!</p>
+<h2 id="Advanced-Shells"><a href="#Advanced-Shells" class="headerlink" title="Advanced Shells"></a>Advanced Shells</h2><ul>
+<li>Finding Things</li>
+<li>Redirection Operators</li>
+<li>Shells</li>
+<li>Shell Scripts</li>
+</ul>
+<h3 id="Shell-Tools-Find-and-Grep"><a href="#Shell-Tools-Find-and-Grep" class="headerlink" title="Shell Tools: Find and Grep"></a>Shell Tools: Find and Grep</h3><h4 id="find-search-file-names"><a href="#find-search-file-names" class="headerlink" title="find: search file names"></a>find: search file <em>names</em></h4><table>
+<thead>
+<tr>
+<th><code>find</code></th>
+<th><code>/bar</code></th>
+<th><code>-name</code></th>
+<th><code>foo.txt</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>find</td>
+<td>directory</td>
+<td>option</td>
+<td>file/folder</td>
+</tr>
+</tbody>
+</table>
+<p>useful options</p>
+<ul>
+<li>-name</li>
+<li>-type</li>
+<li>-empty</li>
+<li>-executable</li>
+<li>-writable</li>
+</ul>
+<h4 id="grep-search-file-contents"><a href="#grep-search-file-contents" class="headerlink" title="grep: search file contents"></a>grep: search file <em>contents</em></h4><table>
+<thead>
+<tr>
+<th><code>grep</code></th>
+<th><code>-i</code></th>
+<th><code>&#39;jem&#39;</code></th>
+<th><code>/var/www</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>grep</td>
+<td>options</td>
+<td>search expression</td>
+<td>directory</td>
+</tr>
+</tbody>
+</table>
+<p>search inside gzip file</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zgrep FILE</span><br></pre></td></tr></table></figure>
+<h3 id="Find-Exercise"><a href="#Find-Exercise" class="headerlink" title="Find: Exercise"></a>Find: Exercise</h3><p>find all log files in /log</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /var/<span class="built_in">log</span>/ -<span class="built_in">type</span> f -name *.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p>find all empty files</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /etc -<span class="built_in">type</span> f -empty</span><br></pre></td></tr></table></figure>
+<p>find all directories with the word log</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -<span class="built_in">type</span> d -name <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h3 id="Grep-Exercise"><a href="#Grep-Exercise" class="headerlink" title="Grep: Exercise"></a>Grep: Exercise</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep node</span><br></pre></td></tr></table></figure>
+<h3 id="Redirection"><a href="#Redirection" class="headerlink" title="Redirection"></a>Redirection</h3><ul>
+<li><code>|</code><ul>
+<li>read from stdout</li>
+</ul>
+</li>
+<li><code>&gt;</code><ul>
+<li>write stdout to file</li>
+</ul>
+</li>
+<li><code>&gt;&gt;</code><ul>
+<li>append stdout to file</li>
+</ul>
+</li>
+<li><code>&lt;</code><ul>
+<li>read from stdin</li>
+</ul>
+</li>
+<li><code>2&lt;</code><ul>
+<li>read from stderr</li>
+</ul>
+</li>
+</ul>
+<h4 id="write-to-file"><a href="#write-to-file" class="headerlink" title="write to file"></a>write to file</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux &gt; foo</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bar &lt; foo &gt; baz</span><br></pre></td></tr></table></figure>
+<h3 id="Shells"><a href="#Shells" class="headerlink" title="Shells"></a>Shells</h3><p>shell =&gt; application =&gt; kernel</p>
+<p>show current shell:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$0</span></span><br></pre></td></tr></table></figure>
+<h4 id="Changing-Shells"><a href="#Changing-Shells" class="headerlink" title="Changing Shells"></a>Changing Shells</h4><p>list acceptable shells to change to</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /ect/shells</span><br></pre></td></tr></table></figure>
+<p>change shell to <code>sh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/sh</span><br></pre></td></tr></table></figure>
+<p>login into new shell to see the change</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su <span class="variable">$USERNAME</span></span><br></pre></td></tr></table></figure>
+<p>change shell to <code>bash</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/bash</span><br></pre></td></tr></table></figure>
+<h3 id="Shell-scripting"><a href="#Shell-scripting" class="headerlink" title="Shell scripting"></a>Shell scripting</h3><p>Why shell scripting ?</p>
+<ul>
+<li>simple</li>
+<li>portable</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">trap</span> <span class="string">'echo "/nPlease choose!"'</span> INT</span><br><span class="line"></span><br><span class="line">FILES= `find /var/<span class="built_in">log</span>/ -name *.<span class="built_in">log</span> -mtime 1`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Old files ready to be deleted:\n"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$FILES</span>"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Do you want to continue? \c"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> :</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">read</span> INPUT</span><br><span class="line">  <span class="keyword">case</span> <span class="variable">$INPUT</span> <span class="keyword">in</span></span><br><span class="line">        y)</span><br><span class="line">          <span class="built_in">echo</span> <span class="string">"deleting files..."</span></span><br><span class="line">          <span class="built_in">break</span></span><br><span class="line">          ;;</span><br><span class="line">        *)</span><br><span class="line">          <span class="built_in">echo</span> <span class="string">"Please make a valid selection"</span></span><br><span class="line">          ;;</span><br><span class="line">  <span class="keyword">esac</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h3 id="Bash-scripting-Exercise"><a href="#Bash-scripting-Exercise" class="headerlink" title="Bash scripting: Exercise"></a>Bash scripting: Exercise</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi load.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">cat /proc/loadavg | awk <span class="string">'&#123;print $1"-"$2"-"$3&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>Get load average:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/loadavg</span><br></pre></td></tr></table></figure>
+<p>Extract the 1st, 2nd, and 3rd columns of data:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">'&#123;print $1"-"$2"-"$3&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>Make executable:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 755 ./load.sh</span><br></pre></td></tr></table></figure>
+<h3 id="Creating-a-shell-script-with-Node-Exercise"><a href="#Creating-a-shell-script-with-Node-Exercise" class="headerlink" title="Creating a shell script with Node: Exercise"></a>Creating a shell script with Node: Exercise</h3><p>create a workspace folder:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/workspace</span><br></pre></td></tr></table></figure>
+<p>move into workspace folder:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/workspace</span><br></pre></td></tr></table></figure>
+<p>create index.js:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch index.js</span><br></pre></td></tr></table></figure>
+<p>initialize project:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<p>add reference to script:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi package.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"bin": &#123;</span><br><span class="line">  "myscript": "index.js"</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi index.js</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/user/bin/node</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> exec = <span class="built_in">require</span>(<span class="string">'child_process'</span>).exec</span><br><span class="line"><span class="keyword">const</span> stat = exec(<span class="string">`cat /proc/loadavg | awk '&#123;print $1"-"$2"-"$3&#125;'`</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">stat.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><ul>
+<li>Nginx setup</li>
+<li>Why HTTPS</li>
+<li>Getting a certificate</li>
+<li>Cron</li>
+</ul>
+<h3 id="Nginx-Setup-Installation"><a href="#Nginx-Setup-Installation" class="headerlink" title="Nginx Setup: Installation"></a>Nginx Setup: Installation</h3><ol>
+<li><a href="https://docs.google.com/presentation/d/1FPpbZ919vt8e1k2EGPd7BKhDlHao79ykvYLfDcMOsMo/edit#slide=id.g15f62b0f20_1_259" target="_blank" rel="noopener">Install nginx</a><ul>
+<li><code>sudo apt-get install nginx</code></li>
+<li><code>sudo service ngnix start</code></li>
+</ul>
+</li>
+<li><a href="https://docs.google.com/presentation/d/1FPpbZ919vt8e1k2EGPd7BKhDlHao79ykvYLfDcMOsMo/edit#slide=id.g15e0fb5a48_2_267" target="_blank" rel="noopener">Proxy traffic to node server</a></li>
+<li><a href="https://docs.google.com/presentation/d/17Iy_MMPTUI0lldjz0AkhDIiVGh_CnXMfKO3ESmCnuyo/edit#slide=next" target="_blank" rel="noopener">Add domain name</a></li>
+<li><a href="https://docs.google.com/presentation/d/17Iy_MMPTUI0lldjz0AkhDIiVGh_CnXMfKO3ESmCnuyo/edit#slide=id.g27c6e6b415_0_692" target="_blank" rel="noopener">Open port 443</a></li>
+<li>Reload nginx</li>
+</ol>
+<h3 id="Nginx-Setup-proxy-traffic-to-node-server"><a href="#Nginx-Setup-proxy-traffic-to-node-server" class="headerlink" title="Nginx Setup: proxy traffic to node server"></a>Nginx Setup: proxy traffic to node server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/ngnix/site/available</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi defalut</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">                proxy_pass http://127.0.0.1:3001/;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>测试配置文件是否有效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -t</span><br><span class="line"></span><br><span class="line">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /etc/nginx/nginx.conf <span class="built_in">test</span> is successful</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/fsfe2/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forever start app.js</span><br></pre></td></tr></table></figure>
+<p>启动forever是提示command not found，查了一下是全局变量配置问题，使用如下命令修改配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">echo</span> -e <span class="string">"export PATH=<span class="variable">$(npm prefix -g)</span>/bin:<span class="variable">$PATH</span>"</span> &gt;&gt; ~/.bashrc &amp;&amp; <span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>此时打开网址，可以看到已经显示站点。</p>
+<h3 id="Nginx-Setup-Adding-a-domain-name-and-opening-port-443"><a href="#Nginx-Setup-Adding-a-domain-name-and-opening-port-443" class="headerlink" title="Nginx Setup: Adding a domain name and opening port 443"></a>Nginx Setup: Adding a domain name and opening port 443</h3><p>add domain name to nginx conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server_name <span class="variable">$YOUR_DOMAIN</span>;</span><br></pre></td></tr></table></figure>
+<p>open port 443:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 443</span><br></pre></td></tr></table></figure>
+<p>open ssh link</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow ssh</span><br></pre></td></tr></table></figure>
+<p>enable ufw</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw <span class="built_in">enable</span></span><br></pre></td></tr></table></figure>
+<p>check ufw status</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw status</span><br></pre></td></tr></table></figure>
+<h3 id="Why-HTTPS"><a href="#Why-HTTPS" class="headerlink" title="Why HTTPS"></a>Why HTTPS</h3><p>简单来说，HTTPS更加安全，是一种必要措施。</p>
+<ul>
+<li>Security</li>
+<li>Technology<ul>
+<li>Service Workers</li>
+<li>Web Bluetooth</li>
+</ul>
+</li>
+<li>HTTP/2</li>
+</ul>
+<h3 id="Installing-HTTPS-certificate"><a href="#Installing-HTTPS-certificate" class="headerlink" title="Installing HTTPS certificate"></a>Installing HTTPS certificate</h3><p>Old way:</p>
+<p><a href="https://github.com/diafygi/acme-tiny" target="_blank" rel="noopener">acme-tiny</a></p>
+<p>New way:</p>
+<p><a href="https://certbot.eff.org/" target="_blank" rel="noopener">certbot</a></p>
+<ol>
+<li>Add the certbot repository<ul>
+<li><code>sudo add-apt-repository ppa:certbot/certbot</code></li>
+</ul>
+</li>
+<li>Pull in new repository information<ul>
+<li><code>sudo apt update</code></li>
+</ul>
+</li>
+<li>Install certbot with nginx plugin<ul>
+<li><code>sudo apt install python-certbot-nginx</code></li>
+</ul>
+</li>
+<li>Use certbot to get certificate<ul>
+<li><code>sudo certbot --nginx</code></li>
+</ul>
+</li>
+<li>Test auto renew<ul>
+<li><code>sudo certbot renew --dry-run</code></li>
+</ul>
+</li>
+</ol>
+<p>安装时开始一直失败，输入<code>sudo ufw disable</code>，把防火墙暂时关闭后安装成功。</p>
+<p>此时在通过域名访问网站即可发现https已经启用。</p>
+<h3 id="cron"><a href="#cron" class="headerlink" title="cron"></a>cron</h3><p>How do we run periodic tasks?</p>
+<table>
+<thead>
+<tr>
+<th>minute</th>
+<th>hour</th>
+<th>day of month</th>
+<th>month</th>
+<th>day of week</th>
+<th>command to execute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>00</code></td>
+<td><code>16</code></td>
+<td><code>*</code></td>
+<td><code>*</code></td>
+<td><code>5</code></td>
+<td>`echo “It’s party time!”</td>
+<td>wall`</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://crontab.guru" target="_blank" rel="noopener">crontab-The quick and simple editor for cron schedule expressions</a></p>
+<h3 id="cron-Exercise"><a href="#cron-Exercise" class="headerlink" title="cron: Exercise"></a>cron: Exercise</h3><p>Open crontab for editing</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo crontab -e</span><br></pre></td></tr></table></figure>
+<p>Renew certificate every week at 12pm on Monday</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00 12 * * 1 certbot renew</span><br></pre></td></tr></table></figure>
+<h2 id="Nginx-Tuning"><a href="#Nginx-Tuning" class="headerlink" title="Nginx Tuning"></a>Nginx Tuning</h2><ul>
+<li>gzip</li>
+<li>Websockets</li>
+<li>http/2</li>
+</ul>
+<h3 id="Nginx-Tuning-Overview-and-Gzip"><a href="#Nginx-Tuning-Overview-and-Gzip" class="headerlink" title="Nginx Tuning: Overview and Gzip"></a>Nginx Tuning: Overview and Gzip</h3><p>gzip is an algorithm that runs through and compresses files</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
+<h3 id="Expires-headers"><a href="#Expires-headers" class="headerlink" title="Expires headers"></a>Expires headers</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+<p>添加如下规则：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location /static/ &#123;</span><br><span class="line">  expires 30d;</span><br><span class="line">  proxy_padd http://127.0.0.1:3001/static/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -t</span><br></pre></td></tr></table></figure>
+<p>重启Nginx，刷新网页，会在<code>Response Headers</code>的<code>Cache-Control</code>中看到<code>max-age=2592000</code>。</p>
+<p>当缓存时间设置比较长时，网站更新后并不会在客户端更新。</p>
+<h3 id="Caching"><a href="#Caching" class="headerlink" title="Caching"></a>Caching</h3><p>上述是客户端缓存设置，也可以对服务端进行缓存设置，来使得一些复杂的sql语句查询或者一些大计算量的请求进行缓存，提高访问速度（缓存时间不宜过长，否则无法进行更新）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+<p>文件头部添加（<code>server{}</code>外）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">proxy_cache_path /tmp/nginx levels=1:2</span><br><span class="line">keys_zone=slowfile_cache:10m inactive=60m</span><br><span class="line">use_temp_path=off;</span><br><span class="line"></span><br><span class="line">proxy_cache_key <span class="string">"<span class="variable">$request_uri</span>"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location /slowfile &#123;</span><br><span class="line">  proxy_cache_valid 1m;</span><br><span class="line">  Proxy_ignore_headers Cache-Control;</span><br><span class="line">  add_header X-Proxy-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">  proxy_cache slowfile_cache;</span><br><span class="line">  proxy_pass http://127.0.0.1:3001/slowfile;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>warm cache：对一些耗时较长的请求首先进行缓存，这样在他人访问时可以直接从缓存中获取，提高访问速度。</p>
+<p>此时访问网站的/slowfile，第一次访问可以看到请求头添加了<code>X-Proxy-Cache</code>字段，并且为<code>MISS</code>，请求时间较长。刷新后<code>X-Proxy-Cache</code>字段为<code>HIT</code>，请求仅耗时300ms。</p>
+<h3 id="Websockets-Setup"><a href="#Websockets-Setup" class="headerlink" title="Websockets: Setup"></a>Websockets: Setup</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-avaliable/default</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">  proxy_set_header Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">  proxy_set_header Connection <span class="string">"upgrade"</span>;</span><br><span class="line"></span><br><span class="line">  proxy_pass http://127.0.0.1:3001;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上述配置，Nginx开启Websockets。</p>
+<h3 id="Websockets-Client-side-code-and-observables"><a href="#Websockets-Client-side-code-and-observables" class="headerlink" title="Websockets: Client-side code and observables"></a>Websockets: Client-side code and observables</h3><h3 id="Websockets-Exercise"><a href="#Websockets-Exercise" class="headerlink" title="Websockets: Exercise"></a>Websockets: Exercise</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/fsfe2/</span><br><span class="line"></span><br><span class="line">vi app.js</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getServerLoad</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// Execute bash script</span></span><br><span class="line">    <span class="keyword">const</span> loadScript = exec(<span class="string">`~/load.sh`</span>); <span class="comment">// 把这里的'~/load.sh'更改为之前创建了shell commands文件。</span></span><br><span class="line"></span><br><span class="line">    loadScript.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">      wss.broadcast(<span class="built_in">JSON</span>.stringify(&#123;<span class="attr">name</span>: <span class="string">'load'</span>, data&#125;));</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">  &#125;, <span class="number">2</span> * <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="http-2"><a href="#http-2" class="headerlink" title="http/2"></a>http/2</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-avaliable/default</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen 443 http2 ssl; <span class="comment"># managed by Cerbot</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://http2.akamai.com/demo" target="_blank" rel="noopener">demo</a></p>
+<h3 id="http-2-Exercise"><a href="#http-2-Exercise" class="headerlink" title="http/2: Exercise"></a>http/2: Exercise</h3><p>更改配置文件后，重启Nginx，打开/cats网址，会看到图片传输协议已经更改为h2</p>
+<h3 id="Redirect"><a href="#Redirect" class="headerlink" title="Redirect"></a>Redirect</h3><p>Redirect request to new url</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /ect/nginx/sites-avaliable/default</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location /<span class="built_in">help</span> &#123;</span><br><span class="line">  <span class="built_in">return</span> 301 https://developer.mozilla.org/zh-CN/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Databases"><a href="#Databases" class="headerlink" title="Databases"></a>Databases</h2><h3 id="Database-Types"><a href="#Database-Types" class="headerlink" title="Database Types"></a>Database Types</h3><ol>
+<li>relational<ul>
+<li>SQL<ul>
+<li>MySQL</li>
+<li>Microsoft SQL Server</li>
+<li>Postgre SQL</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>non-relational<ul>
+<li>NoSQL<ul>
+<li>redis</li>
+<li>mongoDB</li>
+<li>cassandra</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Exercise-MySQL-Installation"><a href="#Exercise-MySQL-Installation" class="headerlink" title="Exercise: MySQL Installation"></a>Exercise: MySQL Installation</h3><p>Install MySQL</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mysql-server</span><br></pre></td></tr></table></figure>
+<p>Run setup script</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+<p>Login as root</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<h3 id="Database-Best-Practice"><a href="#Database-Best-Practice" class="headerlink" title="Database Best Practice"></a>Database Best Practice</h3><p>Tips:</p>
+<ol>
+<li>Back up your database</li>
+<li>Use a strong root password</li>
+<li>Don’t expose the database outside the network</li>
+<li>Sanitize your SQL</li>
+<li><strong>Back up your database</strong></li>
+</ol>
+<p><img src="https://imgs.xkcd.com/comics/exploits_of_a_mom.png" alt="Little Bobby Tables"></p>
+<h2 id="Containers-and-More"><a href="#Containers-and-More" class="headerlink" title="Containers and More"></a>Containers and More</h2><h3 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h3><ul>
+<li>shared resources</li>
+<li>no OS</li>
+<li>fast deployment</li>
+</ul>
+<p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker-Enterprise Container Platform for High-Velocity Innovation</a></p>
+<p><a href="https://docs.docker.com/engine/examples/postgresql_service/#installing-postgresql-on-docker" target="_blank" rel="noopener">Installing Postgres on Docker</a></p>
+<h3 id="Orchestration"><a href="#Orchestration" class="headerlink" title="Orchestration"></a>Orchestration</h3><p><a href="https://www.linux.com/news/8-open-source-CONTAINER-ORCHESTRATION-TOOLS-KNOW" target="_blank" rel="noopener">Tools</a></p>
+<p><a href="https://www.aliyun.com/product/containerservice?utm_content=se_1002469384" target="_blank" rel="noopener">Kubernetes</a></p>
+<h3 id="Automated-Deployment"><a href="#Automated-Deployment" class="headerlink" title="Automated Deployment"></a>Automated Deployment</h3><ul>
+<li>ANSIBLE</li>
+<li>VAGRANT</li>
+<li>puppet</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+          
+            <a href="/tags/NodeJs/" rel="tag"># NodeJs</a>
+          
+            <a href="/tags/HTTPS/" rel="tag"># HTTPS</a>
+          
+            <a href="/tags/HTTP-2/" rel="tag"># HTTP/2</a>
+          
+            <a href="/tags/Websockets/" rel="tag"># Websockets</a>
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+            <a href="/tags/Databases/" rel="tag"># Databases</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/17/Complete-intro-to-React-v5/" rel="next" title="Complete-intro-to-React-v5">
+                <i class="fa fa-chevron-left"></i> Complete-intro-to-React-v5
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg" alt="刘勇">
+            
+              <p class="site-author-name" itemprop="name">刘勇</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/blingblingredstar" title="GitHub &rarr; https://github.com/blingblingredstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:564447023@qq.com" title="E-Mail &rarr; mailto:564447023@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Started-with-Full-Stack"><span class="nav-number">1.</span> <span class="nav-text">Getting Started with Full Stack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Course-Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Course Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-you’ll-learn"><span class="nav-number">1.1.1.</span> <span class="nav-text">Things you’ll learn</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Full-Stack-for-Frontend-Part-1-Recap-amp-Purpose"><span class="nav-number">1.2.</span> <span class="nav-text">Full Stack for Frontend Part 1 Recap &amp; Purpose</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Recap"><span class="nav-number">1.2.1.</span> <span class="nav-text">Recap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-full-stack"><span class="nav-number">1.2.2.</span> <span class="nav-text">Why full stack</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Server-Setup"><span class="nav-number">2.</span> <span class="nav-text">Server Setup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Server-Setup-Updating-and-User-Permissions"><span class="nav-number">2.1.</span> <span class="nav-text">Basic Server Setup, Updating and User Permissions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-setup-and-installation"><span class="nav-number">2.2.</span> <span class="nav-text">Node setup and installation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#update-apt-repo-for-nodejs"><span class="nav-number">2.2.1.</span> <span class="nav-text">update apt repo for nodejs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#install-nodejs-and-npm"><span class="nav-number">2.2.2.</span> <span class="nav-text">install nodejs and npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#check-npm-directory"><span class="nav-number">2.2.3.</span> <span class="nav-text">check npm directory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#install-forever-module"><span class="nav-number">2.2.4.</span> <span class="nav-text">install forever module</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#change-working-directory"><span class="nav-number">2.2.5.</span> <span class="nav-text">change working directory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改文件夹权限"><span class="nav-number">2.2.6.</span> <span class="nav-text">更改文件夹权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clone-repo"><span class="nav-number">2.2.7.</span> <span class="nav-text">clone repo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#change-working-directory-again"><span class="nav-number">2.2.8.</span> <span class="nav-text">change working directory again</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#install-module"><span class="nav-number">2.2.9.</span> <span class="nav-text">install module</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Server-Security"><span class="nav-number">3.</span> <span class="nav-text">Server Security</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Security-Overview"><span class="nav-number">3.1.</span> <span class="nav-text">Security Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adding-SSH-keys"><span class="nav-number">3.2.</span> <span class="nav-text">Adding SSH keys</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#create-a-new-directory"><span class="nav-number">3.2.1.</span> <span class="nav-text">create a new directory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#paste-public-key-into-authorized-keys-file"><span class="nav-number">3.2.2.</span> <span class="nav-text">paste public key into authorized_keys file</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Security-Setting"><span class="nav-number">3.3.</span> <span class="nav-text">Security Setting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Firewalls"><span class="nav-number">3.4.</span> <span class="nav-text">Firewalls</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Firewall-configurations-iptables"><span class="nav-number">3.5.</span> <span class="nav-text">Firewall configurations: iptables</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Create-an-iptable-rule-to-block-all-outgoing-HTTP-connections"><span class="nav-number">3.5.1.</span> <span class="nav-text">Create an iptable rule to block all outgoing HTTP connections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Create-an-iptable-rule-to-only-allow-icmp-connections-on-port-892-from-the-IP-address-192-0-0-1"><span class="nav-number">3.5.2.</span> <span class="nav-text">Create an iptable rule to only allow icmp connections on port 892 from the IP address 192.0.0.1</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Firewall-configurations-UFW-and-GUI-options"><span class="nav-number">3.6.</span> <span class="nav-text">Firewall configurations: UFW and GUI options</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ufw-uncomplicated-firewall"><span class="nav-number">3.6.1.</span> <span class="nav-text">ufw - uncomplicated firewall</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GUI"><span class="nav-number">3.6.2.</span> <span class="nav-text">GUI</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Automatic-Updates"><span class="nav-number">3.7.</span> <span class="nav-text">Automatic Updates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fail2ban-Exercise"><span class="nav-number">3.8.</span> <span class="nav-text">Fail2ban: Exercise</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Install-fail2ban"><span class="nav-number">3.8.1.</span> <span class="nav-text">Install fail2ban</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Copy-jail-file"><span class="nav-number">3.8.2.</span> <span class="nav-text">Copy jail file</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edit-configuration-file"><span class="nav-number">3.9.</span> <span class="nav-text">Edit configuration file</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advanced-Shells"><span class="nav-number">4.</span> <span class="nav-text">Advanced Shells</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shell-Tools-Find-and-Grep"><span class="nav-number">4.1.</span> <span class="nav-text">Shell Tools: Find and Grep</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#find-search-file-names"><span class="nav-number">4.1.1.</span> <span class="nav-text">find: search file names</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#grep-search-file-contents"><span class="nav-number">4.1.2.</span> <span class="nav-text">grep: search file contents</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Find-Exercise"><span class="nav-number">4.2.</span> <span class="nav-text">Find: Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Grep-Exercise"><span class="nav-number">4.3.</span> <span class="nav-text">Grep: Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redirection"><span class="nav-number">4.4.</span> <span class="nav-text">Redirection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#write-to-file"><span class="nav-number">4.4.1.</span> <span class="nav-text">write to file</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shells"><span class="nav-number">4.5.</span> <span class="nav-text">Shells</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Changing-Shells"><span class="nav-number">4.5.1.</span> <span class="nav-text">Changing Shells</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shell-scripting"><span class="nav-number">4.6.</span> <span class="nav-text">Shell scripting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bash-scripting-Exercise"><span class="nav-number">4.7.</span> <span class="nav-text">Bash scripting: Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-shell-script-with-Node-Exercise"><span class="nav-number">4.8.</span> <span class="nav-text">Creating a shell script with Node: Exercise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">5.</span> <span class="nav-text">HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-Setup-Installation"><span class="nav-number">5.1.</span> <span class="nav-text">Nginx Setup: Installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-Setup-proxy-traffic-to-node-server"><span class="nav-number">5.2.</span> <span class="nav-text">Nginx Setup: proxy traffic to node server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-Setup-Adding-a-domain-name-and-opening-port-443"><span class="nav-number">5.3.</span> <span class="nav-text">Nginx Setup: Adding a domain name and opening port 443</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-HTTPS"><span class="nav-number">5.4.</span> <span class="nav-text">Why HTTPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installing-HTTPS-certificate"><span class="nav-number">5.5.</span> <span class="nav-text">Installing HTTPS certificate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cron"><span class="nav-number">5.6.</span> <span class="nav-text">cron</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cron-Exercise"><span class="nav-number">5.7.</span> <span class="nav-text">cron: Exercise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-Tuning"><span class="nav-number">6.</span> <span class="nav-text">Nginx Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-Tuning-Overview-and-Gzip"><span class="nav-number">6.1.</span> <span class="nav-text">Nginx Tuning: Overview and Gzip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expires-headers"><span class="nav-number">6.2.</span> <span class="nav-text">Expires headers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Caching"><span class="nav-number">6.3.</span> <span class="nav-text">Caching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Websockets-Setup"><span class="nav-number">6.4.</span> <span class="nav-text">Websockets: Setup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Websockets-Client-side-code-and-observables"><span class="nav-number">6.5.</span> <span class="nav-text">Websockets: Client-side code and observables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Websockets-Exercise"><span class="nav-number">6.6.</span> <span class="nav-text">Websockets: Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http-2"><span class="nav-number">6.7.</span> <span class="nav-text">http/2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http-2-Exercise"><span class="nav-number">6.8.</span> <span class="nav-text">http/2: Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redirect"><span class="nav-number">6.9.</span> <span class="nav-text">Redirect</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Databases"><span class="nav-number">7.</span> <span class="nav-text">Databases</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Database-Types"><span class="nav-number">7.1.</span> <span class="nav-text">Database Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-MySQL-Installation"><span class="nav-number">7.2.</span> <span class="nav-text">Exercise: MySQL Installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Database-Best-Practice"><span class="nav-number">7.3.</span> <span class="nav-text">Database Best Practice</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Containers-and-More"><span class="nav-number">8.</span> <span class="nav-text">Containers and More</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Containers"><span class="nav-number">8.1.</span> <span class="nav-text">Containers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Orchestration"><span class="nav-number">8.2.</span> <span class="nav-text">Orchestration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Automated-Deployment"><span class="nav-number">8.3.</span> <span class="nav-text">Automated Deployment</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
