@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Introductionsildes The 5 capacities we look for in candidates Analytical problem solving with code 用代码解决问题的能力   Technical communication (can I implement your approach just from your explanation) 技术沟通能">
+<meta name="keywords" content="FrontEndMasters,JavaScript,Promise,iterator,generator,Async&#x2F;await">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript: The New Hard Parts">
+<meta property="og:url" content="http://yoursite.com/2019/06/28/JavaScript-The-New-Hard-Parts/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introductionsildes The 5 capacities we look for in candidates Analytical problem solving with code 用代码解决问题的能力   Technical communication (can I implement your approach just from your explanation) 技术沟通能">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-28T00:57:02.047Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript: The New Hard Parts">
+<meta name="twitter:description" content="Introductionsildes The 5 capacities we look for in candidates Analytical problem solving with code 用代码解决问题的能力   Technical communication (can I implement your approach just from your explanation) 技术沟通能">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/28/JavaScript-The-New-Hard-Parts/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript: The New Hard Parts | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘勇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/JavaScript-The-New-Hard-Parts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript: The New Hard Parts
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 08:55:43 / 修改时间：08:57:02" itemprop="dateCreated datePublished" datetime="2019-06-28T08:55:43+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><a href="https://static.frontendmasters.com/resources/2018-05-23-javascript-new-hard-parts/new-hard-parts-slides.pdf" target="_blank" rel="noopener">sildes</a></p>
+<h3 id="The-5-capacities-we-look-for-in-candidates"><a href="#The-5-capacities-we-look-for-in-candidates" class="headerlink" title="The 5 capacities we look for in candidates"></a>The 5 capacities we look for in candidates</h3><ol>
+<li>Analytical problem solving with code<blockquote>
+<p>用代码解决问题的能力</p>
+</blockquote>
+</li>
+<li>Technical communication (can I implement your approach just from your explanation)<blockquote>
+<p>技术沟通能力（我能仅仅通过你的解释就能实现你的方法吗）</p>
+</blockquote>
+</li>
+<li>Engineering best practices and approach (Debugging, code structure, patience and reference to documentation)<blockquote>
+<p>编程的最佳实践和方法（调试，代码结构，耐心和文档引用）</p>
+</blockquote>
+</li>
+<li>Non-technical communication(empathetic and thoughtful communication)<blockquote>
+<p>非技术沟通的能力（同理心和有思想的交流）</p>
+</blockquote>
+</li>
+<li>Language and computer science experience<blockquote>
+<p>编程语言和计算机科学经验</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="Our-expectations"><a href="#Our-expectations" class="headerlink" title="Our expectations"></a>Our expectations</h4><ul>
+<li>Support each other - engineering empathy is the cirtical value at Codesmith</li>
+<li>Work hard, Work smart</li>
+<li>Thoughtful communication</li>
+</ul>
+<a id="more"></a>
+<h3 id="JavaScript-Code-Execution"><a href="#JavaScript-Code-Execution" class="headerlink" title="JavaScript Code Execution"></a>JavaScript Code Execution</h3><p>Frontend Masters - JavaScript the Hard Parts</p>
+<ol>
+<li><strong>Foundations of JavaScript</strong></li>
+<li>Asynchronous JavaScript(callbacks, promises)</li>
+<li>Iterators</li>
+<li>Generators &amp; Async/await</li>
+</ol>
+<h4 id="Principles-of-JavaScript"><a href="#Principles-of-JavaScript" class="headerlink" title="Principles of JavaScript"></a>Principles of JavaScript</h4><p>In JSHP we start with a set of fundamental principles</p>
+<p>These tools will enable us to problem solve and communicate almost any scenario in JavaScript</p>
+<ul>
+<li>We will start with an essential approach to get ourselves up to a shared level of understanding</li>
+<li>This approach will help us with the hard parts to come</li>
+</ul>
+<h4 id="What-happens-when-javascript-executes-runs-my-code"><a href="#What-happens-when-javascript-executes-runs-my-code" class="headerlink" title="What happens when javascript executes(runs) my code"></a>What happens when javascript executes(runs) my code</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> num = <span class="number">3</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span>(<span class="params">inputNumber</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> result = inputNumber * <span class="number">2</span></span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">'will'</span></span><br></pre></td></tr></table></figure>
+<p>As soon as we start running our code, we create a <em>global execution context</em>.</p>
+<ul>
+<li>Thread of execution(parsing and executing the code line after line)</li>
+<li>Live memory of variables with data(known as a Global Variable Environment)</li>
+</ul>
+<h4 id="Running-calling-invoking-a-function"><a href="#Running-calling-invoking-a-function" class="headerlink" title="Running/calling/invoking a function"></a>Running/calling/invoking a function</h4><p>This is not same as defining a function</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> num = <span class="number">3</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span>(<span class="params">inputNumber</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> result = inputNumber * <span class="number">2</span></span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> output = multiplyBy2(<span class="number">4</span>)</span><br><span class="line"><span class="keyword">const</span> newOutput = multiplyBy2(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>When you execute a function you create a new execution context comprising:</p>
+<ol>
+<li>The thread of execution(we go through the code in the function line by line)</li>
+<li>A local memory(<code>Variable Environment</code>) where anything defined in the function is stored</li>
+</ol>
+<h4 id="We-keep-track-of-the-functions-being-called-in-JavaScript-with-a-call-stack"><a href="#We-keep-track-of-the-functions-being-called-in-JavaScript-with-a-call-stack" class="headerlink" title="We keep track of the functions being called in JavaScript with a call stack"></a>We keep track of the functions being called in JavaScript with a call stack</h4><p>Tracks which execution context we are inthat is, what function is currently being run and where to return to</p>
+<h2 id="Asynchronous-JavaScript"><a href="#Asynchronous-JavaScript" class="headerlink" title="Asynchronous JavaScript"></a>Asynchronous JavaScript</h2><ol>
+<li>Foundations of JavaScript</li>
+<li><strong>Asynchronous JavaScript (callbacks, promises)</strong></li>
+<li>Iterators 4. Generators</li>
+</ol>
+<h3 id="Introduction-Asynchronicity"><a href="#Introduction-Asynchronicity" class="headerlink" title="Introduction Asynchronicity"></a>Introduction Asynchronicity</h3><h4 id="Asynchornicity-is-the-backbone-of-modern-web-development-in-JavaScript"><a href="#Asynchornicity-is-the-backbone-of-modern-web-development-in-JavaScript" class="headerlink" title="Asynchornicity is the backbone of modern web development in JavaScript"></a>Asynchornicity is the backbone of modern web development in JavaScript</h4><p>JavaScript is single threaded(one command executing at a time) and has synchronous execution model(each line is executed in order the code appears)</p>
+<p>So what if we need to <strong>wait some time before we can execute certain bits of code</strong>? Perhaps we need to wait on fresh data from an API/server request or for a timer to complete and then execute our code</p>
+<p>We hava a conundrum - a tension between wanting to <strong>delay some code execution</strong> but <strong>not wanting to block the thread</strong> from any further code running while we wait</p>
+<h4 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dataFromAPI = fetchAndWait(<span class="string">'https://twitter.com/will/tweets/1'</span>)</span><br><span class="line"><span class="comment">// ...user can do nothing here</span></span><br><span class="line"><span class="comment">// ...could be 300ms or longer</span></span><br><span class="line"><span class="comment">// they're just clicking and getting nothing</span></span><br><span class="line"></span><br><span class="line">display(dataFromAPI)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Me later!'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h5><ul>
+<li>Fundamentally untenable - blocks our single JavaScript thread from running any further code while the task completes</li>
+</ul>
+<h5 id="Benefits"><a href="#Benefits" class="headerlink" title="Benefits"></a>Benefits</h5><ul>
+<li>It’s easy to reason about</li>
+</ul>
+<h5 id="Goals"><a href="#Goals" class="headerlink" title="Goals"></a>Goals</h5><ol>
+<li>Be able to do tasks that take a long time to complete e.g. getting data from the server</li>
+<li>Continue running our JavaScript code line by line without one long task blocking further JavaScript executing</li>
+<li>When our slow task completes, we should be able to run functionality knowing that task is done and data is ready!</li>
+</ol>
+<h3 id="Asynchronous-Web-Browser-APIs"><a href="#Asynchronous-Web-Browser-APIs" class="headerlink" title="Asynchronous Web Browser APIs"></a>Asynchronous Web Browser APIs</h3><h4 id="Solution-2-Introducing-Web-Browser-APIS-Node-background-threads"><a href="#Solution-2-Introducing-Web-Browser-APIS-Node-background-threads" class="headerlink" title="Solution 2 - Introducing Web Browser APIS/Node background threads"></a>Solution 2 - Introducing Web Browser APIS/Node background threads</h4><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setTimeout" target="_blank" rel="noopener">MDN - <code>setTimeout()</code></a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printHello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Hello'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(printHello, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Me first!'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Calling-the-Outside-World"><a href="#Calling-the-Outside-World" class="headerlink" title="Calling the Outside World"></a>Calling the Outside World</h3><h4 id="We’re-interacting-with-a-world-outside-of-JavaScript-now-so-we-need-rules"><a href="#We’re-interacting-with-a-world-outside-of-JavaScript-now-so-we-need-rules" class="headerlink" title="We’re interacting with a world outside of JavaScript now - so we need rules"></a>We’re interacting with a world outside of JavaScript now - so we need rules</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printHello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Hello'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blockFor1Sec</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//blocks in the JavaScript thread for 1 second</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(printHello, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">blockFor1Sec()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Me first!'</span>)</span><br></pre></td></tr></table></figure>
+<!-- markdownlint-disable MD024 -->
+<h3 id="Wrapping-Up-Web-Browser-APIs"><a href="#Wrapping-Up-Web-Browser-APIs" class="headerlink" title="Wrapping Up Web Browser APIs"></a>Wrapping Up Web Browser APIs</h3><h4 id="Problems-1"><a href="#Problems-1" class="headerlink" title="Problems"></a>Problems</h4><ul>
+<li>No problems!</li>
+<li>Our response data is only available in the callback function - Callback Hell</li>
+<li>Maybe it feels a little odd to think of passing a function into another function only for it to run much later</li>
+</ul>
+<h4 id="Benefits-1"><a href="#Benefits-1" class="headerlink" title="Benefits"></a>Benefits</h4><ul>
+<li>Super explic once you understand how it works under-the-hood</li>
+</ul>
+<h3 id="Asynchronous-Exercise"><a href="#Asynchronous-Exercise" class="headerlink" title="Asynchronous Exercise"></a>Asynchronous Exercise</h3><h4 id="Pair-Programming"><a href="#Pair-Programming" class="headerlink" title="Pair Programming"></a>Pair Programming</h4><p>Answer these:</p>
+<ul>
+<li>I know what a variable is</li>
+<li>I’ve created a function before</li>
+<li>I’ve added a CSS style before</li>
+<li>I’ve implemented a sort algorithem(bubble, merge etc)</li>
+<li>I can add a method to an object’s prototype</li>
+<li>I understand the event loop in JavaScript</li>
+<li>I understand callback functions</li>
+<li>I’ve implemented filter from scratch</li>
+<li>I can handle collisions in hash tables</li>
+</ul>
+<h4 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h4><p><a href="csbin.io/promises">Asynchronicity &amp; Promises</a></p>
+<p><a href="csbin.in/iterators">Iterators, Generators &amp; Async/await</a></p>
+<h5 id="Challenge-1"><a href="#Challenge-1" class="headerlink" title="Challenge 1"></a>Challenge 1</h5><p>Let’s start by reviewing asynchronous functions! Using setTimeout, print the string ‘Hello!’ after 1000ms.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello'</span>)</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Uncomment the line below when ready</span></span><br><span class="line">sayHello(); <span class="comment">// should log "Hello" after 1000ms</span></span><br></pre></td></tr></table></figure>
+<h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><h3 id="Introducing-Promises"><a href="#Introducing-Promises" class="headerlink" title="Introducing Promises"></a>Introducing Promises</h3><h4 id="Introducing-the-readability-enhancer-Promises"><a href="#Introducing-the-readability-enhancer-Promises" class="headerlink" title="Introducing the readability enhancer - Promises"></a>Introducing the readability enhancer - Promises</h4><ul>
+<li>Speical objects built into JavaScript that get returned immediately when we make a call to a web browser API/feature(e.g. <code>fetch</code>) that’s set up to return promises(not all are)</li>
+<li>Promises act as a placeholder for the data we hope to get back from the web browser feature’s background work</li>
+<li>We also attach the functionality we want to defer running until that background work is done(using the built in <code>.then</code> method)</li>
+<li>Promise objects will automactically trigger that functionality to run<ul>
+<li>The value returned from the web browser feature’s work(e.g. the returned data from the server using <code>fetch</code>) will be that function’s input/argument</li>
+</ul>
+</li>
+</ul>
+<h3 id="Promises-1"><a href="#Promises-1" class="headerlink" title="Promises"></a>Promises</h3><h4 id="Solution-3-Using-two-pronged-‘facade’-functions-that-both-initiate-background-web-browser-work-and-return-a-placeholder-object-promise-immediately-in-JavaScript"><a href="#Solution-3-Using-two-pronged-‘facade’-functions-that-both-initiate-background-web-browser-work-and-return-a-placeholder-object-promise-immediately-in-JavaScript" class="headerlink" title="Solution 3 - Using two-pronged ‘facade’ functions that both initiate background web browser work and return a placeholder object(promise) immediately in JavaScript"></a>Solution 3 - Using two-pronged ‘facade’ functions that both initiate background web browser work and return a placeholder object(promise) immediately in JavaScript</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> futureData = fetch(<span class="string">'https://twitter.com/will/tweets/1'</span>)</span><br><span class="line"></span><br><span class="line">futureData.then(display) <span class="comment">// Attaches display functionality</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Me first!'</span>)</span><br></pre></td></tr></table></figure>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WindowOrWorkerGlobalScope/fetch" target="_blank" rel="noopener"><code>fetch()</code> MDN</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">promiseObject &#123;</span><br><span class="line">  value: <span class="literal">undefined</span>, <span class="comment">// the result of data or fetch's background work is gonna stored when it comes back</span></span><br><span class="line">  onFulfillment: [], <span class="comment">// we can stick any functions we want auto trigger when the value gets updated</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面是一个promise对象的大致结构，当数据更新时，触发onFulfillment内的所有函数。</p>
+<p>当使用<code>fetch</code>方法时，会立即返回一个<code>promise</code>对象（js范畴内），并且调用Web Browser API(XMLHttpRequset)在浏览器后台获取数据。当数据返回时，更新promise对象内的数据，执行方法。</p>
+<h3 id="Promises-amp-Microtask-Queue"><a href="#Promises-amp-Microtask-Queue" class="headerlink" title="Promises &amp; Microtask Queue"></a>Promises &amp; Microtask Queue</h3><h4 id="But-we-need-to-know-how-our-promise-deferred-functionality-gets-back-into-JavaScrpt-to-be-run"><a href="#But-we-need-to-know-how-our-promise-deferred-functionality-gets-back-into-JavaScrpt-to-be-run" class="headerlink" title="But we need to know how our promise - deferred functionality gets back into JavaScrpt to be run"></a>But we need to know how our promise - deferred functionality gets back into JavaScrpt to be run</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printHello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blockFor300ms</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// blocks JS thread for 300ms with long for loops</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(printHello, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> futureData = fetch(<span class="string">'https://twitter.com/will/tweets/1'</span>)</span><br><span class="line">futureData.then(display)</span><br><span class="line"></span><br><span class="line">blockFor300ms()</span><br><span class="line"></span><br><span class="line"><span class="comment">//Which will run first?</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Me first!'</span>)</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.ecma-international.org/ecma-262/7.0/#sec-jobs-and-job-queues" target="_blank" rel="noopener">job queue</a></p>
+<p>JS除了callback queue，还有一个microtask(job) queue。<code>fetch</code>的XMLHttpRequest请求完成后会将回调函数推入microtask queue而不是callback queue。event loop会先将microtask queue内的回调执行完毕后才会将callback queue内的回调推入调用栈执行。</p>
+<h5 id="We-need-a-way-of-queuing-up-all-this-deferred-functionality"><a href="#We-need-a-way-of-queuing-up-all-this-deferred-functionality" class="headerlink" title="We need a way of queuing up all this deferred functionality"></a>We need a way of queuing up all this deferred functionality</h5><h3 id="Wrapping-Up-Promises"><a href="#Wrapping-Up-Promises" class="headerlink" title="Wrapping Up Promises"></a>Wrapping Up Promises</h3><h4 id="Problems-2"><a href="#Problems-2" class="headerlink" title="Problems"></a>Problems</h4><ul>
+<li>99% of developers have no idea how they’re working under the hood</li>
+<li>Debugging becomes super-hard</li>
+</ul>
+<h4 id="Benefits-2"><a href="#Benefits-2" class="headerlink" title="Benefits"></a>Benefits</h4><ul>
+<li>Cleaner readable sytle with pseudo-synchronous style code</li>
+<li>Nice error handling process</li>
+</ul>
+<h4 id="We-have-rules-for-the-execution-of-our-asynchronously-delayed-code"><a href="#We-have-rules-for-the-execution-of-our-asynchronously-delayed-code" class="headerlink" title="We have rules for the execution of our asynchronously delayed code"></a>We have rules for the execution of our asynchronously delayed code</h4><ol>
+<li>Hold each promise-deferred functions in a microtask queue and each non-promise defered function in a task queue(callback queue) when the API ‘completes’</li>
+<li>Add the function to the Call Stack(i.e. execute the function) ONLY when the stack is totally empty(Have the Event Loop check this condition)</li>
+<li>Prioritize tasks(callbacks) in the microtask queue over the regular task queue</li>
+</ol>
+<p>Promises, Web APIs, the Callback &amp; Microtask Queues and Event loop allow us to defer our actions until the ‘work’(an API request, timer etc) is completed and continue running our code line by line in the meantime</p>
+<p>Asynchronous JavaScript is the backbone of the modern web - letting us build fast ‘non-blocking’</p>
+<h2 id="Iterators"><a href="#Iterators" class="headerlink" title="Iterators"></a>Iterators</h2><ol>
+<li>Foundations of JavaScript</li>
+<li>Asynchronous JavaScript (callbacks, promises)</li>
+<li><strong>Iterators</strong></li>
+<li>Generators &amp; Async/await</li>
+</ol>
+<h3 id="Return-Function-Inside-a-Function"><a href="#Return-Function-Inside-a-Function" class="headerlink" title="Return Function Inside a Function"></a>Return Function Inside a Function</h3><p>We regularly have lists or collections or data where we want to go through each item and do something to each element</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(nums[i])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>We’re going to discover there’s a new beautiful way of thinking about using each element one-by-one</p>
+<h4 id="Programs-store-data-and-apply-functionnality-to-it-But-there-are-two-parts-to-applying-functions-to-collections-of-data"><a href="#Programs-store-data-and-apply-functionnality-to-it-But-there-are-two-parts-to-applying-functions-to-collections-of-data" class="headerlink" title="Programs store data and apply functionnality to it.But there are two parts to applying functions to collections of data"></a>Programs store data and apply functionnality to it.But there are two parts to applying functions to collections of data</h4><ol>
+<li>The process of acessing each element</li>
+<li>What we want to do to each element</li>
+</ol>
+<p>Iterators automate the accessing of each element - so we can focus on what to do to each element - and make it avaliable to us in a smooth way</p>
+<p>Imagine if we could create a function that stored numbers and each time we ran the function it would return out an element(the next one) from numbers. NOTE: It’d have to remember which element was next up somehow</p>
+<p>But this would let us think of our array/list as a ‘stream’/flow of data with our function returning the next element from our ‘stream’ - this makes our code more readable and more functional</p>
+<h5 id="But-it-starts-with-us-returning-a-function-from-another-function"><a href="#But-it-starts-with-us-returning-a-function-from-another-function" class="headerlink" title="But it starts with us returning a function from another function"></a>But it starts with us returning a function from another function</h5><h4 id="Functions-can-be-returned-from-other-functions-in-JavaScript"><a href="#Functions-can-be-returned-from-other-functions-in-JavaScript" class="headerlink" title="Functions can be returned from other functions in JavaScript"></a>Functions can be returned from other functions in JavaScript</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createNewFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add2</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num + <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> add2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newFunc = createNewFunc()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result = newFunc(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>How can we run/call add2 now? Outside of createNewFunc?</p>
+<h3 id="Return-Next-Element-with-a-Function"><a href="#Return-Next-Element-with-a-Function" class="headerlink" title="Return Next Element with a Function"></a>Return Next Element with a Function</h3><h4 id="We-want-to-create-a-function-that-holds-both-our-array-the-position-we-are-currently-at-in-our-‘stream’-of-elements-and-has-the-abality-to-return-the-next-element"><a href="#We-want-to-create-a-function-that-holds-both-our-array-the-position-we-are-currently-at-in-our-‘stream’-of-elements-and-has-the-abality-to-return-the-next-element" class="headerlink" title="We want to create a function that holds both our array, the position we are currently at in our ‘stream’ of elements and has the abality to return the next element"></a>We want to create a function that holds both our array, the position we are currently at in our ‘stream’ of elements and has the abality to return the next element</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFunc</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">inner</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> element = array[i]</span><br><span class="line">    i++</span><br><span class="line">    <span class="keyword">return</span> element</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> inner</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> returnNextElement = createFunc([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br></pre></td></tr></table></figure>
+<p>How can we access the first element of our list?</p>
+<h4 id="By-calling-the-returnNextElement"><a href="#By-calling-the-returnNextElement" class="headerlink" title="By calling the returnNextElement"></a>By calling the returnNextElement</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFunc</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">inner</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> element = array[i]</span><br><span class="line">    i++</span><br><span class="line">    <span class="keyword">return</span> element</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> inner</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> returnNextElement = createFunc([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line"><span class="keyword">const</span> element1 = returnNextElement() <span class="comment">// 4</span></span><br><span class="line"><span class="keyword">const</span> element2 = returnNextElement() <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<h3 id="Iterator-Function"><a href="#Iterator-Function" class="headerlink" title="Iterator Function"></a>Iterator Function</h3><h4 id="The-bond"><a href="#The-bond" class="headerlink" title="The bond"></a>The bond</h4><ul>
+<li>When the function inner is defined, it gets a bond to the surrounding Local Memory in which it has been defined</li>
+<li>When we return out inner, that surrounding live data is returned out too - attached on the ‘back’ of the function definition itself(which we now give a new global label <code>returnNextElement</code>)</li>
+<li>When we call <code>returnNextElement</code> and don’t find <code>array</code> or <code>i</code> in the immediate execution context, we look into the function definition’s ‘backpack’(closure) of persiitent live data</li>
+<li>The ‘backpack’ is offically known as the C.O.V.E.(Cloesd Over Variable Environment) or ‘closure’</li>
+</ul>
+<h4 id="returnNextElement-has-everything-we-need-all-bundled-up-in-it"><a href="#returnNextElement-has-everything-we-need-all-bundled-up-in-it" class="headerlink" title="returnNextElement has everything we need all bundled up in it"></a><code>returnNextElement</code> has everything we need all bundled up in it</h4><ol>
+<li>Our underlying array itself</li>
+<li>The position we are currently at in our ‘stream’ of elements</li>
+<li>The ability to return the next element</li>
+</ol>
+<p>This relies completely on the special property of fucntions in JavaScript that when they are born inside other functions and returned - they get a backpack(closure)</p>
+<p>What is the posh name for <code>returnNextElement</code>?</p>
+<h4 id="So-iterators-turns-our-data-into-‘streams’-of-actual-values-we-can-access-one-after-another"><a href="#So-iterators-turns-our-data-into-‘streams’-of-actual-values-we-can-access-one-after-another" class="headerlink" title="So iterators turns our data into ‘streams’ of actual values we can access one after another"></a>So iterators turns our data into ‘streams’ of actual values we can access one after another</h4><p>Now we have functions that hold our underlying array, the position we’re currently at in the array, and return out the  next item in the ‘stream’ of elements from our array when run</p>
+<p>This lets us have for loops that show us the element itself in the body on each loop and more deeply allows us to rethink arrays as flows of elements themselves which we can interact with by calling a function that switches that flow on to give us our next element</p>
+<p>We have truly ‘decoupled’ the process of accessing each element from what we want to do to each element</p>
+<h3 id="Iterators-Exercise"><a href="#Iterators-Exercise" class="headerlink" title="Iterators Exercise"></a>Iterators Exercise</h3><p><a href="http://csbin.io/iterators" target="_blank" rel="noopener">problems</a></p>
+<p><a href="https://gist.github.com/aegorenkov/2ae91cabf21223bddca8c5b3ef3ec6f6" target="_blank" rel="noopener">solutions</a></p>
+<h2 id="Generators"><a href="#Generators" class="headerlink" title="Generators"></a>Generators</h2><ol>
+<li>Foundations of JavaScript</li>
+<li>Asynchronous JavaScript (callbacks, promises)</li>
+<li>Iterators</li>
+<li><strong>Generators &amp; Async/await</strong></li>
+</ol>
+<h3 id="Generators-1"><a href="#Generators-1" class="headerlink" title="Generators"></a>Generators</h3><h4 id="JavaScript-built-in-iterators-are-actually-objects-with-a-next-method-that-when-called-returns-the-next-element-from-the-‘stream’-flow-so-let’s-restructure-slightly"><a href="#JavaScript-built-in-iterators-are-actually-objects-with-a-next-method-that-when-called-returns-the-next-element-from-the-‘stream’-flow-so-let’s-restructure-slightly" class="headerlink" title="JavaScript built in iterators are actually objects with a next method that when called returns the next element from the ‘stream’/flow - so let’s restructure slightly"></a>JavaScript built in iterators are actually objects with a next method that when called returns the next element from the ‘stream’/flow - so let’s restructure slightly</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFlow</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> inner = &#123;</span><br><span class="line">    next: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> element = array[i]</span><br><span class="line">      i++</span><br><span class="line">      <span class="keyword">return</span> element</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> inner</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> returnNextElement = createFlow([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line"><span class="keyword">const</span> element1 = returnNextElement.next()</span><br><span class="line"><span class="keyword">const</span> element2 = returnNextElement.next()</span><br></pre></td></tr></table></figure>
+<p>And the built in iterators actually produce the next element in the format: <code>{value: 4}</code></p>
+<h4 id="Once-we-start-thinking-of-our-data-as-flows-where-we-can-pick-of-an-element-one-by-one-we-can-rethink-how-we-produce-those-flows-JavaScript-now-lets-us-produce-the-flows-using-a-function"><a href="#Once-we-start-thinking-of-our-data-as-flows-where-we-can-pick-of-an-element-one-by-one-we-can-rethink-how-we-produce-those-flows-JavaScript-now-lets-us-produce-the-flows-using-a-function" class="headerlink" title="Once we start thinking of our data as flows(where we can pick of an element one-by-one) we can rethink how we produce those flows - JavaScript now lets us produce the flows using a function"></a>Once we start thinking of our data as flows(where we can pick of an element one-by-one) we can rethink how we produce those flows - JavaScript now lets us produce the flows using a function</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">createFlow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">4</span></span><br><span class="line">  <span class="keyword">yield</span> <span class="number">5</span></span><br><span class="line">  <span class="keyword">yield</span> <span class="number">6</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> returnNextElement = createFlow()</span><br><span class="line"><span class="keyword">const</span> element1 = retrunNextElement.next()</span><br><span class="line"><span class="keyword">const</span> element2 = retrunNextElement.next()</span><br></pre></td></tr></table></figure>
+<p>What do we hope <code>returnNextElement.next()</code> will return? But how?</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/yield" target="_blank" rel="noopener">MDN yield</a></p>
+<h3 id="Generator-Functions-with-Dynamic-Data"><a href="#Generator-Functions-with-Dynamic-Data" class="headerlink" title="Generator Functions with Dynamic Data"></a>Generator Functions with Dynamic Data</h3><h4 id="This-allows-us-to-dynamically-set-what-data-flows-to-us-when-we-run-returnNextElement’s-function"><a href="#This-allows-us-to-dynamically-set-what-data-flows-to-us-when-we-run-returnNextElement’s-function" class="headerlink" title="This allows us to dynamically set what data flows to us(when we run returnNextElement’s function)"></a>This allows us to dynamically set what data flows to us(when we run returnNextElement’s function)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">createFlow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> num = <span class="number">10</span></span><br><span class="line">  <span class="keyword">const</span> newNum = <span class="keyword">yield</span> num</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">5</span> + newNum</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">6</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> returnNextElement = createFlow()</span><br><span class="line"><span class="keyword">const</span> element1 = returnNextElement.next() <span class="comment">// 10</span></span><br><span class="line"><span class="keyword">const</span> element2 = returnNextElement.next(<span class="number">2</span>) <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+<h4 id="returnNextElement-is-a-special-object-a-gengerator-object-that-when-its-next-method-is-run-starts-or-continues-running-createFlow-until-it-hits-yield-and-returns-out-the-value-being-‘yielded’"><a href="#returnNextElement-is-a-special-object-a-gengerator-object-that-when-its-next-method-is-run-starts-or-continues-running-createFlow-until-it-hits-yield-and-returns-out-the-value-being-‘yielded’" class="headerlink" title="returnNextElement is a special object(a gengerator object) that when its next method is run starts(or continues) running createFlow until it hits yield and returns out the value being ‘yielded’"></a><code>returnNextElement</code> is a special object(a gengerator object) that when its next method is run starts(or continues) running <code>createFlow</code> until it hits <code>yield</code> and returns out the value being ‘yielded’</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">createFlow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> num = <span class="number">10</span></span><br><span class="line">  <span class="keyword">const</span> newNum = <span class="keyword">yield</span> num  <span class="comment">// yield可以看做一个特殊的return操作符，所以这行是 const newNum = return 10,此时执行上下文保留并返回10，newNum为undefined。当给element2赋值时，在returnNextElement.next(2)中传入实参2，此时数字2作为参数给newNum进行了赋值。</span></span><br><span class="line">  <span class="keyword">yield</span> <span class="number">5</span> + newNum <span class="comment">// 此时newNum因为上一行的newNum = 2,值为2</span></span><br><span class="line">  <span class="keyword">yield</span> <span class="number">6</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> returnNextElement = createFlow()</span><br><span class="line"><span class="keyword">const</span> element1 = returnNextElement.next() <span class="comment">// 10</span></span><br><span class="line"><span class="keyword">const</span> element2 = returnNextElement.next(<span class="number">2</span>) <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+<p><code>returnNextElement.next()</code>的参数会作为上一个<code>yield</code>的执行结果的值<br>具体来说，<code>returnNextElement.next(2)</code>会使<code>*createFlow</code>的<code>const newNum = yield num</code>变为<code>const newNum = 2</code></p>
+<p>We end up with a ‘stream’/flow of values that we can get one-by-one by running <code>returnNextElement.next()</code></p>
+<h3 id="Introducing-Async-Gererators"><a href="#Introducing-Async-Gererators" class="headerlink" title="Introducing Async Gererators"></a>Introducing Async Gererators</h3><h4 id="And-most-importantly-for-the-first-time-we-get-to-pause-‘suspend’-a-function-being-run-and-then-return-to-it-by-calling-returnNextElement-next"><a href="#And-most-importantly-for-the-first-time-we-get-to-pause-‘suspend’-a-function-being-run-and-then-return-to-it-by-calling-returnNextElement-next" class="headerlink" title="And most importantly, for the first time we get to pause(‘suspend’) a function being run and then return to it by calling returnNextElement.next()"></a>And most importantly, for the first time we get to pause(‘suspend’) a function being run and then return to it by calling <code>returnNextElement.next()</code></h4><p>In asynchronous JavaScript we want to</p>
+<ol>
+<li>Initiate a task that takes a long time(e.g. requesting data from the server)</li>
+<li>Move on to more synchronous regular code in the meantime</li>
+<li>Run some functionality once the requested data has come back</li>
+</ol>
+<p>What if we were to <code>yield</code> out of the function at the moment of sending off the long-time task and return to the function only when the task is complete</p>
+<h3 id="Async-Generators"><a href="#Async-Generators" class="headerlink" title="Async Generators"></a>Async Generators</h3><h4 id="We-can-use-the-abality-to-pause-createFlow’s-running-and-then-restart-it-only-when-our-data-returns"><a href="#We-can-use-the-abality-to-pause-createFlow’s-running-and-then-restart-it-only-when-our-data-returns" class="headerlink" title="We can use the abality to pause createFlow’s running and then restart it only when our data returns"></a>We can use the abality to pause createFlow’s running and then restart it only when our data returns</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doWhenDataReceived</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  retrunNextElement.next(value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">createFlow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="keyword">yield</span> fetch(<span class="string">'http://twitter.com/will/tweets/1'</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> returnNextElement = createFlow()</span><br><span class="line"><span class="keyword">const</span> futureData = retrunNextElement.next()</span><br><span class="line"></span><br><span class="line">futureData.then(doWhenDataReceived)</span><br></pre></td></tr></table></figure>
+<p>We get to control when we return back to createFlow and continue executing - by setting up the trigger to do so(<code>returnNextElement.next()</code>) to be run by our function that was triggered by the promise resolution(when the value retruned from twitter)</p>
+<h2 id="Final"><a href="#Final" class="headerlink" title="Final"></a>Final</h2><h3 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async Await"></a>Async Await</h3><h4 id="Async-await-simplifies-all-this-and-finally-fixes-the-inversion-of-control-problem-of-callbacks"><a href="#Async-await-simplifies-all-this-and-finally-fixes-the-inversion-of-control-problem-of-callbacks" class="headerlink" title="Async/await simplifies all this and finally fixes the inversion of control problem of callbacks"></a>Async/await simplifies all this and finally fixes the inversion of control problem of callbacks</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">createFlow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Me first!'</span>)</span><br><span class="line">  <span class="keyword">const</span> data = <span class="keyword">await</span> fetch(<span class="string">'https://twitter.com/will/tweets/1'</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">createFlow()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Me second!'</span>)</span><br></pre></td></tr></table></figure>
+<p>No need for a triggered function on the promise resolution, instead we auto trigger the resumption of the <code>createFlow</code> execution(this functionality is still added to the microtask queue though)</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Promise/" rel="tag"># Promise</a>
+          
+            <a href="/tags/iterator/" rel="tag"># iterator</a>
+          
+            <a href="/tags/generator/" rel="tag"># generator</a>
+          
+            <a href="/tags/Async-await/" rel="tag"># Async/await</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/22/Full-Stack-for-Front-Ends-Part-2/" rel="next" title="Full-Stack-for-Front-Ends-Part-2">
+                <i class="fa fa-chevron-left"></i> Full-Stack-for-Front-Ends-Part-2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg" alt="刘勇">
+            
+              <p class="site-author-name" itemprop="name">刘勇</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/blingblingredstar" title="GitHub &rarr; https://github.com/blingblingredstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:564447023@qq.com" title="E-Mail &rarr; mailto:564447023@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-5-capacities-we-look-for-in-candidates"><span class="nav-number">1.1.</span> <span class="nav-text">The 5 capacities we look for in candidates</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Our-expectations"><span class="nav-number">1.1.1.</span> <span class="nav-text">Our expectations</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Code-Execution"><span class="nav-number">1.2.</span> <span class="nav-text">JavaScript Code Execution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Principles-of-JavaScript"><span class="nav-number">1.2.1.</span> <span class="nav-text">Principles of JavaScript</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#What-happens-when-javascript-executes-runs-my-code"><span class="nav-number">1.2.2.</span> <span class="nav-text">What happens when javascript executes(runs) my code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Running-calling-invoking-a-function"><span class="nav-number">1.2.3.</span> <span class="nav-text">Running/calling/invoking a function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#We-keep-track-of-the-functions-being-called-in-JavaScript-with-a-call-stack"><span class="nav-number">1.2.4.</span> <span class="nav-text">We keep track of the functions being called in JavaScript with a call stack</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Asynchronous-JavaScript"><span class="nav-number">2.</span> <span class="nav-text">Asynchronous JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction-Asynchronicity"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction Asynchronicity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Asynchornicity-is-the-backbone-of-modern-web-development-in-JavaScript"><span class="nav-number">2.1.1.</span> <span class="nav-text">Asynchornicity is the backbone of modern web development in JavaScript</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-1"><span class="nav-number">2.1.2.</span> <span class="nav-text">Solution 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Problems"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">Problems</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Benefits"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">Benefits</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Goals"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">Goals</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Asynchronous-Web-Browser-APIs"><span class="nav-number">2.2.</span> <span class="nav-text">Asynchronous Web Browser APIs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-2-Introducing-Web-Browser-APIS-Node-background-threads"><span class="nav-number">2.2.1.</span> <span class="nav-text">Solution 2 - Introducing Web Browser APIS/Node background threads</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calling-the-Outside-World"><span class="nav-number">2.3.</span> <span class="nav-text">Calling the Outside World</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#We’re-interacting-with-a-world-outside-of-JavaScript-now-so-we-need-rules"><span class="nav-number">2.3.1.</span> <span class="nav-text">We’re interacting with a world outside of JavaScript now - so we need rules</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wrapping-Up-Web-Browser-APIs"><span class="nav-number">2.4.</span> <span class="nav-text">Wrapping Up Web Browser APIs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problems-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">Problems</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Benefits-1"><span class="nav-number">2.4.2.</span> <span class="nav-text">Benefits</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Asynchronous-Exercise"><span class="nav-number">2.5.</span> <span class="nav-text">Asynchronous Exercise</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pair-Programming"><span class="nav-number">2.5.1.</span> <span class="nav-text">Pair Programming</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Challenges"><span class="nav-number">2.5.2.</span> <span class="nav-text">Challenges</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Challenge-1"><span class="nav-number">2.5.2.1.</span> <span class="nav-text">Challenge 1</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promises"><span class="nav-number">3.</span> <span class="nav-text">Promises</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Promises"><span class="nav-number">3.1.</span> <span class="nav-text">Introducing Promises</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Introducing-the-readability-enhancer-Promises"><span class="nav-number">3.1.1.</span> <span class="nav-text">Introducing the readability enhancer - Promises</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promises-1"><span class="nav-number">3.2.</span> <span class="nav-text">Promises</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-3-Using-two-pronged-‘facade’-functions-that-both-initiate-background-web-browser-work-and-return-a-placeholder-object-promise-immediately-in-JavaScript"><span class="nav-number">3.2.1.</span> <span class="nav-text">Solution 3 - Using two-pronged ‘facade’ functions that both initiate background web browser work and return a placeholder object(promise) immediately in JavaScript</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promises-amp-Microtask-Queue"><span class="nav-number">3.3.</span> <span class="nav-text">Promises &amp; Microtask Queue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#But-we-need-to-know-how-our-promise-deferred-functionality-gets-back-into-JavaScrpt-to-be-run"><span class="nav-number">3.3.1.</span> <span class="nav-text">But we need to know how our promise - deferred functionality gets back into JavaScrpt to be run</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#We-need-a-way-of-queuing-up-all-this-deferred-functionality"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">We need a way of queuing up all this deferred functionality</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wrapping-Up-Promises"><span class="nav-number">3.4.</span> <span class="nav-text">Wrapping Up Promises</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problems-2"><span class="nav-number">3.4.1.</span> <span class="nav-text">Problems</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Benefits-2"><span class="nav-number">3.4.2.</span> <span class="nav-text">Benefits</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#We-have-rules-for-the-execution-of-our-asynchronously-delayed-code"><span class="nav-number">3.4.3.</span> <span class="nav-text">We have rules for the execution of our asynchronously delayed code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Iterators"><span class="nav-number">4.</span> <span class="nav-text">Iterators</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Return-Function-Inside-a-Function"><span class="nav-number">4.1.</span> <span class="nav-text">Return Function Inside a Function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Programs-store-data-and-apply-functionnality-to-it-But-there-are-two-parts-to-applying-functions-to-collections-of-data"><span class="nav-number">4.1.1.</span> <span class="nav-text">Programs store data and apply functionnality to it.But there are two parts to applying functions to collections of data</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#But-it-starts-with-us-returning-a-function-from-another-function"><span class="nav-number">4.1.1.1.</span> <span class="nav-text">But it starts with us returning a function from another function</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Functions-can-be-returned-from-other-functions-in-JavaScript"><span class="nav-number">4.1.2.</span> <span class="nav-text">Functions can be returned from other functions in JavaScript</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Return-Next-Element-with-a-Function"><span class="nav-number">4.2.</span> <span class="nav-text">Return Next Element with a Function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#We-want-to-create-a-function-that-holds-both-our-array-the-position-we-are-currently-at-in-our-‘stream’-of-elements-and-has-the-abality-to-return-the-next-element"><span class="nav-number">4.2.1.</span> <span class="nav-text">We want to create a function that holds both our array, the position we are currently at in our ‘stream’ of elements and has the abality to return the next element</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#By-calling-the-returnNextElement"><span class="nav-number">4.2.2.</span> <span class="nav-text">By calling the returnNextElement</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterator-Function"><span class="nav-number">4.3.</span> <span class="nav-text">Iterator Function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-bond"><span class="nav-number">4.3.1.</span> <span class="nav-text">The bond</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#returnNextElement-has-everything-we-need-all-bundled-up-in-it"><span class="nav-number">4.3.2.</span> <span class="nav-text">returnNextElement has everything we need all bundled up in it</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#So-iterators-turns-our-data-into-‘streams’-of-actual-values-we-can-access-one-after-another"><span class="nav-number">4.3.3.</span> <span class="nav-text">So iterators turns our data into ‘streams’ of actual values we can access one after another</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterators-Exercise"><span class="nav-number">4.4.</span> <span class="nav-text">Iterators Exercise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generators"><span class="nav-number">5.</span> <span class="nav-text">Generators</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generators-1"><span class="nav-number">5.1.</span> <span class="nav-text">Generators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript-built-in-iterators-are-actually-objects-with-a-next-method-that-when-called-returns-the-next-element-from-the-‘stream’-flow-so-let’s-restructure-slightly"><span class="nav-number">5.1.1.</span> <span class="nav-text">JavaScript built in iterators are actually objects with a next method that when called returns the next element from the ‘stream’/flow - so let’s restructure slightly</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Once-we-start-thinking-of-our-data-as-flows-where-we-can-pick-of-an-element-one-by-one-we-can-rethink-how-we-produce-those-flows-JavaScript-now-lets-us-produce-the-flows-using-a-function"><span class="nav-number">5.1.2.</span> <span class="nav-text">Once we start thinking of our data as flows(where we can pick of an element one-by-one) we can rethink how we produce those flows - JavaScript now lets us produce the flows using a function</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator-Functions-with-Dynamic-Data"><span class="nav-number">5.2.</span> <span class="nav-text">Generator Functions with Dynamic Data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#This-allows-us-to-dynamically-set-what-data-flows-to-us-when-we-run-returnNextElement’s-function"><span class="nav-number">5.2.1.</span> <span class="nav-text">This allows us to dynamically set what data flows to us(when we run returnNextElement’s function)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#returnNextElement-is-a-special-object-a-gengerator-object-that-when-its-next-method-is-run-starts-or-continues-running-createFlow-until-it-hits-yield-and-returns-out-the-value-being-‘yielded’"><span class="nav-number">5.2.2.</span> <span class="nav-text">returnNextElement is a special object(a gengerator object) that when its next method is run starts(or continues) running createFlow until it hits yield and returns out the value being ‘yielded’</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Async-Gererators"><span class="nav-number">5.3.</span> <span class="nav-text">Introducing Async Gererators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#And-most-importantly-for-the-first-time-we-get-to-pause-‘suspend’-a-function-being-run-and-then-return-to-it-by-calling-returnNextElement-next"><span class="nav-number">5.3.1.</span> <span class="nav-text">And most importantly, for the first time we get to pause(‘suspend’) a function being run and then return to it by calling returnNextElement.next()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Generators"><span class="nav-number">5.4.</span> <span class="nav-text">Async Generators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#We-can-use-the-abality-to-pause-createFlow’s-running-and-then-restart-it-only-when-our-data-returns"><span class="nav-number">5.4.1.</span> <span class="nav-text">We can use the abality to pause createFlow’s running and then restart it only when our data returns</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Final"><span class="nav-number">6.</span> <span class="nav-text">Final</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Await"><span class="nav-number">6.1.</span> <span class="nav-text">Async Await</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Async-await-simplifies-all-this-and-finally-fixes-the-inversion-of-control-problem-of-callbacks"><span class="nav-number">6.1.1.</span> <span class="nav-text">Async/await simplifies all this and finally fixes the inversion of control problem of callbacks</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
