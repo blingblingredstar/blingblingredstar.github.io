@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="The SlienceIntroductionThe Soul of Functional Programming: Separation and Recognition 函数式编程的灵魂:分离和识别 The structure of the course  The Slience The Voyage The Demo  In the beginning…  Anything goes Ever">
+<meta name="keywords" content="FrontEndMasters,JavaScript,Point-Free,Functional Programming,Monads,Functor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hardcore Functional Programming in JavaScript">
+<meta property="og:url" content="http://yoursite.com/2019/07/12/Hardcore-Functional-Programming-in-JavaScript/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="The SlienceIntroductionThe Soul of Functional Programming: Separation and Recognition 函数式编程的灵魂:分离和识别 The structure of the course  The Slience The Voyage The Demo  In the beginning…  Anything goes Ever">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-12T09:20:44.650Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hardcore Functional Programming in JavaScript">
+<meta name="twitter:description" content="The SlienceIntroductionThe Soul of Functional Programming: Separation and Recognition 函数式编程的灵魂:分离和识别 The structure of the course  The Slience The Voyage The Demo  In the beginning…  Anything goes Ever">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/12/Hardcore-Functional-Programming-in-JavaScript/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Hardcore Functional Programming in JavaScript | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘勇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/Hardcore-Functional-Programming-in-JavaScript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hardcore Functional Programming in JavaScript
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-12 17:19:20 / 修改时间：17:20:44" itemprop="dateCreated datePublished" datetime="2019-07-12T17:19:20+08:00">2019-07-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="The-Slience"><a href="#The-Slience" class="headerlink" title="The Slience"></a>The Slience</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>The Soul of Functional Programming: Separation and Recognition</p>
+<p>函数式编程的灵魂:分离和识别</p>
+<p>The structure of the course</p>
+<ol>
+<li>The Slience</li>
+<li>The Voyage</li>
+<li>The Demo</li>
+</ol>
+<p>In the beginning…</p>
+<ul>
+<li>Anything goes</li>
+<li>Everything changes</li>
+<li>Weird names<a id="more"></a>
+There was primordial soup</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">10 i = 0</span><br><span class="line">20 i = i + 1</span><br><span class="line">30 PRINT i; &quot; squared = &quot;; i * i</span><br><span class="line">40 IF i &gt;= 10 THEN GOTO 60</span><br><span class="line">50 GOTO 20</span><br><span class="line">60 PRINT &quot;Program Completed.&quot;</span><br><span class="line">70 END</span><br></pre></td></tr></table></figure>
+<p>Discipline Wins</p>
+<blockquote>
+<p>Exercising restraint while coding feels weird at first, but it’s worth it.<br>“The goto statement as it stands is just too primitive; it is too much an invitation to make a mess of one’s program.”</p>
+</blockquote>
+<h4 id="The-Symptoms"><a href="#The-Symptoms" class="headerlink" title="The Symptoms"></a>The Symptoms</h4><ul>
+<li>Custom names</li>
+<li>Looping patterns</li>
+<li>Glue code</li>
+<li>Side effects</li>
+</ul>
+<h3 id="Omit-Needless-Names"><a href="#Omit-Needless-Names" class="headerlink" title="Omit Needless Names"></a>Omit Needless Names</h3><p>Omit needless names with separations and recongnitions.</p>
+<h4 id="separate-inputs-from-environment"><a href="#separate-inputs-from-environment" class="headerlink" title="separate inputs from environment"></a>separate inputs from environment</h4><p>Secret input: time</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">daysThisMonth</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> date  = <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">    , y     = date.getFullYear()</span><br><span class="line">    , m     = date.getMonth()</span><br><span class="line">    , start = <span class="keyword">new</span> <span class="built_in">Date</span>(y, m, <span class="number">1</span>)</span><br><span class="line">    , end   = <span class="keyword">new</span> <span class="built_in">Date</span>(y, m + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> (end - start) / (<span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Always works the same</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">daysInMonth</span>(<span class="params">y, m</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> start = <span class="keyword">new</span> <span class="built_in">Date</span>(y, m - <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    , end   = <span class="keyword">new</span> <span class="built_in">Date</span>(y, m, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> (end - start) / (<span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Separating-Mutation-from-Calculation"><a href="#Separating-Mutation-from-Calculation" class="headerlink" title="Separating Mutation from Calculation"></a>Separating Mutation from Calculation</h3><p>Teaser updates DOM</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">teaser</span>(<span class="params">size, elt</span>) </span>&#123;</span><br><span class="line">  setText(elt, slice(<span class="number">0</span>, size, text(elt)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">map(teaser(<span class="number">50</span>), all(<span class="string">'p'</span>));</span><br></pre></td></tr></table></figure>
+<p>Merely calculates</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> teaser = slice(<span class="number">0</span>);</span><br><span class="line">map(compose(setText, teaser(<span class="number">50</span>), text), all(<span class="string">'p'</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="Recognize-Pure-Function"><a href="#Recognize-Pure-Function" class="headerlink" title="Recognize Pure Function"></a>Recognize Pure Function</h3><p>Function that don’t change anything are called “pure”.</p>
+<p>Their purity makes them:</p>
+<ul>
+<li>testable</li>
+<li>memoizable</li>
+<li>portable</li>
+<li>parallelizable</li>
+</ul>
+<p>Let’s play pure or impure</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getQueryVariable</span>(<span class="params">variable</span>) </span>&#123; <span class="comment">// impure 因为window.loaction</span></span><br><span class="line">    <span class="keyword">var</span> query = <span class="built_in">window</span>.location.search.substring(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">var</span> vars = query.split(<span class="string">'&amp;'</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; vars.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> pair = vars[i].split(<span class="string">'='</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">decodeURIComponent</span>(pair[<span class="number">0</span>]) == variable) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(pair[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">random</span>(<span class="params">m_w, m_z</span>) </span>&#123; <span class="comment">// pure</span></span><br><span class="line">  m_z = <span class="number">36969</span> * (m_z &amp; <span class="number">65535</span>) + (m_z &gt;&gt; <span class="number">16</span>);</span><br><span class="line">  m_w = <span class="number">18000</span> * (m_w &amp; <span class="number">65535</span>) + (m_w &gt;&gt; <span class="number">16</span>);</span><br><span class="line">  <span class="keyword">return</span> (m_z &lt;&lt; <span class="number">16</span>) + m_w;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">chattyAdd</span>(<span class="params">a, b, console</span>) </span>&#123; <span class="comment">// impure 因为console参数</span></span><br><span class="line">  <span class="keyword">var</span> c = a+b;</span><br><span class="line">  <span class="built_in">console</span>.log(a, <span class="string">'+'</span>, b, <span class="string">'='</span>, c);</span><br><span class="line">  <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Separate-Functions-from-Rules"><a href="#Separate-Functions-from-Rules" class="headerlink" title="Separate Functions from Rules"></a>Separate Functions from Rules</h3><p>Functions are nouns</p>
+<p>Set theoretically</p>
+<p>Every function is a single-valued collection of pairs</p>
+<p>One input, one output</p>
+<p>Separate arity from functions</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">property, object</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> object[property]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> people = [&#123;<span class="attr">name</span>: ...&#125;, ...]</span><br></pre></td></tr></table></figure>
+<p>Args up front</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPersonName</span>(<span class="params">person</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">get</span>('name', person)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const names = people.map(getPersonName)</span><br></pre></td></tr></table></figure>
+<p>More args later</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Magic!</span></span><br><span class="line"><span class="keyword">const</span> names = people.map(<span class="keyword">get</span>('name'))</span><br></pre></td></tr></table></figure>
+<h4 id="Curry"><a href="#Curry" class="headerlink" title="Curry"></a>Curry</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(fn.length &gt; <span class="built_in">arguments</span>.length) &#123;</span><br><span class="line">      <span class="keyword">const</span> slice = <span class="built_in">Array</span>.prototype.slice,</span><br><span class="line">       args = slice.apply(<span class="built_in">arguments</span>)</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> fn.apply(<span class="literal">null</span>, args.concat(slice.apply(<span class="built_in">arguments</span>)))</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fn.apply(<span class="literal">null</span>, <span class="built_in">arguments</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Our code becomes</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">get</span> = curry(function <span class="keyword">get</span>(property, object) &#123;</span><br><span class="line">  <span class="keyword">return</span> object[property]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> names = people.map(<span class="keyword">get</span>('name'))</span><br></pre></td></tr></table></figure>
+<h3 id="Curring-Exercise"><a href="#Curring-Exercise" class="headerlink" title="Curring Exercise"></a>Curring Exercise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// use ramda.js</span></span><br><span class="line"><span class="keyword">var</span> _ = R;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">      C U R R Y I N G  E X A M P L E</span></span><br><span class="line"><span class="comment">******************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// We've got a nice multiply function.</span></span><br><span class="line"><span class="comment">// It takes two arguments.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( _.multiply(<span class="number">3</span>, <span class="number">4</span>) );</span><br><span class="line"></span><br><span class="line"><span class="comment">// But it has been secretly curried already</span></span><br><span class="line"><span class="comment">// so we can feed it fewer arguments and it</span></span><br><span class="line"><span class="comment">// will return a new function.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// How about making a function to double a</span></span><br><span class="line"><span class="comment">// value? Done.</span></span><br><span class="line"><span class="keyword">var</span> double = _.multiply(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( double(<span class="number">13</span>) );</span><br><span class="line"></span><br><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">               Y O U R  T U R N</span></span><br><span class="line"><span class="comment">******************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// _.split pulls a string apart around a</span></span><br><span class="line"><span class="comment">// given value</span></span><br><span class="line"><span class="built_in">console</span>.log( _.split(<span class="string">'i'</span>, <span class="string">'mississippi'</span>) );</span><br><span class="line"></span><br><span class="line"><span class="comment">// -- Challenge 1 ------------------------</span></span><br><span class="line"><span class="comment">// Make a function called "words" which</span></span><br><span class="line"><span class="comment">// returns a list of words in a string.</span></span><br><span class="line"><span class="comment">// Use only the split function and</span></span><br><span class="line"><span class="comment">// currying.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Testing challenge 1..."</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> words = _.split(<span class="string">' '</span>); <span class="comment">// change this</span></span><br><span class="line">assertEqualArrays(</span><br><span class="line">  [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>],</span><br><span class="line">  words(<span class="string">'one two three'</span>)</span><br><span class="line">);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"passed"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// -- Challenge 2 ------------------------</span></span><br><span class="line"><span class="comment">// Create a function to triple every</span></span><br><span class="line"><span class="comment">// number in a list using only</span></span><br><span class="line"><span class="comment">// _.multiply and _.map.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Testing challenge 2..."</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tripleList = _.map(_.multiply(<span class="number">3</span>));</span><br><span class="line">assertEqualArrays([<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>], tripleList([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"passed"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// -- Challenge 3 ------------------------</span></span><br><span class="line"><span class="comment">// Create a function to find the largest</span></span><br><span class="line"><span class="comment">// number in a list. You can use the</span></span><br><span class="line"><span class="comment">// greater(a,b) function which returns the</span></span><br><span class="line"><span class="comment">// greater of its two inputs. You can do</span></span><br><span class="line"><span class="comment">// this with currying and one of the list</span></span><br><span class="line"><span class="comment">// functions _.map, _.filter, or _.reduce.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Testing challenge 3..."</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> greater = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> max = _.reduce(greater, <span class="literal">undefined</span>);</span><br><span class="line">assertEqual(<span class="number">9</span>, max([<span class="number">1</span>,<span class="number">-3483</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">2</span>]));</span><br><span class="line">assertEqual(<span class="number">-1</span>, max([<span class="number">-21</span>,<span class="number">-3483</span>,<span class="number">-2</span>,<span class="number">-1</span>]));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"passed"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"All tests pass."</span>);</span><br><span class="line"><span class="comment">/******************************************</span></span><br><span class="line"><span class="comment">        B A C K G R O U N D  C O D E</span></span><br><span class="line"><span class="comment">*******************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertEqualArrays</span>(<span class="params">x,y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x.length !== y.length) <span class="keyword">throw</span>(<span class="string">"expected "</span>+x+<span class="string">" to equal "</span>+y);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> x) &#123;</span><br><span class="line">    <span class="keyword">if</span>(x[i] !== y[i]) &#123;</span><br><span class="line">      <span class="keyword">throw</span>(<span class="string">"expected "</span>+x+<span class="string">" to equal "</span>+y);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertEqual</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x !== y) <span class="keyword">throw</span>(<span class="string">"expected "</span>+x+<span class="string">" to equal "</span>+y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Implment-map-with-reduce"><a href="#Implment-map-with-reduce" class="headerlink" title="Implment map with reduce"></a>Implment map with reduce</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newmap = _.curry(<span class="function"><span class="keyword">function</span>(<span class="params">f, list</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> concatList = <span class="function"><span class="keyword">function</span> (<span class="params">acc, element</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> acc.concat(f(element))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> _.reduce(concatList, [], list)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="Compose"><a href="#Compose" class="headerlink" title="Compose"></a>Compose</h3><p>functions can “meld” aka <em>compose</em>.</p>
+<p>A =&gt; f(A) =&gt; B =&gt; g(B) =&gt; C =&gt; h(C) =&gt; D<br>A =&gt;       g | f       =&gt; C =&gt; h(C) =&gt; D<br>A =&gt;         h | (g | f)            =&gt; D</p>
+<p>Aside: categories</p>
+<p>Zooming way out from code</p>
+<p>You start seeing similarities</p>
+<p>Pure functions are the arrows of a “category”</p>
+<h4 id="separate-composition-from-args"><a href="#separate-composition-from-args" class="headerlink" title="separate composition from args"></a>separate composition from args</h4><p>Javascript code composes functions all the time</p>
+<p>But too often it uses unnecessary arguments</p>
+<p>example “glue” names</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">on_error(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line"> log(error.message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>To compose the logging and message extraction we created a function and a “glue” name called error.<br>为了组合日志记录和消息提取，我们创建了一个函数，并起了一个“胶水”名称叫error。</p>
+<h4 id="Simplified-compose-funciton"><a href="#Simplified-compose-funciton" class="headerlink" title="Simplified compose funciton"></a>Simplified compose funciton</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span>(<span class="params">g, f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> g(f(x))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This function does not care what is inside f or g. It produces a new function that pushes a value through.</p>
+<p>“olleH” ← “Hello” ← “hello”<br>compose(reverse, properNoun)</p>
+<p>Cut out the middle man</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">on_error( compose(log, <span class="keyword">get</span>('message')) );</span><br></pre></td></tr></table></figure>
+<h3 id="Composition-Exercise"><a href="#Composition-Exercise" class="headerlink" title="Composition Exercise"></a>Composition Exercise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _ = R;</span><br><span class="line"><span class="keyword">var</span> <span class="keyword">get</span> = _.curry(function(x, obj) &#123; <span class="keyword">return</span> obj[x]; &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************</span></span><br><span class="line"><span class="comment">    C O M P O S I T I O N  E X A M P L E</span></span><br><span class="line"><span class="comment">******************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Curried functions are easy to compose.</span></span><br><span class="line"><span class="comment">// Using _.map, _.size, and _.split we can</span></span><br><span class="line"><span class="comment">// make a function that returns the lengths</span></span><br><span class="line"><span class="comment">// of the words in a string.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> lengths = _.compose(</span><br><span class="line">  _.map(_.size), _.split(<span class="string">' '</span>)</span><br><span class="line">);</span><br><span class="line"><span class="built_in">console</span>.log(lengths(<span class="string">'once upon a time'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/*******************************************</span></span><br><span class="line"><span class="comment">               Y O U R  T U R N</span></span><br><span class="line"><span class="comment">********************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> articles = [</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'Everything Sucks'</span>,</span><br><span class="line">    url: <span class="string">'http://do.wn/sucks.html'</span>,</span><br><span class="line">    author: &#123;</span><br><span class="line">      name: <span class="string">'Debbie Downer'</span>,</span><br><span class="line">      email: <span class="string">'debbie@do.wn'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'If You Please'</span>,</span><br><span class="line">    url: <span class="string">'http://www.geocities.com/milq'</span>,</span><br><span class="line">    author: &#123;</span><br><span class="line">      name: <span class="string">'Caspar Milquetoast'</span>,</span><br><span class="line">      email: <span class="string">'hello@me.com'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// -- Challenge 1 -------------------------</span></span><br><span class="line"><span class="comment">// Return a list of the author names in</span></span><br><span class="line"><span class="comment">// articles using only get, _.compose, and</span></span><br><span class="line"><span class="comment">// _.map.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> names = _.map(</span><br><span class="line">              _.compose(<span class="keyword">get</span>('name'), <span class="keyword">get</span>('author'))</span><br><span class="line">            ); // change this</span><br><span class="line">assertEqualArrays(</span><br><span class="line">  ['Debbie Downer', 'Caspar Milquetoast'],</span><br><span class="line">  names(articles)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">// -- Challenge 2 -------------------------</span><br><span class="line">// Make a boolean function that says whether</span><br><span class="line">// a given person wrote any of the articles.</span><br><span class="line">// Use the names function you wrote above</span><br><span class="line">// with _.compose and _.contains.</span><br><span class="line"></span><br><span class="line">// var isAuthor = (name, list) =&gt; _.contains(name, names(list)) // change this</span><br><span class="line">var isAuthor = (name, articles) =&gt; _.compose(_.contains(name), names)(articles);</span><br><span class="line"></span><br><span class="line">assertEqual(  </span><br><span class="line">  false,</span><br><span class="line">  isAuthor('New Guy', articles)</span><br><span class="line">);</span><br><span class="line">assertEqual(</span><br><span class="line">  true,</span><br><span class="line">  isAuthor('Debbie Downer', articles)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">// -- Challenge 3 -------------------------</span><br><span class="line">// There is more to point-free programming</span><br><span class="line">// than compose! Let's build ourselves</span><br><span class="line">// another function that combines functions</span><br><span class="line">// to let us write code without glue variables.</span><br><span class="line"></span><br><span class="line">var fork = _.curry(function(lastly, f, g, x) &#123;</span><br><span class="line">  <span class="keyword">return</span> lastly(f(x), g(x));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// As you can see, the fork function is a</span></span><br><span class="line"><span class="comment">// pipeline like compose, except it duplicates</span></span><br><span class="line"><span class="comment">// its value, sends it to two functions, then</span></span><br><span class="line"><span class="comment">// sends the results to a combining function.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Your challenge: implement a function to</span></span><br><span class="line"><span class="comment">// compute the average values in a list using</span></span><br><span class="line"><span class="comment">// only fork, _.divide, _.sum, and _.size.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> avg = fork(_.divide, _.sum, _.size); <span class="comment">// change this</span></span><br><span class="line">assertEqual(<span class="number">3</span>, avg([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"All tests pass."</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************</span></span><br><span class="line"><span class="comment">        B A C K G R O U N D  C O D E</span></span><br><span class="line"><span class="comment">*******************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertEqualArrays</span>(<span class="params">x,y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x.length !== y.length)</span><br><span class="line">    <span class="keyword">throw</span>(<span class="string">"expected "</span>+x+<span class="string">" to equal "</span>+y);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> x) &#123;</span><br><span class="line">    <span class="keyword">if</span>(x[i] !== y[i]) &#123;</span><br><span class="line">      <span class="keyword">throw</span>(<span class="string">"expected "</span>+x+<span class="string">" to equal "</span>+y);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertEqual</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x !== y)</span><br><span class="line">    <span class="keyword">throw</span>(<span class="string">"expected "</span>+x+<span class="string">" to equal "</span>+y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Point-Free"><a href="#Point-Free" class="headerlink" title="Point Free"></a>Point Free</h3><p>Point means argument. You can think of Point Free means argument free.</p>
+<p>就像是如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fork = _.curry(<span class="function"><span class="keyword">function</span>(<span class="params">lastly, f, g, x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> lastly(f(x), g(x));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> avg = fork(_.divide, _.sum, _.size)</span><br></pre></td></tr></table></figure>
+<p>把几个基本函数组合起来返回一个新的函数，在调用新函数时才输入要处理的数据。</p>
+<h3 id="The-Slience-Review"><a href="#The-Slience-Review" class="headerlink" title="The Slience: Review"></a>The Slience: Review</h3><p>Recognize most loops are one of reduce, filter, map</p>
+<p>In review</p>
+<ol>
+<li>Make all function inputs explicit as arguments</li>
+<li>These arguments can be provided over time, not just all at once</li>
+<li>Try not to modify outside things</li>
+<li>Compose without “glue” variables</li>
+</ol>
+<h2 id="The-Voyage"><a href="#The-Voyage" class="headerlink" title="The Voyage"></a>The Voyage</h2><h3 id="Category-Theory"><a href="#Category-Theory" class="headerlink" title="Category Theory"></a>Category Theory</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="number">1</span>, <span class="number">1</span>) <span class="comment">// =&gt; 2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// associative</span></span><br><span class="line">add(add(<span class="number">1</span>, <span class="number">2</span>), <span class="number">4</span>) == add(<span class="number">1</span>, add(<span class="number">2</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// commutative</span></span><br><span class="line">add(<span class="number">4</span>, <span class="number">1</span>) == add(<span class="number">1</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// identity</span></span><br><span class="line">add(n, <span class="number">0</span>) == n</span><br><span class="line"></span><br><span class="line"><span class="comment">// distributive</span></span><br><span class="line">multiply(<span class="number">2</span>, add(<span class="number">3</span>,<span class="number">4</span>)) == add(multiply(<span class="number">2</span>, <span class="number">3</span>), multiply(<span class="number">2</span>, <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="string">"ta"</span>, <span class="string">"cos"</span>)</span><br><span class="line"><span class="comment">//=&gt; tacos</span></span><br><span class="line"></span><br><span class="line">add(<span class="number">9.2</span>, <span class="number">0.5</span>)</span><br><span class="line"><span class="comment">//=&gt; 9.7</span></span><br><span class="line"></span><br><span class="line">add([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</span><br><span class="line"><span class="comment">//=&gt; [1,2,3,4,5,6]</span></span><br></pre></td></tr></table></figure>
+<h4 id="Go-into-Category-Theory"><a href="#Go-into-Category-Theory" class="headerlink" title="Go into Category Theory"></a>Go into Category Theory</h4><p>compose :: (b -&gt; c) -&gt; (a -&gt; b) -&gt; (a -&gt; c)</p>
+<p>id:: a -&gt; a</p>
+<p>You need a composition and an identity to from a category</p>
+<h4 id="Category-Laws"><a href="#Category-Laws" class="headerlink" title="Category Laws"></a>Category Laws</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// left identity</span></span><br><span class="line">compose(id, f)  == f</span><br><span class="line"></span><br><span class="line"><span class="comment">// right identity</span></span><br><span class="line">compose(f, id)  == f</span><br><span class="line"></span><br><span class="line"><span class="comment">// associativity</span></span><br><span class="line">compose(compose(f, g), h)  == compose(f, compose(g, h))</span><br></pre></td></tr></table></figure>
+<h3 id="Objects"><a href="#Objects" class="headerlink" title="Objects"></a>Objects</h3><ol>
+<li>Containers/Wrappers for values</li>
+<li>No methods</li>
+<li>Not nouns</li>
+<li>Probably won’t be making your own often</li>
+</ol>
+<p>*think of it this way for now.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _Container = <span class="function"><span class="keyword">function</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.val = val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Container = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> _Container(x); &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Container(<span class="number">3</span>)</span><br><span class="line"><span class="comment">//=&gt; _Container &#123;val: 3&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">capitalize(<span class="string">"flamethrower"</span>)</span><br><span class="line"><span class="comment">//=&gt; "Flamethrower"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">capitalize(Container(<span class="string">"flamethrower"</span>))</span><br><span class="line"><span class="comment">//=&gt; [object Object]</span></span><br></pre></td></tr></table></figure>
+<h3 id="Object-Map"><a href="#Object-Map" class="headerlink" title="Object Map"></a>Object Map</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_.Container.prototype.map = <span class="function"><span class="keyword">function</span>(<span class="params">f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> Container(f(<span class="keyword">this</span>.val))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Container('flamethrower').map(function(s)&#123;return capitalize(s)&#125;)</span></span><br><span class="line">Container(<span class="string">'flamethrower'</span>).map(capitalize）</span><br><span class="line"><span class="comment">// =&gt; Container(“Flamethrower”)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Container(<span class="number">3</span>).map(add(<span class="number">1</span>)) <span class="comment">// =&gt; Container(4)</span></span><br><span class="line"></span><br><span class="line">[<span class="number">3</span>].map(add(<span class="number">1</span>)) <span class="comment">// =&gt; [4]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Container([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]).map(reverse).map(first)</span><br><span class="line"><span class="comment">//=&gt; Container(3)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Container(<span class="string">"flamethrower"</span>).map(length).map(add(<span class="number">1</span>))</span><br><span class="line"><span class="comment">//=&gt; Container(13)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = _.curry(<span class="function"><span class="keyword">function</span>(<span class="params">f, obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> obj.map(f)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Container(<span class="number">3</span>).map(add(<span class="number">1</span>)) <span class="comment">// Container(4)</span></span><br><span class="line"></span><br><span class="line">map(add(<span class="number">1</span>), Container(<span class="number">3</span>)) <span class="comment">// Container(4)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> map = _.curry(<span class="function"><span class="keyword">function</span>(<span class="params">f, obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> obj.map(f)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Container(<span class="number">3</span>).map(add(<span class="number">1</span>)) <span class="comment">// Container(4)</span></span><br><span class="line"></span><br><span class="line">map(add(<span class="number">1</span>), Container(<span class="number">3</span>)) <span class="comment">// Container(4)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">map(match(<span class="regexp">/cat/g</span>), Container(<span class="string">"catsup"</span>))</span><br><span class="line"><span class="comment">//=&gt; Container([“cat”])</span></span><br><span class="line"></span><br><span class="line">map(compose(first, reverse), Container(<span class="string">"dog"</span>))</span><br><span class="line"><span class="comment">//=&gt; Container(“g”)</span></span><br></pre></td></tr></table></figure>
+<h3 id="Maybe-Functor"><a href="#Maybe-Functor" class="headerlink" title="Maybe Functor"></a>Maybe Functor</h3><p>Functor: “An object or data structure you can map over”</p>
+<p>functions: map</p>
+<h4 id="Them-pesky-nulls"><a href="#Them-pesky-nulls" class="headerlink" title="Them pesky nulls"></a>Them pesky nulls</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getElement = <span class="built_in">document</span>.querySelector</span><br><span class="line"><span class="keyword">var</span> getNameParts = compose(split(<span class="string">' '</span>), <span class="keyword">get</span>('value'), getElement)</span><br><span class="line"></span><br><span class="line">getNameParts('#full_name')</span><br><span class="line">//=&gt; ['Jonathan', 'Gregory', 'Brandis']</span><br><span class="line"></span><br><span class="line">getNameParts('#fullname')</span><br><span class="line">//=&gt; Boom!</span><br></pre></td></tr></table></figure>
+<h4 id="Use-Maybe-Functor"><a href="#Use-Maybe-Functor" class="headerlink" title="Use Maybe Functor"></a>Use Maybe Functor</h4><p>Captures a null check</p>
+<p>The value inside may not be there</p>
+<p>Sometimes has two subclasses Just / Nothing</p>
+<p>Sometimes called Option with subclasses Some/None</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> _Maybe.prototype.map = <span class="function"><span class="keyword">function</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.val ? Maybe(func(<span class="keyword">this</span>.val)) : Maybe(<span class="literal">null</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">map(capitalize, Maybe(<span class="string">'flamethrower'</span>)) <span class="comment">// Maybe('Flamethrower')</span></span><br><span class="line">map(capitalize, Maybe(<span class="literal">null</span>)) <span class="comment">// =&gt; Maybe(null)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> firstMatch = compose(first, match(<span class="regexp">/cat/g</span>))</span><br><span class="line"></span><br><span class="line">firstMatch(<span class="string">'dogsup'</span>) <span class="comment">// =&gt; Boom!</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> firstMatch = compose(map(first), Maybe, match(<span class="regexp">/cat/g</span>))</span><br><span class="line"></span><br><span class="line">firstMatch(<span class="string">'dogsup'</span>) <span class="comment">// =&gt; Maybe(null)</span></span><br></pre></td></tr></table></figure>
+<h3 id="Functor-Exercise"><a href="#Functor-Exercise" class="headerlink" title="Functor Exercise"></a>Functor Exercise</h3><p><a href="http://jsbin.com/yumog" target="_blank" rel="noopener">http://jsbin.com/yumog</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.clear();</span><br><span class="line"><span class="keyword">var</span> _ = R;</span><br><span class="line"><span class="keyword">var</span> P = PointFree;</span><br><span class="line"><span class="keyword">var</span> map = P.fmap;</span><br><span class="line"><span class="keyword">var</span> compose = P.compose;</span><br><span class="line"><span class="keyword">var</span> Maybe = P.Maybe;</span><br><span class="line"><span class="keyword">var</span> Identity = P.Id;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 1</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use _.add(x,y) and map(f,x) to make a function that increments a value inside a functor</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 1--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex1 = map(_.add(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">assertDeepEqual(Identity(<span class="number">3</span>), ex1(Identity(<span class="number">2</span>)))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 1...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 2</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use _.head to get the first element of the list</span></span><br><span class="line"><span class="keyword">var</span> xs = Identity([<span class="string">'do'</span>, <span class="string">'ray'</span>, <span class="string">'me'</span>, <span class="string">'fa'</span>, <span class="string">'so'</span>, <span class="string">'la'</span>, <span class="string">'ti'</span>, <span class="string">'do'</span>])</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 2--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex2 = map(_.head)</span><br><span class="line"></span><br><span class="line">assertDeepEqual(Identity(<span class="string">'do'</span>), ex2(xs))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 2...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 3</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use safeGet and _.head to find the first initial of the user</span></span><br><span class="line"><span class="keyword">var</span> safeGet = _.curry(<span class="function"><span class="keyword">function</span>(<span class="params">x,o</span>)</span>&#123; <span class="keyword">return</span> Maybe(o[x]) &#125;)</span><br><span class="line"><span class="keyword">var</span> user = &#123;<span class="attr">id</span>: <span class="number">2</span>, <span class="attr">name</span>: <span class="string">"Albert"</span>&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 3--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex3 = compose(map(_.head), safeGet(<span class="string">'name'</span>));</span><br><span class="line"></span><br><span class="line">assertDeepEqual(Maybe(<span class="string">'A'</span>), ex3(user))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 3...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 4</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use Maybe to rewrite ex4 without an if statement</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 4--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex4 = compose(map(<span class="built_in">parseInt</span>), Maybe)</span><br><span class="line"></span><br><span class="line">assertDeepEqual(Maybe(<span class="number">4</span>), ex4(<span class="string">"4"</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 4...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// TEST HELPERS</span></span><br><span class="line"><span class="comment">// =====================</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inspectIt</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (x.inspect &amp;&amp; x.inspect()) || (x.toString &amp;&amp; x.toString()) || x.valueOf(); <span class="comment">//hacky for teachy.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertEqual</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x !== y)&#123; <span class="keyword">throw</span>(<span class="string">"expected "</span>+x+<span class="string">" to equal "</span>+y); &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertDeepEqual</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x.val !== y.val) <span class="keyword">throw</span>(<span class="string">"expected "</span>+inspectIt(x)+<span class="string">" to equal "</span>+inspectIt(y));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Either"><a href="#Either" class="headerlink" title="Either"></a>Either</h3><ul>
+<li>Typically used for pure error handling</li>
+<li>Like Maybe, but with an error message embedded</li>
+<li>Has two subclasses: Left/Right</li>
+<li>Map the function over a Right, ignores the Left</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map(<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">1</span>, Right(<span class="number">2</span>)) <span class="comment">// =&gt; Right(3)</span></span><br><span class="line"></span><br><span class="line">map(<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">1</span>, Left(<span class="string">'Some message'</span>)) <span class="comment">// =&gt; Left('Some message')</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> determineAge = <span class="function"><span class="keyword">function</span> (<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> user.age ? Right(user.age) : Left(<span class="string">`Couldn't get age`</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> yearOlder = compose(map(add(<span class="number">1</span>)), determineAge)</span><br><span class="line"></span><br><span class="line">yearOlder(&#123;<span class="attr">age</span>: <span class="number">22</span>&#125;) <span class="comment">// =&gt; Right(23)</span></span><br><span class="line">yearOlder(&#123;<span class="attr">age</span>: <span class="literal">null</span>&#125;) <span class="comment">// =&gt; Left("Couldn't get age")</span></span><br></pre></td></tr></table></figure>
+<h3 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h3><ul>
+<li>A lazy computation “builder”</li>
+<li>Typically used to contain side effects</li>
+<li>You must runIO to perform the operation</li>
+<li>Map appends the function to a list of things to run with the effectful value</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> email_io = IO( <span class="function"><span class="params">()</span> =&gt;</span> $(<span class="string">'#email'</span>).val() )</span><br><span class="line"><span class="keyword">const</span> msg_io = map(concat(<span class="string">'welcome'</span>), email_io)</span><br><span class="line"></span><br><span class="line">runIO(msg_io) <span class="comment">// =&gt; "welcome steve@foodie.net"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getBgColor = compose(<span class="keyword">get</span>('background-color'), JSON.parse)</span><br><span class="line">const bgPref = compose(map(getBgColor), Store.<span class="keyword">get</span>('preferences'))</span><br><span class="line"></span><br><span class="line">const app = bgPref()</span><br><span class="line"></span><br><span class="line">runIO(app)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> email_io = IO(<span class="function"><span class="params">()</span> =&gt;</span> $(<span class="string">'#email'</span>).val())</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getValue = (<span class="function"><span class="params">sel</span> =&gt;</span> $(sel).val()).toIO()</span><br></pre></td></tr></table></figure>
+<h3 id="Either-IO-Exercise"><a href="#Either-IO-Exercise" class="headerlink" title="Either/IO Exercise"></a>Either/IO Exercise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.clear();</span><br><span class="line"><span class="keyword">var</span> _ = R;</span><br><span class="line"><span class="keyword">var</span> P = PointFree;</span><br><span class="line"><span class="keyword">var</span> map = P.fmap;</span><br><span class="line"><span class="keyword">var</span> compose = P.compose;</span><br><span class="line"><span class="keyword">var</span> Maybe = P.Maybe;</span><br><span class="line"><span class="keyword">var</span> Identity = P.Id;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Either = folktale.data.Either;</span><br><span class="line"><span class="keyword">var</span> Left = Either.Left;</span><br><span class="line"><span class="keyword">var</span> Right = Either.Right;</span><br><span class="line"><span class="keyword">var</span> IO = P.IO.IO;</span><br><span class="line"><span class="keyword">var</span> runIO = P.IO.runIO;</span><br><span class="line">P.IO.extendFn();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 1</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Write a function that uses checkActive() and showWelcome() to grant access or return the error</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 1--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> showWelcome = compose(_.add( <span class="string">"Welcome "</span>), _.get(<span class="string">'name'</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> checkActive = <span class="function"><span class="keyword">function</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> user.active ? Right(user) : Left(<span class="string">'Your account is not active'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex1 = compose(map(showWelcome), checkActive)</span><br><span class="line"></span><br><span class="line">assertDeepEqual(Left(<span class="string">'Your account is not active'</span>), ex1(&#123;<span class="attr">active</span>: <span class="literal">false</span>, <span class="attr">name</span>: <span class="string">'Gary'</span>&#125;))</span><br><span class="line">assertDeepEqual(Right(<span class="string">'Welcome Theresa'</span>), ex1(&#123;<span class="attr">active</span>: <span class="literal">true</span>, <span class="attr">name</span>: <span class="string">'Theresa'</span>&#125;))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 1...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 2</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Write a validation function that checks for a length &gt; 3. It should return Right(x) if it is greater than 3 and Left("You need &gt; 3") otherwise</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 2--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex2 = <span class="function"><span class="keyword">function</span> <span class="title">greaterThan3</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line"><span class="comment">//   return "<span class="doctag">TODO:</span> write me";</span></span><br><span class="line">  <span class="keyword">return</span> x.length &gt; <span class="number">3</span> ? Right(x) : Left(<span class="string">"You need &gt; 3"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">assertDeepEqual(Right(<span class="string">"fpguy99"</span>), ex2(<span class="string">"fpguy99"</span>))</span><br><span class="line">assertDeepEqual(Left(<span class="string">"You need &gt; 3"</span>), ex2(<span class="string">"..."</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 2...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 3</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use ex2 above and Either as a functor to save the user if they are valid</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> save = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123; <span class="built_in">console</span>.log(<span class="string">"SAVED USER!"</span>); <span class="keyword">return</span> x; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex3 = compose(map(save), ex2)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 3--------"</span>)</span><br><span class="line">assertDeepEqual(Right(<span class="string">"fpguy99"</span>), ex3(<span class="string">"fpguy99"</span>))</span><br><span class="line">assertDeepEqual(Left(<span class="string">"You need &gt; 3"</span>), ex3(<span class="string">"duh"</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 3...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 4</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Get the text from the input and strip the spaces</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 4--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getValue = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123; <span class="keyword">return</span> <span class="built_in">document</span>.querySelector(x).value &#125;.toIO()</span><br><span class="line"><span class="keyword">var</span> stripSpaces = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123; <span class="keyword">return</span> s.replace(<span class="regexp">/\s+/g</span>, <span class="string">''</span>); &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex4 = compose(map(stripSpaces), getValue)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">assertEqual(<span class="string">"honkeytonk"</span>, runIO(ex4(<span class="string">'#text'</span>)))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 4...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 5</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use getHref() / getProtocal() and runIO() to get the protocal of the page.</span></span><br><span class="line"><span class="keyword">var</span> getHref = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> location.href; &#125;.toIO();</span><br><span class="line"><span class="keyword">var</span> getProtocal = compose(_.head, _.split(<span class="string">'/'</span>))</span><br><span class="line"><span class="keyword">var</span> ex5 = compose(map(getProtocal), getHref)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 5--------"</span>)</span><br><span class="line">assertEqual(<span class="string">'https:'</span>, runIO(ex5(<span class="literal">null</span>)))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 5...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 6*</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Write a function that returns the Maybe(email) of the User from getCache(). Don't forget to JSON.parse once it's pulled from the cache so you can _.get() the email</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// setup...</span></span><br><span class="line">localStorage.user = <span class="built_in">JSON</span>.stringify(&#123;<span class="attr">email</span>: <span class="string">"george@foreman.net"</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getCache = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123; <span class="keyword">return</span> Maybe(localStorage[x]); &#125;.toIO();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getStringEmail = compose( _.get(<span class="string">'email'</span>), <span class="built_in">JSON</span>.parse)</span><br><span class="line"><span class="keyword">var</span> ex6 = compose(map(map(getEmail)), getCache) <span class="comment">// 使用第一个map转换io内的数据，在使用第二个map转换Maybe内的数据</span></span><br><span class="line"></span><br><span class="line">assertDeepEqual(Maybe(<span class="string">"george@foreman.net"</span>), runIO(ex6(<span class="string">'user'</span>)))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 6...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// TEST HELPERS</span></span><br><span class="line"><span class="comment">// =====================</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inspectIt</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (x.inspect &amp;&amp; x.inspect()) || (x.toString &amp;&amp; x.toString()) || x.valueOf(); <span class="comment">//hacky for teachy.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertEqual</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x !== y)&#123; <span class="keyword">throw</span>(<span class="string">"expected "</span>+x+<span class="string">" to equal "</span>+y); &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertDeepEqual</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x.val !== y.val) <span class="keyword">throw</span>(<span class="string">"expected "</span>+inspectIt(x)+<span class="string">" to equal "</span>+inspectIt(y));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Other-Functors"><a href="#Other-Functors" class="headerlink" title="Other Functors"></a>Other Functors</h3><h4 id="EventStream"><a href="#EventStream" class="headerlink" title="EventStream"></a>EventStream</h4><ul>
+<li>An infinite list of results</li>
+<li>Dual of array</li>
+<li>Its map is sometimes lazy</li>
+<li>Calls the mapped function each time an event happens</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> id_s = map(<span class="function"><span class="params">e</span> =&gt;</span> <span class="string">`#<span class="subst">$&#123;e.id&#125;</span>`</span>, Bacon.fromEventTarget(<span class="built_in">document</span>, <span class="string">'click'</span>))</span><br><span class="line"><span class="comment">// =&gt; EventStream(String)</span></span><br><span class="line"></span><br><span class="line">id_s.onValue(<span class="function"><span class="params">id</span> =&gt;</span> &#123;alert(<span class="string">`you clicked <span class="subst">$&#123;id&#125;</span>`</span>)&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> id_s = map(<span class="function"><span class="params">e</span> =&gt;</span> <span class="string">`#<span class="subst">$&#123;e.id&#125;</span>`</span>, Bacon.fromEventTarget(<span class="built_in">document</span>, <span class="string">'click'</span>))</span><br><span class="line"><span class="keyword">const</span> elements_s = map(doucment.querySelector, id_s)</span><br><span class="line"><span class="comment">// EventStream(Elements)</span></span><br><span class="line"></span><br><span class="line">elements_s.onValue(<span class="function"><span class="params">e</span> =&gt;</span> &#123;alert(<span class="string">`The inner html is <span class="subst">$&#123;e.innerHTML&#125;</span>`</span>)&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hover_s = Bacon.fromEventTarget(<span class="built_in">document</span>, <span class="string">"hover"</span>)</span><br><span class="line"><span class="keyword">var</span> element_s = map(compose(<span class="built_in">document</span>.querySelector, <span class="keyword">get</span>('id')), hover_s)</span><br><span class="line">var postid_s = map(function(el) &#123; <span class="keyword">return</span> el.data(<span class="string">'post-id'</span>) &#125;, element_s)</span><br><span class="line"><span class="keyword">var</span> future_post_s = map(Api.getProductById, postid_s)</span><br><span class="line"><span class="comment">//=&gt; EventStream(Future(Post))</span></span><br><span class="line"></span><br><span class="line">future_post_s.onValue(alert)</span><br></pre></td></tr></table></figure>
+<h4 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h4><ul>
+<li>Has an eventual value</li>
+<li>Similar to a promise, but it’s “lazy”</li>
+<li>You must fork it to kick it off</li>
+<li>It takes a function as it’s value</li>
+<li>Calls the function with it’s result once it’s there</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> makeHtml = <span class="function"><span class="params">post</span> =&gt;</span> <span class="string">`&lt;div&gt;<span class="subst">$&#123;post.title&#125;</span>&lt;/div&gt;`</span>,</span><br><span class="line">  page_f = map(makeHtml, http.get(<span class="string">'/posts/2'</span>))</span><br><span class="line"></span><br><span class="line">page_f.fork(</span><br><span class="line">  err =&gt; &#123;<span class="keyword">throw</span>(err)&#125;,</span><br><span class="line">  page =&gt; &#123;$(<span class="string">'#container'</span>).html(page)&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> makeHtml = <span class="function"><span class="params">title</span> =&gt;</span> <span class="string">`&lt;div&gt;<span class="subst">$&#123;title&#125;</span>&lt;/div&gt;`</span>,</span><br><span class="line">  createPage = compose(makeHtml, <span class="keyword">get</span>('title')),</span><br><span class="line">  page_f = compose(map(createPage), http.<span class="keyword">get</span>('/posts/2'))</span><br><span class="line"></span><br><span class="line">page_f.fork(</span><br><span class="line">  err =&gt; &#123; <span class="keyword">throw</span>(err) &#125;,</span><br><span class="line">  page =&gt; &#123; $(<span class="string">'#container'</span>).html(page) &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lineCount = compose(length, split(<span class="regexp">/n\n/</span>)),</span><br><span class="line">  fileLineCount = compose(map(lineCount), readFile)</span><br><span class="line"></span><br><span class="line">fileLineCount(<span class="string">'mydoc.txt'</span>).fork(log, log) <span class="comment">// =&gt; 34</span></span><br></pre></td></tr></table></figure>
+<h3 id="Other-Functors-Exercise"><a href="#Other-Functors-Exercise" class="headerlink" title="Other Functors: Exercise"></a>Other Functors: Exercise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.clear();</span><br><span class="line"><span class="keyword">var</span> _ = ramda;</span><br><span class="line"><span class="keyword">var</span> P = PointFree;</span><br><span class="line"><span class="keyword">var</span> map = P.fmap;</span><br><span class="line"><span class="keyword">var</span> compose = P.compose;</span><br><span class="line"><span class="keyword">var</span> Maybe = P.Maybe;</span><br><span class="line"><span class="keyword">var</span> Identity = P.Id;</span><br><span class="line"><span class="keyword">var</span> runIO = P.IO.runIO;</span><br><span class="line">P.IO.extendFn();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 1</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use getPost(id) to return a Future of the title of the post (&#123;id: i, title: 'Love them futures'&#125;)</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 1--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex1 = compose(map(_get(<span class="string">'title'</span>)), getPost)</span><br><span class="line"></span><br><span class="line">ex1(<span class="number">3</span>).fork(log, <span class="function"><span class="keyword">function</span>(<span class="params">title</span>)</span>&#123;</span><br><span class="line">  assertEqual(<span class="string">'Love them futures'</span>, title)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"exercise 1..ok!"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 2</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use ex1 to extend the computation and render the title in a div</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 2--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> render = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123; <span class="keyword">return</span> <span class="string">"&lt;div&gt;"</span>+x+<span class="string">"&lt;/div&gt;"</span>; &#125;</span><br><span class="line"><span class="keyword">var</span> ex2 = compose(map(render), ex1)</span><br><span class="line"></span><br><span class="line">ex2(<span class="number">3</span>).fork(log, <span class="function"><span class="keyword">function</span>(<span class="params">html</span>)</span>&#123;</span><br><span class="line">  assertEqual(<span class="string">'&lt;div&gt;Love them futures&lt;/div&gt;'</span>, html)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"exercise 2...ok!"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 3</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// In JSBin, click the "Output" tab to see a div. Click this div to run the test.</span></span><br><span class="line"><span class="comment">// Turn the clicks into a stream of the div's innerHTML</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 3--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> clicks = Bacon.fromEventTarget(<span class="built_in">document</span>.querySelector(<span class="string">"#box"</span>), <span class="string">"click"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//Todo: turn clicks into a stream of the e.target.innerHTML</span></span><br><span class="line"><span class="keyword">var</span> htmlClicks = clicks.map(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123; <span class="keyword">return</span> e.target.innerHTML; &#125;)</span><br><span class="line"></span><br><span class="line">htmlClicks.onValue(<span class="function"><span class="keyword">function</span>(<span class="params">html</span>)</span>&#123;</span><br><span class="line">  assertEqual(<span class="string">'&lt;span&gt;CLICK ME&lt;/span&gt;'</span>, trim(html))</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"exercise 3...ok!"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 4</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Keep the Output tab open. Type into the input to run the test.</span></span><br><span class="line"><span class="comment">// Transform the keydowns into a stream of the input's value</span></span><br><span class="line"><span class="comment">// Then use pureLog() to log it to the console</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 4--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pureLog = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123; <span class="built_in">console</span>.log(x); <span class="keyword">return</span> x; &#125;.toIO();</span><br><span class="line"><span class="keyword">var</span> search_input = <span class="built_in">document</span>.querySelector(<span class="string">"#search"</span>)</span><br><span class="line"><span class="keyword">var</span> keydowns = Bacon.fromEventTarget(search_input, <span class="string">"keydown"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//Todo: turn keydowns into a stream of the logged input's value</span></span><br><span class="line"><span class="keyword">var</span> logs = keydowns;</span><br><span class="line"></span><br><span class="line">logs.onValue(<span class="function"><span class="keyword">function</span>(<span class="params">io</span>)</span>&#123;</span><br><span class="line">  assertEqual(search_input.value, runIO(io))</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"exercise 4...ok!"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 5*</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use only safeGet() to safely return the street name</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 5--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> safeGet = _.curry(<span class="function"><span class="keyword">function</span>(<span class="params">x,o</span>)</span>&#123; <span class="keyword">return</span> Maybe(o[x]) &#125;)</span><br><span class="line"><span class="keyword">var</span> user = &#123;<span class="attr">id</span>: <span class="number">2</span>, <span class="attr">name</span>: <span class="string">"Albert"</span>, <span class="attr">address</span>: &#123; <span class="attr">street</span>: &#123;<span class="attr">number</span>: <span class="number">22</span>, <span class="attr">name</span>: <span class="string">'Walnut St'</span>&#125; &#125; &#125;</span><br><span class="line"><span class="keyword">var</span> ex5 = compose(map(map(safeGet(<span class="string">'name'</span>))), map(safeGet(<span class="string">'street'</span>)), safeGet(<span class="string">'address'</span>));</span><br><span class="line"></span><br><span class="line">assertDeepEqual(Maybe(Maybe(Maybe(<span class="string">'Walnut St'</span>))), ex5(user))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 5...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// TEST HELPERS</span></span><br><span class="line"><span class="comment">// =====================</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inspectIt</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (x.inspect &amp;&amp; x.inspect()) || (x.toString &amp;&amp; x.toString()) || x.valueOf(); <span class="comment">//hacky for teachy.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertEqual</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x !== y)&#123; <span class="keyword">throw</span>(<span class="string">"expected "</span>+x+<span class="string">" to equal "</span>+y); &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertDeepEqual</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x.val !== y.val) <span class="keyword">throw</span>(<span class="string">"expected "</span>+inspectIt(x)+<span class="string">" to equal "</span>+inspectIt(y));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">x</span>)</span>&#123; <span class="built_in">console</span>.log(x); <span class="keyword">return</span> x; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPost</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Future(<span class="function"><span class="keyword">function</span>(<span class="params">rej, res</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      res(&#123;<span class="attr">id</span>: i, <span class="attr">title</span>: <span class="string">'Love them futures'</span>&#125;)  </span><br><span class="line">    &#125;, <span class="number">300</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getComments</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Future(<span class="function"><span class="keyword">function</span>(<span class="params">rej, res</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      res([<span class="string">"This class should be illegal"</span>, <span class="string">"Monads are like space burritos"</span>])</span><br><span class="line">    &#125;, <span class="number">300</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim</span>(<span class="params">x</span>)</span>&#123; <span class="keyword">return</span> x.replace(<span class="string">'/\S&#123;0,&#125;/g'</span>, <span class="string">''</span>); &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Functor-Laws-amp-Properties"><a href="#Functor-Laws-amp-Properties" class="headerlink" title="Functor Laws &amp; Properties"></a>Functor Laws &amp; Properties</h3><p>Recognize map</p>
+<table>
+<thead>
+<tr>
+<th>Custom names</th>
+<th>We see it is map</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[x].map(f) // [f(x)]</code></td>
+<td><code>map(f, [x]) //[f(x)]</code></td>
+</tr>
+<tr>
+<td><code>Maybe(x).attempt(f) // Maybe(f(x))</code></td>
+<td><code>map(f, Maybe(x)) // Maybe(f(x))</code></td>
+</tr>
+<tr>
+<td><code>Promise(x).then(f) // Promise(f(x))</code></td>
+<td><code>map(f, Promise(x)) // Promise(f(x))</code></td>
+</tr>
+<tr>
+<td><code>EventStream(x).subscribe(f) // EventStream(f(x))</code></td>
+<td>map(f, EventStream(x)) // EventStream(f(x))</td>
+</tr>
+</tbody>
+</table>
+<p>Laws &amp; Properties are useful</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// identity</span></span><br><span class="line">map(id) == id</span><br><span class="line"></span><br><span class="line"><span class="comment">// composition</span></span><br><span class="line">compose(map(f), map(g)) == map(compose(f, g))</span><br></pre></td></tr></table></figure>
+<p>reverse :: String -&gt; String<br>toArray :: a -&gt; Array a</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> toArray = <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123; <span class="keyword">return</span> [x] &#125;</span><br><span class="line"></span><br><span class="line">compose(toArray, reverse)(<span class="string">"bingo"</span>)</span><br><span class="line"><span class="comment">//=&gt; [ognib]</span></span><br><span class="line"></span><br><span class="line">compose(map(reverse), toArray)(<span class="string">"bingo"</span>)</span><br><span class="line"><span class="comment">//=&gt; [ognib]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">compose(toArray, compose(toUpper, reverse))(<span class="string">"bingo"</span>)</span><br><span class="line"><span class="comment">//=&gt; [OGNIB]</span></span><br><span class="line"></span><br><span class="line">compose(map(toUpper), map(reverse), toArray)(<span class="string">"bingo"</span>)</span><br><span class="line"><span class="comment">//=&gt; [OGNIB]</span></span><br><span class="line"></span><br><span class="line">compose(map(compose(toUpper, reverse)), toArray)(<span class="string">"bingo"</span>)</span><br><span class="line"><span class="comment">//=&gt; [OGNIB]</span></span><br></pre></td></tr></table></figure>
+<h4 id="Natural-Transformations"><a href="#Natural-Transformations" class="headerlink" title="Natural Transformations"></a>Natural Transformations</h4><p>nt:: F a -&gt; T a</p>
+<p>“Take one functor to another without knowing anything about the values”</p>
+<p>maybeToArray :: Maybe a -&gt; Array a</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">maybeToArray(Maybe(<span class="number">2</span>)) <span class="comment">// =&gt; [2]</span></span><br><span class="line"></span><br><span class="line">maybeToArray(Maybe(<span class="literal">null</span>)) <span class="comment">// =&gt; []</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">compose(nt, map(f)) == compose(map(f), nt)</span><br><span class="line"></span><br><span class="line">compose(maybeToArray, map(add(<span class="number">1</span>)))(Maybe(<span class="number">5</span>)) <span class="comment">// [6]</span></span><br><span class="line"></span><br><span class="line">compose(map(add(<span class="number">1</span>)), maybeToArray)(Maybe(<span class="number">5</span>)) <span class="comment">// [6]</span></span><br></pre></td></tr></table></figure>
+<h4 id="Card-Game-1"><a href="#Card-Game-1" class="headerlink" title="Card Game #1"></a>Card Game #1</h4><p>“Make an api call with an id and possibly retrieve a post”</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Future(Maybe(Post))</span><br></pre></td></tr></table></figure>
+<h4 id="Card-Game-2"><a href="#Card-Game-2" class="headerlink" title="Card Game #2"></a>Card Game #2</h4><p>“Click a navigation link and insert the corresponding html on the page”</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventStream(IO(Dom))</span><br></pre></td></tr></table></figure>
+<h4 id="Card-Game-3"><a href="#Card-Game-3" class="headerlink" title="Card Game #3"></a>Card Game #3</h4><p>“Submit a signup form &amp; return errors or make an API call that will create a user”</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventStream(Either(Future(User)))</span><br></pre></td></tr></table></figure>
+<h3 id="Monads"><a href="#Monads" class="headerlink" title="Monads"></a>Monads</h3><h4 id="Pointed-Functors"><a href="#Pointed-Functors" class="headerlink" title="Pointed Functors"></a>Pointed Functors</h4><p>of :: a -&gt; F a</p>
+<p>aka: pure, return, unit, point</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Container.of(split) <span class="comment">// Container(split)</span></span><br><span class="line"></span><br><span class="line">Future.of(match(<span class="regexp">/dubstep/</span>)) <span class="comment">// Future(match(/dubstep))</span></span><br><span class="line"></span><br><span class="line">Maybe.of(reverse) <span class="comment">// Maybe(reverse)</span></span><br><span class="line"></span><br><span class="line">EventStream.of(replace(<span class="regexp">/debstep/</span>, <span class="string">'shoegaze'</span>)) <span class="comment">// EventStream(replace(/debstep/, 'shoegaze'))</span></span><br></pre></td></tr></table></figure>
+<h4 id="monads"><a href="#monads" class="headerlink" title="monads"></a>monads</h4><p>A monad is a pointed functor with an extra function called mjoin and/or chain</p>
+<p>“Nested computations”</p>
+<p>functions: mjoin, chain</p>
+<p>mjion :: M M a -&gt; M a</p>
+<p>chain :: (a -&gt; M b) -&gt; M a -&gt; M b</p>
+<p>Pointed Functor + mjoin|chain = Monad</p>
+<p>aka: pure, return, unit, point</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mjoin(Container(Container(<span class="number">2</span>))) <span class="comment">// Container(2)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getTrackingId = compose(Maybe, <span class="keyword">get</span>('tracking_id')),</span><br><span class="line">  findOrder = compose(Maybe, Api.findOrder),</span><br><span class="line">  getOrderTracking = compose(map(getTrackingId), findOrder)</span><br><span class="line"></span><br><span class="line">const renderPage = compose(map(map(renderTemplete)), getOrderTracking)</span><br><span class="line">renderPage(379) // =&gt; Maybe(Maybe(Html))</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getTrackingId = compose(Maybe, <span class="keyword">get</span>('tracking_id')),</span><br><span class="line">  findOrder = compose(Maybe, Api.findOrder),</span><br><span class="line">  getOrderTracking = compose(mjoin, map(getTrackingId), findOrder) // 使用mjoin压平Maybe为一层</span><br><span class="line"></span><br><span class="line">const renderPage = compose(map(renderTemplete), getOrderTracking)</span><br><span class="line">renderPage(379) // =&gt; Maybe(Html)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> setSearchInput = (<span class="function"><span class="params">x</span> =&gt;</span> (<span class="string">'#input'</span>).val(x)).toIO(),</span><br><span class="line">  getSearchTerm = <span class="function">(<span class="params">(</span>) =&gt;</span> getParam(<span class="string">'term'</span>, location.search)).toIO()</span><br><span class="line">  initSearchForm = compose(map(setSearchInput), getSearchTerm)</span><br><span class="line"></span><br><span class="line">initSearchForm() <span class="comment">// =&gt; IO(IO(Dom))</span></span><br><span class="line"></span><br><span class="line">map(runIO, initSearchForm())</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> setSearchInput = (<span class="function"><span class="params">x</span> =&gt;</span> (<span class="string">'#input'</span>).val(x)).toIO(),</span><br><span class="line">  getSearchTerm = <span class="function">(<span class="params">(</span>) =&gt;</span> getParam(<span class="string">'term'</span>, location.search)).toIO()</span><br><span class="line">  initSearchForm = compose(mjoin, map(setSearchInput), getSearchTerm)</span><br><span class="line"></span><br><span class="line">initSearchForm() <span class="comment">// =&gt; IO(Dom)</span></span><br><span class="line"></span><br><span class="line">runIO(initSearchForm())</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sendToServer = httpGet(<span class="string">'/upload'</span>),</span><br><span class="line">  upLoadFromFile = compose(mjoin, map(sendToServer), readFile)</span><br><span class="line"></span><br><span class="line">upLoadFromFile(<span class="string">'/tmp/my_file.txt'</span>).fork(logErr, alertSuccess)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sendToServer = httpGet(<span class="string">'/upload'</span>),</span><br><span class="line">  upLoadFromFile = compose(mjoin, map(sendToServer), mjoin, map(readFlie), askUser)</span><br><span class="line"></span><br><span class="line">upLoadFile(<span class="string">'What file?'</span>).fork(logErr, alertSuccess)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> chain = <span class="function"><span class="keyword">function</span>(<span class="params">f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> compose(mjion, map(f))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">aka: flatMap, bind</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sendToServer = httpGet(<span class="string">'/upload'</span>),</span><br><span class="line">  upLoadFromFlie = compose(chain(sendToServer), chain(readFile), askUser)</span><br><span class="line"></span><br><span class="line">upLoadFromFile(<span class="string">'What file?'</span>).fork(logErr, alertSuccess)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sendToServer = httpGet(<span class="string">'/upload'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> upLoadFromFile = <span class="function"><span class="params">what</span> =&gt;</span> askUser(what).chain(readFile).chain(sendToServer)</span><br><span class="line"></span><br><span class="line">upLoadFromFile(<span class="string">'What file?'</span>).fork(logErr, alertSuccess)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> chain = <span class="function"><span class="params">f</span> =&gt;</span> compose(mjoin, map(f))</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mjoin = chain(id)</span><br></pre></td></tr></table></figure>
+<h3 id="Monads-Exercises"><a href="#Monads-Exercises" class="headerlink" title="Monads Exercises"></a>Monads Exercises</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.clear();</span><br><span class="line"><span class="keyword">var</span> _ = R;</span><br><span class="line"><span class="keyword">var</span> P = PointFree;</span><br><span class="line"><span class="keyword">var</span> map = P.fmap;</span><br><span class="line"><span class="keyword">var</span> mjoin = P.mjoin;</span><br><span class="line"><span class="keyword">var</span> chain = P.flatMap;</span><br><span class="line"><span class="keyword">var</span> compose = P.compose;</span><br><span class="line"><span class="keyword">var</span> Maybe = P.Maybe;</span><br><span class="line"><span class="keyword">var</span> Identity = P.Id;</span><br><span class="line"><span class="keyword">var</span> runIO = P.IO.runIO;</span><br><span class="line">P.IO.extendFn();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 1</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use safeGet and mjoin or chain to safetly get the street name</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 1--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> safeGet = _.curry(<span class="function"><span class="keyword">function</span>(<span class="params">x,o</span>)</span>&#123; <span class="keyword">return</span> Maybe(o[x]) &#125;)</span><br><span class="line"><span class="keyword">var</span> user = &#123;<span class="attr">id</span>: <span class="number">2</span>, <span class="attr">name</span>: <span class="string">"Albert"</span>, <span class="attr">address</span>: &#123; <span class="attr">street</span>: &#123;<span class="attr">number</span>: <span class="number">22</span>, <span class="attr">name</span>: <span class="string">'Walnut St'</span>&#125; &#125; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex1 = compose(chain(safeGet(<span class="string">'name'</span>)), chain(safeGet(<span class="string">'street'</span>)),safeGet(<span class="string">'address'</span>))</span><br><span class="line"></span><br><span class="line">assertDeepEqual(Maybe(<span class="string">'Walnut St'</span>), ex1(user))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 1...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 2</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use monads to get the href, then purely log it.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 2--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getHref = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> location.href &#125;.toIO();</span><br><span class="line"><span class="keyword">var</span> pureLog = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123; <span class="built_in">console</span>.log(x); <span class="keyword">return</span> x; &#125;.toIO();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex2 = compose(chain(pureLog),getHref)</span><br><span class="line"></span><br><span class="line">assertEqual(<span class="string">"https://null.jsbin.com/runner"</span>, runIO(ex2(<span class="literal">null</span>)))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"exercise 2...ok!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise 3</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// Use monads to first get the Post with getPost(), then pass it's id in to getComments().</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"--------Start exercise 3--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex3 = compose(chain(getComments, _.get(<span class="string">'id'</span>)), getPost)</span><br><span class="line"></span><br><span class="line">ex3(<span class="number">13</span>).fork(log, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">  assertEqual(<span class="number">2</span>, res.length)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"exercise 3...ok!"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// TEST HELPERS</span></span><br><span class="line"><span class="comment">// =====================</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inspectIt</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (x.inspect &amp;&amp; x.inspect()) || (x.toString &amp;&amp; x.toString()) || x.valueOf(); <span class="comment">//hacky for teachy.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertEqual</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x !== y)&#123; <span class="keyword">throw</span>(<span class="string">"expected "</span>+x+<span class="string">" to equal "</span>+y); &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertDeepEqual</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x.val !== y.val) <span class="keyword">throw</span>(<span class="string">"expected "</span>+inspectIt(x)+<span class="string">" to equal "</span>+inspectIt(y));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">x</span>)</span>&#123; <span class="built_in">console</span>.log(x); <span class="keyword">return</span> x; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPost</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Future(<span class="function"><span class="keyword">function</span>(<span class="params">rej, res</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      res(&#123;<span class="attr">id</span>: i, <span class="attr">title</span>: <span class="string">'Love them futures'</span>&#125;)  </span><br><span class="line">    &#125;, <span class="number">300</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getComments</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Future(<span class="function"><span class="keyword">function</span>(<span class="params">rej, res</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      res([<span class="string">"This class should be illegal"</span>, <span class="string">"Monads are like space burritos"</span>])</span><br><span class="line">    &#125;, <span class="number">300</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim</span>(<span class="params">x</span>)</span>&#123; <span class="keyword">return</span> x.replace(<span class="string">'/\S&#123;0,&#125;/g'</span>, <span class="string">''</span>); &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Monad-Laws"><a href="#Monad-Laws" class="headerlink" title="Monad Laws"></a>Monad Laws</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">compose(mjoin, fmap(g), mjoin, fmap(f))</span><br><span class="line"></span><br><span class="line">mcompose(g, f)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// left identity</span></span><br><span class="line">mcompose(M, f)  == f</span><br><span class="line"></span><br><span class="line"><span class="comment">// right identity</span></span><br><span class="line">mcompose(f, M)  == f</span><br><span class="line"></span><br><span class="line"><span class="comment">// associativity</span></span><br><span class="line">mcompose(mcompose(f, g), h)  == mcompose(f, mcompose(g, h))</span><br></pre></td></tr></table></figure>
+<h2 id="The-Demo"><a href="#The-Demo" class="headerlink" title="The Demo"></a>The Demo</h2><h3 id="Project-Setup"><a href="#Project-Setup" class="headerlink" title="Project Setup"></a>Project Setup</h3><p>Libraries are Evolving</p>
+<p>We’ll combine the best ones</p>
+<ul>
+<li>CrossEye / ramda</li>
+<li>baconjs / bacon.js</li>
+<li>fantasyland / fantasy-io</li>
+<li>DrBoolean / pointfree-fantasy</li>
+<li>folktale / data.either</li>
+</ul>
+<p><a href="https://github.com/begriffs/immutube" target="_blank" rel="noopener">github.com/begriffs/immutube</a></p>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HELPERS ///////////////////////////////////////////</span></span><br><span class="line">  <span class="keyword">var</span> compose = P.compose;</span><br><span class="line">  <span class="keyword">var</span> map = P.map;</span><br><span class="line">  <span class="keyword">var</span> log = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123; <span class="built_in">console</span>.log(x); <span class="keyword">return</span> x; &#125;</span><br><span class="line">  <span class="keyword">var</span> fork = _.curry(<span class="function"><span class="keyword">function</span>(<span class="params">f, future</span>) </span>&#123; <span class="keyword">return</span> future.fork(log, f); &#125;)</span><br><span class="line">  <span class="keyword">var</span> setHtml = _.curry(<span class="function"><span class="keyword">function</span>(<span class="params">sel, x</span>) </span>&#123; <span class="keyword">return</span> $(sel).html(x); &#125;);</span><br><span class="line">  <span class="keyword">var</span> listen = _.curry(<span class="function"><span class="keyword">function</span> (<span class="params">event, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> bacon.fromEventTarget(target, event);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">var</span> getData = _.curry(<span class="function"><span class="keyword">function</span>(<span class="params">name, elt</span>) </span>&#123; <span class="keyword">return</span> $(elt).data(name); &#125;);</span><br><span class="line">  <span class="keyword">var</span> last = <span class="function"><span class="keyword">function</span>(<span class="params">ar</span>) </span>&#123; <span class="keyword">return</span> ar[ar.length - <span class="number">1</span>]; &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// PURE //////////////////////////////////////////////////</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//  api_key :: String</span></span><br><span class="line">  <span class="keyword">var</span> api_key = <span class="string">'AIzaSyAWoa7aqds2Cx_drrrb5FPsRObFa7Dxkfg'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//+ eventValue :: DomEvent -&gt; String</span></span><br><span class="line">  <span class="keyword">var</span> eventValue = compose(_.get(<span class="string">'value'</span>), _.get(<span class="string">'target'</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">//+ valueStream :: DomEvent -&gt; EventStream String</span></span><br><span class="line">  <span class="keyword">var</span> valueStream = compose(map(eventValue), listen(<span class="string">'keyup'</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">//+ termToUrl :: String -&gt; URL</span></span><br><span class="line">  <span class="keyword">var</span> termToUrl = <span class="function"><span class="keyword">function</span>(<span class="params">term</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'https://www.googleapis.com/youtube/v3/search?'</span> +</span><br><span class="line">      $.param(&#123;<span class="attr">part</span>: <span class="string">'snippet'</span>, <span class="attr">q</span>: term, <span class="attr">key</span>: api_key&#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//+ urlStream :: DomEvent -&gt; EventStream String</span></span><br><span class="line">  <span class="keyword">var</span> urlStream = compose(map(termToUrl), valueStream);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//+ getInputStream :: Selector -&gt; IO EventStream String</span></span><br><span class="line">  <span class="keyword">var</span> getInputStream = compose(map(urlStream), $.toIO());</span><br><span class="line"></span><br><span class="line">  <span class="comment">//+ render :: Entry -&gt; Dom</span></span><br><span class="line">  <span class="keyword">var</span> render = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> $(<span class="string">'&lt;li/&gt;'</span>, &#123;<span class="attr">text</span>: e.snippet.title, <span class="string">'data-youtubeid'</span>: e.id.videoId&#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//+ videoEntries :: YoutubeResponse -&gt; [Dom]</span></span><br><span class="line">  <span class="keyword">var</span> videoEntries = compose(map(render), _.get(<span class="string">'items'</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">//+ search :: URL -&gt; Future [Dom]</span></span><br><span class="line">  <span class="keyword">var</span> search = compose(map(videoEntries), http.getJSON);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//+ DomElement -&gt; EventStream DomElement</span></span><br><span class="line">  <span class="keyword">var</span> clickStream = compose(map(_.get(<span class="string">'target'</span>)), listen(<span class="string">'click'</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">//+ URL -&gt; String</span></span><br><span class="line">  <span class="keyword">var</span> idInUrl = compose(last, _.split(<span class="string">'/'</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">//+ youtubeLink :: DomElement -&gt; Maybe ID</span></span><br><span class="line">  <span class="keyword">var</span> youtubeId = compose(map(idInUrl), Maybe, getData(<span class="string">'youtubeid'</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// IMPURE /////////////////////////////////////////////////////</span></span><br><span class="line"></span><br><span class="line">  getInputStream(<span class="string">'#search'</span>).runIO().onValue(</span><br><span class="line">    compose(fork(setHtml(<span class="string">'#results'</span>)), search)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  clickStream(<span class="built_in">document</span>).onValue(</span><br><span class="line">    compose(map(compose(setHtml(<span class="string">'#player'</span>), Player.create)), youtubeId)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Point-Free/" rel="tag"># Point-Free</a>
+          
+            <a href="/tags/Functional-Programming/" rel="tag"># Functional Programming</a>
+          
+            <a href="/tags/Monads/" rel="tag"># Monads</a>
+          
+            <a href="/tags/Functor/" rel="tag"># Functor</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/09/Rethinking-Asynchronous-JavaScript/" rel="next" title="Rethinking Asynchronous JavaScript">
+                <i class="fa fa-chevron-left"></i> Rethinking Asynchronous JavaScript
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg" alt="刘勇">
+            
+              <p class="site-author-name" itemprop="name">刘勇</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/blingblingredstar" title="GitHub &rarr; https://github.com/blingblingredstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:564447023@qq.com" title="E-Mail &rarr; mailto:564447023@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Slience"><span class="nav-number">1.</span> <span class="nav-text">The Slience</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Symptoms"><span class="nav-number">1.1.1.</span> <span class="nav-text">The Symptoms</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Omit-Needless-Names"><span class="nav-number">1.2.</span> <span class="nav-text">Omit Needless Names</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#separate-inputs-from-environment"><span class="nav-number">1.2.1.</span> <span class="nav-text">separate inputs from environment</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Separating-Mutation-from-Calculation"><span class="nav-number">1.3.</span> <span class="nav-text">Separating Mutation from Calculation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recognize-Pure-Function"><span class="nav-number">1.4.</span> <span class="nav-text">Recognize Pure Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Separate-Functions-from-Rules"><span class="nav-number">1.5.</span> <span class="nav-text">Separate Functions from Rules</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Curry"><span class="nav-number">1.5.1.</span> <span class="nav-text">Curry</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Curring-Exercise"><span class="nav-number">1.6.</span> <span class="nav-text">Curring Exercise</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Implment-map-with-reduce"><span class="nav-number">1.6.1.</span> <span class="nav-text">Implment map with reduce</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compose"><span class="nav-number">1.7.</span> <span class="nav-text">Compose</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#separate-composition-from-args"><span class="nav-number">1.7.1.</span> <span class="nav-text">separate composition from args</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Simplified-compose-funciton"><span class="nav-number">1.7.2.</span> <span class="nav-text">Simplified compose funciton</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Composition-Exercise"><span class="nav-number">1.8.</span> <span class="nav-text">Composition Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Point-Free"><span class="nav-number">1.9.</span> <span class="nav-text">Point Free</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Slience-Review"><span class="nav-number">1.10.</span> <span class="nav-text">The Slience: Review</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Voyage"><span class="nav-number">2.</span> <span class="nav-text">The Voyage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Category-Theory"><span class="nav-number">2.1.</span> <span class="nav-text">Category Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Go-into-Category-Theory"><span class="nav-number">2.1.1.</span> <span class="nav-text">Go into Category Theory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Category-Laws"><span class="nav-number">2.1.2.</span> <span class="nav-text">Category Laws</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Objects"><span class="nav-number">2.2.</span> <span class="nav-text">Objects</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Map"><span class="nav-number">2.3.</span> <span class="nav-text">Object Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maybe-Functor"><span class="nav-number">2.4.</span> <span class="nav-text">Maybe Functor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Them-pesky-nulls"><span class="nav-number">2.4.1.</span> <span class="nav-text">Them pesky nulls</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Use-Maybe-Functor"><span class="nav-number">2.4.2.</span> <span class="nav-text">Use Maybe Functor</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Functor-Exercise"><span class="nav-number">2.5.</span> <span class="nav-text">Functor Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Either"><span class="nav-number">2.6.</span> <span class="nav-text">Either</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO"><span class="nav-number">2.7.</span> <span class="nav-text">IO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Either-IO-Exercise"><span class="nav-number">2.8.</span> <span class="nav-text">Either/IO Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Functors"><span class="nav-number">2.9.</span> <span class="nav-text">Other Functors</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EventStream"><span class="nav-number">2.9.1.</span> <span class="nav-text">EventStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Future"><span class="nav-number">2.9.2.</span> <span class="nav-text">Future</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Functors-Exercise"><span class="nav-number">2.10.</span> <span class="nav-text">Other Functors: Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Functor-Laws-amp-Properties"><span class="nav-number">2.11.</span> <span class="nav-text">Functor Laws &amp; Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Natural-Transformations"><span class="nav-number">2.11.1.</span> <span class="nav-text">Natural Transformations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Card-Game-1"><span class="nav-number">2.11.2.</span> <span class="nav-text">Card Game #1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Card-Game-2"><span class="nav-number">2.11.3.</span> <span class="nav-text">Card Game #2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Card-Game-3"><span class="nav-number">2.11.4.</span> <span class="nav-text">Card Game #3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monads"><span class="nav-number">2.12.</span> <span class="nav-text">Monads</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pointed-Functors"><span class="nav-number">2.12.1.</span> <span class="nav-text">Pointed Functors</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#monads"><span class="nav-number">2.12.2.</span> <span class="nav-text">monads</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monads-Exercises"><span class="nav-number">2.13.</span> <span class="nav-text">Monads Exercises</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Monad-Laws"><span class="nav-number">2.13.1.</span> <span class="nav-text">Monad Laws</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Demo"><span class="nav-number">3.</span> <span class="nav-text">The Demo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-Setup"><span class="nav-number">3.1.</span> <span class="nav-text">Project Setup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo"><span class="nav-number">3.2.</span> <span class="nav-text">Demo</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
