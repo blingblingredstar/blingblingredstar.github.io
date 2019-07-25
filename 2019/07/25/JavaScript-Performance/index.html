@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="IntroductionThinking About PerformanceCourse Notes and Materials Slides  Prologue  What is performance and why does it matter?   Let’s answer those in the opposite order, actually">
+<meta name="keywords" content="FrontEndMasters,JavaScript,性能优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript Performance">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/JavaScript-Performance/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="IntroductionThinking About PerformanceCourse Notes and Materials Slides  Prologue  What is performance and why does it matter?   Let’s answer those in the opposite order, actually">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-25T08:06:27.757Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript Performance">
+<meta name="twitter:description" content="IntroductionThinking About PerformanceCourse Notes and Materials Slides  Prologue  What is performance and why does it matter?   Let’s answer those in the opposite order, actually">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/25/JavaScript-Performance/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript Performance | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘勇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/25/JavaScript-Performance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript Performance
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-25 16:05:40 / 修改时间：16:06:27" itemprop="dateCreated datePublished" datetime="2019-07-25T16:05:40+08:00">2019-07-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="Thinking-About-Performance"><a href="#Thinking-About-Performance" class="headerlink" title="Thinking About Performance"></a>Thinking About Performance</h3><p><a href="https://gist.github.com/stevekinney/fe401ffb8b2b7279e56dd165b272f0c3" target="_blank" rel="noopener">Course Notes and Materials</a></p>
+<p><a href="https://speakerdeck.com/stevekinney/web-performance" target="_blank" rel="noopener">Slides</a></p>
+<ul>
+<li><p>Prologue</p>
+<ul>
+<li>What is performance and why does it matter?</li>
+</ul>
+</li>
+<li><p>Let’s answer those in the opposite order, actually</p>
+<a id="more"></a></li>
+<li>Why dose performance matter?</li>
+</ul>
+<blockquote>
+<p>0.1 second(100ms) is about the limit for having the user feel that the system is reaction instantaneously, meaning that no special feedback is necessary except to display the result. –Jakob Nielsen<br>0.1 second is about the limit for the user’s flow of thought to stay uninterrupted, even though the user will notice the delay. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second, but the user does lose the feeling of operating directly on the data. –Jakob Nielsen<br>10 seconds is about the limit for keeping the user’s attention focused on the dialogue. For longer delays, users will want to perform other tasks while waiting for the computer to finish, so they should be given feedback indicating when the computer expects to be done. Feedback during the delay is especially important if the response time is ilkely to be highly variable, since users will then</p>
+</blockquote>
+<ul>
+<li><p>If your user interface takes 10 seconds or more to respond to an interaction, then we should talk.</p>
+</li>
+<li><p><strong>Aberdeen Group</strong> found that a 1 second slow down resulted 11% fewer page views, 7% less conversion.</p>
+<ul>
+<li><a href="http://www.gomez.com/wp-content/downloads/Aberdeen_WebApps.pdf" target="_blank" rel="noopener">Source.</a></li>
+</ul>
+</li>
+<li><strong>Akamai</strong> found that two-second delay in web page load time increase bounce rates by 103 percent.<ul>
+<li><a href="https://www.akamai.com/us/en/about/news/press/2017-press/akamai-releases-spring-2017-state-of-online-retail-performance-report.jsp" target="_blank" rel="noopener">Source</a></li>
+</ul>
+</li>
+<li>A 400 millisecond improvement in performance resulted in a 9% increase in traffic at <strong>Yahoo</strong>.<ul>
+<li><a href="https://www.slideshare.net/stoyan/dont-make-me-wait-or-building-highperformance-web-applications#btnNext" target="_blank" rel="noopener">Source</a></li>
+</ul>
+</li>
+<li><strong>Google</strong> found that a 2% slower page resulted in 2% fewer searches, which means 2% fewer ads shown.<ul>
+<li><a href="http://assets.en.oreilly.com/1/event/29/Keynote%20Presentation%202.pdf" target="_blank" rel="noopener">Source.</a></li>
+</ul>
+</li>
+<li>100 millisecond improvement in performance results in 1% increase in overall revenue at <strong>Amazon</strong>.<ul>
+<li><a href="http://radar.oreilly.com/2008/08/radar-theme-web-ops.html" target="_blank" rel="noopener">Source.</a></li>
+</ul>
+</li>
+<li>53% of users will leave a mobile site if it takes more than 3 secs to load.<ul>
+<li><a href="http://gs.statcounter.com/press/mobile-and-tablet-internet-usage-exceeds-desktop-for-first-time-worldwide" target="_blank" rel="noopener">Source.</a></li>
+</ul>
+</li>
+<li><p>According to <a href="https://www.smashingmagazine.com/2015/09/why-performance-matters-the-perception-of-time/#the-need-for-performance-optimization-the-20-rule" target="_blank" rel="noopener">research</a>, if you want user to feel like your site is faster than your competitors, you need to be <strong>20% faster</strong>.</p>
+</li>
+<li><p>But at the same time</p>
+<ul>
+<li>Our applications are getting bigger</li>
+<li>LTE is actually getting slower</li>
+</ul>
+</li>
+<li><p>There are different kind of performance.</p>
+<ol>
+<li>Network load performance</li>
+<li>Parsing JavaScript and Compilation performance</li>
+<li>Rendering performance</li>
+</ol>
+</li>
+<li><p>What matters to you?</p>
+<ul>
+<li>The New York Times might care about time to first headline.</li>
+<li>Twitter might care about time to first tweet.</li>
+<li>Chrome might care about time to inspect element.</li>
+<li>What does your product or project care about?</li>
+</ul>
+</li>
+</ul>
+<h3 id="The-Importance-of-Measurement"><a href="#The-Importance-of-Measurement" class="headerlink" title="The Importance of Measurement"></a>The Importance of Measurement</h3><ul>
+<li>Measure First</li>
+</ul>
+<blockquote>
+<p>Measure. Don’t tune for speed until you’ve measured, and even then don’t unless one part of the code overwhelms the rest. —Rob Pike</p>
+</blockquote>
+<ul>
+<li><p>Do not go just blindly applying performance optimizations.</p>
+</li>
+<li><p>There is a cost to every abstraction and everything has a trade off.</p>
+</li>
+<li><p>Some things to think about while measuring</p>
+<ul>
+<li>Are we testing performance on fancy MacBook Pros or consumer-grade hardware?</li>
+<li>Are we simulating less-than-perfect network conditions.</li>
+<li>What is our performance budget?</li>
+</ul>
+</li>
+<li><p>Thinking deeply about the architecture and design of your application is a better use of your time than micro-benchmarks.</p>
+</li>
+<li><p>Three Tiers of Advice</p>
+<ul>
+<li>Definitely do this.</li>
+<li>Maybe do this, but measure before and after.</li>
+<li>Only do this if you find a performance problem that needs solving.</li>
+</ul>
+</li>
+<li><p>Steve’s Golden Rule of Performance</p>
+<ul>
+<li>Doing Less Stuff Takes Less Time.</li>
+<li>If you can do it later. Do it later.</li>
+</ul>
+</li>
+<li><p>Rough Outline</p>
+<ul>
+<li>JavaScript performance: Write code that runs faster, later, or not at all.</li>
+<li>Rendering performance: It turns out most of our JavaScript happens in the browser, which has its own performance concerns.</li>
+<li>Load performance: Until the user actually gets the page, there isn’t much to optimize.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Chapter-1-JavaScript-Performance"><a href="#Chapter-1-JavaScript-Performance" class="headerlink" title="Chapter 1: JavaScript Performance"></a>Chapter 1: JavaScript Performance</h2><h3 id="The-Cost-of-JavaScript"><a href="#The-Cost-of-JavaScript" class="headerlink" title="The Cost of JavaScript"></a>The Cost of JavaScript</h3><ul>
+<li><p>Problem: You literally can’t buy faster servers to improve performance of client-side applications.</p>
+<ul>
+<li>I mean, you could buy all of your customers faster computers, I guess.</li>
+</ul>
+</li>
+<li><p>A lot of time and energy is spent compressing assets, removing requests, and reducing latency, but what about once the application is running?</p>
+</li>
+<li><p>Sometimes, parsing and compiling is the real culprit.</p>
+</li>
+<li><p>Okay, so how does JavaScript even work?</p>
+<ul>
+<li>Fun fact: JavaScript is a compiled language.</li>
+<li>Most browsers use something called just-in-time (JIT) compilation.</li>
+</ul>
+</li>
+<li><p>Things to know about JIT compilation</p>
+<ul>
+<li>It means that there is compilation step.</li>
+<li>It means that it happens moments before execution.</li>
+<li>That means it happens on our client’s machine.</li>
+<li>That means they’re paying the cost and/or doing the hard work for us.</li>
+</ul>
+</li>
+<li><p>Let’s look at your code’s journey through V8 at a high level</p>
+</li>
+</ul>
+<p>Cloud =&gt; JS File =&gt; Parser =&gt; AST(Abstract Syntax Tree) =&gt; Interpreter =&gt; Optimizing Complier(Turbo Fan) =&gt; Machine Code(x86 || arm) =&gt; Byte Code</p>
+<h3 id="Parsing"><a href="#Parsing" class="headerlink" title="Parsing"></a>Parsing</h3><ul>
+<li>The source code is the true intention of the application, but the engine needs to figure out what this means.</li>
+<li><p>Parsing can be slow. As slow as 1MB/s on mobile.</p>
+<ul>
+<li>One way to reduce parsing time is to have less code to parse.</li>
+<li>Another way is to do as much parsing as you need and as little as you can get away with.</li>
+</ul>
+</li>
+<li><p>Parsing happens in two phases</p>
+<ul>
+<li>Eager (full parse): This is what you think of when you think about parsing.</li>
+<li>Lazy (pre-parse): Do the bear minimum now. We’ll parse it for realsies later.<ul>
+<li>Generally speaking, this is a good thing™.</li>
+<li>Doing less work is faster than doing work, right?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>The basic rules</p>
+<ul>
+<li>Scan through the top-level scope. Parse all the code you see that’s actually doing something.</li>
+<li>Skip things like function declarations and classes for now. We’ll parse them when we need them.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// These will be eagerly-parsed.</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="comment">// Take note that there a function here,</span></span><br><span class="line"><span class="comment">// but, we'll parse the body when we need it.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line">add(a, b); <span class="comment">// Whoa. Go back and parse add()!</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Corollary: Doing stuff twice is slower than doing it once.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="comment">// Parse it now!</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;);</span><br><span class="line">add(a, b);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>It’s definitely helpful to know how this works, but…</p>
+</li>
+<li><p>micro-optimization (noun): Thing you read about one time and you know pester your co-works about in code reviews, even though it has an almost unnoticeable impact at scale.</p>
+</li>
+</ul>
+<h3 id="Exercise-Reducing-Parsing-Times"><a href="#Exercise-Reducing-Parsing-Times" class="headerlink" title="Exercise: Reducing Parsing Times"></a>Exercise: Reducing Parsing Times</h3><ul>
+<li>An exploration of why measuring is important</li>
+</ul>
+<p><a href="https://nolanlawson.github.io/test-optimize-js/" target="_blank" rel="noopener">Lab</a></p>
+<ul>
+<li>Try to avoid nested functions</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumOfSquares</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// This will repeatedly be parsed.</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n * n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> square(x) + square(y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Better…</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> n * n;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumOfSquares</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> square(x) + square(y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ASTs-amp-Initial-Execution"><a href="#ASTs-amp-Initial-Execution" class="headerlink" title="ASTs &amp; Initial Execution"></a>ASTs &amp; Initial Execution</h3><ul>
+<li>Okay, cool—so it’s parsed. Now what?</li>
+<li>It’s turned into an abstract syntax tree.</li>
+</ul>
+<blockquote>
+<p>In computer science, an abstract syntax tree (AST) […] is a tree representation of the abstract syntactic structure of source code written in a programming language. — Wikipedia</p>
+</blockquote>
+<ul>
+<li>Essential, we’ve gone from a big long string of text to an actual data structure representing our code.</li>
+<li>With our AST, we now have everything we need to make byte code!</li>
+<li>The baseline compiler takes the AST and starts to execute our code as we wrote it</li>
+</ul>
+<h3 id="The-Optimizing-Compiler"><a href="#The-Optimizing-Compiler" class="headerlink" title="The Optimizing Compiler"></a>The Optimizing Compiler</h3><ul>
+<li><p>Three things the engine does to help you out</p>
+<ol>
+<li>Speculative optimization</li>
+<li>Hidden classes for dynamic lookups</li>
+<li>Function inlining</li>
+</ol>
+</li>
+<li><p>It turns out that JavaScript is hard.</p>
+</li>
+<li>It also turns out that JavaScript is dynamic.</li>
+<li>But, what if we made some assumptions based on what we’ve seen in the past?</li>
+</ul>
+<p>在node环境可以使用<code>node --trace-opt &lt;filename&gt;</code>来查看优化情况。</p>
+<h3 id="Deoptimization-Deleting-Properties"><a href="#Deoptimization-Deleting-Properties" class="headerlink" title="Deoptimization, Deleting Properties"></a>Deoptimization, Deleting Properties</h3><p>在node环境，可以使用<code>node --tarce-deopt &lt;filename&gt;</code>来查看没有优化情况。</p>
+<p>使用一个<code>add</code>函数，可以发现使用数字作为参数时函数被引擎进行了优化，但是使用字符串相加时没有进行优化。</p>
+<ul>
+<li><p>We use a system called speculative optimization.</p>
+</li>
+<li><p>How does this work?</p>
+<ul>
+<li>We use an interpreter because the optimizing compiler is slow to get started.</li>
+<li>Also: it needs some information before it knows what work it can either optimize or skip out on all together.</li>
+<li>So, the interpreter starts gathering feedback about what it sees as the function is used.</li>
+</ul>
+</li>
+<li><p>But what if a string slips in there?</p>
+<ul>
+<li>The optimizing compiler optimizes for what it’s seen. If it sees something new, that’s problematic.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Deleting-Feeding-Objects"><a href="#Exercise-Deleting-Feeding-Objects" class="headerlink" title="Exercise: Deleting, Feeding Objects"></a>Exercise: Deleting, Feeding Objects</h3><p>新建一个构造函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>() </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y, z) &#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x</span><br><span class="line">    <span class="keyword">this</span>.y = y</span><br><span class="line">    <span class="keyword">this</span>.z = z</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建Point的实例，每次首先分别给每个属性赋值为undefined，测量JSON.stringify的时间，然后删除每个属性，测量时间。</p>
+<p>可以看到删除最后一个属性速度会快一些。</p>
+<h3 id="Monomorphism-Polymorphism-and-Megamorphism"><a href="#Monomorphism-Polymorphism-and-Megamorphism" class="headerlink" title="Monomorphism, Polymorphism, and Megamorphism"></a>Monomorphism, Polymorphism, and Megamorphism</h3><p>为什么删除对象最后一个属性速度会快一些，事实说明在v8引擎中有一个类型系统。</p>
+<p>This is not just for objects</p>
+<ul>
+<li>morphism.<ul>
+<li>Monomorphic: This is all I know and all that I’ve seen. I can get incredibly fast at this one thing.</li>
+<li>Polymorphic: I’ve seen a few shapes before. Let me just check to see which one and then I’ll go do the fast thing.</li>
+<li>Megamorphic: I’ve seen things. A lot of things. I’m not particularly specialized. Sorry.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Optimizing-Objects"><a href="#Optimizing-Objects" class="headerlink" title="Optimizing Objects"></a>Optimizing Objects</h3><p>可以看到，只有两个对象创建时属性名和值的类型一致，过程中一致（添加同一属性），并且创建方式一致，才会判定为同一行为。</p>
+<h3 id="Hidden-Classes"><a href="#Hidden-Classes" class="headerlink" title="Hidden Classes"></a>Hidden Classes</h3><ul>
+<li>Dynamic lookup: This object could be anything, so let me look at the rule book and figure this out.</li>
+<li>Sure, computers are good at looking stuff up repeatedly, but they’re also good at remembering things.</li>
+<li>It turns out there is a secret type system behind your back.</li>
+</ul>
+<h3 id="Scoping-amp-Prototypes"><a href="#Scoping-amp-Prototypes" class="headerlink" title="Scoping &amp; Prototypes"></a>Scoping &amp; Prototypes</h3><ul>
+<li>Takeaways<ul>
+<li>Turbofan is able to optimize your code in substantial ways if you pass it consistent values.<ul>
+<li>Initialize your properties at creation.</li>
+<li>Initialize them in the same order.</li>
+<li>Try not to modify them after the fact.</li>
+<li>Maybe just use TypeScript or Flow so you don’t have to worry about these things?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Function-Inlining"><a href="#Function-Inlining" class="headerlink" title="Function Inlining"></a>Function Inlining</h3><p>可以看到有时将一些简单操作抽象为函数并不会明显的降低性能。</p>
+<p>使用<code>node --trace-turbo-inlining &lt;filename&gt;</code>会发现v8引擎将简单函数自动写入调用其的函数中。</p>
+<h3 id="JavaScript-Performance-Takeaways"><a href="#JavaScript-Performance-Takeaways" class="headerlink" title="JavaScript Performance Takeaways"></a>JavaScript Performance Takeaways</h3><ul>
+<li>Larger Takeaways<ul>
+<li>The easiest way to reduce parse, compile, and execution times is to ship less code.</li>
+<li>Use the User Timing API to figure out where the biggest amount of hurt is.</li>
+<li>Consider using a type system so that you don’t have to think about all of the stuff I just talked about.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Rendering-Performance"><a href="#Rendering-Performance" class="headerlink" title="Rendering Performance"></a>Rendering Performance</h2><h3 id="How-Web-Pages-Are-Built"><a href="#How-Web-Pages-Are-Built" class="headerlink" title="How Web Pages Are Built"></a>How Web Pages Are Built</h3><p>浏览器发送请求到服务器，服务器返回html，浏览器解析html为文档树（DOM），然后解析css文件，生成CSSOM(Cascading style sheet object model)，然后将两者结合生成Render Tree。</p>
+<ul>
+<li><p>The Render Tree</p>
+<ul>
+<li>The Render Tree has a one-to-one mapping with the visible objects on the page.<ul>
+<li>So, not hidden object.</li>
+<li>Yes, to pseudo elements (e.g. :after, :before).</li>
+</ul>
+</li>
+<li>There might be multiple rules that apply to a single element. We need to figure that all out here.</li>
+</ul>
+</li>
+<li><p>Style calculation: The browser figures out all of the styles that will be applied to a given element</p>
+</li>
+<li><p>This involves two things:</p>
+<ul>
+<li>Figuring out which rules apply to which elements.</li>
+<li>Figuring out how what the end result of an element with multiple rules is.</li>
+</ul>
+</li>
+<li><p>Styling Elements: Selector Matching</p>
+<ul>
+<li>This is the process of figuring out what styles apply to an element.</li>
+<li>The more complicated you get, the longer this takes.</li>
+<li>Class names are super simple.</li>
+<li><code>.sidebar &gt; .menu-item:nth-child(4n + 1)</code>This will need more time to figure out.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Free Advice</strong>: Stick to simple class names whenever possible. Consider using BEM</p>
+</blockquote>
+<ul>
+<li>Browsers read selectors from right to left.</li>
+<li><p>The less selectors you use, this faster this is going to be.</p>
+</li>
+<li><p>Takeaways</p>
+<ul>
+<li>Use simple selectors whenever possible.<ul>
+<li>Consider using BEM or some other system.</li>
+</ul>
+</li>
+<li>Reduce the effected elements.<ul>
+<li>This is really a way to get to the first one.</li>
+<li>A little bit of code—either on the server or the client—can go a long way.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Styling Elements: Calculating Render Styles</p>
+<ul>
+<li>Selector matching tries to figure out what selectors apply to an element.</li>
+<li>When multiple selectors apply to an element. The browser needs to figure out who wins.</li>
+<li>The easiest way to make this faster is to not do it.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Free Advice (again):</strong> Stick to simple class names whenever possible. Consider using BEM.<br><strong>A quick note on style invalidation</strong>: It doesn’t matter as much in newer browsers.</p>
+</blockquote>
+<ul>
+<li><p>Some Takeaways</p>
+<ul>
+<li>Reduce the amount of unused CSS that you’re shipping.<ul>
+<li>The less styles you have, the less there is to check.</li>
+</ul>
+</li>
+<li>Reduce the number of styles that effect a given element.</li>
+</ul>
+</li>
+<li><p>Layout (a.k.a Reflow): Look at the elements and figure out where they go on the page.</p>
+</li>
+<li>Paint: We know what things should look like and where they should go. Draw some pixels to the screen.</li>
+<li>Composite Layers: You might end up painting on multiple layers, but you’ll eventually need to combine them</li>
+</ul>
+<h3 id="JavaScript-amp-the-Render-Pipeline"><a href="#JavaScript-amp-the-Render-Pipeline" class="headerlink" title="JavaScript &amp; the Render Pipeline"></a>JavaScript &amp; the Render Pipeline</h3><ul>
+<li><strong>JavaScript</strong> gives you the ability to change all of this after the initial load, which means you might have to do all of the above <em>again</em>.</li>
+<li><p>Things JavaScript can do: An incomplete list™</p>
+<ul>
+<li>Change the class on an object.</li>
+<li>Change the inline styles on an object.</li>
+<li>Add or remove elements from the page.</li>
+</ul>
+</li>
+<li><p>The Render Pipeline</p>
+<ul>
+<li>JS =&gt; style =&gt; layout =&gt; paint =&gt; composite</li>
+</ul>
+</li>
+<li><p>Okay, so let’s say you change a class or inline style on an element.</p>
+</li>
+<li>The computed styles could have changed—so, we better recalculate those and rebuild the render tree.</li>
+<li>That may or may not have changed the geometry of the objects. We should probably re-layout the page.</li>
+<li>Things are different. I guess we need to paint some new images.</li>
+<li>Send those images off to the GPU to be composited.</li>
+</ul>
+<blockquote>
+<p>To be clear: You don’t need to do all of these things every time.<br>Reminder: Steve’s golden rule of performance</p>
+</blockquote>
+<h3 id="Layout-amp-Reflows"><a href="#Layout-amp-Reflows" class="headerlink" title="Layout &amp; Reflows"></a>Layout &amp; Reflows</h3><blockquote>
+<p>Reflows are very expensive in terms of performance, and is one of the main causes of slow DOM scripts, especially on devices with low processing power, such as phones. In many cases, they are equivalent to laying out the entire page again. —Opera<br>(Browser implementations have different ways of optimizing this, so there is no point sweating the details in this case.)</p>
+</blockquote>
+<ul>
+<li><p>Tasting Notes</p>
+<ul>
+<li>A reflow is a blocking operation. Everything else stops.</li>
+<li>It consumes a decent amount of CPU.</li>
+<li>It will definitely be noticeable by the user if it happens often (e.g. in a loop).</li>
+</ul>
+</li>
+<li><p>A reflow of an element causes a reflow of its parents and children.</p>
+</li>
+<li><p>Okay, so what causes a reflow?</p>
+<ul>
+<li>Resizing the window</li>
+<li>Changing the font</li>
+<li>Content changes</li>
+<li>Adding or removing a stylesheet</li>
+<li>Adding or removing classes</li>
+<li>Adding or removing elements</li>
+<li>Changing orientation</li>
+<li>Calculating size or position</li>
+<li>Changing size or position</li>
+<li>(Even more…)</li>
+</ul>
+</li>
+<li><p>Generally speaking, a reflow is followed by a repaint, which is also expensive.</p>
+</li>
+<li><p>How can you avoid reflows?</p>
+<ul>
+<li>Change classes at the lowest levels of the DOM tree.</li>
+<li>Avoid repeatedly modifying inline styles.</li>
+<li>Trade smoothness for speed if you’re doing an animation in JavaScript.</li>
+<li>Avoid table layouts.</li>
+<li>Batch DOM manipulation.</li>
+<li>Debounce window resize events</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Layout-amp-Reflows"><a href="#Exercise-Layout-amp-Reflows" class="headerlink" title="Exercise: Layout &amp; Reflows"></a>Exercise: Layout &amp; Reflows</h3><p><a href="https://codepen.io/stevekinney/full/eVadLB/" target="_blank" rel="noopener">Lab</a></p>
+<h3 id="Layout-Trashing"><a href="#Layout-Trashing" class="headerlink" title="Layout Trashing"></a>Layout Trashing</h3><ul>
+<li>Less cool names: Forced synchronous layout.</li>
+<li>There are a set of things you can do that cause the browser to stop what it’s doing and calculate style and layout.</li>
+</ul>
+<blockquote>
+<p>Layout Thrashing occurs when JavaScript violently writes, then reads, from the DOM, multiple times causing document reflows. —Winston Page</p>
+</blockquote>
+<ul>
+<li><code>const height = element.offsetHeight;</code><ul>
+<li>The browser wants to get you the most up to date answer, so it goes and does a style and layout check.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">firstElement.classList.toggle(<span class="string">'bigger'</span>); <span class="comment">// Change!</span></span><br><span class="line"><span class="keyword">const</span> firstElementWidth = firstElement.width; <span class="comment">// Calculate</span></span><br><span class="line">secondElement.classList.toggle(<span class="string">'bigger'</span>); <span class="comment">// Change!</span></span><br><span class="line"><span class="keyword">const</span> secondElementWidth = secondElement.width; <span class="comment">// Calculate</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>The browser knew it was going to have to change stuff after that first line.</li>
+<li>Then you went ahead and asked it for some information about the geometry of another object</li>
+<li>So, it stopped your JavaScript and reflowed the page in order to get you an answer.</li>
+<li><strong>Solution</strong>: Separate reading from writing</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">firstElement.classList.toggle(<span class="string">'bigger'</span>); <span class="comment">// Change!</span></span><br><span class="line">secondElement.classList.toggle(<span class="string">'bigger'</span>); <span class="comment">// Change!</span></span><br><span class="line"><span class="keyword">const</span> firstElementWidth = firstElement.width; <span class="comment">// Calculate</span></span><br><span class="line"><span class="keyword">const</span> secondElementWidth = secondElement.width; <span class="comment">// do nothing</span></span><br></pre></td></tr></table></figure>
+<h3 id="Solving-for-Layout-Trashing"><a href="#Solving-for-Layout-Trashing" class="headerlink" title="Solving for Layout Trashing"></a>Solving for Layout Trashing</h3><p>可以看到当把获取元素位置写在循环外时，会显著提高性能表现。</p>
+<p>但是代码分离有时会造成无法准确定位代码的问题。所以可以使用<code>requestAnimationFrame</code>来重绘页面。</p>
+<h3 id="FastDOM"><a href="#FastDOM" class="headerlink" title="FastDOM"></a>FastDOM</h3><ul>
+<li>It sounds like we could use a better abstraction, right?</li>
+</ul>
+<p><a href="https://github.com/wilsonpage/fastdom" target="_blank" rel="noopener">fastdom-Eliminates layout thrashing by batching DOM measurement and mutation tasks</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fastdom.measure(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'measure'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">fastdom.mutate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'mutate'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">fastdom.measure(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'measure'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">fastdom.mutate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'mutate'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Frameworks-amp-Layout-Thrashing"><a href="#Frameworks-amp-Layout-Thrashing" class="headerlink" title="Frameworks &amp; Layout Thrashing"></a>Frameworks &amp; Layout Thrashing</h3><ul>
+<li>React to the rescue?</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  state = &#123; <span class="attr">widths</span>: [<span class="number">50</span>, <span class="number">100</span>, <span class="number">150</span>] &#125;</span><br><span class="line">  doubleSize = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> widths = <span class="keyword">this</span>.state.widths.map(<span class="function"><span class="params">n</span> =&gt;</span> n * <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123; widths &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> [firstWidth, secondWidth, thirdWidth] = <span class="keyword">this</span>.state.widths</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.doubleSize&#125;&gt;Double Sizes!<span class="xml"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">        &lt;div style=&#123;&#123; <span class="attr">width</span>: firstWidth &#125;&#125; /&gt;</span><br><span class="line">        &lt;div style=&#123;&#123; <span class="attr">width</span>: secondWidth &#125;&#125; /&gt;</span><br><span class="line">        &lt;div style=&#123;&#123; <span class="attr">width</span>: thirdWidth &#125;&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://2z379l1pjr.codesandbox.io/" target="_blank" rel="noopener">Lab</a></p>
+<ul>
+<li><p><strong>Friendly fact</strong>: Production mode is important in React!</p>
+</li>
+<li><p>Some Takeaways</p>
+<ul>
+<li>Don’t mix reading layout properties and writing them—you’ll do unnecessary work.</li>
+<li>If you can change the visual appearance of an element by adding a CSS class. Do that, you’ll avoid accidental trashing.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Painting"><a href="#Painting" class="headerlink" title="Painting"></a>Painting</h3><ul>
+<li>Painting, Layers, the Profiling Thereof<ul>
+<li>Anytime you change something other than opacity or a CSS transform… you’re going to trigger a paint.</li>
+<li>When we do a paint, the browser tells every element on the page to draw a picture of itself.</li>
+<li>It has all of this information form when we constructed the render tree and did the layout.</li>
+<li>Triggering a layout will always trigger a paint.</li>
+<li>But, if you’re just changing colors or something—then you don’t need to do a reflow. Just a repaint.</li>
+<li>Use your tools to see if you’re painting.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Rule of Thumb</strong>: Paint as much as you need and as little as you can get away with.</p>
+</blockquote>
+<h3 id="The-Compositor-Thread"><a href="#The-Compositor-Thread" class="headerlink" title="The Compositor Thread"></a>The Compositor Thread</h3><ul>
+<li><p><strong>An Aside</strong>: The Compositor Thread</p>
+</li>
+<li><p>Nice threads</p>
+<ul>
+<li>The UI thread: Chrome itself. The tab bar, etc.</li>
+<li>The Renderer thread: We usually call this the main thread. This is where all JavaScript, parsing HTML and CSS, style calculation, layout, and painting happens. There are one of these per tab.</li>
+<li>The Compositor Thread: Draws bitmaps to the screen via the GPU.</li>
+</ul>
+</li>
+<li><p>The Compositor Thread</p>
+<ul>
+<li>When we paint, we create bitmaps for the elements, put them onto layers, and prepare shaders for animations if necessary.</li>
+<li>After painting, the bitmaps are shared with a thread on the GPU to do the actual compositing.</li>
+<li>The GPU process works with OpenGL to make magic happen on your screen.</li>
+</ul>
+</li>
+<li><p>The Main Thread is CPUintensive.</p>
+</li>
+<li><p>The Compositor Thread is GPU-intensive.</p>
+</li>
+<li><p>It can go off and work on some super hard JavaScript computation and the animations will still chug along.</p>
+</li>
+<li>This is cool, because it frees up the main thread to do all of the work it’s responsible for.</li>
+</ul>
+<h3 id="Managing-Layers"><a href="#Managing-Layers" class="headerlink" title="Managing Layers"></a>Managing Layers</h3><ul>
+<li>Again: Painting is super expensive and you should avoid it whenever possible.</li>
+</ul>
+<blockquote>
+<p>But, Steve—how do I avoid painting? Isn’t that just a fact of life when it comes to getting pixels on the screen? —Your inner monologue<br>“Let the Compositor Thread handle this stuff!” — Me, in response</p>
+</blockquote>
+<ul>
+<li><p>Things the compositor thread is really good at:</p>
+<ul>
+<li>Drawing the same bitmaps over and over in different places.</li>
+<li>Scaling and rotating bitmaps.</li>
+<li>Making bitmaps transparent.</li>
+<li>Applying filters.</li>
+<li>Mining Bitcoin.</li>
+</ul>
+</li>
+<li><p>If you want to be fast, then offload whatever you can to the less-busy thread.</p>
+</li>
+<li><strong>Disclaimer</strong>: Compositing is kind of a hack</li>
+<li><p>Layers are an optimization that the browser does for you under the hood.</p>
+</li>
+<li><p>What kind of stuff gets its own layer?</p>
+<ul>
+<li>The root object of the page.</li>
+<li>Objects that have specific CSS positions.</li>
+<li>Objects with CSS transforms.</li>
+<li>Objects that have overflow.</li>
+<li>(Other stuff…)</li>
+</ul>
+</li>
+<li><p>Objects that don’t fall under one of these reasons will be on the same element as the last one that did.</p>
+<ul>
+<li>(Hint: The root object is always its own layer.)</li>
+</ul>
+</li>
+<li>You can give the browser hints using the will-change property</li>
+</ul>
+<h3 id="Will-Change"><a href="#Will-Change" class="headerlink" title="Will-Change"></a>Will-Change</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="attribute">will-change</span>: transform;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="comment">/* a hack to make a layer */</span></span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateZ</span>(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Using layers is a trade off.</p>
+<ul>
+<li>Managing layers takes a certain amount of work on the browser’s behalf.</li>
+<li>Each layer needs to be kept in the shared memory between the main and composite threads.</li>
+</ul>
+</li>
+<li><p>This is a terrible idea.</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">will-change</span>: transform;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>The browser is already trying to help you out under the hood.</li>
+</ul>
+<blockquote>
+<p><strong>Pro Tip</strong>: will-change is for things that will change. (Not things that are changing.)</p>
+</blockquote>
+<ul>
+<li>Promoting an object to its own layer takes a non-zero amount of time.</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line"> <span class="attribute">will-change</span>: transform;</span><br><span class="line">  <span class="attribute">transition</span>: transform <span class="number">0.5s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.sidebar</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line"> <span class="attribute">will-change</span>: transform;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.sidebar</span><span class="selector-class">.open</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(400px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Applying-will-change-with-JavaScript"><a href="#Applying-will-change-with-JavaScript" class="headerlink" title="Applying will-change with JavaScript"></a>Applying will-change with JavaScript</h3><ul>
+<li>will-change is tricky because while it’s a CSS property, you’ll typically access it using JavaScript.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'mouseenter'</span>, () =&gt; &#123;</span><br><span class="line"> element.style.willChange = <span class="string">'transform'</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>If it’s something that the user is interacting with constantly, add it to the CSS. Otherwise, do it with JavaScript</li>
+<li><strong>Clean up after yourself.</strong> Remove willchange when it’s not going to change anymore.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'mouseenter'</span>, () =&gt; &#123;</span><br><span class="line"> element.style.willChange = <span class="string">'transform'</span>;</span><br><span class="line">&#125;);</span><br><span class="line">element.addEventListener(<span class="string">'animationEnd'</span>, () =&gt; &#123;</span><br><span class="line"> element.style.willChange = <span class="string">'auto'</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Exercise-will-change"><a href="#Exercise-will-change" class="headerlink" title="Exercise: will-change"></a>Exercise: will-change</h3><ul>
+<li>Let’s look at the “Paint Storming” example.</li>
+<li>Don’t be surprised if you find a paint storm.</li>
+<li>Can you swap out that jQuery animation for a CSS transition?</li>
+<li>Can you put the will-change on before the transition?</li>
+<li>Can you remove it after?</li>
+</ul>
+<h2 id="Load-Performance"><a href="#Load-Performance" class="headerlink" title="Load Performance"></a>Load Performance</h2><h3 id="Latency-and-Bandwidth"><a href="#Latency-and-Bandwidth" class="headerlink" title="Latency and Bandwidth"></a>Latency and Bandwidth</h3><ul>
+<li><strong>Latency and Bandwidth</strong>: A Journey of Self-Discovery</li>
+</ul>
+<blockquote>
+<p>Networks, CPUs, and disks all hate you. On the client, you pay for what you send in ways you can’t easily see. —Alex Russell</p>
+</blockquote>
+<ul>
+<li>Bandwidth vs. Latency<ul>
+<li>Bandwidth is how much stuff you can fit through the tube per second.</li>
+<li>Latency is how long it takes to get to the other end of the tube.</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=ak4EZQB4Ylg" target="_blank" rel="noopener">YouTuBe - Why Latency Matters: Foundations of Web Performance</a></p>
+<ul>
+<li><p>TCP focuses on reliability</p>
+<ul>
+<li>We keep checking in with the server to make sure that everything is going well.</li>
+<li>Packets are delivered in the correct order.</li>
+<li>Packets are delivered without errors.</li>
+<li>Client acknowledges each packet.</li>
+<li>Unreliable connections are handled well.</li>
+<li>Will not overload the network.</li>
+</ul>
+</li>
+<li><p>TCP starts by sending a small amount of data and then starts sending more and more as we find out that things are being successful.</p>
+</li>
+<li><strong>Fun fact</strong>: This is why things feel so much worse on a slow Internet connection.</li>
+<li><strong>Pro tip</strong>: The initial window size is 14kb. So, if you can get files under 14kb, then it means you can get everything through in the first window. Very cool.</li>
+</ul>
+<p><a href="http://www.cloudping.info/" target="_blank" rel="noopener">Lab</a></p>
+<ul>
+<li>Hmm… So, where is the optimal place to put our assets?</li>
+<li>Answer: Everywhere.</li>
+</ul>
+<h3 id="Caching"><a href="#Caching" class="headerlink" title="Caching"></a>Caching</h3><ul>
+<li>HTTP/1.1 added the CacheControl response header.</li>
+<li>Caching only affects the “safe” HTTP methods.<ul>
+<li>GET</li>
+<li>OPTIONS</li>
+<li>HEAD</li>
+</ul>
+</li>
+<li><p>It doesn’t support … because how would it?</p>
+<ul>
+<li>PUT</li>
+<li>POST</li>
+<li>DELETE</li>
+<li>PATCH</li>
+</ul>
+</li>
+<li><p>Cache-Control header</p>
+<ul>
+<li>no-store</li>
+<li>no-cache</li>
+<li>max-age</li>
+<li>s-maxage</li>
+<li>immutable</li>
+</ul>
+</li>
+<li><p>Three over-simplified possibilities</p>
+<ul>
+<li>Cache Missing: There is no local copy in the cache.</li>
+<li>Stale: Do a Conditional GET. The browser has a copy but it’s old and no longer valid. Go get a new version.</li>
+<li>Valid: We have a thing in cache and its good—so, don’t even bother talking to the server.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> serveStatic = <span class="built_in">require</span>(<span class="string">'serve-static'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">app.use(serveStatic(__dirname, &#123;</span><br><span class="line"> setHeaders(response, path) &#123;</span><br><span class="line"> response.setHeader(<span class="string">'Cache-Control'</span>, <span class="string">'no-store'</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;));</span><br><span class="line"><span class="keyword">const</span> port = process.env.port || <span class="number">3000</span>;</span><br><span class="line">app.listen(post, () =&gt; <span class="built_in">console</span>.log(<span class="string">`⚓ Ahoy! The server is listening on port <span class="subst">$&#123;port&#125;</span>!`</span>));</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>no-store</strong>: The browser gets a new version every time.</li>
+<li><strong>no-cache</strong>: This means you can store a copy, but you can’t use it without checking with the server.</li>
+<li><p><strong>max-age</strong>: Tell the browser not to bother if whatever asset it has is less than a certain number of seconds old</p>
+</li>
+<li><p>Caching is great unless you mess it up</p>
+</li>
+<li>We can say “Yo, cache this for a long time!”</li>
+<li>But, what if we ship some bunk assets? Oh no.</li>
+<li><p>How the will the user know to do a hard refresh to get the new ones?</p>
+</li>
+<li><p>Another solution: <strong>Content-Addressable Storage</strong></p>
+</li>
+<li><p><code>main.567eea7aa72b3ee48649.js</code>，在文件名中加入哈希值，如果一致直接使用缓存，版本更新时更改文件哈希值。</p>
+</li>
+<li><p>Caching for CDNs</p>
+<ul>
+<li>CDNs respect the max-age header just like browsers. But this opens up a new can of worms.<ul>
+<li>We want CSS and JavaScripts to be cached by the browser.</li>
+<li>We would like the CDN to cache the HTML that it serves up. But we don’t want the browser to (because that ends us up in our earlier problem).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>s-maxage is for CDNs only. Tell the CDN to keep it forever. But don’t tell the browser to do it.</p>
+</li>
+<li>To reiterate: We have no way to reach into all of our customers browsers and tell them to purge their caches of our assets, but we can tell the CDN to</li>
+</ul>
+<h3 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h3><p><a href="https://frontendmasters.com/courses/progressive-web-apps/" target="_blank" rel="noopener">progressive-web-apps</a></p>
+<h3 id="Lazy-Loading"><a href="#Lazy-Loading" class="headerlink" title="Lazy Loading"></a>Lazy Loading</h3><ul>
+<li>Lazy-loading and pre-loading with React and webpack</li>
+<li>And now: A review of Steve’s golden rules for performance.<ul>
+<li>Not doing stuff is faster than doing stuff.</li>
+<li>Doing stuff later is a way to not do stuff now. So, it’s faster.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Lazy-Loading-Demonstrations"><a href="#Lazy-Loading-Demonstrations" class="headerlink" title="Lazy Loading Demonstrations"></a>Lazy Loading Demonstrations</h3><h3 id="Analyzing-Bundle-Sizes"><a href="#Analyzing-Bundle-Sizes" class="headerlink" title="Analyzing Bundle Sizes"></a>Analyzing Bundle Sizes</h3><p><code>webpack-bundle-analyzer</code></p>
+<h3 id="Slimming-Dependencies"><a href="#Slimming-Dependencies" class="headerlink" title="Slimming Dependencies"></a>Slimming Dependencies</h3><p>可以看到，之前使用<code>import _ form &#39;lodash&#39;</code>时引入了整个lodash包，更改语法为<code>import {transform} from &#39;lodash&#39;</code>后只引入了transform方法。或者也可以使用<code>babel-plugin-lodash</code>来使用babel自动转译语法。</p>
+<h3 id="Lazy-Loading-components-with-React-Loadable"><a href="#Lazy-Loading-components-with-React-Loadable" class="headerlink" title="Lazy Loading components with React-Loadable"></a>Lazy Loading components with React-Loadable</h3><p><a href="https://github.com/jamiebuilds/react-loadable" target="_blank" rel="noopener">react-loadable</a></p>
+<p>使用该插件，可以将首屏用不到的组件懒加载，减少首屏所需文件的体积。</p>
+<h3 id="Exercise-Component-Lazy-Loading"><a href="#Exercise-Component-Lazy-Loading" class="headerlink" title="Exercise: Component Lazy Loading"></a>Exercise: Component Lazy Loading</h3><p>可以在componentDidMount周期预先加载可能用到的组件来减少加载时间。</p>
+<ul>
+<li>Takeaways<ul>
+<li>Some libraries have code you don’t need. See if you can get that out of your build.</li>
+<li>Get the code you need now now.</li>
+<li>Get the code you need later later.</li>
+<li>Your tools can help you do this</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP-2"><a href="#HTTP-2" class="headerlink" title="HTTP/2"></a>HTTP/2</h3><ul>
+<li><p>HTTP/2: What even are you?</p>
+<ul>
+<li>An upgrade to the HTTP transport layer.</li>
+<li>Fully multiplexed—send multiple requests in parallel.</li>
+<li>Allows servers to proactively push responses into client caches.</li>
+</ul>
+</li>
+<li><p>HTTP/1.1: What’s wrong with you?</p>
+<ul>
+<li>Websites are growing: more images, more JavaScript</li>
+<li>Sure, bandwidth has gotten a lot better, but roundtrip time hasn’t</li>
+<li>It takes just as long to ping a server now as it did 20 years ago.</li>
+<li>That’s right: one file at a time per connection</li>
+<li>No big deal. It’s not like we are building websites that request 100 files to something.</li>
+</ul>
+</li>
+<li><p>The weird thing is that once you have this in place some “best practices” become not-so-good.</p>
+</li>
+<li>Is concatenating all of your JS and CSS into large, single files still useful?</li>
+<li>What about inlining images as data URLs in our CSS?</li>
+<li>Measure, measure, measure.</li>
+</ul>
+<h2 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h2><h3 id="Introduction-to-Using-Build-Tools"><a href="#Introduction-to-Using-Build-Tools" class="headerlink" title="Introduction to Using Build Tools"></a>Introduction to Using Build Tools</h3><ul>
+<li>Build It Faster. Build It Smarter.</li>
+<li>When in doubt, let your tools help you.</li>
+<li><a href="https://github.com/purifycss/purifycss" target="_blank" rel="noopener">purifycss</a></li>
+</ul>
+<h3 id="Paying-the-Babel-Tax"><a href="#Paying-the-Babel-Tax" class="headerlink" title="Paying the Babel Tax"></a>Paying the Babel Tax</h3><p>可以看到babel转译许多新语法时会生成许多代码，造成文件体积增加。</p>
+<h3 id="Useful-Babel-Plugins"><a href="#Useful-Babel-Plugins" class="headerlink" title="Useful Babel Plugins"></a>Useful Babel Plugins</h3><p>可以使用<code>@babel-env-preset</code>来设置目标浏览器来减少不必要的转译。</p>
+<h3 id="Prepack"><a href="#Prepack" class="headerlink" title="Prepack"></a>Prepack</h3><p><a href="https://github.com/facebook/prepack" target="_blank" rel="noopener">prepack - Prepack is a partial evaluator for JavaScript.</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/性能优化/" rel="tag"># 性能优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/20/Git-In-depth/" rel="next" title="Git In-depth">
+                <i class="fa fa-chevron-left"></i> Git In-depth
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg" alt="刘勇">
+            
+              <p class="site-author-name" itemprop="name">刘勇</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">70</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/blingblingredstar" title="GitHub &rarr; https://github.com/blingblingredstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:564447023@qq.com" title="E-Mail &rarr; mailto:564447023@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Thinking-About-Performance"><span class="nav-number">1.1.</span> <span class="nav-text">Thinking About Performance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Importance-of-Measurement"><span class="nav-number">1.2.</span> <span class="nav-text">The Importance of Measurement</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1-JavaScript-Performance"><span class="nav-number">2.</span> <span class="nav-text">Chapter 1: JavaScript Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Cost-of-JavaScript"><span class="nav-number">2.1.</span> <span class="nav-text">The Cost of JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parsing"><span class="nav-number">2.2.</span> <span class="nav-text">Parsing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Reducing-Parsing-Times"><span class="nav-number">2.3.</span> <span class="nav-text">Exercise: Reducing Parsing Times</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ASTs-amp-Initial-Execution"><span class="nav-number">2.4.</span> <span class="nav-text">ASTs &amp; Initial Execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Optimizing-Compiler"><span class="nav-number">2.5.</span> <span class="nav-text">The Optimizing Compiler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deoptimization-Deleting-Properties"><span class="nav-number">2.6.</span> <span class="nav-text">Deoptimization, Deleting Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Deleting-Feeding-Objects"><span class="nav-number">2.7.</span> <span class="nav-text">Exercise: Deleting, Feeding Objects</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monomorphism-Polymorphism-and-Megamorphism"><span class="nav-number">2.8.</span> <span class="nav-text">Monomorphism, Polymorphism, and Megamorphism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimizing-Objects"><span class="nav-number">2.9.</span> <span class="nav-text">Optimizing Objects</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hidden-Classes"><span class="nav-number">2.10.</span> <span class="nav-text">Hidden Classes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scoping-amp-Prototypes"><span class="nav-number">2.11.</span> <span class="nav-text">Scoping &amp; Prototypes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-Inlining"><span class="nav-number">2.12.</span> <span class="nav-text">Function Inlining</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Performance-Takeaways"><span class="nav-number">2.13.</span> <span class="nav-text">JavaScript Performance Takeaways</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rendering-Performance"><span class="nav-number">3.</span> <span class="nav-text">Rendering Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-Web-Pages-Are-Built"><span class="nav-number">3.1.</span> <span class="nav-text">How Web Pages Are Built</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-amp-the-Render-Pipeline"><span class="nav-number">3.2.</span> <span class="nav-text">JavaScript &amp; the Render Pipeline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Layout-amp-Reflows"><span class="nav-number">3.3.</span> <span class="nav-text">Layout &amp; Reflows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Layout-amp-Reflows"><span class="nav-number">3.4.</span> <span class="nav-text">Exercise: Layout &amp; Reflows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Layout-Trashing"><span class="nav-number">3.5.</span> <span class="nav-text">Layout Trashing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solving-for-Layout-Trashing"><span class="nav-number">3.6.</span> <span class="nav-text">Solving for Layout Trashing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FastDOM"><span class="nav-number">3.7.</span> <span class="nav-text">FastDOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Frameworks-amp-Layout-Thrashing"><span class="nav-number">3.8.</span> <span class="nav-text">Frameworks &amp; Layout Thrashing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Painting"><span class="nav-number">3.9.</span> <span class="nav-text">Painting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Compositor-Thread"><span class="nav-number">3.10.</span> <span class="nav-text">The Compositor Thread</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managing-Layers"><span class="nav-number">3.11.</span> <span class="nav-text">Managing Layers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Will-Change"><span class="nav-number">3.12.</span> <span class="nav-text">Will-Change</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Applying-will-change-with-JavaScript"><span class="nav-number">3.13.</span> <span class="nav-text">Applying will-change with JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-will-change"><span class="nav-number">3.14.</span> <span class="nav-text">Exercise: will-change</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-Performance"><span class="nav-number">4.</span> <span class="nav-text">Load Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Latency-and-Bandwidth"><span class="nav-number">4.1.</span> <span class="nav-text">Latency and Bandwidth</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Caching"><span class="nav-number">4.2.</span> <span class="nav-text">Caching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Worker"><span class="nav-number">4.3.</span> <span class="nav-text">Service Worker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lazy-Loading"><span class="nav-number">4.4.</span> <span class="nav-text">Lazy Loading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lazy-Loading-Demonstrations"><span class="nav-number">4.5.</span> <span class="nav-text">Lazy Loading Demonstrations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analyzing-Bundle-Sizes"><span class="nav-number">4.6.</span> <span class="nav-text">Analyzing Bundle Sizes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Slimming-Dependencies"><span class="nav-number">4.7.</span> <span class="nav-text">Slimming Dependencies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lazy-Loading-components-with-React-Loadable"><span class="nav-number">4.8.</span> <span class="nav-text">Lazy Loading components with React-Loadable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Component-Lazy-Loading"><span class="nav-number">4.9.</span> <span class="nav-text">Exercise: Component Lazy Loading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-2"><span class="nav-number">4.10.</span> <span class="nav-text">HTTP/2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tools"><span class="nav-number">5.</span> <span class="nav-text">Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction-to-Using-Build-Tools"><span class="nav-number">5.1.</span> <span class="nav-text">Introduction to Using Build Tools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paying-the-Babel-Tax"><span class="nav-number">5.2.</span> <span class="nav-text">Paying the Babel Tax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Useful-Babel-Plugins"><span class="nav-number">5.3.</span> <span class="nav-text">Useful Babel Plugins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prepack"><span class="nav-number">5.4.</span> <span class="nav-text">Prepack</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

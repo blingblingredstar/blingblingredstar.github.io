@@ -105,12 +105,12 @@
 <meta property="og:description" content="Git In-DepthIntroductionBy coding along with us in this workshop you’ll: 通过与我们一起编写代码，您将:  Learn how git represents commits and branches internally to gain deep insights into how git works under the ho">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.explainxkcd.com/wiki/images/4/4d/git.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/20/Git-In-depth/WX20190716-143824.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/20/Git-In-depth/WX20190716-145819.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/20/Git-In-depth/WX20190717-110640.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/20/static/images/WX20190716-143824.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/20/static/images/WX20190716-145819.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/20/static/images/WX20190717-110640.png">
 <meta property="og:image" content="https://imgs.xkcd.com/comics/git_commit.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/20/Git-In-depth/WX20190720-100204.png">
-<meta property="og:updated_time" content="2019-07-20T03:17:26.693Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/20/static/images/WX20190720-100204.png">
+<meta property="og:updated_time" content="2019-07-25T08:08:48.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git In-depth">
 <meta name="twitter:description" content="Git In-DepthIntroductionBy coding along with us in this workshop you’ll: 通过与我们一起编写代码，您将:  Learn how git represents commits and branches internally to gain deep insights into how git works under the ho">
@@ -373,12 +373,24 @@
                 
               
 
-              <time title="创建时间：2019-07-20 11:16:30 / 修改时间：11:17:26" itemprop="dateCreated datePublished" datetime="2019-07-20T11:16:30+08:00">2019-07-20</time>
+              <time title="创建时间：2019-07-20 11:16:30" itemprop="dateCreated datePublished" datetime="2019-07-20T11:16:30+08:00">2019-07-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-25 16:08:48" itemprop="dateModified" datetime="2019-07-25T16:08:48+08:00">2019-07-25</time>
               
             
           </span>
@@ -563,7 +575,7 @@
 </tr>
 </tbody>
 </table>
-<p><img src="./WX20190716-143824.png" alt="TREES POINT TO BLOBS &amp; TREES"></p>
+<p><img src="../static/images/WX20190716-143824.png" alt="TREES POINT TO BLOBS &amp; TREES"></p>
 <h4 id="IDENTICAL-CONTENT-IS-ONLY-STORED-ONCE"><a href="#IDENTICAL-CONTENT-IS-ONLY-STORED-ONCE" class="headerlink" title="IDENTICAL CONTENT IS ONLY STORED ONCE"></a>IDENTICAL CONTENT IS ONLY STORED ONCE</h4><p>在git的存储文件中，tree可以包含了当前文件夹下的blob及相关联的tree，当两个tree指向的blob内容相同时，根据前面提到的，生成的sha1也相同，那么两个不同tree的blob将指向同一个blob。</p>
 <h4 id="OTHER-OPTIMIZATIONS-PACKFILES-DELTAS"><a href="#OTHER-OPTIMIZATIONS-PACKFILES-DELTAS" class="headerlink" title="OTHER OPTIMIZATIONS - PACKFILES, DELTAS"></a>OTHER OPTIMIZATIONS - PACKFILES, DELTAS</h4><ul>
 <li>Git objects are compressed</li>
@@ -588,7 +600,7 @@
 </ul>
 <p>the SHA1 of the commit is the hash of all this information</p>
 <p>fae12…<br>| commit  | size             |<br>| ——- | —————- |<br>| tree    | 8ab68            |<br>| parent  | a14ca            |<br>| author  | Nina             |<br>| message | “Initial Commit” |</p>
-<p><img src="./WX20190716-145819.png" alt="COMMITS POINT TO PARENT COMMITS AND TREES"></p>
+<p><img src="../static/images/WX20190716-145819.png" alt="COMMITS POINT TO PARENT COMMITS AND TREES"></p>
 <h4 id="A-COMMIT-IS-A-CODE-SNAPSHOT"><a href="#A-COMMIT-IS-A-CODE-SNAPSHOT" class="headerlink" title="A COMMIT IS A CODE SNAPSHOT"></a>A COMMIT IS A CODE SNAPSHOT</h4><h4 id="COMMITS-UNDER-THE-HOOD-MAKE-A-COMMIT"><a href="#COMMITS-UNDER-THE-HOOD-MAKE-A-COMMIT" class="headerlink" title="COMMITS UNDER THE HOOD - MAKE A COMMIT"></a>COMMITS UNDER THE HOOD - MAKE A COMMIT</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'Hello World!'</span> &gt; hello.txt</span><br><span class="line">git add hello.txt</span><br><span class="line">git commit -m <span class="string">"Initial commit"</span></span><br><span class="line"></span><br><span class="line">[master (root-commit) adf0e13] Initial commit</span><br><span class="line">1 file changed, 1 insertion(+)</span><br><span class="line">create mode 100644 hello.txt</span><br></pre></td></tr></table></figure>
 <h4 id="COMMITS-UNDER-THE-HOOD-LOOK-IN-GIT-OBJECTS"><a href="#COMMITS-UNDER-THE-HOOD-LOOK-IN-GIT-OBJECTS" class="headerlink" title="COMMITS UNDER THE HOOD - LOOK IN .GIT/OBJECTS"></a>COMMITS UNDER THE HOOD - LOOK IN .GIT/OBJECTS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tree .git/objects</span><br><span class="line"></span><br><span class="line">.git/objects</span><br><span class="line">├── 58</span><br><span class="line">│ └── 1caa0fe56cf01dc028cc0b089d364993e046b6</span><br><span class="line">├── 98</span><br><span class="line">│ └── 0a0d5f19a64b4b30a87d4206aade58726b60e3</span><br><span class="line">├── ad <span class="comment"># commit tree</span></span><br><span class="line">│ └── f0e13658d9b4424efe03c3ac3281facf288c13</span><br><span class="line">├── info</span><br><span class="line">└── pack</span><br></pre></td></tr></table></figure>
 <h4 id="COMMITS-UNDER-THE-HOOD-LOOKING-AT-OBJECTS"><a href="#COMMITS-UNDER-THE-HOOD-LOOKING-AT-OBJECTS" class="headerlink" title="COMMITS UNDER THE HOOD - LOOKING AT OBJECTS"></a>COMMITS UNDER THE HOOD - LOOKING AT OBJECTS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">❯ cat .git/objects/98/0a0d5f19a64b4b30a87d4206aade58726b60e3</span><br><span class="line">xKOR04fH/IQHak%</span><br></pre></td></tr></table></figure>
@@ -691,7 +703,7 @@
 <li>Not removing the files.</li>
 <li>You’re replacing them with a copy that’s currently in the repository.</li>
 </ul>
-<h5 id="BASICS-HOW-CONTENT-MOVES-IN-GIT"><a href="#BASICS-HOW-CONTENT-MOVES-IN-GIT" class="headerlink" title="BASICS: HOW CONTENT MOVES IN GIT"></a>BASICS: HOW CONTENT MOVES IN GIT</h5><p><img src="./WX20190717-110640.png" alt="HOW CONTENT MOVES IN GIT"></p>
+<h5 id="BASICS-HOW-CONTENT-MOVES-IN-GIT"><a href="#BASICS-HOW-CONTENT-MOVES-IN-GIT" class="headerlink" title="BASICS: HOW CONTENT MOVES IN GIT"></a>BASICS: HOW CONTENT MOVES IN GIT</h5><p><img src="../static/images/WX20190717-110640.png" alt="HOW CONTENT MOVES IN GIT"></p>
 <h3 id="Stashing"><a href="#Stashing" class="headerlink" title="Stashing"></a>Stashing</h3><h4 id="GIT-STASH"><a href="#GIT-STASH" class="headerlink" title="GIT STASH"></a>GIT STASH</h4><ul>
 <li>Save un-committed work.</li>
 <li>The stash is safe from destructive operations.</li>
@@ -1361,7 +1373,7 @@
 <li><code>git rebase -i --autosquash &lt;SHA&gt;^</code></li>
 <li>git will generate the right todos for you! just save and quit.</li>
 </ol>
-<h4 id="FIXUP-amp-AUTOSQUASH-EXAMPLE"><a href="#FIXUP-amp-AUTOSQUASH-EXAMPLE" class="headerlink" title="FIXUP &amp; AUTOSQUASH EXAMPLE"></a>FIXUP &amp; AUTOSQUASH EXAMPLE</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">❯ git <span class="built_in">log</span> --oneline</span><br><span class="line">9413427 (HEAD -&gt; tech_posts) Add a new blog post explaining the pros and cons of django</span><br><span class="line">2733233 (master) Add a blog post about Python</span><br><span class="line">25b3810 Add a README file to the project</span><br><span class="line">cd0b57c (tag: v1.0, tag: my-first-commit) Initial commit</span><br><span class="line"><span class="comment"># I want to edit commit 27332 (Add blog post about Python)</span></span><br><span class="line">❯ git add posts/python.txt</span><br><span class="line">❯ git commit --fixup 2733233</span><br><span class="line">[tech_posts 5e980a7] fixup! Add a blog post about Python</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">❯ git <span class="built_in">log</span> --oneline</span><br><span class="line">5e980a7 (HEAD -&gt; tech_posts) fixup! Add a blog post about Python <span class="comment">#  git added new commit 5e980 message is: fixup! Add a blog post about Python</span></span><br><span class="line">9413427 Add a new blog post explaining the pros and cons of django 2733233 (master) Add a blog post about Python</span><br><span class="line">25b3810 Add a README file to the project</span><br><span class="line">cd0b57c (tag: v1.0, tag: my-first-commit) Initial commit</span><br></pre></td></tr></table></figure>
+<h4 id="FIXUP-amp-AUTOSQUASH-EXAMPLE"><a href="#FIXUP-amp-AUTOSQUASH-EXAMPLE" class="headerlink" title="FIXUP &amp; AUTOSQUASH EXAMPLE"></a>FIXUP &amp; AUTOSQUASH EXAMPLE</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">❯ git <span class="built_in">log</span> --oneline</span><br><span class="line">9413427 (HEAD -&gt; tech_posts) Add a new blog post explaining the pros and cons of django</span><br><span class="line">2733233 (master) Add a blog post about Python</span><br><span class="line">25b3810 Add a README file to the project</span><br><span class="line">cd0b57c (tag: v1.0, tag: my-first-commit) Initial commit</span><br><span class="line"><span class="comment"># I want to edit commit 27332 (Add blog post about Python)</span></span><br><span class="line">❯ git add posts/python.txt</span><br><span class="line">❯ git commit --fixup 2733233</span><br><span class="line">[tech_posts 5e980a7] fixup! Add a blog post about Python</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">❯ git <span class="built_in">log</span> --oneline</span><br><span class="line">5e980a7 (HEAD -&gt; tech_posts) fixup! Add a blog post about Python <span class="comment"># git added new commit 5e980 message is: fixup! Add a blog post about Python</span></span><br><span class="line">9413427 Add a new blog post explaining the pros and cons of django 2733233 (master) Add a blog post about Python</span><br><span class="line">25b3810 Add a README file to the project</span><br><span class="line">cd0b57c (tag: v1.0, tag: my-first-commit) Initial commit</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">❯ git rebase -i --autosquash 25b3810^ <span class="comment"># use the -i and --autosquash flags &amp;&amp; use ref of the parent commit</span></span><br><span class="line">pick 25b3810 Add a README file to the project</span><br><span class="line">pick 2733233 Add a blog post about Python</span><br><span class="line">fixup 5e980a7 fixup! Add a blog post about Python <span class="comment"># git will automatically reorder commits, and mark the commit with fixup action</span></span><br><span class="line">pick 9413427 Add a new blog post explaining the pros and cons of django</span><br><span class="line"></span><br><span class="line">❯ git <span class="built_in">log</span> --oneline</span><br><span class="line">68377f4 (HEAD -&gt; tech_posts) Add a new blog post explaining the pros and cons of django</span><br><span class="line">a8656d9 Add a blog post about Python <span class="comment"># shiny new fixed up commit!</span></span><br><span class="line">25b3810 Add a README file to the project</span><br><span class="line">cd0b57c (tag: v1.0, tag: my-first-commit) Initial commit</span><br></pre></td></tr></table></figure>
 <h4 id="REBASE-–EXEC-EXECUTE-A-COMMAND"><a href="#REBASE-–EXEC-EXECUTE-A-COMMAND" class="headerlink" title="REBASE –EXEC (EXECUTE A COMMAND)"></a>REBASE –EXEC (EXECUTE A COMMAND)</h4><p><code>$ git rebase -i —exec “run-tests” &lt;commit&gt;</code></p>
 <p>2 options for exec:</p>
@@ -1484,7 +1496,7 @@
 <li>By adding an upstream remote, you can pull down changes that have been added to the original repository after you forked it.</li>
 </ul>
 <p><code>❯ git remote add upstream https://github.com/ORIG_OWNER/REPO.git</code></p>
-<h3 id="Github-Workflow"><a href="#Github-Workflow" class="headerlink" title="Github Workflow"></a>Github Workflow</h3><h4 id="TRIANGULAR-WORKFLOW"><a href="#TRIANGULAR-WORKFLOW" class="headerlink" title="TRIANGULAR WORKFLOW"></a>TRIANGULAR WORKFLOW</h4><p><img src="./WX20190720-100204.png" alt="workflow"></p>
+<h3 id="Github-Workflow"><a href="#Github-Workflow" class="headerlink" title="Github Workflow"></a>Github Workflow</h3><h4 id="TRIANGULAR-WORKFLOW"><a href="#TRIANGULAR-WORKFLOW" class="headerlink" title="TRIANGULAR WORKFLOW"></a>TRIANGULAR WORKFLOW</h4><p><img src="../static/images/WX20190720-100204.png" alt="workflow"></p>
 <h4 id="TRACKING-BRANCHES"><a href="#TRACKING-BRANCHES" class="headerlink" title="TRACKING BRANCHES"></a>TRACKING BRANCHES</h4><ul>
 <li><p>Track a branch to tie it to an upstream branch.</p>
 <ul>
@@ -1705,6 +1717,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/07/25/JavaScript-Performance/" rel="prev" title="JavaScript Performance">
+                JavaScript Performance <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -1774,7 +1790,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1958,7 +1974,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">69</span>
+                      
+                    
+                    <span class="site-state-item-count">70</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
