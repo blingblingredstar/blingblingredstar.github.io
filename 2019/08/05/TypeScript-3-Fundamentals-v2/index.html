@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Introductionrepo slide What’s TypeScripttypescript  An open-source typed, syntactic superset of JavaScript, developed by Microsoft Compiles to readable JavaScript%20%7B%0D%0A%20%20%20%20%20%20%20%20co">
+<meta name="keywords" content="FrontEndMasters,TypeScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript 3 Fundamentals v2">
+<meta property="og:url" content="http://yoursite.com/2019/08/05/TypeScript-3-Fundamentals-v2/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introductionrepo slide What’s TypeScripttypescript  An open-source typed, syntactic superset of JavaScript, developed by Microsoft Compiles to readable JavaScript%20%7B%0D%0A%20%20%20%20%20%20%20%20co">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-05T15:21:23.166Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TypeScript 3 Fundamentals v2">
+<meta name="twitter:description" content="Introductionrepo slide What’s TypeScripttypescript  An open-source typed, syntactic superset of JavaScript, developed by Microsoft Compiles to readable JavaScript%20%7B%0D%0A%20%20%20%20%20%20%20%20co">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/05/TypeScript-3-Fundamentals-v2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>TypeScript 3 Fundamentals v2 | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘勇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/TypeScript-3-Fundamentals-v2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TypeScript 3 Fundamentals v2
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-05 23:20:36 / 修改时间：23:21:23" itemprop="dateCreated datePublished" datetime="2019-08-05T23:20:36+08:00">2019-08-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><a href="https://github.com/mike-works/typescript-fundamentals/tree/master" target="_blank" rel="noopener">repo</a></p>
+<p><a href="https://drive.google.com/file/d/170oHzpLNeprUa-TMmOAnSU4caEFDSb3e/view" target="_blank" rel="noopener">slide</a></p>
+<h3 id="What’s-TypeScript"><a href="#What’s-TypeScript" class="headerlink" title="What’s TypeScript"></a>What’s TypeScript</h3><p><a href="https://www.typescriptlang.org/" target="_blank" rel="noopener">typescript</a></p>
+<ul>
+<li>An open-source <strong>typed, syntactic superset</strong> of JavaScript, developed by <strong>Microsoft</strong></li>
+<li>Compiles to <a href="https://www.typescriptlang.org/play/index.html#src=class%20OtherContact%20%7B%0D%0A%20%20public%20age:%20number%20=%200;%0D%0A%20%20//%20private%20password:%20string;%0D%0A%20%20constructor(%0D%0A%20%20%20%20public%20name:%20string,%0D%0A%20%20%20%20public%20email:%20string,%0D%0A%20%20%20%20%20%20public%20phone:%20number" target="_blank" rel="noopener"><strong>readable JavaScript</strong></a>%20%7B%0D%0A%20%20%20%20%20%20%20%20console.log(‘my%20constructor’)%0D%0A%20%20%20%20//%20()%20password%20must%20either%20be%20initialized%20like%20this,%20or%20have%20a%20default%20value%0D%0A%20%20%20%20//%20this.password%20=%20Math.round(Math.random()%20*%201e14).toString(32);%0D%0A%20%20%7D%0D%0A%7D)</li>
+<li>Comes in three parts: <strong>Language, Language Server</strong> and <strong>Compiler</strong></li>
+<li>Works seamlessly with <a href="https://devblogs.microsoft.com/typescript/typescript-and-babel-7/" target="_blank" rel="noopener"><strong>Babel 7</strong></a><a id="more"></a>
+<h3 id="Rationale"><a href="#Rationale" class="headerlink" title="Rationale"></a>Rationale</h3></li>
+</ul>
+<h4 id="but-why-add-types"><a href="#but-why-add-types" class="headerlink" title="but why add types"></a>but why add types</h4><ul>
+<li>Encode <strong>constraints and assumptions</strong>, as part of <strong>developer intent</strong></li>
+<li><strong>Catch common mistakes</strong> (i.e. incomplete refactors)</li>
+<li>Move some <strong>runtime errors to compile time</strong></li>
+<li>Provide your consumers (including you) with <strong>a great DX</strong></li>
+</ul>
+<h3 id="Course-Overview"><a href="#Course-Overview" class="headerlink" title="Course Overview"></a>Course Overview</h3><h4 id="In-this-class-we’ll-learn-about"><a href="#In-this-class-we’ll-learn-about" class="headerlink" title="In this class, we’ll learn about"></a>In this class, we’ll learn about</h4><ul>
+<li>Adding type information to variables, functions and classes</li>
+<li>Configuring the compiler</li>
+<li>A practical strategy for incrementally converting JS to TS</li>
+<li>Parameterizing interfaces and type aliases with generics</li>
+<li>Conditional, mapped and branded types</li>
+<li>TS Compiler API basics</li>
+</ul>
+<h3 id="Flags"><a href="#Flags" class="headerlink" title="Flags"></a>Flags</h3><p><a href="https://github.com/mike-works/typescript-fundamentals/tree/v2#dependencies" target="_blank" rel="noopener">Project setup</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/mike-works/typescript-fundamentals -b v2 tscript</span><br><span class="line"><span class="built_in">cd</span> tscript</span><br></pre></td></tr></table></figure>
+<h4 id="Compiling"><a href="#Compiling" class="headerlink" title="Compiling"></a>Compiling</h4><p><code>cd ./examples/hello-ts/</code></p>
+<p><code>tsc ./src/index.ts</code> 转译为es3语法js文件</p>
+<p><code>tsc ./src/index.ts --target ES2015</code> 转译为es2015语法文件（含有promise和generator语法，没有async await）</p>
+<p><code>tsc ./src/index.ts --target ES2017</code> 转译为es2017语法文件（含有async await语法）</p>
+<p>此时使用<code>node ./src/index.js</code>会报错，因为导出为ESM规范的模块，node使用commonJS规范</p>
+<p><code>tsc ./src/index.ts --target ES2017 --module commonjs</code></p>
+<p>可以看到使用<code>node ./src/index.js</code>文件正常运行</p>
+<p>还可以加<code>--watch</code>命令进入观察模式</p>
+<h3 id="Configuring-TypeScript"><a href="#Configuring-TypeScript" class="headerlink" title="Configuring TypeScript"></a>Configuring TypeScript</h3><p><code>touch ./tsconfig.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">    <span class="attr">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">    <span class="attr">"target"</span>: <span class="string">"es2019"</span>,</span><br><span class="line">    <span class="attr">"outDir"</span>: <span class="string">"lib"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"include"</span>: [<span class="string">"src"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>tsc</code>可以看到生成了lib文件夹，并含有对应js文件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">    <span class="attr">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">    <span class="attr">"target"</span>: <span class="string">"es2019"</span>,</span><br><span class="line">    <span class="attr">"outDir"</span>: <span class="string">"lib"</span>,</span><br><span class="line">    <span class="attr">"declaration"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"sourceMap"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"include"</span>: [<span class="string">"src"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>compilerOptions</code>中添加<code>&quot;declaration&quot;: true,&quot;sourceMap&quot;: true</code>，重新使用<code>tsc</code>进行编译，会看到生成了<code>index.d.ts</code>和<code>index.js.map</code>两个文件</p>
+<h2 id="TypeScript-Basics"><a href="#TypeScript-Basics" class="headerlink" title="TypeScript Basics"></a>TypeScript Basics</h2><h3 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h3><p><code>open ./notes/1-basics.ts</code></p>
+<p>可以看到使用let赋值时，ts会根据初始值的类型约定变量类型。使用const时，使用初始值来标识变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//== BASICS ==//</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (1) x is a string, b/c we’ve initialized it</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="string">"hello world"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (2) reassignment is fine</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">x = <span class="string">"hello mars"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (3) but if we try to change type</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">x = <span class="number">42</span>; <span class="comment">// 🚨 ERROR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (4) let's look at const. The type is literally 'hello world'</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> y = <span class="string">"hello world"</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Variable-Declarations"><a href="#Variable-Declarations" class="headerlink" title="Variable Declarations"></a>Variable Declarations</h3><p>有时我们会声明一个变量，但并不立即赋值，此时ts就会将变量标识为any，这并不是什么好事，为了避免此类情况，需要在声明变量时指定变量类型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (5) sometimes we need to declare a variable w/o initializing it</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> z;</span><br><span class="line">z = <span class="number">41</span>;</span><br><span class="line">z = <span class="string">"abc"</span>; <span class="comment">// (6) oh no! This isn't good</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * If we look at the type of z, it's `any`. This is the most flexible type</span></span><br><span class="line"><span class="comment"> * in TypeScript (think of it like a JavaScript `let`)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (7) we could improve this situation by providing a type annotation</span></span><br><span class="line"><span class="comment"> * when we declare our variable</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> zz: number;</span><br><span class="line">zz = <span class="number">41</span>;</span><br><span class="line">zz = <span class="string">"abc"</span>; <span class="comment">// 🚨 ERROR Type '"abc"' is not assignable to type 'number'.</span></span><br></pre></td></tr></table></figure>
+<h3 id="Arrays-amp-Tuples"><a href="#Arrays-amp-Tuples" class="headerlink" title="Arrays &amp; Tuples"></a>Arrays &amp; Tuples</h3><p>可以在初始化数组时指定类型，也可以直接给数组赋值为对应类型数据，ts会自动识别类型，但是注意，在静态赋值时ts可以识别元素是否为对应类型，但是使用push等方法时，无法确认每个元素对应的具体类型。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//== SIMPLE ARRAYS ==//</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (8) simple array types can be expressed using []</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> aa: <span class="built_in">number</span>[] = []; <span class="comment">// 标识类型为数组，数组每个元素为数字类型</span></span><br><span class="line">aa.push(<span class="number">33</span>);</span><br><span class="line">aa.push(<span class="string">"abc"</span>); <span class="comment">// 🚨 ERROR: Argument of type '"abc"' is not assignable to parameter of type 'number'.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (9) we can even define a tuple, which has a fixed length</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> bb: [<span class="built_in">number</span>, <span class="built_in">string</span>, <span class="built_in">string</span>, <span class="built_in">number</span>] = [</span><br><span class="line">  <span class="number">123</span>,</span><br><span class="line">  <span class="string">"Fake Street"</span>,</span><br><span class="line">  <span class="string">"Nowhere, USA"</span>,</span><br><span class="line">  <span class="number">10110</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">bb = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]; <span class="comment">// 🚨 ERROR: Type 'number' is not assignable to type 'string'.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (10) Tuple values often require type annotations (  : [number, number] )</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> xx = [<span class="number">32</span>, <span class="number">31</span>]; <span class="comment">// number[];</span></span><br><span class="line"><span class="keyword">const</span> yy: [<span class="built_in">number</span>, <span class="built_in">number</span>] = [<span class="number">32</span>, <span class="number">31</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="Object-Types-amp-Interfaces"><a href="#Object-Types-amp-Interfaces" class="headerlink" title="Object Types &amp; Interfaces"></a>Object Types &amp; Interfaces</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (11) object types can be expressed using &#123;&#125; and property names</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> cc: &#123; houseNumber: <span class="built_in">number</span>; streetName: <span class="built_in">string</span> &#125;;</span><br><span class="line">cc = &#123;</span><br><span class="line">  streetName: <span class="string">"Fake Street"</span>,</span><br><span class="line">  houseNumber: <span class="number">123</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">cc = &#123;</span><br><span class="line">  houseNumber: <span class="number">33</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 🚨 Property 'streetName'</span></span><br><span class="line"><span class="comment"> * 🚨   is missing in type   '&#123; houseNumber: number; &#125;'</span></span><br><span class="line"><span class="comment"> * 🚨   but required in type '&#123; houseNumber: number; streetName: string; &#125;'.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (12) You can use the optional operator (?) to</span></span><br><span class="line"><span class="comment"> * indicate that something may or may not be there</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> dd: &#123; houseNumber: <span class="built_in">number</span>; streetName?: <span class="built_in">string</span> &#125;;</span><br><span class="line">dd = &#123;</span><br><span class="line">  houseNumber: <span class="number">33</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// (13) if we want to re-use this type, we can create an interface</span></span><br><span class="line"><span class="keyword">interface</span> Address &#123;</span><br><span class="line">  houseNumber: <span class="built_in">number</span>;</span><br><span class="line">  streetName?: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// and refer to it by name</span></span><br><span class="line"><span class="keyword">let</span> ee: Address = &#123; houseNumber: <span class="number">33</span> &#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Intersection-amp-Union-Types"><a href="#Intersection-amp-Union-Types" class="headerlink" title="Intersection &amp; Union Types"></a>Intersection &amp; Union Types</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//== UNION &amp; INTERSECTION ==//</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (14) Intersection types</span></span><br><span class="line"><span class="comment"> * Sometimes we have a type that can be one of several things</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> HasPhoneNumber &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  phone: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> HasEmail &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  email: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> contactInfo: HasEmail | HasPhoneNumber =</span><br><span class="line">  <span class="built_in">Math</span>.random() &gt; <span class="number">0.5</span></span><br><span class="line">    ? &#123;</span><br><span class="line">        <span class="comment">// we can assign it to a HasPhoneNumber</span></span><br><span class="line">        name: <span class="string">"Mike"</span>,</span><br><span class="line">        phone: <span class="number">3215551212</span></span><br><span class="line">      &#125;</span><br><span class="line">    : &#123;</span><br><span class="line">        <span class="comment">// or a HasEmail</span></span><br><span class="line">        name: <span class="string">"Mike"</span>,</span><br><span class="line">        email: <span class="string">"mike@example.com"</span></span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">contactInfo.name; <span class="comment">// <span class="doctag">NOTE:</span> we can only access the .name property  (the stuff HasPhoneNumber and HasEmail have in common)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (15) Union types</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> otherContactInfo: HasEmail &amp; HasPhoneNumber = &#123;</span><br><span class="line">  <span class="comment">// we _must_ initialize it to a shape that's asssignable to HasEmail _and_ HasPhoneNumber</span></span><br><span class="line">  name: <span class="string">"Mike"</span>,</span><br><span class="line">  email: <span class="string">"mike@example.com"</span>,</span><br><span class="line">  phone: <span class="number">3215551212</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">otherContactInfo.name; <span class="comment">// <span class="doctag">NOTE:</span> we can access anything on _either_ type</span></span><br><span class="line">otherContactInfo.email;</span><br><span class="line">otherContactInfo.phone;</span><br></pre></td></tr></table></figure>
+<h3 id="Type-Systems-amp-Object-Shapes"><a href="#Type-Systems-amp-Object-Shapes" class="headerlink" title="Type Systems &amp; Object Shapes"></a>Type Systems &amp; Object Shapes</h3><h4 id="Type-Systems-amp-Type-Equivalence"><a href="#Type-Systems-amp-Type-Equivalence" class="headerlink" title="Type Systems &amp; Type Equivalence"></a>Type Systems &amp; Type Equivalence</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validateInputField</span>(<span class="params">input: HTMLInputElement</span>) </span>&#123;</span><br><span class="line">  <span class="comment">/*...*/</span></span><br><span class="line">&#125;</span><br><span class="line">validateInputField(x);</span><br><span class="line"><span class="comment">// can we regard x as an HTMLInputElement?</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Nominal Type Systems</strong> answer this question based on whether x is an instance of a class/type named HTMLInputElement</li>
+<li><strong>Structural Type Systems</strong> only care about the <em>shape</em> of an object. This is how typescript works!</li>
+</ul>
+<h4 id="Object-Shapes"><a href="#Object-Shapes" class="headerlink" title="Object Shapes"></a>Object Shapes</h4><ul>
+<li>When we talk about the shape of an object, we’re referring to the names of properties and types of their values</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> car:&#123;make: <span class="built_in">string</span>; model: <span class="built_in">string</span>; year: <span class="built_in">number</span>&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Wider-vs-Narrower"><a href="#Wider-vs-Narrower" class="headerlink" title="Wider vs. Narrower"></a>Wider vs. Narrower</h4><ul>
+<li>Describes: relative differences in range of a type’s allowable values</li>
+</ul>
+<p>最顶层类型是any，最底层是never，可以在上层类型中使用下层，反之则不允许。既类型只能越来越具体。</p>
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><p><code>open ./notes/2-function-basics.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// (1) function arguments and return values can have type annotations</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendEmail</span>(<span class="params">to: HasEmail</span>): </span>&#123; recipient: <span class="built_in">string</span>; body: <span class="built_in">string</span> &#125; &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    recipient: <span class="string">`<span class="subst">$&#123;to.name&#125;</span> &lt;<span class="subst">$&#123;to.email&#125;</span>&gt;`</span>, <span class="comment">// Mike &lt;mike@example.com&gt;</span></span><br><span class="line">    body: <span class="string">"You're pre-qualified for a loan!"</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// (2) or the arrow-function variant</span></span><br><span class="line"><span class="keyword">const</span> sendTextMessage = (</span><br><span class="line">  to: HasPhoneNumber</span><br><span class="line">): &#123; recipient: <span class="built_in">string</span>; body: <span class="built_in">string</span> &#125; =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    recipient: <span class="string">`<span class="subst">$&#123;to.name&#125;</span> &lt;<span class="subst">$&#123;to.phone&#125;</span>&gt;`</span>,</span><br><span class="line">    body: <span class="string">"You're pre-qualified for a loan!"</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// (3) return types can almost always be inferred</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNameParts</span>(<span class="params">contact: &#123; name: <span class="built_in">string</span> &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> parts = contact.name.split(<span class="regexp">/\s/g</span>); <span class="comment">// split @ whitespace</span></span><br><span class="line">  <span class="keyword">if</span> (parts.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">`Can't calculate name parts from name "<span class="subst">$&#123;contact.name&#125;</span>"`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    first: parts[<span class="number">0</span>],</span><br><span class="line">    middle:</span><br><span class="line">      parts.length === <span class="number">2</span></span><br><span class="line">        ? <span class="literal">undefined</span></span><br><span class="line">        : <span class="comment">// everything except first and last</span></span><br><span class="line">          parts.slice(<span class="number">1</span>, parts.length - <span class="number">2</span>).join(<span class="string">" "</span>),</span><br><span class="line">    last: parts[parts.length - <span class="number">1</span>]</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// (4) rest params work just as you'd think. Type must be array-ish</span></span><br><span class="line"><span class="keyword">const</span> sum = <span class="function">(<span class="params">...vals: <span class="built_in">number</span>[]</span>) =&gt;</span> vals.reduce(<span class="function">(<span class="params">sum, x</span>) =&gt;</span> sum + x, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>)); <span class="comment">// 13</span></span><br></pre></td></tr></table></figure>
+<h3 id="Function-Signature-Overloading"><a href="#Function-Signature-Overloading" class="headerlink" title="Function Signature Overloading"></a>Function Signature Overloading</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// (5) we can even provide multiple function signatures</span></span><br><span class="line"><span class="comment">// "overload signatures"</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">contactPeople</span>(<span class="params">method: <span class="string">"email"</span>, ...people: HasEmail[]</span>): <span class="title">void</span>;</span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">contactPeople</span>(<span class="params">method: <span class="string">"phone"</span>, ...people: HasPhoneNumber[]</span>): <span class="title">void</span>;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">// "<span class="title">function</span> <span class="title">implementation</span>"</span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">contactPeople</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  method: <span class="string">"email"</span> | <span class="string">"phone"</span>,</span></span></span><br><span class="line">  ...people: (HasEmail | HasPhoneNumber)[]</span><br><span class="line">): <span class="keyword">void</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (method === <span class="string">"email"</span>) &#123;</span><br><span class="line">    (people <span class="keyword">as</span> HasEmail[]).forEach(sendEmail);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    (people <span class="keyword">as</span> HasPhoneNumber[]).forEach(sendTextMessage);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ email works</span></span><br><span class="line">contactPeople(<span class="string">"email"</span>, &#123; <span class="attr">name</span>: <span class="string">"foo"</span>, <span class="attr">email</span>: <span class="string">""</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ phone works</span></span><br><span class="line">contactPeople(<span class="string">"phone"</span>, &#123; <span class="attr">name</span>: <span class="string">"foo"</span>, <span class="attr">phone</span>: <span class="number">12345678</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 🚨 mixing does not work</span></span><br><span class="line">contactPeople(<span class="string">"email"</span>, &#123; <span class="attr">name</span>: <span class="string">"foo"</span>, <span class="attr">phone</span>: <span class="number">12345678</span> &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Lexical-Scope"><a href="#Lexical-Scope" class="headerlink" title="Lexical Scope"></a>Lexical Scope</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// (6) the lexical scope (this) of a function is part of its signature</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendMessage</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  this: HasEmail &amp; HasPhoneNumber,</span></span></span><br><span class="line"><span class="function"><span class="params">  preferredMethod: <span class="string">"phone"</span> | <span class="string">"email"</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (preferredMethod === <span class="string">"email"</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"sendEmail"</span>);</span><br><span class="line">    sendEmail(<span class="keyword">this</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"sendTextMessage"</span>);</span><br><span class="line">    sendTextMessage(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> c = &#123; <span class="attr">name</span>: <span class="string">"Mike"</span>, <span class="attr">phone</span>: <span class="number">3215551212</span>, <span class="attr">email</span>: <span class="string">"mike@example.com"</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">invokeSoon</span>(<span class="params">cb: (</span>) =&gt; <span class="title">any</span>, <span class="title">timeout</span>: <span class="title">number</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> cb.call(<span class="literal">null</span>), timeout);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 🚨 this is not satisfied</span></span><br><span class="line">invokeSoon(<span class="function"><span class="params">()</span> =&gt;</span> sendMessage(<span class="string">"email"</span>), <span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ creating a bound function is one solution</span></span><br><span class="line"><span class="keyword">const</span> bound = sendMessage.bind(c, <span class="string">"email"</span>);</span><br><span class="line">invokeSoon(<span class="function"><span class="params">()</span> =&gt;</span> bound(), <span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ call/apply works as well</span></span><br><span class="line">invokeSoon(<span class="function"><span class="params">()</span> =&gt;</span> sendMessage.apply(c, [<span class="string">"phone"</span>]), <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="Interface-amp-Type-Aliases"><a href="#Interface-amp-Type-Aliases" class="headerlink" title="Interface &amp; Type Aliases"></a>Interface &amp; Type Aliases</h2><h3 id="Type-Aliases-amp-extends"><a href="#Type-Aliases-amp-extends" class="headerlink" title="Type Aliases &amp; extends"></a>Type Aliases &amp; extends</h3><p><code>open ./notes/3-interface-type-basics.ts</code></p>
+<h4 id="Type-Alias"><a href="#Type-Alias" class="headerlink" title="Type Alias"></a>Type Alias</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//== TYPE ALIAS ==//</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (1) Type aliases allow us to give a type a name</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">type</span> StringOrNumber = <span class="built_in">string</span> | <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// this is the ONLY time you'll see a type on the RHS of assignment</span></span><br><span class="line"><span class="keyword">type</span> HasName = &#123; name: <span class="built_in">string</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 🚨 self-referencing types don't work! (we'll get there!)</span></span><br><span class="line"><span class="keyword">type</span> NumVal = <span class="number">1</span> | <span class="number">2</span> | <span class="number">3</span> | NumArr;</span><br><span class="line"><span class="keyword">type</span> NumArr = NumVal[];</span><br></pre></td></tr></table></figure>
+<h4 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// == INTERFACE == //</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (2) Interfaces can extend from other interfaces</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> HasInternationalPhoneNumber <span class="keyword">extends</span> HasPhoneNumber &#123;</span><br><span class="line">  countryCode: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Call-amp-Construct-Signatures"><a href="#Call-amp-Construct-Signatures" class="headerlink" title="Call &amp; Construct Signatures"></a>Call &amp; Construct Signatures</h3><h4 id="Call-Signatures"><a href="#Call-Signatures" class="headerlink" title="Call Signatures"></a>Call Signatures</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (3) they can also be used to describe call signatures</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> ContactMessenger1 &#123;</span><br><span class="line">  (contact: HasEmail | HasPhoneNumber, message: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ContactMessenger2 = (</span><br><span class="line">  contact: HasEmail | HasPhoneNumber,</span><br><span class="line">  message: <span class="built_in">string</span></span><br><span class="line">) =&gt; <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// <span class="doctag">NOTE:</span> we don't need type annotations for contact or message</span></span><br><span class="line"><span class="keyword">const</span> emailer: ContactMessenger1 = <span class="function">(<span class="params">_contact, _message</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">/** ... */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="Construct-Signature"><a href="#Construct-Signature" class="headerlink" title="Construct Signature"></a>Construct Signature</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (4) construct signatures can be described as well</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// interface ContactConstructor &#123;</span></span><br><span class="line">  <span class="keyword">new</span> (...args: <span class="built_in">any</span>[]): HasEmail | HasPhoneNumber;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Dictionary-Objects-amp-Index-Signatures"><a href="#Dictionary-Objects-amp-Index-Signatures" class="headerlink" title="Dictionary Objects &amp; Index Signatures"></a>Dictionary Objects &amp; Index Signatures</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (5) index signatures describe how a type will respond to property access</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @example</span></span><br><span class="line"><span class="comment"> * &#123;</span></span><br><span class="line"><span class="comment"> *    iPhone: &#123; areaCode: 123, num: 4567890 &#125;,</span></span><br><span class="line"><span class="comment"> *    home:   &#123; areaCode: 123, num: 8904567 &#125;,</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> PhoneNumberDict &#123;</span><br><span class="line">  <span class="comment">// arr[0],  foo['myProp']</span></span><br><span class="line">  [numberName: <span class="built_in">string</span>]:</span><br><span class="line">    | <span class="literal">undefined</span></span><br><span class="line">    | &#123;</span><br><span class="line">        areaCode: <span class="built_in">number</span>;</span><br><span class="line">        num: <span class="built_in">number</span>;</span><br><span class="line">      &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> phoneDict: PhoneNumberDict = &#123;</span><br><span class="line">  office: &#123; areaCode: <span class="number">321</span>, num: <span class="number">5551212</span> &#125;,</span><br><span class="line">  home: &#123; areaCode: <span class="number">321</span>, num: <span class="number">5550010</span> &#125; <span class="comment">// try editing me</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// at most, a type may have one string and one number index signature</span></span><br></pre></td></tr></table></figure>
+<h3 id="Combining-Interfaces"><a href="#Combining-Interfaces" class="headerlink" title="Combining Interfaces"></a>Combining Interfaces</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (6) they may be used in combination with other types</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// augment the existing PhoneNumberDict</span></span><br><span class="line"><span class="comment">// i.e., imported it from a library, adding stuff to it</span></span><br><span class="line"><span class="keyword">interface</span> PhoneNumberDict &#123;</span><br><span class="line">  home: &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * (7) interfaces are "open", meaning any declarations of the</span></span><br><span class="line"><span class="comment">     * -   same name are merged</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    areaCode: <span class="built_in">number</span>;</span><br><span class="line">    num: <span class="built_in">number</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  office: &#123;</span><br><span class="line">    areaCode: <span class="built_in">number</span>;</span><br><span class="line">    num: <span class="built_in">number</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">phoneDict.home;   <span class="comment">// definitely present</span></span><br><span class="line">phoneDict.office; <span class="comment">// definitely present</span></span><br><span class="line">phoneDict.mobile; <span class="comment">// MAYBE present</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (8) Interfaces are initialized lazily, so combining it</span></span><br><span class="line"><span class="comment"> * -   w/ a type alias allows for recursive types!</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> StringVal = <span class="string">"a"</span> | <span class="string">"b"</span> | <span class="string">"c"</span> | StringArr;</span><br><span class="line"></span><br><span class="line"><span class="comment">// type StringArr = StringVal[];</span></span><br><span class="line"><span class="keyword">interface</span> StringArr &#123;</span><br><span class="line">  <span class="comment">// arr[0]</span></span><br><span class="line">  [k: <span class="built_in">number</span>]: <span class="string">"a"</span> | <span class="string">"b"</span> | <span class="string">"c"</span> | StringVal[];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> x: StringVal = <span class="built_in">Math</span>.random() &gt; <span class="number">0.5</span> ? <span class="string">"b"</span> : [<span class="string">"a"</span>]; <span class="comment">// ✅ ok!</span></span><br></pre></td></tr></table></figure>
+<h2 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h2><p><code>open ./notes/4-class-basics.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// == CLASSES == //</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (1) Classes work similarly to what you're used to seeing in JS</span></span><br><span class="line"><span class="comment"> * -   They can "implement" interfaces</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> Contact <span class="keyword">implements</span> HasEmail &#123;</span><br><span class="line">  email: <span class="built_in">string</span>;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">name: <span class="built_in">string</span>, email: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.email = email;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Access-Modifiers-amp-Initialization"><a href="#Access-Modifiers-amp-Initialization" class="headerlink" title="Access Modifiers &amp; Initialization"></a>Access Modifiers &amp; Initialization</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (3) Access modifier keywords - "who can access this thing"</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * - public - everyone</span></span><br><span class="line"><span class="comment"> * - protected - me and subclasses</span></span><br><span class="line"><span class="comment"> * - private - only me</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> ParamPropContact <span class="keyword">implements</span> HasEmail &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> name: <span class="built_in">string</span>,</span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> email: <span class="built_in">string</span> = "no email"</span>) &#123;</span><br><span class="line">    <span class="comment">// nothing needed</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (4) Class fields can have initializers (defaults)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> OtherContact <span class="keyword">implements</span> HasEmail, HasPhoneNumber &#123;</span><br><span class="line">  <span class="keyword">protected</span> age: <span class="built_in">number</span> = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// private password: string;</span></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> name: <span class="built_in">string</span>,</span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> email: <span class="built_in">string</span>,</span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> phone: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="comment">// () password must either be initialized like this, or have a default value</span></span><br><span class="line">    <span class="keyword">this</span>.password = <span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random() * <span class="number">1e14</span>).toString(<span class="number">32</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Definite-Assignment-amp-Lazy-Initalization"><a href="#Definite-Assignment-amp-Lazy-Initalization" class="headerlink" title="Definite Assignment &amp; Lazy Initalization"></a>Definite Assignment &amp; Lazy Initalization</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (4) Class fields can have initializers (defaults)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> OtherContact <span class="keyword">implements</span> HasEmail, HasPhoneNumber &#123;</span><br><span class="line">  <span class="keyword">protected</span> age: <span class="built_in">number</span> = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">private</span> password: <span class="built_in">string</span>;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> name: <span class="built_in">string</span>, <span class="keyword">public</span> email: <span class="built_in">string</span>, <span class="keyword">public</span> phone: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="comment">// () password must either be initialized like this, or have a default value</span></span><br><span class="line">    <span class="keyword">this</span>.password = <span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random() * <span class="number">1e14</span>).toString(<span class="number">32</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Abstract-Classes"><a href="#Abstract-Classes" class="headerlink" title="Abstract Classes"></a>Abstract Classes</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (5) TypeScript even allows for abstract classes, which have a partial implementation</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> AbstractContact <span class="keyword">implements</span> HasEmail, HasPhoneNumber &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">abstract</span> phone: <span class="built_in">number</span>; <span class="comment">// must be implemented by non-abstract subclasses</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> name: <span class="built_in">string</span>,</span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> email: <span class="built_in">string</span> <span class="comment">// must be public to satisfy HasEmail</span></span></span><br><span class="line"><span class="params">  </span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">abstract</span> sendEmail(): <span class="built_in">void</span>; <span class="comment">// must be implemented by non-abstract subclasses</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (6) implementors must "fill in" any abstract methods or properties</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> ConcreteContact <span class="keyword">extends</span> AbstractContact &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> phone: <span class="built_in">number</span>, <span class="comment">// must happen before non property-parameter arguments</span></span></span><br><span class="line"><span class="params">    name: <span class="built_in">string</span>,</span></span><br><span class="line"><span class="params">    email: <span class="built_in">string</span></span></span><br><span class="line"><span class="params">  </span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>(name, email);</span><br><span class="line">  &#125;</span><br><span class="line">  sendEmail() &#123;</span><br><span class="line">    <span class="comment">// mandatory!</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"sending an email"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Converting-to-TypeScript"><a href="#Converting-to-TypeScript" class="headerlink" title="Converting to TypeScript"></a>Converting to TypeScript</h2><h3 id="What-not-to-do"><a href="#What-not-to-do" class="headerlink" title="What not to do"></a>What not to do</h3><ul>
+<li>Functional changes at the same time</li>
+<li>Attempt this with low test coverage</li>
+<li>Let the perfect be the enemy of the good</li>
+<li>Forget to add tests for your types</li>
+<li>Publish types for consumer use while they’re in a “weak” state</li>
+</ul>
+<h3 id="Compliling-in-“loose-mode”"><a href="#Compliling-in-“loose-mode”" class="headerlink" title="Compliling in “loose mode”"></a>Compliling in “loose mode”</h3><ul>
+<li>Start with tests passing</li>
+<li>Rename all .js to .ts, allowing implicit any</li>
+<li>Fix only things that are not type-checking, or causing compile errors</li>
+<li><strong>Be careful to avoid changing behavior</strong></li>
+<li>Get tests passing again</li>
+</ul>
+<h3 id="Making-Anys-Explicit"><a href="#Making-Anys-Explicit" class="headerlink" title="Making Anys Explicit"></a>Making Anys Explicit</h3><ul>
+<li>Start with tests passing</li>
+<li>Ban implicit any(<code>&quot;noImplicitAny: true,</code>)</li>
+<li>Where possible, provide a specific and appropriate type<ul>
+<li>Import types for dependencies from DefinitelyTyped</li>
+<li>Otherwise explicit any</li>
+</ul>
+</li>
+<li>Get tests passing again</li>
+</ul>
+<h3 id="Strict-Mode"><a href="#Strict-Mode" class="headerlink" title="Strict Mode"></a>Strict Mode</h3><ul>
+<li>Incrementally, in small chunks…</li>
+<li>Enable strict mode</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"strictNullChecks": true,</span><br><span class="line">"strict": true,</span><br><span class="line">"strictFunctionTypes": true,</span><br><span class="line">"strictBindCallApply": true</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Replace explicit anys with more appropriate types</li>
+<li>Try really haed to avoid unsafe casts</li>
+</ul>
+<h3 id="Exercise-Address-Book"><a href="#Exercise-Address-Book" class="headerlink" title="Exercise: Address Book"></a>Exercise: Address Book</h3><ul>
+<li>We have a address book program that we want to convert form js to ts using our 3-step approach.</li>
+</ul>
+<p><code>cd ././challenges/address-book/</code></p>
+<h2 id="Generics"><a href="#Generics" class="headerlink" title="Generics"></a>Generics</h2><p>Generics parameterize types in the same way that functions parameterize values.</p>
+<ul>
+<li>When to use them</li>
+<li>Type parameters</li>
+<li>Constraints</li>
+</ul>
+<p><code>./notes/5-generics-basics.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (1) Generics allow us to parameterize types in the same way that</span></span><br><span class="line"><span class="comment"> * -   functions parameterize values</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// param determines the value of x</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrappedValue</span>(<span class="params">x: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    value: x</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// type param determines the type of x</span></span><br><span class="line"><span class="keyword">interface</span> WrappedValue&lt;X&gt; &#123;</span><br><span class="line">  value: X;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> val: WrappedValue&lt;<span class="built_in">string</span>[]&gt; = &#123; value: [] &#125;;</span><br><span class="line">val.value;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * we can name these params whatever we want, but a common convention</span></span><br><span class="line"><span class="comment"> * is to use capital letters starting with `T` (a C++ convention from "templates")</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (2) Type parameters can have default types</span></span><br><span class="line"><span class="comment"> * -   just like function parameters can have default values</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// for Array.prototype.filter</span></span><br><span class="line"><span class="keyword">interface</span> FilterFunction&lt;T = any&gt; &#123;</span><br><span class="line">  (val: T): <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stringFilter: FilterFunction&lt;<span class="built_in">string</span>&gt; = <span class="function"><span class="params">val</span> =&gt;</span> <span class="keyword">typeof</span> val === <span class="string">"string"</span>;</span><br><span class="line">stringFilter(<span class="number">0</span>); <span class="comment">// 🚨 ERROR</span></span><br><span class="line">stringFilter(<span class="string">"abc"</span>); <span class="comment">// ✅ OK</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// can be used with any value</span></span><br><span class="line"><span class="keyword">const</span> truthyFilter: FilterFunction = <span class="function"><span class="params">val</span> =&gt;</span> val;</span><br><span class="line">truthyFilter(<span class="number">0</span>); <span class="comment">// false</span></span><br><span class="line">truthyFilter(<span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">truthyFilter(<span class="string">""</span>); <span class="comment">// false</span></span><br><span class="line">truthyFilter([<span class="string">"abc"</span>]); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Type-Parameters"><a href="#Type-Parameters" class="headerlink" title="Type Parameters"></a>Type Parameters</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (3) You don't have to use exactly your type parameter as an arg</span></span><br><span class="line"><span class="comment"> * -   things that are based on your type parameter are fine too</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">resolveOrTimeout</span>&lt;<span class="title">T</span>&gt;(<span class="params">promise: <span class="built_in">Promise</span>&lt;T&gt;, timeout: <span class="built_in">number</span></span>): <span class="title">Promise</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>&lt;T&gt;<span class="function">(<span class="params">(<span class="params">resolve, reject</span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="comment">// start the timeout, reject when it triggers</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> task = setTimeout(<span class="params">(<span class="params"></span>) =&gt; reject(<span class="params">"time up!"</span>), timeout</span>);</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    promise.then(<span class="params">val =&gt; &#123;</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="params">      <span class="comment">// cancel the timeout</span></span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="params">      clearTimeout(<span class="params">task</span>);</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="params"></span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="params">      <span class="comment">// resolve with the value</span></span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="params">      resolve(<span class="params">val</span>);</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="params">    &#125;</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;</span>);</span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"><span class="params">resolveOrTimeout</span>(<span class="params">fetch(<span class="params">""</span>), 3000</span>);</span></span><br></pre></td></tr></table></figure>
+<h3 id="Constraints-amp-Scope"><a href="#Constraints-amp-Scope" class="headerlink" title="Constraints &amp; Scope"></a>Constraints &amp; Scope</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (4) Type parameters can have constraints</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrayToDict</span>&lt;<span class="title">T</span> <span class="title">extends</span> </span>&#123; id: <span class="built_in">string</span> &#125;&gt;(array: T[]): &#123; [k: <span class="built_in">string</span>]: T &#125; &#123;</span><br><span class="line">  <span class="keyword">const</span> out: &#123; [k: <span class="built_in">string</span>]: T &#125; = &#123;&#125;;</span><br><span class="line">  array.forEach(<span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">    out[val.id] = val;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myDict = arrayToDict([</span><br><span class="line">  &#123; id: <span class="string">"a"</span>, value: <span class="string">"first"</span>, lisa: <span class="string">"Huang"</span> &#125;,</span><br><span class="line">  &#123; id: <span class="string">"b"</span>, value: <span class="string">"second"</span> &#125;</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (5) Type parameters are associated with scopes, just like function arguments</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">startTuple</span>&lt;<span class="title">T</span>&gt;(<span class="params">a: T</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">finishTuple</span>&lt;<span class="title">U</span>&gt;(<span class="params">b: U</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [a, b] <span class="keyword">as</span> [T, U];</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> myTuple = startTuple([<span class="string">"first"</span>])(<span class="number">42</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (6) When to use generics</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * - Generics are necessary when we want to describe a relationship between</span></span><br><span class="line"><span class="comment"> * - two or more types (i.e., a function argument and return type).</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * - aside from interfaces and type aliases, If a type parameter is used only once</span></span><br><span class="line"><span class="comment"> * - it can probably be eliminated</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Shape &#123;</span><br><span class="line">  draw();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> Circle <span class="keyword">extends</span> Shape &#123;</span><br><span class="line">  radius: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawShapes1</span>&lt;<span class="title">S</span> <span class="title">extends</span> <span class="title">Shape</span>&gt;(<span class="params">shapes: S[]</span>) </span>&#123; <span class="comment">// use Generics</span></span><br><span class="line">  shapes.forEach(<span class="function"><span class="params">s</span> =&gt;</span> s.draw());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawShapes2</span>(<span class="params">shapes: Shape[]</span>) </span>&#123; <span class="comment">// use basic types</span></span><br><span class="line">  <span class="comment">// this is simpler. Above type param is not necessary</span></span><br><span class="line">  shapes.forEach(<span class="function"><span class="params">s</span> =&gt;</span> s.draw());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Exercise-Dictionary"><a href="#Exercise-Dictionary" class="headerlink" title="Exercise: Dictionary"></a>Exercise: Dictionary</h3><ul>
+<li><code>Dict&lt;T&gt;</code> and Friends<ul>
+<li>A Dictionary (a.k.a. Associative Array) is a collection of key-value pairs, that ensures key uniqueness.</li>
+<li>Build a Dict that’s generic over its value type</li>
+<li>Higher-order functions on JS Arrays are awesome! Let’s also make a mapDict and reduceDict.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Top-amp-Bottom-Types"><a href="#Top-amp-Bottom-Types" class="headerlink" title="Top &amp; Bottom Types"></a>Top &amp; Bottom Types</h2><ul>
+<li>Passing private values through typed code</li>
+<li>Exhaustive Conditionals</li>
+<li>Type Guards</li>
+<li>Branded Types</li>
+</ul>
+<p><code>open ./notes/6-guards-and-extreme-types.ts</code></p>
+<h3 id="Top-Types"><a href="#Top-Types" class="headerlink" title="Top Types"></a>Top Types</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//== TOP TYPES ==//</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (1) "Top types" are types that can hold any value. Typescript has two of them</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myAny: <span class="built_in">any</span> = <span class="number">32</span></span><br><span class="line"><span class="keyword">let</span> myUnknown: unknown = <span class="string">'hello, unknown'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Note that we can do whatever we want with an any, but nothing with an unknown</span></span><br><span class="line"></span><br><span class="line">myAny.foo.bar.baz</span><br><span class="line">myUnknown.foo</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (2) When to use `any`</span></span><br><span class="line"><span class="comment"> * Anys are good for areas of our programs where we want maximum flexibility</span></span><br><span class="line"><span class="comment"> * Example: sometimes a Promise&lt;any&gt; is fine when we don't care at all about the resolved value</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">logWhenResolved</span>(<span class="params">p: <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> val = <span class="keyword">await</span> p</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Resolved to: '</span>, val)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (3) When to use `unknown`</span></span><br><span class="line"><span class="comment"> * Unknowns are good for "private" values that we don't want to expose through a public API.</span></span><br><span class="line"><span class="comment"> * They can still hold any value, we just must narrow the type before we're able to use it.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * We'll do htis with a type guard.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">myUnknown.split(<span class="string">", "</span>); <span class="comment">// 🚨 ERROR</span></span><br></pre></td></tr></table></figure>
+<h3 id="Type-Guards"><a href="#Type-Guards" class="headerlink" title="Type Guards"></a>Type Guards</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (4) Built-in type guards</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> myUnknown === <span class="string">"string"</span>) &#123;</span><br><span class="line">  <span class="comment">// in here, myUnknown is of type string</span></span><br><span class="line">  myUnknown.split(<span class="string">", "</span>); <span class="comment">// ✅ OK</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (myUnknown <span class="keyword">instanceof</span> <span class="built_in">Promise</span>) &#123;</span><br><span class="line">  <span class="comment">// in here, myUnknown is of type Promise&lt;any&gt;</span></span><br><span class="line">  myUnknown.then(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">console</span>.log(x));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (5) User-defined type guards</span></span><br><span class="line"><span class="comment"> * We can also create our own type guards, using functions that return booleans</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 💡 Note return type</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isHasEmail</span>(<span class="params">x: <span class="built_in">any</span></span>): <span class="title">x</span> <span class="title">is</span> <span class="title">HasEmail</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> x.name === <span class="string">"string"</span> &amp;&amp; <span class="keyword">typeof</span> x.email === <span class="string">"string"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (isHasEmail(myUnknown)) &#123;</span><br><span class="line">  <span class="comment">// In here, myUnknown is of type HasEmail</span></span><br><span class="line">  <span class="built_in">console</span>.log(myUnknown.name, myUnknown.email);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// my most common guard</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isDefined</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg: T | <span class="literal">undefined</span></span>): <span class="title">arg</span> <span class="title">is</span> <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> arg !== <span class="string">"undefined"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Unknow-amp-Branded-Types"><a href="#Unknow-amp-Branded-Types" class="headerlink" title="Unknow &amp; Branded Types"></a>Unknow &amp; Branded Types</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (6) Dealing with multiple unknowns</span></span><br><span class="line"><span class="comment"> * -   We kind of lose some of the benefits of structural typing when using `unknown`.</span></span><br><span class="line"><span class="comment"> * -   Look how we can get mixed up below</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> aa: unknown = <span class="number">41</span>;</span><br><span class="line"><span class="keyword">let</span> bb: unknown = [<span class="string">"a"</span>, <span class="string">"string"</span>, <span class="string">"array"</span>];</span><br><span class="line">bb = aa; <span class="comment">// 🚨 yikes</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (7) Alternative to unknowns - branded types</span></span><br><span class="line"><span class="comment"> * -   One thing we can do to avoid this is to create types with structures that</span></span><br><span class="line"><span class="comment"> * -   are difficult to accidentally match. This involves unsafe casting, but it's ok</span></span><br><span class="line"><span class="comment"> * -   if we do things carefully</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* two branded types, each with "brand" and "unbrand" functions */</span></span><br><span class="line"><span class="keyword">interface</span> BrandedA &#123;</span><br><span class="line">  __this_is_branded_with_a: <span class="string">"a"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">brandA</span>(<span class="params">value: <span class="built_in">string</span></span>): <span class="title">BrandedA</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (value <span class="keyword">as</span> unknown) <span class="keyword">as</span> BrandedA;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unbrandA</span>(<span class="params">value: BrandedA</span>): <span class="title">string</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (value <span class="keyword">as</span> unknown) <span class="keyword">as</span> <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> BrandedB &#123;</span><br><span class="line">  __this_is_branded_with_b: <span class="string">"b"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">brandB</span>(<span class="params">value: &#123; abc: <span class="built_in">string</span> &#125;</span>): <span class="title">BrandedB</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (value <span class="keyword">as</span> unknown) <span class="keyword">as</span> BrandedB;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unbrandB</span>(<span class="params">value: BrandedB</span>): </span>&#123; abc: <span class="built_in">string</span> &#125; &#123;</span><br><span class="line">  <span class="keyword">return</span> (value <span class="keyword">as</span> unknown) <span class="keyword">as</span> &#123; abc: <span class="built_in">string</span> &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> secretA = brandA(<span class="string">"This is a secret value"</span>);</span><br><span class="line"><span class="keyword">let</span> secretB = brandB(&#123; abc: <span class="string">"This is a different secret value"</span> &#125;);</span><br><span class="line"></span><br><span class="line">secretA = secretB; <span class="comment">// ✅ No chance of getting these mixed up</span></span><br><span class="line">unbrandB(secretA);</span><br><span class="line">unbrandA(secretB);</span><br><span class="line"></span><br><span class="line"><span class="comment">// back to our original values</span></span><br><span class="line"><span class="keyword">let</span> revealedA = unbrandA(secretA);</span><br><span class="line"><span class="keyword">let</span> revealedB = unbrandB(secretB);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 💡 PROTIP - always brand/unbrand casting in exactly one place.</span></span><br></pre></td></tr></table></figure>
+<h3 id="Bottom-Types"><a href="#Bottom-Types" class="headerlink" title="Bottom Types"></a>Bottom Types</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//== BOTTOM TYPE: never ==//</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (8) Bottom types can hold no values. TypeScript has one of these: `never`</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> n: never = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A common place where you'll end up with a never</span></span><br><span class="line"><span class="comment"> * is through narrowing exhaustively</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> x = <span class="string">"abc"</span> <span class="keyword">as</span> <span class="built_in">string</span> | <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> x === <span class="string">"string"</span>) &#123;</span><br><span class="line">  <span class="comment">// x is a string here</span></span><br><span class="line">  x.split(<span class="string">", "</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> x === <span class="string">"number"</span>) &#123;</span><br><span class="line">  <span class="comment">// x is a number here</span></span><br><span class="line">  x.toFixed(<span class="number">2</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// x is a never here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (9) We can use this to our advantage to create exhaustive conditionals and switches</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> UnreachableError <span class="keyword">extends</span> <span class="built_in">Error</span> &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">val: never, message: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>(<span class="string">`TypeScript thought we could never end up here\n<span class="subst">$&#123;message&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> y = <span class="number">4</span> <span class="keyword">as</span> <span class="built_in">string</span> | <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> y === <span class="string">"string"</span>) &#123;</span><br><span class="line">  <span class="comment">// y is a string here</span></span><br><span class="line">  y.split(<span class="string">", "</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> y === <span class="string">"number"</span>) &#123;</span><br><span class="line">  <span class="comment">// y is a number here</span></span><br><span class="line">  y.toFixed(<span class="number">2</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> UnreachableError(y, <span class="string">"y should be a string or number"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Advanced-Types"><a href="#Advanced-Types" class="headerlink" title="Advanced Types"></a>Advanced Types</h2><h3 id="Mapped-amp-Conditional-Types-amp-Type-Queries"><a href="#Mapped-amp-Conditional-Types-amp-Type-Queries" class="headerlink" title="Mapped &amp; Conditional Types, &amp; Type Queries"></a>Mapped &amp; Conditional Types, &amp; Type Queries</h3><p><code>open ./notes/7-advanced-types.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (1) MAPPED TYPES allow the use of an interface to transform keys into values</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> CommunicationMethods &#123;</span><br><span class="line">  email: HasEmail</span><br><span class="line">  phone: HasPhoneNumber</span><br><span class="line">  fax: &#123; fax: <span class="built_in">number</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">contact</span>&lt;<span class="title">K</span> <span class="title">extends</span> <span class="title">keyof</span> <span class="title">CommunicationMethods</span>&gt;(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  method: K,</span></span></span><br><span class="line"><span class="function"><span class="params">  contact: CommunicationMethods[K] <span class="comment">// 💡turning key into value -- a *mapped type*</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line">contact(<span class="string">'email'</span>, &#123; name: <span class="string">'foo'</span>, email: <span class="string">'mike@example.com'</span> &#125;)</span><br><span class="line">contact(<span class="string">'phone'</span>, &#123; name: <span class="string">'foo'</span>, phone: <span class="number">3213332222</span> &#125;)</span><br><span class="line">contact(<span class="string">'fax'</span>, &#123; fax: <span class="number">1231</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// we can get all values by mapping through all keys</span></span><br><span class="line"><span class="keyword">type</span> AllCommKeys = keyof CommunicationMethods</span><br><span class="line"><span class="keyword">type</span> AllCommValues = CommunicationMethods[keyof CommunicationMethods]</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (2) Type queries allow us to obtain the type from a value using typeof</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> alreadyResolvedNum = <span class="built_in">Promise</span>.resolve(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ResolveType = <span class="keyword">typeof</span> <span class="built_in">Promise</span>.resolve;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> x: ResolveType = <span class="built_in">Promise</span>.resolve;</span><br><span class="line">x(<span class="number">42</span>).then(<span class="function"><span class="params">y</span> =&gt;</span> y.toPrecision(<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (3) Conditional types allow for the use of a ternary operator w/ types</span></span><br><span class="line"><span class="comment"> * We can also extract type parameters using the _infer_ keyword</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> EventualType&lt;T&gt; = T <span class="keyword">extends</span> <span class="built_in">Promise</span>&lt;infer S&gt; <span class="comment">// if T extends Promise&lt;any&gt;</span></span><br><span class="line">  ? S <span class="comment">// extract the type the promise resolves to</span></span><br><span class="line">  : T; <span class="comment">// otherwise just let T pass through</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a: EventualType&lt;<span class="built_in">Promise</span>&lt;<span class="built_in">number</span>&gt;&gt;;</span><br><span class="line"><span class="keyword">let</span> b: EventualType&lt;<span class="built_in">number</span>[]&gt;;</span><br></pre></td></tr></table></figure>
+<h3 id="Built-in-Utility-Types"><a href="#Built-in-Utility-Types" class="headerlink" title="Built-in Utility Types"></a>Built-in Utility Types</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//== Built-in Utility Types ==//</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (4) Partial allows us to make all properties on an object optional</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">type</span> MayHaveEmail = Partial&lt;HasEmail&gt;;</span><br><span class="line"><span class="keyword">const</span> me: MayHaveEmail = &#123;&#125;; <span class="comment">// everything is optional</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (5) Pick allows us to select one or more properties from an object type</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> HasThen&lt;T&gt; = Pick&lt;<span class="built_in">Promise</span>&lt;T&gt;, <span class="string">"then"</span> | <span class="string">"catch"</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> hasThen: HasThen&lt;<span class="built_in">number</span>&gt; = <span class="built_in">Promise</span>.resolve(<span class="number">4</span>);</span><br><span class="line">hasThen.then;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (6) Extract lets us obtain a subset of types that are assignable to something</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> OnlyStrings = Extract&lt;<span class="string">"a"</span> | <span class="string">"b"</span> | <span class="number">1</span> | <span class="number">2</span>, <span class="built_in">number</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (7) Exclude lets us obtain a subset of types that are NOT assignable to something</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">type</span> NotStrings = Exclude&lt;<span class="string">"a"</span> | <span class="string">"b"</span> | <span class="number">1</span> | <span class="number">2</span>, <span class="built_in">string</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (8) Record helps us create a type with specified property keys and the same value type</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">type</span> ABCPromises = Record&lt;<span class="string">"a"</span> | <span class="string">"b"</span> | <span class="string">"c"</span>, <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;&gt;;</span><br></pre></td></tr></table></figure>
+<h2 id="Declaration-Merging"><a href="#Declaration-Merging" class="headerlink" title="Declaration Merging"></a>Declaration Merging</h2><ul>
+<li>How typescript understands your code</li>
+<li>Stacking values, types and namespaces</li>
+</ul>
+<p><code>open ./notes/8-declaration-merging.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (1) "identifiers" (i.e., a variable, class, function, interface)</span></span><br><span class="line"><span class="comment"> * -   can be associated with three things: value, type and namespace</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">interface</span> bar &#123;&#125;</span><br><span class="line"><span class="keyword">namespace</span> baz &#123;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">const</span> biz = <span class="string">'hello'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// how to test for a value</span></span><br><span class="line"><span class="keyword">const</span> x = foo; <span class="comment">// foo is in the value position (RHS).</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// how to test for a type</span></span><br><span class="line"><span class="keyword">const</span> y: bar = &#123;&#125;; <span class="comment">// bar is in the type position (LHS).</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// how to test for a namespace (hover over baz symbol)</span></span><br><span class="line">baz;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; foo, bar, baz &#125;; <span class="comment">// all are importable/exportable</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (2) Functions and variables are purely values.</span></span><br><span class="line"><span class="comment"> * -   Their types may only be extracted using type queries</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> xx = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">const</span> yy: <span class="keyword">typeof</span> xx = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (3) Interfaces are purely types</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">interface</span> Address &#123;</span><br><span class="line">  street: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> z = Address; <span class="comment">// 🚨 ERROR (fails value test)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (4) Classes are both types _and_ values</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Contact &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// passes both the value and type tests</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> contactClass = Contact; <span class="comment">// value relates to the factory for creating instances</span></span><br><span class="line"><span class="keyword">const</span> contactInstance: Contact = <span class="keyword">new</span> Contact(); <span class="comment">// interface relates to instances</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (5) declarations with the same name can be merged, to occupy the same identifier</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Album &#123;</span><br><span class="line">  label: Album.AlbumLabel = <span class="keyword">new</span> Album.AlbumLabel();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Album &#123;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">class</span> AlbumLabel &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> Album &#123;</span><br><span class="line">  artist: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> al: Album; <span class="comment">// type test</span></span><br><span class="line"><span class="keyword">let</span> alValue = Album; <span class="comment">// value test</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; Album &#125;; <span class="comment">// 👈 hover over the "Album" -- all three slots filled</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (6) Namespaces have their own slot, and are also values</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 💡 they can be merged with classes</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> AddressBook &#123;</span><br><span class="line">  contacts!: Contact[];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> AddressBook &#123;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">class</span> ABContact <span class="keyword">extends</span> Contact &#123;&#125; <span class="comment">// inner class</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ab = <span class="keyword">new</span> AddressBook();</span><br><span class="line">ab.contacts.push(<span class="keyword">new</span> AddressBook.ABContact());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 💡 or functions</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">format</span>(<span class="params">amt: <span class="built_in">number</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;format.currency&#125;</span><span class="subst">$&#123;amt.toFixed(2)&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> format &#123;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">const</span> currency: <span class="built_in">string</span> = <span class="string">"$ "</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">format(<span class="number">2.314</span>); <span class="comment">// $ 2.31</span></span><br><span class="line">format.currency; <span class="comment">// $</span></span><br></pre></td></tr></table></figure>
+<h2 id="Compiler-API"><a href="#Compiler-API" class="headerlink" title="Compiler API"></a>Compiler API</h2><p><code>open ./notes/9-compiler-api.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> path <span class="keyword">from</span> <span class="string">'path'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> ts <span class="keyword">from</span> <span class="string">'typescript'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isDefined</span>&lt;<span class="title">T</span>&gt;(<span class="params">x: T | <span class="literal">undefined</span></span>): <span class="title">x</span> <span class="title">is</span> <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> x !== <span class="string">'undefined'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// (1) Create the program</span></span><br><span class="line"><span class="keyword">const</span> program = ts.createProgram(&#123;</span><br><span class="line">  options: &#123;</span><br><span class="line">    target: ts.ScriptTarget.ESNext</span><br><span class="line">  &#125;,</span><br><span class="line">  rootNames: [</span><br><span class="line">    <span class="comment">// path to ../examples/hello-ts/src/index.ts</span></span><br><span class="line">    path.join(__dirname, <span class="string">'..'</span>, <span class="string">'examples'</span>, <span class="string">'hello-ts'</span>, <span class="string">'src'</span>, <span class="string">'index.ts'</span>)</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// (2) Get the non-declaration (.d.ts) source files (.ts)</span></span><br><span class="line"><span class="keyword">const</span> nonDeclFiles = program</span><br><span class="line">  .getSourceFiles()</span><br><span class="line">  .filter(<span class="function"><span class="params">sf</span> =&gt;</span> !sf.isDeclarationFile)</span><br><span class="line"></span><br><span class="line"><span class="comment">// (3) get the type-checker</span></span><br><span class="line"><span class="keyword">const</span> checker = program.getTypeChecker()</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * (4) use the type checker to obtain the</span></span><br><span class="line"><span class="comment"> * -   appropriate ts.Symbol for each SourceFile</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> sfSymbols = nonDeclFiles</span><br><span class="line">  .map(<span class="function"><span class="params">f</span> =&gt;</span> checker.getSymbolAtLocation(f))</span><br><span class="line">  .filter(isDefined) <span class="comment">// here's the type guard to filter out undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// (5) for each SourceFile Symbol</span></span><br><span class="line">sfSymbols.forEach(<span class="function"><span class="params">sfSymbol</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; exports: fileExports &#125; = sfSymbol</span><br><span class="line">  <span class="built_in">console</span>.log(sfSymbol.name)</span><br><span class="line">  <span class="keyword">if</span> (fileExports) &#123;</span><br><span class="line">    <span class="comment">// - if there are exports</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'== Exports =='</span>)</span><br><span class="line">    fileExports.forEach(<span class="function">(<span class="params">value, key</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// - for each export</span></span><br><span class="line">      <span class="built_in">console</span>.log(</span><br><span class="line">        key, <span class="comment">// - log its name</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// - and its type (stringified)</span></span><br><span class="line">        checker.typeToString(checker.getTypeAtLocation(value.valueDeclaration))</span><br><span class="line">      )</span><br><span class="line">      <span class="keyword">const</span> jsDocTags = value.getJsDocTags()</span><br><span class="line">      <span class="keyword">if</span> (jsDocTags.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// - if there are JSDoc comment tags</span></span><br><span class="line">        <span class="built_in">console</span>.log(</span><br><span class="line">          <span class="comment">// - log them out as key-value pairs</span></span><br><span class="line">          jsDocTags.map(<span class="function"><span class="params">tag</span> =&gt;</span> <span class="string">`\t<span class="subst">$&#123;tag.name&#125;</span>: <span class="subst">$&#123;tag.text&#125;</span>`</span>).join(<span class="string">'\n'</span>)</span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+          
+            <a href="/tags/TypeScript/" rel="tag"># TypeScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/30/Code-Transformation-and-Linting-with-Abstract-Syntax-Trees/" rel="next" title="Code Transformation and Linting with Abstract Syntax Trees">
+                <i class="fa fa-chevron-left"></i> Code Transformation and Linting with Abstract Syntax Trees
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg" alt="刘勇">
+            
+              <p class="site-author-name" itemprop="name">刘勇</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">75</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/blingblingredstar" title="GitHub &rarr; https://github.com/blingblingredstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:564447023@qq.com" title="E-Mail &rarr; mailto:564447023@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What’s-TypeScript"><span class="nav-number">1.1.</span> <span class="nav-text">What’s TypeScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rationale"><span class="nav-number">1.2.</span> <span class="nav-text">Rationale</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#but-why-add-types"><span class="nav-number">1.2.1.</span> <span class="nav-text">but why add types</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Course-Overview"><span class="nav-number">1.3.</span> <span class="nav-text">Course Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#In-this-class-we’ll-learn-about"><span class="nav-number">1.3.1.</span> <span class="nav-text">In this class, we’ll learn about</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flags"><span class="nav-number">1.4.</span> <span class="nav-text">Flags</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Compiling"><span class="nav-number">1.4.1.</span> <span class="nav-text">Compiling</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configuring-TypeScript"><span class="nav-number">1.5.</span> <span class="nav-text">Configuring TypeScript</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TypeScript-Basics"><span class="nav-number">2.</span> <span class="nav-text">TypeScript Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Variables"><span class="nav-number">2.1.</span> <span class="nav-text">Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variable-Declarations"><span class="nav-number">2.2.</span> <span class="nav-text">Variable Declarations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-amp-Tuples"><span class="nav-number">2.3.</span> <span class="nav-text">Arrays &amp; Tuples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Types-amp-Interfaces"><span class="nav-number">2.4.</span> <span class="nav-text">Object Types &amp; Interfaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intersection-amp-Union-Types"><span class="nav-number">2.5.</span> <span class="nav-text">Intersection &amp; Union Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Type-Systems-amp-Object-Shapes"><span class="nav-number">2.6.</span> <span class="nav-text">Type Systems &amp; Object Shapes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Type-Systems-amp-Type-Equivalence"><span class="nav-number">2.6.1.</span> <span class="nav-text">Type Systems &amp; Type Equivalence</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-Shapes"><span class="nav-number">2.6.2.</span> <span class="nav-text">Object Shapes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Wider-vs-Narrower"><span class="nav-number">2.6.3.</span> <span class="nav-text">Wider vs. Narrower</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Functions"><span class="nav-number">2.7.</span> <span class="nav-text">Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-Signature-Overloading"><span class="nav-number">2.8.</span> <span class="nav-text">Function Signature Overloading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lexical-Scope"><span class="nav-number">2.9.</span> <span class="nav-text">Lexical Scope</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interface-amp-Type-Aliases"><span class="nav-number">3.</span> <span class="nav-text">Interface &amp; Type Aliases</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Type-Aliases-amp-extends"><span class="nav-number">3.1.</span> <span class="nav-text">Type Aliases &amp; extends</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Type-Alias"><span class="nav-number">3.1.1.</span> <span class="nav-text">Type Alias</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#extends"><span class="nav-number">3.1.2.</span> <span class="nav-text">extends</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Call-amp-Construct-Signatures"><span class="nav-number">3.2.</span> <span class="nav-text">Call &amp; Construct Signatures</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Call-Signatures"><span class="nav-number">3.2.1.</span> <span class="nav-text">Call Signatures</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Construct-Signature"><span class="nav-number">3.2.2.</span> <span class="nav-text">Construct Signature</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dictionary-Objects-amp-Index-Signatures"><span class="nav-number">3.3.</span> <span class="nav-text">Dictionary Objects &amp; Index Signatures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Combining-Interfaces"><span class="nav-number">3.4.</span> <span class="nav-text">Combining Interfaces</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classes"><span class="nav-number">4.</span> <span class="nav-text">Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Modifiers-amp-Initialization"><span class="nav-number">4.1.</span> <span class="nav-text">Access Modifiers &amp; Initialization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Definite-Assignment-amp-Lazy-Initalization"><span class="nav-number">4.2.</span> <span class="nav-text">Definite Assignment &amp; Lazy Initalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Abstract-Classes"><span class="nav-number">4.3.</span> <span class="nav-text">Abstract Classes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Converting-to-TypeScript"><span class="nav-number">5.</span> <span class="nav-text">Converting to TypeScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-not-to-do"><span class="nav-number">5.1.</span> <span class="nav-text">What not to do</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compliling-in-“loose-mode”"><span class="nav-number">5.2.</span> <span class="nav-text">Compliling in “loose mode”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Making-Anys-Explicit"><span class="nav-number">5.3.</span> <span class="nav-text">Making Anys Explicit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strict-Mode"><span class="nav-number">5.4.</span> <span class="nav-text">Strict Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Address-Book"><span class="nav-number">5.5.</span> <span class="nav-text">Exercise: Address Book</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generics"><span class="nav-number">6.</span> <span class="nav-text">Generics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Type-Parameters"><span class="nav-number">6.1.</span> <span class="nav-text">Type Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constraints-amp-Scope"><span class="nav-number">6.2.</span> <span class="nav-text">Constraints &amp; Scope</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-Cases"><span class="nav-number">6.3.</span> <span class="nav-text">Use Cases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Dictionary"><span class="nav-number">6.4.</span> <span class="nav-text">Exercise: Dictionary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Top-amp-Bottom-Types"><span class="nav-number">7.</span> <span class="nav-text">Top &amp; Bottom Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-Types"><span class="nav-number">7.1.</span> <span class="nav-text">Top Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Type-Guards"><span class="nav-number">7.2.</span> <span class="nav-text">Type Guards</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unknow-amp-Branded-Types"><span class="nav-number">7.3.</span> <span class="nav-text">Unknow &amp; Branded Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bottom-Types"><span class="nav-number">7.4.</span> <span class="nav-text">Bottom Types</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advanced-Types"><span class="nav-number">8.</span> <span class="nav-text">Advanced Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mapped-amp-Conditional-Types-amp-Type-Queries"><span class="nav-number">8.1.</span> <span class="nav-text">Mapped &amp; Conditional Types, &amp; Type Queries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Built-in-Utility-Types"><span class="nav-number">8.2.</span> <span class="nav-text">Built-in Utility Types</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Declaration-Merging"><span class="nav-number">9.</span> <span class="nav-text">Declaration Merging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compiler-API"><span class="nav-number">10.</span> <span class="nav-text">Compiler API</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
