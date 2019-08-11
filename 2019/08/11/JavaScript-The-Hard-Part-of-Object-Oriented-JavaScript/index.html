@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Introduction The 5 capacities we look for in candidates  我们在候选人身上寻找的5种能力   Analytical problem solving with code 用代码分析解决问题的能力   Technical communication (can I implement your approach just from your exp">
+<meta name="keywords" content="FrontEndMasters,JavaScript,面相对象,原型,原型链,class语法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript: The Hard Part of Object Oriented JavaScript">
+<meta property="og:url" content="http://yoursite.com/2019/08/11/JavaScript-The-Hard-Part-of-Object-Oriented-JavaScript/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introduction The 5 capacities we look for in candidates  我们在候选人身上寻找的5种能力   Analytical problem solving with code 用代码分析解决问题的能力   Technical communication (can I implement your approach just from your exp">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-11T02:58:45.346Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript: The Hard Part of Object Oriented JavaScript">
+<meta name="twitter:description" content="Introduction The 5 capacities we look for in candidates  我们在候选人身上寻找的5种能力   Analytical problem solving with code 用代码分析解决问题的能力   Technical communication (can I implement your approach just from your exp">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/11/JavaScript-The-Hard-Part-of-Object-Oriented-JavaScript/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript: The Hard Part of Object Oriented JavaScript | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘勇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/JavaScript-The-Hard-Part-of-Object-Oriented-JavaScript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript: The Hard Part of Object Oriented JavaScript
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-11 10:56:58 / 修改时间：10:58:45" itemprop="dateCreated datePublished" datetime="2019-08-11T10:56:58+08:00">2019-08-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li><p>The 5 capacities we look for in candidates</p>
+<blockquote>
+<p>我们在候选人身上寻找的5种能力</p>
+</blockquote>
+<ol>
+<li>Analytical problem solving with code<blockquote>
+<p>用代码分析解决问题的能力</p>
+</blockquote>
+</li>
+<li>Technical communication (can I implement your approach just from your explanation)<blockquote>
+<p>技术沟通能力（我能仅通过你的描述实现你的方法吗）</p>
+</blockquote>
+</li>
+<li>Engineering best practices and approach (Debugging, code structure, patience and reference to documentation)<blockquote>
+<p>编程的最佳实践和方法（Debugging，代码结构，耐心和文档）</p>
+</blockquote>
+</li>
+<li>Non-technical communication (empathetic and thoughtful communication)<blockquote>
+<p>非技术性沟通能力（同理心和思考后的交流）</p>
+</blockquote>
+</li>
+<li>Language and computer science experience<blockquote>
+<p>语言和计算机科学经验</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="Object-Oriented-Paradigm"><a href="#Object-Oriented-Paradigm" class="headerlink" title="Object Oriented Paradigm"></a>Object Oriented Paradigm</h3><ul>
+<li>OOP - an enormously popular paradigm for structuring our complex code<blockquote>
+<p>面向对象编程 - 一种非常流行的用于构建复杂代码编程范式</p>
+<ul>
+<li>Easy to add features and functionality<br>可以简便的添加功能</li>
+<li>Easy for us and other developers to reason about   + (a clear structure)<br>容易理解</li>
+<li>Performant (efficient in terms of memory)<br>性能表现好（在内存方面的效率）<a id="more"></a>
+</li>
+</ul>
+</blockquote>
+<h2 id="Object-Creation"><a href="#Object-Creation" class="headerlink" title="Object Creation"></a>Object Creation</h2></li>
+</ul>
+<h3 id="Creating-an-Object"><a href="#Creating-an-Object" class="headerlink" title="Creating an Object"></a>Creating an Object</h3><ul>
+<li>Let’s suppose we’re building a quiz game with users<ul>
+<li>Some of our users<ul>
+<li>Name: Phil</li>
+<li>Score: 4</li>
+<li>Name: Julia</li>
+<li>Score: 5</li>
+<li>Functionality<ul>
+<li>Ability to increase score</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What would be the best way to store this data and functionality?</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user1 = &#123;</span><br><span class="line">  name: <span class="string">"Phil"</span>,</span><br><span class="line">  score: <span class="number">4</span>,</span><br><span class="line">  increment: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    user1.score++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">user1.increment(); <span class="comment">//user1.score =&gt; 4</span></span><br></pre></td></tr></table></figure>
+<p>This is the principle of encapsulation. Let’s keep creating our objects</p>
+<blockquote>
+<p>这就是封装的原理。让我们继续创建对象。</p>
+</blockquote>
+<ul>
+<li>Note we would in reality have a lot of different relevant functionality for our user objects<ul>
+<li>Ability to increase score</li>
+<li>Ability to decrease score</li>
+<li>Delete user</li>
+<li>Log in user</li>
+<li>Log out user</li>
+<li>Add avatar</li>
+<li>get user score</li>
+<li>… (100s more applicable functions)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Object-dot-Notations"><a href="#Object-dot-Notations" class="headerlink" title="Object dot Notations"></a>Object dot Notations</h3><ul>
+<li>What alternative techniques do we have for creating objects?<ul>
+<li>Creating user2 user ‘dot notation’</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user2 = &#123;&#125;; <span class="comment">//create an empty object</span></span><br><span class="line">user2.name = <span class="string">"Julia"</span>; <span class="comment">//assign properties to that object</span></span><br><span class="line">user2.score = <span class="number">5</span>;</span><br><span class="line">user2.increment = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  user2.score++;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create"></a>Object.create</h3><ul>
+<li>Creating user3 using Object.create</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user3 = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">user3.name = <span class="string">"Eva"</span>;</span><br><span class="line">user3.score = <span class="number">9</span>;</span><br><span class="line">user3.increment = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  user3.score++;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Our code is getting repetitive, we’re breaking our DRY principle And suppose we have millions of users!</li>
+<li>What could we do?</li>
+</ul>
+<h3 id="Creating-Objects-with-Functions"><a href="#Creating-Objects-with-Functions" class="headerlink" title="Creating Objects with Functions"></a>Creating Objects with Functions</h3><h4 id="Solution-1-Generate-objects-using-a-function"><a href="#Solution-1-Generate-objects-using-a-function" class="headerlink" title="Solution 1. Generate objects using a function"></a>Solution 1. Generate objects using a function</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newUser = &#123;&#125;;</span><br><span class="line">  newUser.name = name;</span><br><span class="line">  newUser.score = score;</span><br><span class="line">  newUser.increment = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    newUser.score++;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> newUser;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> user1 = userCreator(<span class="string">"Phil"</span>, <span class="number">4</span>);</span><br><span class="line"><span class="keyword">const</span> user2 = userCreator(<span class="string">"Julia"</span>, <span class="number">5</span>);</span><br><span class="line">user1.increment()</span><br></pre></td></tr></table></figure>
+<p>这个方法有一个问题就是在每一个对象实例上都创造各自的increment方法，很明显这回浪费内存空间，并且修改起来也比较麻烦，</p>
+<h2 id="Prototype-amp-New"><a href="#Prototype-amp-New" class="headerlink" title="Prototype &amp; New"></a>Prototype &amp; New</h2><h3 id="Avoid-Duplication-with-Prototype"><a href="#Avoid-Duplication-with-Prototype" class="headerlink" title="Avoid Duplication with Prototype"></a>Avoid Duplication with Prototype</h3><ul>
+<li>Problems:<ul>
+<li>Each time we create a new user we make space in our computer’s memory for all our data and functions. But our functions are just copies</li>
+<li>Is there a better way?</li>
+</ul>
+</li>
+<li><p>Benefits:</p>
+<ul>
+<li>It’s simple and easy to reason about!</li>
+</ul>
+</li>
+<li><p>Solution 2:</p>
+<ul>
+<li>Store the increment function in just one object and have the interpreter, if it doesn’t find the function on user1, look up to that object to check if it’s there</li>
+<li>How to make this link?</li>
+</ul>
+</li>
+</ul>
+<h4 id="Using-the-prototype-chain"><a href="#Using-the-prototype-chain" class="headerlink" title="Using the prototype chain"></a>Using the prototype chain</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> functionStore = &#123;</span><br><span class="line">  increment: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">this</span>.score++;&#125;,</span><br><span class="line">  login: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"You're loggedin"</span>)&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> user1 = &#123;</span><br><span class="line">  name: <span class="string">"Phil"</span>,</span><br><span class="line">score: <span class="number">4</span> &#125;</span><br><span class="line">user1.name <span class="comment">// name is a property of user1 object</span></span><br><span class="line">user1.increment <span class="comment">// Error! increment is not!</span></span><br></pre></td></tr></table></figure>
+<p>Link user1 and functionStore so the interpreter, on not finding .increment, makes sure to check up in functionStore where it would find it</p>
+<h4 id="Solution-2-in-full"><a href="#Solution-2-in-full" class="headerlink" title="Solution 2 in full"></a>Solution 2 in full</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> userFunctionStore = &#123;</span><br><span class="line">  increment() &#123;</span><br><span class="line">    <span class="keyword">this</span>.score++</span><br><span class="line">  &#125;,</span><br><span class="line">  login() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span> are logged in`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newUser = <span class="built_in">Object</span>.create(userFunctionStore)</span><br><span class="line">  newUser.name = name</span><br><span class="line">  newUser.score = score</span><br><span class="line">  <span class="keyword">return</span> newUser</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = userCreator(<span class="string">"Phil"</span>, <span class="number">4</span>);</span><br><span class="line"><span class="keyword">const</span> user2 = userCreator(<span class="string">"Julia"</span>, <span class="number">5</span>);</span><br><span class="line">user1.increment();</span><br></pre></td></tr></table></figure>
+<h3 id="Prototype-Walkthrough"><a href="#Prototype-Walkthrough" class="headerlink" title="Prototype Walkthrough"></a>Prototype Walkthrough</h3><p>这里强调了一下看代码是跳过函数定义，直到调用时再看函数体内的代码。</p>
+<h3 id="Prototype-Chain"><a href="#Prototype-Chain" class="headerlink" title="Prototype Chain"></a>Prototype Chain</h3><ul>
+<li>Problem<ul>
+<li>No problems! It’s beautiful Maybe a little long-winded</li>
+<li>const newUser = Object.create(functionStore);</li>
+<li>…</li>
+<li>return newUser</li>
+<li>Write this every single time - but it’s 6 words! Super sophisticated but not   + standard</li>
+</ul>
+</li>
+</ul>
+<h3 id="new-amp-this-Keyword"><a href="#new-amp-this-Keyword" class="headerlink" title="new &amp; this Keyword"></a>new &amp; this Keyword</h3><h4 id="Solution-3-Introducing-the-keyword-that-automates-the-hard-work-new"><a href="#Solution-3-Introducing-the-keyword-that-automates-the-hard-work-new" class="headerlink" title="Solution 3 - Introducing the keyword that automates the hard work: new"></a>Solution 3 - Introducing the keyword that automates the hard work: new</h4><ul>
+<li><code>const user1 = new userCreator(&quot;Phil&quot;, 4)</code></li>
+<li>When we call the constructor function with new in front we automate 2 things<ol>
+<li>Create a new user object</li>
+<li>return the new user object</li>
+</ol>
+</li>
+<li><p>But now we need to adjust how we write the body of userCreator - how can we:</p>
+<ul>
+<li>Refer to the auto-created object?</li>
+<li>Know where to put our single copies of functions?</li>
+</ul>
+</li>
+<li><p>The new keyword automates a lot of our manual work</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line"><span class="comment">// const newUser = Object.create(functionStore);</span></span><br><span class="line"><span class="comment">/*newUser*/</span> <span class="keyword">this</span>.name = name;</span><br><span class="line"><span class="comment">/*newUser*/</span> <span class="keyword">this</span>.score = score;</span><br><span class="line"><span class="comment">// return newUser;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">/*functionStore*/</span>userCreator.prototype <span class="comment">// &#123;&#125;;</span></span><br><span class="line"><span class="comment">/*functionStore*/</span>userCreator.prototype.increment = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.score++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> user1 = <span class="keyword">new</span> userCreator(<span class="string">"Phil"</span>, <span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Functions-are-Objects-amp-Functions"><a href="#Functions-are-Objects-amp-Functions" class="headerlink" title="Functions are Objects &amp; Functions"></a>Functions are Objects &amp; Functions</h3><h4 id="Interlude-functions-are-both-objects-and-functions"><a href="#Interlude-functions-are-both-objects-and-functions" class="headerlink" title="Interlude - functions are both objects and functions :/"></a>Interlude - functions are both objects and functions :/</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num * <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line">multiplyBy2.stored = <span class="number">5</span></span><br><span class="line">multiplyBy2(<span class="number">3</span>) <span class="comment">// 6</span></span><br><span class="line">multiplyBy2.stored <span class="comment">// 5</span></span><br><span class="line">multiplyBy2.prototype <span class="comment">// &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>We could use the fact that all functions have a default property on their object version, ’prototype’, which is itself an object - to replace our functionStore object</p>
+<h3 id="new-Keyword-amp-Share-Function-with-prototype"><a href="#new-Keyword-amp-Share-Function-with-prototype" class="headerlink" title="new Keyword &amp; Share Function with prototype"></a>new Keyword &amp; Share Function with prototype</h3><h3 id="Complete-Solution-3"><a href="#Complete-Solution-3" class="headerlink" title="Complete Solution 3"></a>Complete Solution 3</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">UserCreator</span>(<span class="params">name, score</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.score = score;</span><br><span class="line">&#125;</span><br><span class="line">UserCreator.prototype.increment = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.score++;</span><br><span class="line">&#125;;</span><br><span class="line">UserCreator.prototype.login = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"login"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> user1 = <span class="keyword">new</span> UserCreator(“Eva”, <span class="number">9</span>)</span><br><span class="line">user1.increment()</span><br></pre></td></tr></table></figure>
+<p>根据《JavaScript高级程序设计》,<code>new</code>关键字会自动执行以下四个步骤</p>
+<ol>
+<li>创建一个新对象</li>
+<li>将函数的作用域指向这个新对象（因此函数内的<code>this</code>也就指向了新对象）</li>
+<li>执行函数体中的代码</li>
+<li>返回新对象</li>
+</ol>
+<p>为了共享同一属性或者方法，避免在每个实例上都创建新的副本，js设计了原型链机制。</p>
+<p>函数作为一等公民，同时也是一个对象，那么就可以给函数添加属性。每个函数在创建时都会自动添加一个<code>prototype</code>属性，在我们使用<code>new</code>关键字调用函数时，同时也会给使用<code>new</code>关键字创建的对象的<code>__proto__</code>(浏览器实现，规范为<code>[[proto]]</code>)属性指向函数的<code>prototype</code>属性。</p>
+<p>函数的<code>prototype</code>属性指向了一个对象，那么使用<code>new</code>关键字调用函数后，函数和函数所返回的新对象都指向了同一个对象。</p>
+<p>每次使用<code>new</code>关键字都会创建一个新的对象，对象内包含独立的属性和方法，但所有函数使用<code>new</code>创建的对象都有一个属性指向了函数的<code>prototype</code>属性。</p>
+<p>js又有着原型链机制，既在当前对象的属性和方法中找不到所调用的属性或方法时不会立即报错，而是会在对象的<code>__proto__</code>(浏览器实现，规范为<code>[[proto]]</code>)属性寻找。这样，我们就可以使用函数的<code>prototype</code>属性所指向的对象中的属性和方法，既多个对象共享了同一对象的属性和方法。这些属性和方法可以理解为公共属性和方法。</p>
+<h3 id="Review-of-new"><a href="#Review-of-new" class="headerlink" title="Review of new"></a>Review of new</h3><p>Benefits<br>— Faster to write<br>— Still typical practice in professional code</p>
+<p>— 99% of developers have no idea how it works and therefore fail interviews<br>— We have to upper case first letter of the function so we know it requires ‘new’ to work!</p>
+<p>我们在函数的<code>prototype</code>创建公共的属性和方法，在方法中我们需要操作当前实例的属性和方法，这就需要<code>this</code>关键字。</p>
+<p><code>this</code>关键字默认指向函数调用时的作用域，使用<code>new</code>关键字后，我们将实例的原型与函数的原型指向了同一对象，这样我们就可以通过新创建的对象调用公共方法，此时<code>this</code>指向了调用的对象。</p>
+<p>但是如果我们不适用<code>new</code>关键字调用函数，此时函数就是普通函数，函数体内的<code>this</code>也就指向了全局对象（浏览器内是<code>window</code>，node里应该是<code>global</code>）。我们称创建对象的函数为构造函数，在es6之前约定函数名首字母要大写，这样来区分构造函数与普通函数，但只是人为约定，即使不使用<code>new</code>关键字也能调用构造函数（毕竟只是普通函数）。</p>
+<h2 id="Scope-amp-this"><a href="#Scope-amp-this" class="headerlink" title="Scope &amp; this"></a>Scope &amp; this</h2><h3 id="Calling-Prototype-Methods"><a href="#Calling-Prototype-Methods" class="headerlink" title="Calling Prototype Methods"></a>Calling Prototype Methods</h3><p>对象方法内的<code>this</code>指向调用时所在的对象既点方法调用时点左侧的对象，函数内的<code>this</code>一般指向全局对象。</p>
+<h3 id="this-Keyword-Scoping-Issues"><a href="#this-Keyword-Scoping-Issues" class="headerlink" title="this Keyword Scoping Issues"></a>this Keyword Scoping Issues</h3><h4 id="What-if-we-want-to-organize-our-code-inside-one-of-our-shared-functions-perhaps-by-defining-a-new-inner-function"><a href="#What-if-we-want-to-organize-our-code-inside-one-of-our-shared-functions-perhaps-by-defining-a-new-inner-function" class="headerlink" title="What if we want to organize our code inside one of our shared functions - perhaps by defining a new inner function"></a>What if we want to organize our code inside one of our shared functions - perhaps by defining a new inner function</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">UserCreator</span>(<span class="params">name, score</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.score = score;</span><br><span class="line">&#125;</span><br><span class="line">UserCreator.prototype.increment = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.score++ <span class="comment">// 2.方法执行，创建新的执行上下文，首先将这里的this指向了调用时所在的对象</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.score++; <span class="comment">// 4.函数执行，创建新的执行上下文，由于没有通过点方法调用，此时函数位于全局作用域，this指向widows，此时widow对象会得到一个score属性，值为NAN</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// const add1 = function()&#123;this.score++;&#125;</span></span><br><span class="line">  add1() <span class="comment">// 3.执行函数</span></span><br><span class="line">&#125;;</span><br><span class="line">UserCreator.prototype.login = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"login"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> user1 = <span class="keyword">new</span> UserCreator(<span class="string">"Eva"</span>, <span class="number">9</span>)</span><br><span class="line">user1.increment() <span class="comment">// 1.调用方法</span></span><br></pre></td></tr></table></figure>
+<p>为了避免上述情况的发生，我们可以使用临时变量保存<code>this</code>的指向，例如在<code>increment</code>内<code>const self = this</code>，也可以使用<code>bind</code>，<code>call</code>，<code>apply</code>方法显式绑定<code>this</code>指向。</p>
+<h4 id="We-need-to-introduce-arrow-functions-which-bind-this-lexically"><a href="#We-need-to-introduce-arrow-functions-which-bind-this-lexically" class="headerlink" title="We need to introduce arrow functions - which bind this lexically"></a>We need to introduce arrow functions - which bind this lexically</h4><p>在es6中，提出了新的函数定义方法，既箭头函数。根据规范，箭头函数并不存在<code>this</code>关键字，所以箭头函数内的<code>this</code>就会通过作用域链指向箭头函数外的<code>this</code>，也就是<code>increment</code>中的<code>this</code>。</p>
+<h3 id="Solving-Scope-with-Arrow-Functions"><a href="#Solving-Scope-with-Arrow-Functions" class="headerlink" title="Solving Scope with Arrow Functions"></a>Solving Scope with Arrow Functions</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">UserCreator</span>(<span class="params">name, score</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.score = score;</span><br><span class="line">&#125;</span><br><span class="line">UserCreator.prototype.increment = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> add1 = <span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="keyword">this</span>.score++&#125;</span><br><span class="line">  add1()</span><br><span class="line">&#125;;</span><br><span class="line">UserCreator.prototype.login = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"login"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> user1 = <span class="keyword">new</span> UserCreator(“Eva”, <span class="number">9</span>)</span><br><span class="line">user1.increment()</span><br></pre></td></tr></table></figure>
+<h3 id="ES6-class-Keyword"><a href="#ES6-class-Keyword" class="headerlink" title="ES6 class Keyword"></a>ES6 class Keyword</h3><h4 id="Solution-4"><a href="#Solution-4" class="headerlink" title="Solution 4"></a>Solution 4</h4><ul>
+<li>We’re writing our shared methods separately from our object ‘constructor’ itself (off in the User.prototype object)</li>
+<li><p>Other languages let us do this all in one place. ES2015 lets us do so too</p>
+</li>
+<li><p>The class ‘syntactic sugar’</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserCreator</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (name, score)&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.score = score;</span><br><span class="line">  &#125;</span><br><span class="line">  increment ()&#123;</span><br><span class="line">    <span class="keyword">this</span>.score++;</span><br><span class="line">  &#125;</span><br><span class="line">  login ()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"login"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> user1 = <span class="keyword">new</span> UserCreator(<span class="string">"Eva"</span>, <span class="number">9</span>);</span><br><span class="line">user1.increment();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Benefits:<ul>
+<li>Emerging as a new standard</li>
+<li>Feels more like style of other languages (e.g. Python)<br>Problems</li>
+<li>99% of developers have no idea how it works and therefore fail interviews</li>
+</ul>
+</li>
+</ul>
+<h2 id="Default-Prototype-Chain"><a href="#Default-Prototype-Chain" class="headerlink" title="Default Prototype Chain"></a>Default Prototype Chain</h2><h3 id="Objects-default-protp"><a href="#Objects-default-protp" class="headerlink" title="Objects default protp"></a>Objects default <strong>protp</strong></h3><ul>
+<li>JavaScript uses this proto link to give objects, functions and arrays a bunch of bonus functionality. All objects by default have <code>__proto__</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  num : <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line">obj.num <span class="comment">// 3</span></span><br><span class="line">obj.hasOwnProperty(<span class="string">"num"</span>) <span class="comment">// ? Where's this method?</span></span><br><span class="line"><span class="built_in">Object</span>.prototype <span class="comment">// &#123;hasOwnProperty: FUNCTION&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>With Object.create we override the default <code>__proto__</code> reference to<br>Object.prototype and replace with functionStore</li>
+<li>But functionStore is an object so it has a <code>__proto__</code> reference to <code>Object.prototype</code> - we just intercede in the chain</li>
+</ul>
+<h3 id="Function-prototype-and-Array-prototype"><a href="#Function-prototype-and-Array-prototype" class="headerlink" title="Function.prototype and Array.prototype"></a>Function.prototype and Array.prototype</h3><h4 id="Arrays-and-functions-are-also-objects-so-they-get-access-to-all-the-functions-in-Object-prototype-but-also-more-goodies"><a href="#Arrays-and-functions-are-also-objects-so-they-get-access-to-all-the-functions-in-Object-prototype-but-also-more-goodies" class="headerlink" title="Arrays and functions are also objects so they get access to all the functions in Object.prototype but also more goodies"></a>Arrays and functions are also objects so they get access to all the functions in Object.prototype but also more goodies</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num*<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line">multiplyBy2.toString() <span class="comment">//Where is this method?</span></span><br><span class="line"><span class="built_in">Function</span>.prototype <span class="comment">// &#123;toString : FUNCTION, call : FUNCTION, bind : FUNCTION&#125;</span></span><br><span class="line">multiplyBy2.hasOwnProperty(<span class="string">"score"</span>) <span class="comment">// Where's this function?</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.__proto__ <span class="comment">// Object.prototype  &#123;hasOwnProperty: FUNCTION&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Subclassing-with-Factory-Functions"><a href="#Subclassing-with-Factory-Functions" class="headerlink" title="Subclassing with Factory Functions"></a>Subclassing with Factory Functions</h3><h4 id="Into-to-Subclassing-and-Inheritance"><a href="#Into-to-Subclassing-and-Inheritance" class="headerlink" title="Into to Subclassing and Inheritance"></a>Into to Subclassing and Inheritance</h4><p>面向对象有三个比较显著的特性，封装，继承和多态。</p>
+<p>使用ES6的<code>class</code>语法糖，我们可以将代码更加简洁的组织在一起，也就是封装。</p>
+<p>那么在实现一个类之后，我们希望其他类继承现有类的属性，那么应该如何实现呢？</p>
+<h4 id="We-can-achieve-this-in-JavaScript-in-Solution-2-3-and-4"><a href="#We-can-achieve-this-in-JavaScript-in-Solution-2-3-and-4" class="headerlink" title="We can achieve this in JavaScript in Solution 2, 3 and 4"></a>We can achieve this in JavaScript in Solution 2, 3 and 4</h4><p>在之前的《JavaScript Deep Foundation》中，我们学到了一下知识：</p>
+<blockquote>
+<p>我们都知道js是一门基于对象的语言。在一些面相对象的语言中，我们会创建一个类，在使用时创造一个类的实例来进行使用。类就类似图纸，实例就类似根据图纸造出来的建筑。我们没法直接使用图纸，但是可以使用建筑，同时，我们的建筑时根据图纸制造的，可以造的不同，但是一些图纸上的特性，建筑上也存在。<br>js原型系统的关键在于<strong>实例并没有复制构造函数的原型对象，而是将实例的原型与构造函数的原型对象链接到了一起</strong>。<br>在传统的面向对象语言中，实例复制了公共的属性方法。在js中，实例连接到了存储着公共属性及方法的对象。所以js的设计模式与传统的面相对象语言的设计模式并不相同。<br>在js的设计模式并不是“继承”，更像是“委托”。js使用原型系统或者说委托系统，而不是类系统或者说继承系统。</p>
+</blockquote>
+<h3 id="Create-object-with-Factory-Function"><a href="#Create-object-with-Factory-Function" class="headerlink" title="Create object with Factory Function"></a>Create object with Factory Function</h3><h4 id="Subclassing-in-Solution-2-Factory-function-approach"><a href="#Subclassing-in-Solution-2-Factory-function-approach" class="headerlink" title="Subclassing in Solution 2 - Factory function approach"></a>Subclassing in Solution 2 - Factory function approach</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newUser = <span class="built_in">Object</span>.create(userFunctions) <span class="comment">// 创建一个新对象，并将新对象的原型指向userFunction</span></span><br><span class="line">  newUser.name = name</span><br><span class="line">  newUser.score = score</span><br><span class="line">  <span class="keyword">return</span> newUser</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userFunctions = &#123;</span><br><span class="line">  sayName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`I'm <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  increment() &#123;</span><br><span class="line">    <span class="keyword">this</span>.score++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = userCreator(<span class="string">'Phil'</span>, <span class="number">5</span>)</span><br><span class="line">user1.sayName() <span class="comment">// I'm Phil</span></span><br></pre></td></tr></table></figure>
+<h3 id="Creating-an-object-with-a-Sub-Factory-Function"><a href="#Creating-an-object-with-a-Sub-Factory-Function" class="headerlink" title="Creating an object with a Sub-Factory Function"></a>Creating an object with a Sub-Factory Function</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">paidUserCreator</span>(<span class="params">paidName, paidScore, accountBalance</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newPaidUser = userCreator(paidName, paidScore) <span class="comment">// 使用之前的工厂函数创建子类实例对象</span></span><br><span class="line">  <span class="built_in">Object</span>.setPrototypeOf(newPaidUser, paidUserFunction) <span class="comment">// 将子类实例对象的原型对象进行绑定</span></span><br><span class="line">  newPaidUser.accountBalance = accountBalance <span class="comment">// 给子类添加属性</span></span><br><span class="line">  <span class="keyword">return</span> newPaidUser <span class="comment">// 返回子类实例对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paidUserFunction = &#123; <span class="comment">// 子类对象的原型对象</span></span><br><span class="line">  increaseBalance() &#123;</span><br><span class="line">    <span class="keyword">this</span>.accountBalance++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(paidUserFunction, userFunctions) <span class="comment">// 将子类构造函数添加到父类构造函数的原型上</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paidUser1 = paidUserCreator(<span class="string">'Bob'</span>, <span class="number">8</span>, <span class="number">25</span>)</span><br><span class="line">paidUser1.increaseBalance() <span class="comment">// paidUser1.__proto__.accountBalance 26</span></span><br><span class="line">paidUser1.sayName() <span class="comment">// paidUser1.__proto__.__proto__.sayName() I'm Bob</span></span><br></pre></td></tr></table></figure>
+<h3 id="Call-and-Apply"><a href="#Call-and-Apply" class="headerlink" title="Call and Apply"></a>Call and Apply</h3><h4 id="Interlude-We-have-another-way-of-running-a-function-that-allow-us-to-control-the-assignment-of-this"><a href="#Interlude-We-have-another-way-of-running-a-function-that-allow-us-to-control-the-assignment-of-this" class="headerlink" title="Interlude - We have another way of running a function that allow us to control the assignment of this"></a>Interlude - We have another way of running a function that allow us to control the assignment of this</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  num: <span class="number">3</span>,</span><br><span class="line">  increment: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">this</span>.num++;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> otherObj = &#123;</span><br><span class="line">  num: <span class="number">10</span></span><br><span class="line">&#125;;</span><br><span class="line">obj.increment(); <span class="comment">// obj.num now 4</span></span><br><span class="line">obj.increment.call(otherObj); <span class="comment">// otherObj.num now 11</span></span><br><span class="line"><span class="comment">// obj.increment.apply(otherObj);</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>this</code> always refers to the object to the left of the dot on which the function (method) is being called - unless we override that by running the function using <code>.call()</code> or <code>.apply()</code> which lets us set the value of <code>this</code> inside of the increment function</li>
+</ul>
+<h2 id="Subclassing-with-new-and-call"><a href="#Subclassing-with-new-and-call" class="headerlink" title="Subclassing with new and call"></a>Subclassing with new and call</h2><h3 id="Create-an-Object-with-new"><a href="#Create-an-Object-with-new" class="headerlink" title="Create an Object with new"></a>Create an Object with <code>new</code></h3><h4 id="Subclassing-in-Solution-3-Constructor-Pseudoclassical-approach"><a href="#Subclassing-in-Solution-3-Constructor-Pseudoclassical-approach" class="headerlink" title="Subclassing in Solution 3 - Constructor(Pseudoclassical) approach"></a>Subclassing in Solution 3 - Constructor(Pseudoclassical) approach</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name</span><br><span class="line">  <span class="keyword">this</span>.score = score</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">userCreator.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`I'm <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</span><br><span class="line">&#125;</span><br><span class="line">userCreator.prototype.increment = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.score++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = <span class="keyword">new</span> userCreator(<span class="string">'Phil'</span>, <span class="number">5</span>)</span><br><span class="line"><span class="keyword">const</span> user1 = <span class="keyword">new</span> userCreator(<span class="string">'Tim'</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">user1.sayName() <span class="comment">// I'm Phil</span></span><br></pre></td></tr></table></figure>
+<h3 id="Creating-a-Subclass-with-a-Constructor"><a href="#Creating-a-Subclass-with-a-Constructor" class="headerlink" title="Creating a Subclass with a Constructor"></a>Creating a Subclass with a Constructor</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">paidUserCreator</span>(<span class="params">paidName, paidScore, accountBalance</span>) </span>&#123;</span><br><span class="line">  userCreator.call(<span class="keyword">this</span>, paidName, paidScore) <span class="comment">// 使用call或apply显式绑定this为当前函数执行上下文</span></span><br><span class="line">  <span class="comment">// userCreator.apply(this, [paidName, paidScore])</span></span><br><span class="line">  <span class="keyword">this</span>.accountBalance = accountBalance <span class="comment">// 给子类添加属性</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">paidUserCreator.prototype = <span class="built_in">Object</span>.create(userCreator.prototype) <span class="comment">// 将子类的原型绑定到父类的原型的原型上。paidUserCreator.prototype.__proto__=userCreator.prototype</span></span><br><span class="line">paidUserCreator.prototype.increaseBalance = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.accountBalance++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paidUser1 = <span class="keyword">new</span> paidUserCreator(<span class="string">'Bob'</span>, <span class="number">8</span>, <span class="number">25</span>)</span><br><span class="line">paidUser1.increaseBalance()</span><br><span class="line"><span class="built_in">console</span>.log(paidUser1.accountBalance) <span class="comment">// 26</span></span><br><span class="line">paidUser1.sayName() <span class="comment">// I'm Bob</span></span><br><span class="line"><span class="comment">// paidUser1.__proto__.__proto__.sayName() I'm Bob</span></span><br></pre></td></tr></table></figure>
+<h2 id="Subclassing-with-class-extends-amp-super"><a href="#Subclassing-with-class-extends-amp-super" class="headerlink" title="Subclassing with class, extends &amp; super"></a>Subclassing with class, extends &amp; super</h2><h3 id="Create-an-Object-with-a-class"><a href="#Create-an-Object-with-a-class" class="headerlink" title="Create an Object with a class"></a>Create an Object with a class</h3><h4 id="Subclassing-in-Solution-3-ES2015-Class-approach"><a href="#Subclassing-in-Solution-3-ES2015-Class-approach" class="headerlink" title="Subclassing in Solution 3 - ES2015 Class approach"></a>Subclassing in Solution 3 - ES2015 Class approach</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">userCreater</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, score) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.score = score</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  sayName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`I'm <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  increment() &#123;</span><br><span class="line">    <span class="keyword">this</span>.score++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = <span class="keyword">new</span> userCreater(<span class="string">'Phil'</span>, <span class="number">4</span>)</span><br><span class="line"><span class="keyword">const</span> user2 = <span class="keyword">new</span> userCreater(<span class="string">'Tim'</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">user1.sayName()</span><br></pre></td></tr></table></figure>
+<h3 id="Creating-a-Subclass-with-a-extends"><a href="#Creating-a-Subclass-with-a-extends" class="headerlink" title="Creating a Subclass with a extends"></a>Creating a Subclass with a extends</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">paidUserCreator</span> <span class="keyword">extends</span> <span class="title">userCreater</span> </span>&#123;  <span class="comment">// 使用extends将paidUserCreator的prototype的__proto__连接到userCreator的prototype上</span></span><br><span class="line">  <span class="keyword">constructor</span>(paidName, paidScore, accountBalance) &#123;</span><br><span class="line">    <span class="keyword">super</span>(paidName, paidScore) <span class="comment">// 作用相当于Reflect.construct(userCreator,[paidName, paidScore])，会调用userCreator创建新对象，相当于new userCreator(paidName, paidScore)，此时constructor的this指向了返回的新对象，并将新对象的__proto__指向paidUserCreator的Prototype</span></span><br><span class="line">    <span class="keyword">this</span>.accountBalance = accountBalance <span class="comment">// 给经super返回的新对象添加属性</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  increaseBalance() &#123;</span><br><span class="line">    <span class="keyword">this</span>.accountBalance++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paidUser1 = <span class="keyword">new</span> paidUserCreator(<span class="string">'Bob'</span>, <span class="number">8</span>, <span class="number">25</span>)</span><br><span class="line">paidUser1.increaseBalance()</span><br><span class="line">paidUser1.sayName()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/面相对象/" rel="tag"># 面相对象</a>
+          
+            <a href="/tags/原型/" rel="tag"># 原型</a>
+          
+            <a href="/tags/原型链/" rel="tag"># 原型链</a>
+          
+            <a href="/tags/class语法/" rel="tag"># class语法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/08/Intermediate-React-v2/" rel="next" title="Intermediate React v2">
+                <i class="fa fa-chevron-left"></i> Intermediate React v2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg" alt="刘勇">
+            
+              <p class="site-author-name" itemprop="name">刘勇</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">83</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/blingblingredstar" title="GitHub &rarr; https://github.com/blingblingredstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:564447023@qq.com" title="E-Mail &rarr; mailto:564447023@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Oriented-Paradigm"><span class="nav-number">1.1.</span> <span class="nav-text">Object Oriented Paradigm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-Creation"><span class="nav-number">2.</span> <span class="nav-text">Object Creation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-an-Object"><span class="nav-number">2.1.</span> <span class="nav-text">Creating an Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-dot-Notations"><span class="nav-number">2.2.</span> <span class="nav-text">Object dot Notations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-create"><span class="nav-number">2.3.</span> <span class="nav-text">Object.create</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-Objects-with-Functions"><span class="nav-number">2.4.</span> <span class="nav-text">Creating Objects with Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-1-Generate-objects-using-a-function"><span class="nav-number">2.4.1.</span> <span class="nav-text">Solution 1. Generate objects using a function</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prototype-amp-New"><span class="nav-number">3.</span> <span class="nav-text">Prototype &amp; New</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Avoid-Duplication-with-Prototype"><span class="nav-number">3.1.</span> <span class="nav-text">Avoid Duplication with Prototype</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Using-the-prototype-chain"><span class="nav-number">3.1.1.</span> <span class="nav-text">Using the prototype chain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-2-in-full"><span class="nav-number">3.1.2.</span> <span class="nav-text">Solution 2 in full</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prototype-Walkthrough"><span class="nav-number">3.2.</span> <span class="nav-text">Prototype Walkthrough</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prototype-Chain"><span class="nav-number">3.3.</span> <span class="nav-text">Prototype Chain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-amp-this-Keyword"><span class="nav-number">3.4.</span> <span class="nav-text">new &amp; this Keyword</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-3-Introducing-the-keyword-that-automates-the-hard-work-new"><span class="nav-number">3.4.1.</span> <span class="nav-text">Solution 3 - Introducing the keyword that automates the hard work: new</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Functions-are-Objects-amp-Functions"><span class="nav-number">3.5.</span> <span class="nav-text">Functions are Objects &amp; Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Interlude-functions-are-both-objects-and-functions"><span class="nav-number">3.5.1.</span> <span class="nav-text">Interlude - functions are both objects and functions :/</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-Keyword-amp-Share-Function-with-prototype"><span class="nav-number">3.6.</span> <span class="nav-text">new Keyword &amp; Share Function with prototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Complete-Solution-3"><span class="nav-number">3.7.</span> <span class="nav-text">Complete Solution 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Review-of-new"><span class="nav-number">3.8.</span> <span class="nav-text">Review of new</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scope-amp-this"><span class="nav-number">4.</span> <span class="nav-text">Scope &amp; this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Calling-Prototype-Methods"><span class="nav-number">4.1.</span> <span class="nav-text">Calling Prototype Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this-Keyword-Scoping-Issues"><span class="nav-number">4.2.</span> <span class="nav-text">this Keyword Scoping Issues</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-if-we-want-to-organize-our-code-inside-one-of-our-shared-functions-perhaps-by-defining-a-new-inner-function"><span class="nav-number">4.2.1.</span> <span class="nav-text">What if we want to organize our code inside one of our shared functions - perhaps by defining a new inner function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#We-need-to-introduce-arrow-functions-which-bind-this-lexically"><span class="nav-number">4.2.2.</span> <span class="nav-text">We need to introduce arrow functions - which bind this lexically</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solving-Scope-with-Arrow-Functions"><span class="nav-number">4.3.</span> <span class="nav-text">Solving Scope with Arrow Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6-class-Keyword"><span class="nav-number">4.4.</span> <span class="nav-text">ES6 class Keyword</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-4"><span class="nav-number">4.4.1.</span> <span class="nav-text">Solution 4</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Default-Prototype-Chain"><span class="nav-number">5.</span> <span class="nav-text">Default Prototype Chain</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Objects-default-protp"><span class="nav-number">5.1.</span> <span class="nav-text">Objects default protp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-prototype-and-Array-prototype"><span class="nav-number">5.2.</span> <span class="nav-text">Function.prototype and Array.prototype</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Arrays-and-functions-are-also-objects-so-they-get-access-to-all-the-functions-in-Object-prototype-but-also-more-goodies"><span class="nav-number">5.2.1.</span> <span class="nav-text">Arrays and functions are also objects so they get access to all the functions in Object.prototype but also more goodies</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subclassing-with-Factory-Functions"><span class="nav-number">5.3.</span> <span class="nav-text">Subclassing with Factory Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Into-to-Subclassing-and-Inheritance"><span class="nav-number">5.3.1.</span> <span class="nav-text">Into to Subclassing and Inheritance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#We-can-achieve-this-in-JavaScript-in-Solution-2-3-and-4"><span class="nav-number">5.3.2.</span> <span class="nav-text">We can achieve this in JavaScript in Solution 2, 3 and 4</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-object-with-Factory-Function"><span class="nav-number">5.4.</span> <span class="nav-text">Create object with Factory Function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Subclassing-in-Solution-2-Factory-function-approach"><span class="nav-number">5.4.1.</span> <span class="nav-text">Subclassing in Solution 2 - Factory function approach</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-an-object-with-a-Sub-Factory-Function"><span class="nav-number">5.5.</span> <span class="nav-text">Creating an object with a Sub-Factory Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Call-and-Apply"><span class="nav-number">5.6.</span> <span class="nav-text">Call and Apply</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Interlude-We-have-another-way-of-running-a-function-that-allow-us-to-control-the-assignment-of-this"><span class="nav-number">5.6.1.</span> <span class="nav-text">Interlude - We have another way of running a function that allow us to control the assignment of this</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subclassing-with-new-and-call"><span class="nav-number">6.</span> <span class="nav-text">Subclassing with new and call</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-an-Object-with-new"><span class="nav-number">6.1.</span> <span class="nav-text">Create an Object with new</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Subclassing-in-Solution-3-Constructor-Pseudoclassical-approach"><span class="nav-number">6.1.1.</span> <span class="nav-text">Subclassing in Solution 3 - Constructor(Pseudoclassical) approach</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-Subclass-with-a-Constructor"><span class="nav-number">6.2.</span> <span class="nav-text">Creating a Subclass with a Constructor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subclassing-with-class-extends-amp-super"><span class="nav-number">7.</span> <span class="nav-text">Subclassing with class, extends &amp; super</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-an-Object-with-a-class"><span class="nav-number">7.1.</span> <span class="nav-text">Create an Object with a class</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Subclassing-in-Solution-3-ES2015-Class-approach"><span class="nav-number">7.1.1.</span> <span class="nav-text">Subclassing in Solution 3 - ES2015 Class approach</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-Subclass-with-a-extends"><span class="nav-number">7.2.</span> <span class="nav-text">Creating a Subclass with a extends</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
