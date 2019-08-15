@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Introduction The power of Node  Most powerful technology in web development to emerge in 10 years Enables applications that can handle millions of users without blocking From simple webpages to larges">
+<meta name="keywords" content="FrontEndMasters,Node.js,Event Loop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Hard Parts of Servers &amp; Node.js">
+<meta property="og:url" content="http://yoursite.com/2019/08/15/The-Hard-Parts-of-Servers-Node-js/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introduction The power of Node  Most powerful technology in web development to emerge in 10 years Enables applications that can handle millions of users without blocking From simple webpages to larges">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-15T01:55:05.068Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Hard Parts of Servers &amp; Node.js">
+<meta name="twitter:description" content="Introduction The power of Node  Most powerful technology in web development to emerge in 10 years Enables applications that can handle millions of users without blocking From simple webpages to larges">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/15/The-Hard-Parts-of-Servers-Node-js/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>The Hard Parts of Servers & Node.js | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘勇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/The-Hard-Parts-of-Servers-Node-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">The Hard Parts of Servers & Node.js
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-15 09:53:48 / 修改时间：09:55:05" itemprop="dateCreated datePublished" datetime="2019-08-15T09:53:48+08:00">2019-08-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li><p>The power of Node</p>
+<ul>
+<li>Most powerful technology in web development to emerge in 10 years</li>
+<li>Enables applications that can handle millions of users without blocking</li>
+<li>From simple webpages to largest scaled applications, to Windows/Mac desktop apps (with Electron), and hardware (embedded systems)</li>
+<li>Allows us to build entire applications end-to- end in one language - JavaScript</li>
+</ul>
+</li>
+<li><p>From client side development to full stack development</p>
+<ul>
+<li>Our users open twitter.com</li>
+<li>they need code and data to load twitter.com on their computers</li>
+<li>What code/data do they need to load?</li>
+<li>Where’s the code/data coming from?<a id="more"></a>
+<h3 id="Node-Overview"><a href="#Node-Overview" class="headerlink" title="Node Overview"></a>Node Overview</h3></li>
+</ul>
+</li>
+<li><p>From client side development to full stack development</p>
+<ul>
+<li>Our users open twitter.com - they need code and data to load twitter.com on their computers<ul>
+<li>What code/data do they need to load?</li>
+<li>Where’s the code/data coming from?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Servers are the behind-the-scenes of all web applications - where our client-side code/data comes from</p>
+<ul>
+<li>Computer connected to the internet - a permanent store of code/data, always on, ready to receive messages over the internet from users requesting code/data and send it back<ul>
+<li>How’s this computer know what to send back?(We write <strong>code</strong>)</li>
+<li>What languages can we use to write these instructions?(c/c++、java、php、ruby… )</li>
+</ul>
+</li>
+<li>But how can we access these inbound messages as developers and send code/data back in response?</li>
+</ul>
+</li>
+<li><p>Sending the right data back requires using multiple features of the computer</p>
+<ul>
+<li>Network socket - Receive and send back messages over the internet</li>
+<li>Filesystem - that’s where the html/css/javascript code is stored in files</li>
+<li>CPU - for cryptography and optimizing hashing passwords</li>
+<li>Kernel - I/O management</li>
+</ul>
+</li>
+<li><p>Our dream - be able to use JavaScript to control this computer because</p>
+<ol>
+<li>we know JavaScript</li>
+<li>it has some really nice design decisions</li>
+</ol>
+</li>
+<li><p>Each programming language (PHP, Ruby, C++, JavaScript) have different levels of ability to interact with these features directly</p>
+<ul>
+<li>C++ has many features that let it directly interact with the OS directly</li>
+<li>JavaScript does not! So it has to work with C+ + to control these computer features. What is this combination known as? … Node.js</li>
+<li>JS -&gt; Node -&gt; Computer feature (e.g. network, file system)</li>
+</ul>
+</li>
+</ul>
+<h3 id="JavaScript-Node-js-amp-the-Computer"><a href="#JavaScript-Node-js-amp-the-Computer" class="headerlink" title="JavaScript, Node.js &amp; the Computer"></a>JavaScript, Node.js &amp; the Computer</h3><ul>
+<li>Rewind. We had better understand JavaScript to understand Node.js then<ul>
+<li>It’s a language that does 3 things (and 1 involves a lot of help from C++)<ol>
+<li>Saves data and functionality (code)</li>
+<li>Uses that data by running functionality (code) on it</li>
+<li>Has a ton of built-in labels that trigger Node features that are built in C++ to use our computer’s internals</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Executing-JavaScript-Code-Review"><a href="#Executing-JavaScript-Code-Review" class="headerlink" title="Executing JavaScript Code Review"></a>Executing JavaScript Code Review</h3><ul>
+<li>Let’s see the 2 things that JS does by itself - saving and using data</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="number">3</span>;</span><br><span class="line"><span class="comment">// 1. Save a function (code to run, parameters awaiting inputs)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span> (<span class="params">inputNumber</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> result = inputNumber*<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 2a. Call/run/invoke/execute a function (with parens)</span></span><br><span class="line"><span class="comment">// and 2b. insert an input (an argument)</span></span><br><span class="line"><span class="keyword">const</span> output = multiplyBy2(num); <span class="comment">// 我们使用函数名后加括号调用函数，这与给函数传参是分开的</span></span><br><span class="line"><span class="keyword">const</span> newOutput = multiplyBy2(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p>js只做了两件事，存储数据和方法，调用方法运行代码。</p>
+<h3 id="Executing-Node-Code"><a href="#Executing-Node-Code" class="headerlink" title="Executing Node Code"></a>Executing Node Code</h3><ul>
+<li><p>So let’s see JavaScript other talent - built-in labels that trigger Node features</p>
+<ul>
+<li>We can set up, with a JavaScript label, a Node.js feature (and so computer internals) to wait for requests for html/css/js/tweets from our users</li>
+<li>How? The most powerful built-in Node feature of all: http(Hyper Text Transfer Protocol) (and its associated built- in label in JS - also http conveniently)</li>
+</ul>
+</li>
+<li><p>Using http feature of Node to set up an open socket</p>
+</li>
+</ul>
+<h2 id="Using-Node-APIs"><a href="#Using-Node-APIs" class="headerlink" title="Using Node APIs"></a>Using Node APIs</h2><h3 id="Calling-Node-with-JavaScript"><a href="#Calling-Node-with-JavaScript" class="headerlink" title="Calling Node with JavaScript"></a>Calling Node with JavaScript</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer() <span class="comment">// 调用node引擎中的c++代码，创建一个socket接收http请求，并返回一个对象</span></span><br><span class="line">server.listen(<span class="number">80</span>) <span class="comment">// 调用返回对象的listen方法，监听80端口 计算机总共有六万多个端口，这里设置为监听80端口</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Inbound web request -&gt; run code to send back message</li>
+<li>if inbound message -&gt; send back data</li>
+<li><p>But at what moment?</p>
+</li>
+<li><p>Node auto-runs the code (function) for us when a request arrives from a user</p>
+</li>
+</ul>
+<h3 id="Calling-Methods-in-Node"><a href="#Calling-Methods-in-Node" class="headerlink" title="Calling Methods in Node"></a>Calling Methods in Node</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doOnIncoming</span>(<span class="params">incomingData, functionsToSetOutgoingData</span>)</span>&#123;</span><br><span class="line">    functionsToSetOutgoingData.end(<span class="string">"Welcome to Twitter!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(doOnIncoming)</span><br><span class="line">server.listen(<span class="number">80</span>)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>We don’t know when the inbound request would come - we have to rely on Node to trigger JS code to run</li>
+<li>JavaScript is single-threaded &amp; synchronous. All slow work (e.g. speaking to a database) is done by Node in the background (more on this later)</li>
+</ol>
+<h3 id="Calling-a-Function-Under-the-Hood"><a href="#Calling-a-Function-Under-the-Hood" class="headerlink" title="Calling a Function Under the Hood"></a>Calling a Function Under the Hood</h3><ul>
+<li><p>Two parts to calling a function - executing its code and inserting input (arguments)</p>
+<ul>
+<li>In multiplyBy2(3) the argument is 3 and we, the developer, inserted it</li>
+<li>Node not only will auto-run our function at the right moment, it will also automatically insert whatever the relevant data is as the additional argument (input)</li>
+<li>Sometimes it will even insert a set of functions in an object (as an argument) which give us direct access to the message (in Node) being sent back to the user and allows us to add data to that message</li>
+</ul>
+</li>
+<li><p>And that’s exactly what Node does with its http feature</p>
+<ul>
+<li>Node inserts the arguments (inputs) automatically in the function it auto-runs:<ol>
+<li>‘Inbound object’ - all data from the inbound (request) message</li>
+<li>‘Outbound object’ - functions to be used to set outbound (response) message data</li>
+</ol>
+</li>
+<li>These objects (the arguments to the auto-run function) aren’t given labels by Node. So how do we access them? We do so with parameters (placeholders).</li>
+<li>We must make sure to format the function Node auto-runs the way Node expects (use docs)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Creating-a-Server-Summary"><a href="#Creating-a-Server-Summary" class="headerlink" title="Creating a Server Summary"></a>Creating a Server Summary</h3><ul>
+<li>Code again</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doOnIncoming</span>(<span class="params">incomingData, functionsToSetOutgoingData</span>)</span>&#123;</span><br><span class="line">    functionsToSetOutgoingData.end(<span class="string">"Welcome to Twitter!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(doOnIncoming)</span><br><span class="line">server.listen(<span class="number">80</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>People often end up using req and res for the parameters…</li>
+</ul>
+<h3 id="Request-amp-Response-with-Node"><a href="#Request-amp-Response-with-Node" class="headerlink" title="Request &amp; Response with Node"></a>Request &amp; Response with Node</h3><ul>
+<li><p>Let’s get more personalized with what we send back to our user from our server</p>
+<ul>
+<li>By writing code to investigate the inbound message to see exactly what she’s asked for</li>
+<li>Our user, needs a specific tweet (tweet 3) back. How does their browser tell us that?</li>
+</ul>
+</li>
+<li><p>Messages are sent in HTTP format - The ‘protocol’ for browser-server interaction</p>
+</li>
+</ul>
+<h2 id="Node-with-HTTP"><a href="#Node-with-HTTP" class="headerlink" title="Node with HTTP"></a>Node with HTTP</h2><h3 id="Preparing-for-HTTPRequestObject"><a href="#Preparing-for-HTTPRequestObject" class="headerlink" title="Preparing for HTTPRequestObject"></a>Preparing for HTTPRequestObject</h3><ul>
+<li>HTTP message: Request line (url, method), Headers, Body (optional)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tweets = [<span class="string">"Hi"</span>, <span class="string">" "</span>, <span class="string">"Hello"</span>, <span class="string">" "</span>, <span class="string">" "</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doOnIncoming</span>(<span class="params">incomingData, functionsToSetOutgoingData</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> tweetNeeded = incomingData.url.slice(<span class="number">8</span>)<span class="number">-1</span> <span class="comment">// 2</span></span><br><span class="line">    functionsToSetOutgoingData.end(tweets[tweetNeeded])</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(doOnIncoming)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * request line: GET /tweetw/3</span></span><br><span class="line"><span class="comment"> * Headers: meta data</span></span><br><span class="line"><span class="comment"> * Body: ...</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">server.listen(<span class="number">80</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Parsing-HTTPRequestObject"><a href="#Parsing-HTTPRequestObject" class="headerlink" title="Parsing HTTPRequestObject"></a>Parsing HTTPRequestObject</h3><p><a href="https://curl.haxx.se/" target="_blank" rel="noopener">curl</a></p>
+<p><a href="https://www.getpostman.com/" target="_blank" rel="noopener">postman</a></p>
+<p>在上面的代码中，我们</p>
+<ol>
+<li>声明了一个常量，并将一个数组赋值给常量。</li>
+<li>注册一个函数</li>
+<li>注册一个常量，使用http对象createServer()方法调用node打开一个http socket，并将函数传递为参数，等待返回结果，此时首先返回一个对象赋值给常量server</li>
+<li>使用上一步的常量对象的listen方法，将80作为参数传递进去，使得node监听80端口。</li>
+<li>如果有http请求，node监听到后会调用传递进create()方法中的函数，既2中的函数，并自动将两个参数传递给函数，既request和response两个对象。</li>
+<li>将这两个对象作为实参传递给函数后，执行2中函数体中代码。</li>
+</ol>
+<h3 id="HTTP-Response-in-Node"><a href="#HTTP-Response-in-Node" class="headerlink" title="HTTP Response in Node"></a>HTTP Response in Node</h3><p>在上面函数体中，</p>
+<ol>
+<li>我们首先声明一个常量，数值为Request对象的url属性的第8个字符-1，也就是2</li>
+<li>调用response对象的end方法，将<code>tweets[tweetEnd]</code>的值也就是<code>&#39;Hello’</code>作为实参传入，node会自动解析执行将数据返回到请求的客户端</li>
+</ol>
+<h3 id="Response-Headers"><a href="#Response-Headers" class="headerlink" title="Response Headers"></a>Response Headers</h3><ul>
+<li>Our return message is also in HTTP format<ul>
+<li>We can use the body to send the data and headers to send important metadata</li>
+<li>In the headers we can include info on the format of the data being sent back - e.g. it’s html so to load it as a webpage</li>
+</ul>
+</li>
+</ul>
+<h3 id="Intro-to-Require-in-Node"><a href="#Intro-to-Require-in-Node" class="headerlink" title="Intro to Require in Node"></a>Intro to Require in Node</h3><ul>
+<li>Getting access to Node’s built in features with require<ul>
+<li>We have to tell Node we want to have access to each of its C++ features independently - we get a built-in function to do this</li>
+</ul>
+</li>
+<li>require<ul>
+<li><code>const http = require(‘http’); // common js语法</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="JavaScript-Node-Development"><a href="#JavaScript-Node-Development" class="headerlink" title="JavaScript Node Development"></a>JavaScript Node Development</h3><ul>
+<li>How do we start Javascript off to do all this?<ol>
+<li>Write the code (VSCode et al)</li>
+<li>Load it into Node and run it (have to load in using the terminal interface)</li>
+<li>Need to reload our code with Node every time we make a change so nodemon</li>
+</ol>
+</li>
+</ul>
+<p><a href="https://www.npmjs.com/package/nodemon" target="_blank" rel="noopener">nodemon</a></p>
+<h3 id="Cloud-Node-Development"><a href="#Cloud-Node-Development" class="headerlink" title="Cloud Node Development"></a>Cloud Node Development</h3><ul>
+<li>Do we need an always-on computer in our house to run a server?<ol>
+<li>Write code on your computer</li>
+<li>SSH into someone else’s computer (one of AWS’s)</li>
+<li>Set up DNS to match domain name to right IP</li>
+</ol>
+</li>
+</ul>
+<h3 id="Local-Node-Development"><a href="#Local-Node-Development" class="headerlink" title="Local Node Development"></a>Local Node Development</h3><p>使用localhost(127.0.0.1)加端口号来进行本地调试</p>
+<h3 id="Events-amp-Error-Handling"><a href="#Events-amp-Error-Handling" class="headerlink" title="Events &amp; Error Handling"></a>Events &amp; Error Handling</h3><ul>
+<li><p>In server side development we get errors</p>
+<ul>
+<li>Understandable - we’re interacting with others’ computers over the internet - there’s lots of issues that   could arise</li>
+<li>How can we handle this? We need to understand our background Node http server feature better</li>
+</ul>
+</li>
+<li><p>What triggers the doOnIncoming function to run? Events</p>
+<ul>
+<li>http.createServer(doOnIncoming) is actually a one-line version of setting up the server that will auto-release (‘emit’) events (‘messages in Node’) that trigger a function to auto-run if we’ve set one</li>
+<li>These events are preset on http: ‘request’, ‘error’</li>
+</ul>
+</li>
+<li><p>Node will automatically send out the appropriate event depending on what it gets from the computer internals (http message or error)</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doOnIncoming</span>(<span class="params">incomingData, functionsToSetOutgoingData</span>)</span>&#123;</span><br><span class="line">    functionsToSetOutgoingData.end(<span class="string">"Welcome to Twitter"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doOnError</span>(<span class="params">infoOnError</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(infoOnError)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> server = http.createServer();</span><br><span class="line">server.listen(<span class="number">80</span>)</span><br><span class="line">server.on(<span class="string">'request'</span>, doOnIncoming)</span><br><span class="line">server.on(<span class="string">'clientError'</span>, doOnError)</span><br></pre></td></tr></table></figure>
+<h3 id="Event-Handling-in-Node"><a href="#Event-Handling-in-Node" class="headerlink" title="Event Handling in Node"></a>Event Handling in Node</h3><p>在上述代码中，我们通过引入http这个模块，调用其中的createServer方法，这个方法返回一个对象，对象中有许多方法，用来更改node的行为。<br>我们调用其中的on方法来监听事件，调用listen方法来更改node所监听的端口。</p>
+<h3 id="Modifying-the-Node-Server"><a href="#Modifying-the-Node-Server" class="headerlink" title="Modifying the Node Server"></a>Modifying the Node Server</h3><p>我们通过调用http.createServer()所返回对象的on方法来注册两个事件，分别为’request’和’clientError’，并将两个函数作为参数传入进去。</p>
+<h3 id="Node-Event-Handling-in-Action"><a href="#Node-Event-Handling-in-Action" class="headerlink" title="Node Event Handling in Action"></a>Node Event Handling in Action</h3><p>当有外部请求时，node会首先进行解析，当解析错误时，node会触发’clientError’事件，调用之前传入的函数，并将错误信息作为实参（argument）传入函数。此时js会解析函数并执行函数体中代码。</p>
+<h2 id="File-System"><a href="#File-System" class="headerlink" title="File System"></a>File System</h2><h3 id="Introducing-the-File-System-API"><a href="#Introducing-the-File-System-API" class="headerlink" title="Introducing the File System API"></a>Introducing the File System API</h3><ul>
+<li>We have much of our twitter app set up now - handling, inspecting and responding to these messages (‘requests’) is the core of our app, of Node, and of servers<ul>
+<li>But, Node can do even more. We have an archive of tweets stored in a huge file (1.5GB)</li>
+<li>Unfortunately they’re saved on our computer, not in our little JavaScript-specific data store (JavaScript memory)</li>
+<li>Could we load them into JavaScript to run a function that removes bad tweets?</li>
+<li>We can use fs to do so but there might be some issues with a file that large</li>
+</ul>
+</li>
+</ul>
+<h3 id="Importing-with-fs"><a href="#Importing-with-fs" class="headerlink" title="Importing with fs"></a>Importing with fs</h3><ul>
+<li>Importing our tweets with fs</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cleanTweets</span> (<span class="params">tweetsToClean</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// code that removes bad tweets</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useImportedtweets</span>(<span class="params">errorData, data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> cleanedTweetsJson = cleanTweets(data);</span><br><span class="line">    <span class="keyword">const</span> tweetsObj = <span class="built_in">JSON</span>.parse(cleanedTweetsJson)</span><br><span class="line">    <span class="built_in">console</span>.log(tweetsObj.tweet2)</span><br><span class="line">&#125;</span><br><span class="line">fs.readFile(<span class="string">'./tweets.json'</span>, useImportedtweets)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Every file has a ‘path’ (a link - like a domestic url)</li>
+<li>JSON(JavaScript Object Notation) is a javascript-ready data format</li>
+</ul>
+<h3 id="Reading-from-the-File-System-with-fs"><a href="#Reading-from-the-File-System-with-fs" class="headerlink" title="Reading from the File System with fs"></a>Reading from the File System with fs</h3><p>与之前的http模块一样，通过引入fs模块，可以使用js语法来调用node来访问电脑中的文件。</p>
+<p>我们最后调用fs的readFile方法，node会调用useImportedtweets方法来处理返回的数据，并自动将两个参数传递给useImportedtweets。其中第一个参数为错误信息（Error first），默认值为<code>null</code>，通过此模式，可以确保首先考虑错误发生时的处理。</p>
+<h3 id="Call-Stack-Introduction"><a href="#Call-Stack-Introduction" class="headerlink" title="Call Stack Introduction"></a>Call Stack Introduction</h3><p>Call stack既调用栈，栈顶端既js当前运行的代码，当代码执行完毕时即从栈顶弹出。</p>
+<h2 id="Streams"><a href="#Streams" class="headerlink" title="Streams"></a>Streams</h2><h3 id="Introducing-Node-Streams"><a href="#Introducing-Node-Streams" class="headerlink" title="Introducing Node Streams"></a>Introducing Node Streams</h3><ul>
+<li>What if Node used the ‘event’ (message- broadcasting) pattern to send out a message (‘event’) each time a sufficient batch of the json datahad been loaded in<ul>
+<li>And at each point, take that data and start cleaning it - in batches</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cleanedTweets = <span class="string">""</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cleanTweets</span> (<span class="params">tweetsToClean</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// algorithm to remove bad tweets from `tweetsToClean`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doOnNewBatch</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    cleanedTweets += cleanTweets(data);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> accessTweetsArchive = fs.createReadStream(<span class="string">'./tweetsArchive.json'</span>)</span><br><span class="line">accessTweetsArchive.on(<span class="string">'data'</span>, doOnNewBatch);</span><br></pre></td></tr></table></figure>
+<p>使用createReadStream方法，默认每读取64kb数据就进行处理。</p>
+<h3 id="Setting-Up-the-Stream"><a href="#Setting-Up-the-Stream" class="headerlink" title="Setting Up the Stream"></a>Setting Up the Stream</h3><p>在上述代码中，我们声明了一个常量accessTweetsArchive，赋值为fs.createReadStream的运行结果，fs.createReadStream会返回一个对象，对象内有着许多通知node操作计算机的方法。</p>
+<p>然后我们使用返回对象的on方法来监听’data‘事件，事件发生时使用doOnNewBatch函数处理。</p>
+<h3 id="Processing-Data-in-Batches"><a href="#Processing-Data-in-Batches" class="headerlink" title="Processing Data in Batches"></a>Processing Data in Batches</h3><p>与浏览器环境一直，node中有着callback queue，上述代码中，每次触发’data‘时间就将一个doOnNewBacth推入callback queue中，在call stack清空后将队列首个回调推入调用栈，在调用栈请空前（既首个doOnNewBacth执行完之前）不会将其他函数推入调用栈。</p>
+<h3 id="Checking-the-Callback-Queue"><a href="#Checking-the-Callback-Queue" class="headerlink" title="Checking the Callback Queue"></a>Checking the Callback Queue</h3><p>js是单线程语言，通过调用node的一些方法可以使用node进行多线程操作，并结合node的event loop来协调线程间的配合。</p>
+<h2 id="Asynchornicity-in-Node"><a href="#Asynchornicity-in-Node" class="headerlink" title="Asynchornicity in Node"></a>Asynchornicity in Node</h2><h3 id="Introduction-to-Asynchronicity"><a href="#Introduction-to-Asynchronicity" class="headerlink" title="Introduction to Asynchronicity"></a>Introduction to Asynchronicity</h3><ul>
+<li><p>The call stack, event loop and callback queue in Node</p>
+<ul>
+<li>Call stack: JavaScript keeps track of what function is being run and where it was run from. Whenever a function is to be run, it’s added to the call stack</li>
+<li>Callback queue - any functions delayed from running (and run automatically by Node) are added to the callback queue when the background Node task has completed (or there’s been some activity like a request)</li>
+<li>Event loop - Determines what function/code to run next from the queue(s)</li>
+</ul>
+</li>
+<li><p>Bringing it all together</p>
+<ul>
+<li>But Node is most powerful because of the automated JS function execution triggered by Node at just the right moment.</li>
+<li>This means we don’t have to wait in JS for the right moment to run code and block any other code running</li>
+<li>But it also means we better know intimately how Node decides what to automatically execute at what moment…</li>
+</ul>
+</li>
+<li><p>The event loop is very strict. What rules does it set for what code to run next and when it may run?</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useImportedtweets</span>(<span class="params">errorData, data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> tweets = <span class="built_in">JSON</span>.parse(data)</span><br><span class="line">    <span class="built_in">console</span>.log(tweets.tweet1)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">immediately</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"Run me last   "</span>)&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printHello</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"Hello"</span>)&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blockFor500ms</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// Block JS thread DIRECTLY for 500 ms</span></span><br><span class="line">  <span class="comment">// With e.g. a for loop with 5m elements</span></span><br><span class="line">&#125;</span><br><span class="line">setTimeout(printHello,<span class="number">0</span>)</span><br><span class="line">fs.readFile(<span class="string">'./tweets.json'</span>, useImportedtweets)</span><br><span class="line">blockFor500ms()</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Me first"</span>)</span><br><span class="line">setImmediate(immediately)</span><br></pre></td></tr></table></figure>
+<h3 id="Timer-Queue"><a href="#Timer-Queue" class="headerlink" title="Timer Queue"></a>Timer Queue</h3><p>在上面代码中，我们首先声明了几个函数。然后调用了setTimeout方法，将printHello方法传入进去，并将0作为第二个参数传入。此时代码继续执行，在node后台开始计时，并在计时结束后将printHello推入timer queue。</p>
+<p>setTimeout执行完毕后代码执行到下一行，使用了node的fs的readFile方法，传入了文件地址和回调函数useImportedtweets作为参数，此时js代码会执行下一行，在node后台，会开始读取文件。</p>
+<p>然后js调用栈推入下一行代码，执行blockFor500ms，此时主线程花费一定时间执行此函数。执行完毕后将其推出调用栈。</p>
+<h3 id="IO-Queue"><a href="#IO-Queue" class="headerlink" title="IO Queue"></a>IO Queue</h3><p>假设在blockFor500ms执行期间，node后台读取文件完毕，将错误信息和文件数据作为实参传递给了useImportedtweets函数。此时useImportedtweets并不会立即推入调用栈，而是会推入IO Queue等待执行。</p>
+<p>blockFor500ms执行完毕后，调用栈执行<code>console.log(&quot;Me first&quot;)</code>，此时控制台输出”Me first”。</p>
+<h3 id="Check-Queue"><a href="#Check-Queue" class="headerlink" title="Check Queue"></a>Check Queue</h3><p>调用栈之后会执行setImmediate方法，此方法会将回调函数推入Check Queue，与其名字相反，setImmediate所推入check queue的回调并不会立即执行，而已排在所有queue的优先序列的最后，既其中的回调会在其他queue清空后才会执行。</p>
+<p>此时调用栈清空，event loop会首先开始执行timer queue中的回调函数，既printHello，此时控制台输出”Hello”。</p>
+<h3 id="Event-Loop-Completion"><a href="#Event-Loop-Completion" class="headerlink" title="Event Loop Completion"></a>Event Loop Completion</h3><p>printHello执行完毕后调用栈清空，此时event loop检查timer queue是否清空，清空后还是执行IO Queue中的回调函数，此时useImportedtweets推入调用栈，并添加了错误信息及文件数据作为实参。执行中控制台输出了<code>tweets.tweet1</code>中的数据，假设为”Hello“。此时调用栈，IO Queue清空。</p>
+<p>Event Loop最后将check queue中的回调推入调用栈，调用栈执行immediately函数，控制台输出”Run me last   “。</p>
+<p>代码执行完毕。</p>
+<h3 id="Microtask-amp-Close-Queues"><a href="#Microtask-amp-Close-Queues" class="headerlink" title="Microtask &amp; Close Queues"></a>Microtask &amp; Close Queues</h3><p>在使用promise时，我们会传入resolve和reject方法，在promise的状态更新时会自动调用这两个回调中的一个来处理数据。promise的回调并不会传入上述的队列中，而是会传入Microtask Queue。微任务队列的优先级高于上述几个队列，可以认为优先级为0。</p>
+<p>在Event Loop检查每个队列之前，都会先检查Microtask Queue，并优先执行微任务队列中的方法。</p>
+<p>微任务队列中有两个子队列，其中process.nextTick中传入的回调函数会传入第一个队列，promise中的回调会传入第二个队列。</p>
+<p>还有一个队列叫做Close Queue，事件完成时的回调函数会推入此队列。</p>
+<h3 id="Priority-of-Queue-Execution"><a href="#Priority-of-Queue-Execution" class="headerlink" title="Priority of Queue Execution"></a>Priority of Queue Execution</h3><ul>
+<li>Rules for the automatic execution of the JS code by Node<ol>
+<li>Hold each deferred function in one of the task queues when the Node background API ‘completes’</li>
+<li>Add the function to the Call stack (i.e. execute the function) ONLY when the call stack is totally empty (Have the Event Loop check this condition)</li>
+<li>Prioritize functions in Timer ‘queue’ over I/ O queue, over setImmediate (‘check’) queue</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+          
+            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+          
+            <a href="/tags/Event-Loop/" rel="tag"># Event Loop</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/11/JavaScript-The-Hard-Part-of-Object-Oriented-JavaScript/" rel="next" title="JavaScript: The Hard Part of Object Oriented JavaScript">
+                <i class="fa fa-chevron-left"></i> JavaScript: The Hard Part of Object Oriented JavaScript
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg" alt="刘勇">
+            
+              <p class="site-author-name" itemprop="name">刘勇</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/blingblingredstar" title="GitHub &rarr; https://github.com/blingblingredstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:564447023@qq.com" title="E-Mail &rarr; mailto:564447023@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Node Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Node-js-amp-the-Computer"><span class="nav-number">1.2.</span> <span class="nav-text">JavaScript, Node.js &amp; the Computer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Executing-JavaScript-Code-Review"><span class="nav-number">1.3.</span> <span class="nav-text">Executing JavaScript Code Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Executing-Node-Code"><span class="nav-number">1.4.</span> <span class="nav-text">Executing Node Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Node-APIs"><span class="nav-number">2.</span> <span class="nav-text">Using Node APIs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Calling-Node-with-JavaScript"><span class="nav-number">2.1.</span> <span class="nav-text">Calling Node with JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calling-Methods-in-Node"><span class="nav-number">2.2.</span> <span class="nav-text">Calling Methods in Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calling-a-Function-Under-the-Hood"><span class="nav-number">2.3.</span> <span class="nav-text">Calling a Function Under the Hood</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-Server-Summary"><span class="nav-number">2.4.</span> <span class="nav-text">Creating a Server Summary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Request-amp-Response-with-Node"><span class="nav-number">2.5.</span> <span class="nav-text">Request &amp; Response with Node</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-with-HTTP"><span class="nav-number">3.</span> <span class="nav-text">Node with HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Preparing-for-HTTPRequestObject"><span class="nav-number">3.1.</span> <span class="nav-text">Preparing for HTTPRequestObject</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parsing-HTTPRequestObject"><span class="nav-number">3.2.</span> <span class="nav-text">Parsing HTTPRequestObject</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-Response-in-Node"><span class="nav-number">3.3.</span> <span class="nav-text">HTTP Response in Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Response-Headers"><span class="nav-number">3.4.</span> <span class="nav-text">Response Headers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intro-to-Require-in-Node"><span class="nav-number">3.5.</span> <span class="nav-text">Intro to Require in Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Node-Development"><span class="nav-number">3.6.</span> <span class="nav-text">JavaScript Node Development</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cloud-Node-Development"><span class="nav-number">3.7.</span> <span class="nav-text">Cloud Node Development</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-Node-Development"><span class="nav-number">3.8.</span> <span class="nav-text">Local Node Development</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Events-amp-Error-Handling"><span class="nav-number">3.9.</span> <span class="nav-text">Events &amp; Error Handling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-Handling-in-Node"><span class="nav-number">3.10.</span> <span class="nav-text">Event Handling in Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modifying-the-Node-Server"><span class="nav-number">3.11.</span> <span class="nav-text">Modifying the Node Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-Event-Handling-in-Action"><span class="nav-number">3.12.</span> <span class="nav-text">Node Event Handling in Action</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-System"><span class="nav-number">4.</span> <span class="nav-text">File System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-the-File-System-API"><span class="nav-number">4.1.</span> <span class="nav-text">Introducing the File System API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Importing-with-fs"><span class="nav-number">4.2.</span> <span class="nav-text">Importing with fs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reading-from-the-File-System-with-fs"><span class="nav-number">4.3.</span> <span class="nav-text">Reading from the File System with fs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Call-Stack-Introduction"><span class="nav-number">4.4.</span> <span class="nav-text">Call Stack Introduction</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Streams"><span class="nav-number">5.</span> <span class="nav-text">Streams</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Node-Streams"><span class="nav-number">5.1.</span> <span class="nav-text">Introducing Node Streams</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setting-Up-the-Stream"><span class="nav-number">5.2.</span> <span class="nav-text">Setting Up the Stream</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Processing-Data-in-Batches"><span class="nav-number">5.3.</span> <span class="nav-text">Processing Data in Batches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Checking-the-Callback-Queue"><span class="nav-number">5.4.</span> <span class="nav-text">Checking the Callback Queue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Asynchornicity-in-Node"><span class="nav-number">6.</span> <span class="nav-text">Asynchornicity in Node</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction-to-Asynchronicity"><span class="nav-number">6.1.</span> <span class="nav-text">Introduction to Asynchronicity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timer-Queue"><span class="nav-number">6.2.</span> <span class="nav-text">Timer Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO-Queue"><span class="nav-number">6.3.</span> <span class="nav-text">IO Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Check-Queue"><span class="nav-number">6.4.</span> <span class="nav-text">Check Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-Loop-Completion"><span class="nav-number">6.5.</span> <span class="nav-text">Event Loop Completion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Microtask-amp-Close-Queues"><span class="nav-number">6.6.</span> <span class="nav-text">Microtask &amp; Close Queues</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Priority-of-Queue-Execution"><span class="nav-number">6.7.</span> <span class="nav-text">Priority of Queue Execution</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
