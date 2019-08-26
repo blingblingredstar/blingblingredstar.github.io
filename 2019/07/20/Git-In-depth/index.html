@@ -105,12 +105,12 @@
 <meta property="og:description" content="Git In-DepthIntroductionBy coding along with us in this workshop you’ll: 通过与我们一起编写代码，您将:  Learn how git represents commits and branches internally to gain deep insights into how git works under the ho">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.explainxkcd.com/wiki/images/4/4d/git.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/20/static/images/WX20190716-143824.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/20/static/images/WX20190716-145819.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/20/static/images/WX20190717-110640.png">
+<meta property="og:image" content="http://yoursite.com/static/images/WX20190716-143824.png">
+<meta property="og:image" content="http://yoursite.com/static/images/WX20190716-145819.png">
+<meta property="og:image" content="http://yoursite.com/static/images/WX20190717-110640.png">
 <meta property="og:image" content="https://imgs.xkcd.com/comics/git_commit.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/20/static/images/WX20190720-100204.png">
-<meta property="og:updated_time" content="2019-07-25T08:08:48.009Z">
+<meta property="og:image" content="http://yoursite.com/static/images/WX20190720-100204.png">
+<meta property="og:updated_time" content="2019-08-26T00:24:13.564Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git In-depth">
 <meta name="twitter:description" content="Git In-DepthIntroductionBy coding along with us in this workshop you’ll: 通过与我们一起编写代码，您将:  Learn how git represents commits and branches internally to gain deep insights into how git works under the ho">
@@ -390,7 +390,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-25 16:08:48" itemprop="dateModified" datetime="2019-07-25T16:08:48+08:00">2019-07-25</time>
+                <time title="修改时间：2019-08-26 08:24:13" itemprop="dateModified" datetime="2019-08-26T08:24:13+08:00">2019-08-26</time>
               
             
           </span>
@@ -575,7 +575,7 @@
 </tr>
 </tbody>
 </table>
-<p><img src="../static/images/WX20190716-143824.png" alt="TREES POINT TO BLOBS &amp; TREES"></p>
+<p><img src="/static/images/WX20190716-143824.png" alt="TREES POINT TO BLOBS &amp; TREES"></p>
 <h4 id="IDENTICAL-CONTENT-IS-ONLY-STORED-ONCE"><a href="#IDENTICAL-CONTENT-IS-ONLY-STORED-ONCE" class="headerlink" title="IDENTICAL CONTENT IS ONLY STORED ONCE"></a>IDENTICAL CONTENT IS ONLY STORED ONCE</h4><p>在git的存储文件中，tree可以包含了当前文件夹下的blob及相关联的tree，当两个tree指向的blob内容相同时，根据前面提到的，生成的sha1也相同，那么两个不同tree的blob将指向同一个blob。</p>
 <h4 id="OTHER-OPTIMIZATIONS-PACKFILES-DELTAS"><a href="#OTHER-OPTIMIZATIONS-PACKFILES-DELTAS" class="headerlink" title="OTHER OPTIMIZATIONS - PACKFILES, DELTAS"></a>OTHER OPTIMIZATIONS - PACKFILES, DELTAS</h4><ul>
 <li>Git objects are compressed</li>
@@ -600,7 +600,7 @@
 </ul>
 <p>the SHA1 of the commit is the hash of all this information</p>
 <p>fae12…<br>| commit  | size             |<br>| ——- | —————- |<br>| tree    | 8ab68            |<br>| parent  | a14ca            |<br>| author  | Nina             |<br>| message | “Initial Commit” |</p>
-<p><img src="../static/images/WX20190716-145819.png" alt="COMMITS POINT TO PARENT COMMITS AND TREES"></p>
+<p><img src="/static/images/WX20190716-145819.png" alt="COMMITS POINT TO PARENT COMMITS AND TREES"></p>
 <h4 id="A-COMMIT-IS-A-CODE-SNAPSHOT"><a href="#A-COMMIT-IS-A-CODE-SNAPSHOT" class="headerlink" title="A COMMIT IS A CODE SNAPSHOT"></a>A COMMIT IS A CODE SNAPSHOT</h4><h4 id="COMMITS-UNDER-THE-HOOD-MAKE-A-COMMIT"><a href="#COMMITS-UNDER-THE-HOOD-MAKE-A-COMMIT" class="headerlink" title="COMMITS UNDER THE HOOD - MAKE A COMMIT"></a>COMMITS UNDER THE HOOD - MAKE A COMMIT</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'Hello World!'</span> &gt; hello.txt</span><br><span class="line">git add hello.txt</span><br><span class="line">git commit -m <span class="string">"Initial commit"</span></span><br><span class="line"></span><br><span class="line">[master (root-commit) adf0e13] Initial commit</span><br><span class="line">1 file changed, 1 insertion(+)</span><br><span class="line">create mode 100644 hello.txt</span><br></pre></td></tr></table></figure>
 <h4 id="COMMITS-UNDER-THE-HOOD-LOOK-IN-GIT-OBJECTS"><a href="#COMMITS-UNDER-THE-HOOD-LOOK-IN-GIT-OBJECTS" class="headerlink" title="COMMITS UNDER THE HOOD - LOOK IN .GIT/OBJECTS"></a>COMMITS UNDER THE HOOD - LOOK IN .GIT/OBJECTS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tree .git/objects</span><br><span class="line"></span><br><span class="line">.git/objects</span><br><span class="line">├── 58</span><br><span class="line">│ └── 1caa0fe56cf01dc028cc0b089d364993e046b6</span><br><span class="line">├── 98</span><br><span class="line">│ └── 0a0d5f19a64b4b30a87d4206aade58726b60e3</span><br><span class="line">├── ad <span class="comment"># commit tree</span></span><br><span class="line">│ └── f0e13658d9b4424efe03c3ac3281facf288c13</span><br><span class="line">├── info</span><br><span class="line">└── pack</span><br></pre></td></tr></table></figure>
 <h4 id="COMMITS-UNDER-THE-HOOD-LOOKING-AT-OBJECTS"><a href="#COMMITS-UNDER-THE-HOOD-LOOKING-AT-OBJECTS" class="headerlink" title="COMMITS UNDER THE HOOD - LOOKING AT OBJECTS"></a>COMMITS UNDER THE HOOD - LOOKING AT OBJECTS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">❯ cat .git/objects/98/0a0d5f19a64b4b30a87d4206aade58726b60e3</span><br><span class="line">xKOR04fH/IQHak%</span><br></pre></td></tr></table></figure>
@@ -703,7 +703,7 @@
 <li>Not removing the files.</li>
 <li>You’re replacing them with a copy that’s currently in the repository.</li>
 </ul>
-<h5 id="BASICS-HOW-CONTENT-MOVES-IN-GIT"><a href="#BASICS-HOW-CONTENT-MOVES-IN-GIT" class="headerlink" title="BASICS: HOW CONTENT MOVES IN GIT"></a>BASICS: HOW CONTENT MOVES IN GIT</h5><p><img src="../static/images/WX20190717-110640.png" alt="HOW CONTENT MOVES IN GIT"></p>
+<h5 id="BASICS-HOW-CONTENT-MOVES-IN-GIT"><a href="#BASICS-HOW-CONTENT-MOVES-IN-GIT" class="headerlink" title="BASICS: HOW CONTENT MOVES IN GIT"></a>BASICS: HOW CONTENT MOVES IN GIT</h5><p><img src="/static/images/WX20190717-110640.png" alt="HOW CONTENT MOVES IN GIT"></p>
 <h3 id="Stashing"><a href="#Stashing" class="headerlink" title="Stashing"></a>Stashing</h3><h4 id="GIT-STASH"><a href="#GIT-STASH" class="headerlink" title="GIT STASH"></a>GIT STASH</h4><ul>
 <li>Save un-committed work.</li>
 <li>The stash is safe from destructive operations.</li>
@@ -1496,7 +1496,7 @@
 <li>By adding an upstream remote, you can pull down changes that have been added to the original repository after you forked it.</li>
 </ul>
 <p><code>❯ git remote add upstream https://github.com/ORIG_OWNER/REPO.git</code></p>
-<h3 id="Github-Workflow"><a href="#Github-Workflow" class="headerlink" title="Github Workflow"></a>Github Workflow</h3><h4 id="TRIANGULAR-WORKFLOW"><a href="#TRIANGULAR-WORKFLOW" class="headerlink" title="TRIANGULAR WORKFLOW"></a>TRIANGULAR WORKFLOW</h4><p><img src="../static/images/WX20190720-100204.png" alt="workflow"></p>
+<h3 id="Github-Workflow"><a href="#Github-Workflow" class="headerlink" title="Github Workflow"></a>Github Workflow</h3><h4 id="TRIANGULAR-WORKFLOW"><a href="#TRIANGULAR-WORKFLOW" class="headerlink" title="TRIANGULAR WORKFLOW"></a>TRIANGULAR WORKFLOW</h4><p><img src="/static/images/WX20190720-100204.png" alt="workflow"></p>
 <h4 id="TRACKING-BRANCHES"><a href="#TRACKING-BRANCHES" class="headerlink" title="TRACKING BRANCHES"></a>TRACKING BRANCHES</h4><ul>
 <li><p>Track a branch to tie it to an upstream branch.</p>
 <ul>
