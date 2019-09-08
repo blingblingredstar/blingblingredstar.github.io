@@ -97,14 +97,14 @@
 
 
   <meta name="description" content="Functional Programming IntroductionFunctional ProgrammingFunctional-Light-JS Provable &amp;amp; Readable函数式编程试图使用已经尝试过过、验证过多年的的模式来解决问题。函数式编程试图用已经验证过的数学问题来解决编程问题，以减少程序的不确定性，试图在编写代码的同时来进行测试。通过把复杂的编程问题拆解为简单的">
-<meta name="keywords" content="JavaScript,FrontEndMasters,闭包,高阶函数,函数式编程,Point-Free,异步编程">
+<meta name="keywords" content="JavaScript,FrontEndMasters,闭包,高阶函数,函数式编程,Point-Free,异步编程,Functional Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Functional Light JavaScript v2">
 <meta property="og:url" content="http://yoursite.com/2019/05/10/Functional-Light-JavaScript-v2/index.html">
 <meta property="og:site_name" content="刘勇的博客">
 <meta property="og:description" content="Functional Programming IntroductionFunctional ProgrammingFunctional-Light-JS Provable &amp;amp; Readable函数式编程试图使用已经尝试过过、验证过多年的的模式来解决问题。函数式编程试图用已经验证过的数学问题来解决编程问题，以减少程序的不确定性，试图在编写代码的同时来进行测试。通过把复杂的编程问题拆解为简单的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-12T23:31:52.780Z">
+<meta property="og:updated_time" content="2019-09-08T01:05:47.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Functional Light JavaScript v2">
 <meta name="twitter:description" content="Functional Programming IntroductionFunctional ProgrammingFunctional-Light-JS Provable &amp;amp; Readable函数式编程试图使用已经尝试过过、验证过多年的的模式来解决问题。函数式编程试图用已经验证过的数学问题来解决编程问题，以减少程序的不确定性，试图在编写代码的同时来进行测试。通过把复杂的编程问题拆解为简单的">
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-13 07:31:52" itemprop="dateModified" datetime="2019-05-13T07:31:52+08:00">2019-05-13</time>
+                <time title="修改时间：2019-09-08 09:05:47" itemprop="dateModified" datetime="2019-09-08T09:05:47+08:00">2019-09-08</time>
               
             
           </span>
@@ -514,6 +514,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> lazyArray()</span><br><span class="line"></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span> <span class="title">everySecond</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  a.push(<span class="built_in">Math</span>.random())</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// **************************</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = a.map(<span class="function"><span class="params">num</span> =&gt;</span> num * <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">b.forEach(<span class="function"><span class="keyword">function</span> <span class="title">onValue</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(v)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p><strong>LazyArray == Observable</strong>.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Rx.Subject()</span><br><span class="line"></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span> <span class="title">everySecond</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  a.push(<span class="built_in">Math</span>.random())</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// **************************</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = a.map(<span class="function"><span class="params">num</span> =&gt;</span> num * <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">b.subscribe(<span class="function"><span class="keyword">function</span> <span class="title">onValue</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(v)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -549,6 +550,8 @@
             <a href="/tags/Point-Free/" rel="tag"># Point-Free</a>
           
             <a href="/tags/异步编程/" rel="tag"># 异步编程</a>
+          
+            <a href="/tags/Functional-Programming/" rel="tag"># Functional Programming</a>
           
         </div>
       
@@ -644,7 +647,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
