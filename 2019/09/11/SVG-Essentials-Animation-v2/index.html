@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="IntroductionSarah Drasner CodePen workshop github repo  Suggestions for getting the most out of this course Do exercise!    chrome codepen plugin GreenSock">
+<meta name="keywords" content="CSS,FrontEndMasters,SVG,GSAP,Animation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVG Essentials &amp; Animation v2">
+<meta property="og:url" content="http://yoursite.com/2019/09/11/SVG-Essentials-Animation-v2/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="IntroductionSarah Drasner CodePen workshop github repo  Suggestions for getting the most out of this course Do exercise!    chrome codepen plugin GreenSock">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-11T07:55:10.063Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SVG Essentials &amp; Animation v2">
+<meta name="twitter:description" content="IntroductionSarah Drasner CodePen workshop github repo  Suggestions for getting the most out of this course Do exercise!    chrome codepen plugin GreenSock">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/11/SVG-Essentials-Animation-v2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>SVG Essentials & Animation v2 | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘勇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/11/SVG-Essentials-Animation-v2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SVG Essentials & Animation v2
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-11 15:54:02 / 修改时间：15:55:10" itemprop="dateCreated datePublished" datetime="2019-09-11T15:54:02+08:00">2019-09-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><a href="https://codepen.io/sdras/" target="_blank" rel="noopener">Sarah Drasner CodePen</a></p>
+<p><a href="https://github.com/sdras/svg-workshop" target="_blank" rel="noopener">workshop github repo</a></p>
+<ul>
+<li>Suggestions for getting the most out of this course<ul>
+<li>Do exercise!</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://chrome.google.com/webstore/detail/codopen/agnkphdgffianchpipdbkeaclfbobaak/" target="_blank" rel="noopener">chrome codepen plugin</a></p>
+<p><a href="https://codepen.io/GreenSock/pen/OPqpRJ" target="_blank" rel="noopener">GreenSock</a><br><a id="more"></a></p>
+<h2 id="SVG-Anatomy-Overview"><a href="#SVG-Anatomy-Overview" class="headerlink" title="SVG Anatomy Overview"></a>SVG Anatomy Overview</h2><h3 id="What-is-SVG-Scalable-Vector-Graphics"><a href="#What-is-SVG-Scalable-Vector-Graphics" class="headerlink" title="What is SVG(Scalable Vector Graphics)"></a>What is SVG(Scalable Vector Graphics)</h3><ol>
+<li>Crisp on any display</li>
+<li>Less HTTP requests to handle</li>
+<li>Easily scalable for responsive</li>
+<li>Small filesize if you design for performence</li>
+<li>Easy to animate</li>
+<li>Easy to make accessible</li>
+<li>Fun!</li>
+</ol>
+<h3 id="SVG-Support-amp-Performance"><a href="#SVG-Support-amp-Performance" class="headerlink" title="SVG Support &amp; Performance"></a>SVG Support &amp; Performance</h3><p><a href="https://codepen.io/sdras/pen/NqYGZv" target="_blank" rel="noopener">codepen demo</a></p>
+<p><a href="https://www.smashingmagazine.com/" target="_blank" rel="noopener">smashing magazine</a></p>
+<h3 id="The-Antidote-to-Positioning-in-CSS"><a href="#The-Antidote-to-Positioning-in-CSS" class="headerlink" title="The Antidote to Positioning in CSS"></a>The Antidote to Positioning in CSS</h3><p><a href="https://codepen.io/chriscoyier/pen/YyxKea" target="_blank" rel="noopener">codepen demo</a></p>
+<h3 id="Platonic-Shapes"><a href="#Platonic-Shapes" class="headerlink" title="Platonic Shapes"></a>Platonic Shapes</h3><ul>
+<li>Overview of the SVG DOM<ul>
+<li>platonic shapes</li>
+<li>viewbox</li>
+<li>preserveAspectRatio</li>
+<li>grouping</li>
+<li>grawing paths</li>
+<li>SVG on export</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span> <span class="attr">xmlns:xlink</span>=<span class="string">"http://www.w3.org/1999/xlink"</span> <span class="attr">x</span>=<span class="string">"0px"</span> <span class="attr">y</span>=<span class="string">"0px"</span> <span class="attr">width</span>=<span class="string">"450px"</span> <span class="attr">height</span>=<span class="string">"100px"</span> <span class="attr">viewBox</span>=<span class="string">"0 0 450 100"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"10"</span> <span class="attr">y</span>=<span class="string">"5"</span> <span class="attr">fill</span>=<span class="string">"white"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">width</span>=<span class="string">"90"</span> <span class="attr">height</span>=<span class="string">"90"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">circle</span> <span class="attr">fill</span>=<span class="string">"white"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">cx</span>=<span class="string">"170"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">r</span>=<span class="string">"45"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">polygon</span> <span class="attr">fill</span>=<span class="string">"white"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">points</span>=<span class="string">"279,5 294,35 328,40 303,62 309,94 279,79 248,94 254,62 230,39 263,35 "</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">line</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">x1</span>=<span class="string">"410"</span> <span class="attr">y1</span>=<span class="string">"95"</span> <span class="attr">x2</span>=<span class="string">"440"</span> <span class="attr">y2</span>=<span class="string">"6"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">line</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">x1</span>=<span class="string">"360"</span> <span class="attr">y1</span>=<span class="string">"6"</span> <span class="attr">x2</span>=<span class="string">"360"</span> <span class="attr">y2</span>=<span class="string">"95"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，使用x,y,width,heigth来定义长方形，使用cx,xy,height来定义原型，使用多个点来定义多边形，使用起点和终点定义直线。</p>
+<h3 id="ViewBox-amp-Responsive"><a href="#ViewBox-amp-Responsive" class="headerlink" title="ViewBox &amp; Responsive"></a>ViewBox &amp; Responsive</h3><p>viewbox类似画板，可以通过css来设定宽高，并且只显示画板内的内容。</p>
+<p><a href="https://codepen.io/sdras/pen/XJKJZL" target="_blank" rel="noopener">codepen demo</a></p>
+<h3 id="preserveAspectRatio"><a href="#preserveAspectRatio" class="headerlink" title="preserveAspectRatio"></a>preserveAspectRatio</h3><p>基本不需要使用。</p>
+<ul>
+<li>Default: <code>preserveAspectRatio=”xMidYMid meet”</code><ul>
+<li>uniformly scales, like <code>background-size: cover;</code> in CSS</li>
+</ul>
+</li>
+<li>MEET (DEFAULT)<ul>
+<li>entire viewBox is visible within viewport</li>
+<li>the viewbox is scaled up as much as possible, meeting other criteria</li>
+<li>viewBox &lt; viewport</li>
+</ul>
+</li>
+<li><p>SLICE</p>
+<ul>
+<li>entire viewport is covered by the viewBox</li>
+<li>the viewBox is scaled down as much as possible, meeting other criteria</li>
+<li>viewBox &gt; viewport</li>
+</ul>
+</li>
+<li><p>Use it for layout</p>
+<ul>
+<li><code>perserveAspectRatio = &quot;none&quot;</code></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://s.codepen.io/sdras/debug/XdgBOa" target="_blank" rel="noopener">CodePen demo</a></p>
+<h3 id="Paths-Groups-amp-Polylines"><a href="#Paths-Groups-amp-Polylines" class="headerlink" title="Paths, Groups &amp; Polylines"></a>Paths, Groups &amp; Polylines</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">viewBox</span>=<span class="string">"0 0 218.8 87.1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">g</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M7.3 75L25.9 6.8s58.4-6.4 33.5 13-41.1 32.8-11.2 30.8h15.9v5.5s42.6 18.8 0 20.6"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M133.1 58.2s12.7-69.2 24.4-47.5c0 0 4.1 8.6 9.5.9 0 0 5-10 10.4.9 0 0 12.2</span></span></span><br><span class="line"><span class="tag"><span class="string">32.6 13.6 43 0 0 39.8 5.4 15.8 15.4-13.2 5.5-53.8 13.1-77.4 5.9.1 0-51.9-15.4 3.7-18.6z"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">g</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>&lt;g&gt;</code>标签代表组(group)。</p>
+<p>如果想要闭合一个<code>&lt;path&gt;</code>，可以直接在最后添加一个<code>z</code>来连接最后一个坐标与第一个坐标。<code>d</code>代表drawing，引号后的大写<code>M</code>代表move to。如果路径突然间混乱，很可能就是不小心删除了<code>M</code>。</p>
+<p>使用<code>&lt;g&gt;</code>标签，类似illustrator中的编组，可以批量添加classes，同时作用于多个路径。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">polyline</span> <span class="attr">points</span>=<span class="string">"14,17 136,37 77,117 230,87 132,158 172,158 "</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>polyline就是折线。可以用来做简单的数据展示（折线图）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M7.3 75L25.9 6.8s58.4-6.4 33.5 13-41.1 32.8-11.2</span></span></span><br><span class="line"><span class="tag"><span class="string"> 30.8h15.9v5.5s42.6 18.8 0 20.6"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M133.1 58.2s12.7-69.2 24.4-47.5c0 0 4.1 8.6 9.5.9</span></span></span><br><span class="line"><span class="tag"><span class="string"> 0 0 5-10 10.4.9 0 0 12.2 32.6 13.6 43 0 0 39.8 5.4 15.8</span></span></span><br><span class="line"><span class="tag"><span class="string"> 15.4-13.2 5.5-53.8 13.1-77.4 5.9.1 0-51.9-15.4 3.7-18.6z"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://codepen.io/netsi1964/full/pJzWoz" target="_blank" rel="noopener">Demo exploring paths</a></p>
+<p>类似钢笔工具</p>
+<h3 id="Animated-Bezier-Curves-amp-Template-Literals"><a href="#Animated-Bezier-Curves-amp-Template-Literals" class="headerlink" title="Animated Bezier Curves &amp; Template Literals"></a>Animated Bezier Curves &amp; Template Literals</h3><p><a href="https://www.jasondavies.com/animated-bezier/" target="_blank" rel="noopener">Animated Bézier Curves</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">plotter</span>(<span class="params">points, startX</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> pathArr = [],</span><br><span class="line">      pathpoints = [];</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= inc; i++) &#123;</span><br><span class="line">    pathpoints.push(points + ((i * (points*<span class="number">2</span>)) + points));</span><br><span class="line">    pathArr.push(<span class="string">` <span class="subst">$&#123;startX&#125;</span> <span class="subst">$&#123;pathpoints[i]&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> pathArr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">rope1.setAttribute(<span class="string">"d"</span>, <span class="string">`M <span class="subst">$&#123;plotter(<span class="number">50</span>, start1)&#125;</span>`</span>.join(<span class="string">" L"</span>) );</span><br></pre></td></tr></table></figure>
+<p>使用模板字符串来更改SVG路径</p>
+<h3 id="Accessibility"><a href="#Accessibility" class="headerlink" title="Accessibility"></a>Accessibility</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">aria-labelledby</span>=<span class="string">"title"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"svg"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">role</span>=<span class="string">"presentation"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">viewBox</span>=<span class="string">"0 0 765 587"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span> <span class="attr">id</span>=<span class="string">"title"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  Icons that illustrate Global Warming Solutions</span><br><span class="line"><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Title for elements in the SVG DOM</p>
+<p>Role to let the screen reader know whether to traverse</p>
+<p><a href="https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/" target="_blank" rel="noopener">This resource</a>, with support charts.</p>
+<p><a href="https://css-tricks.com/accessible-svgs/" target="_blank" rel="noopener">This article</a> by Heather Migliorisi.</p>
+<h2 id="CSS-Animation"><a href="#CSS-Animation" class="headerlink" title="CSS Animation"></a>CSS Animation</h2><h3 id="Optimizing-amp-Building"><a href="#Optimizing-amp-Building" class="headerlink" title="Optimizing &amp; Building"></a>Optimizing &amp; Building</h3><p>可以在illustrator中减少锚点数量来减少文件体积。</p>
+<ul>
+<li><a href="https://jakearchibald.github.io/svgomg/" target="_blank" rel="noopener">SVGOMG</a></li>
+<li><a href="http://petercollingridge.appspot.com/svg-editor" target="_blank" rel="noopener">Peter Collingridge’s SVG Editor</a></li>
+<li><a href="https://github.com/svg/svgo" target="_blank" rel="noopener">SVGO</a> / <a href="https://github.com/svg/svgo-gui" target="_blank" rel="noopener">SVGO-GUI</a></li>
+</ul>
+<h3 id="Consturcting-an-SVG"><a href="#Consturcting-an-SVG" class="headerlink" title="Consturcting an SVG"></a>Consturcting an SVG</h3><p>使用illustrator的导出，来导出SVG（sketch导出的文件优化较差）。</p>
+<h3 id="Starting-an-SVG"><a href="#Starting-an-SVG" class="headerlink" title="Starting an SVG"></a>Starting an SVG</h3><ul>
+<li>Main principle:<ul>
+<li>Design everything first, slowly unveil things</li>
+<li>Ugly storyboards save you time!</li>
+</ul>
+</li>
+</ul>
+<h3 id="Prototyping"><a href="#Prototyping" class="headerlink" title="Prototyping"></a>Prototyping</h3><ul>
+<li>Thumbnails<ul>
+<li>Notes for yourself</li>
+</ul>
+</li>
+<li>Storyboards<ul>
+<li>Notes for collaboration</li>
+</ul>
+</li>
+<li>Low Fidelity Prototypes<ul>
+<li>Show the motion</li>
+</ul>
+</li>
+<li>Low Fidelity Prototypes<ul>
+<li>Screenshot to build on top of</li>
+</ul>
+</li>
+</ul>
+<h3 id="Planning-an-Animation-Exercise"><a href="#Planning-an-Animation-Exercise" class="headerlink" title="Planning an Animation Exercise"></a>Planning an Animation Exercise</h3><h3 id="Planning-an-Animation-Review"><a href="#Planning-an-Animation-Review" class="headerlink" title="Planning an Animation Review"></a>Planning an Animation Review</h3><h3 id="Animation-Support-Breakdown"><a href="#Animation-Support-Breakdown" class="headerlink" title="Animation Support Breakdown"></a>Animation Support Breakdown</h3><ul>
+<li>For img src, object, embed, background url, and iframe, you can only designate animation if inside the SVG</li>
+<li><p>But for <strong>inline</strong>, both SVG animation and interaction are supported</p>
+</li>
+<li><p>Animating with CSS, refresher</p>
+</li>
+<li><p>keyframes</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> animation-name-you-pick &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(0);</span><br><span class="line">  &#125;</span><br><span class="line">  50% &#123;</span><br><span class="line">    <span class="attribute">background</span>: purple;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(50px);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(100px);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Animation Properties-Shorthand</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.ball</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: animation-name-you-pick <span class="number">2s</span> <span class="number">2s</span> <span class="number">3</span> alternate ease-in-out forwards;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Differences-in-Functionality"><a href="#Differences-in-Functionality" class="headerlink" title="Differences in Functionality"></a>Differences in Functionality</h3><ul>
+<li>So, what happens when we apply that on the SVG?</li>
+</ul>
+<p>可以看到SVG元素被添加了背景色。</p>
+<ul>
+<li>Why?<ul>
+<li>moving the whole SVG instead of the circle(not a problem here)</li>
+<li><code>background</code> dosen’t work for SVG, we use <code>fill</code></li>
+<li>Apply the fill to the cicle, not whole SVG</li>
+</ul>
+</li>
+</ul>
+<p>但是当我们把动画添加到<code>circle</code>上时，会发现<code>circle</code>移出了viewBox，所以我们需要增加viewBox的宽度来显示<code>circle</code></p>
+<p>最终如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"200px"</span> <span class="attr">height</span>=<span class="string">"70px"</span> <span class="attr">viewBox</span>=<span class="string">"0 0 200 70"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">class</span>=<span class="string">"ball3"</span> <span class="attr">cx</span>=<span class="string">"45"</span> <span class="attr">cy</span>=<span class="string">"45"</span> <span class="attr">r</span>=<span class="string">"25"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> second-animation &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    <span class="attribute">fill</span>: blue;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(0);</span><br><span class="line">  &#125;</span><br><span class="line">  50% &#123;</span><br><span class="line">    <span class="attribute">fill</span>: purple;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(50px);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="attribute">fill</span>: red;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(100px);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Why-SVG"><a href="#Why-SVG" class="headerlink" title="Why SVG"></a>Why SVG</h3><p>我们可以通过一些方法来使div看起来像一个三角形或者圆形，但这是一种hack，而svg被设计用来就是做矢量图形的，更加直观，更加可控。</p>
+<h3 id="Transform-Origin"><a href="#Transform-Origin" class="headerlink" title="Transform-Origin"></a>Transform-Origin</h3><p>变形的中心点，推荐使用百分数作为值</p>
+<h3 id="Animate-an-SVG-Exercise"><a href="#Animate-an-SVG-Exercise" class="headerlink" title="Animate an SVG Exercise"></a>Animate an SVG Exercise</h3><h3 id="SVG-Tools-and-Ideas"><a href="#SVG-Tools-and-Ideas" class="headerlink" title="SVG Tools and Ideas"></a>SVG Tools and Ideas</h3><p><a href="https://inkscape.org/" target="_blank" rel="noopener">inkscape</a></p>
+<h3 id="Sprites"><a href="#Sprites" class="headerlink" title="Sprites"></a>Sprites</h3><p>可以通过移动viewBox来制作SVG雪碧图。</p>
+<ul>
+<li>Sprite Technique: Rolling Sprite Background</li>
+</ul>
+<p><a href="https://codepen.io/sdras/full/xbyopy" target="_blank" rel="noopener">codepen demo</a></p>
+<p>上述是通过媒体查询来更改背景颜色，减少图片细节</p>
+<h3 id="Atmospheric-and-Elemental-Motion"><a href="#Atmospheric-and-Elemental-Motion" class="headerlink" title="Atmospheric and Elemental Motion"></a>Atmospheric and Elemental Motion</h3><ul>
+<li>Elemental Motion<ul>
+<li>Futher away is less contrast, blurry</li>
+<li>Does the air or environment effect movement</li>
+<li>Reducing precision allows for understanding</li>
+<li>Combine techniques</li>
+</ul>
+</li>
+</ul>
+<h2 id="GreenSock"><a href="#GreenSock" class="headerlink" title="GreenSock"></a>GreenSock</h2><h3 id="Tools-Overview"><a href="#Tools-Overview" class="headerlink" title="Tools Overview"></a>Tools Overview</h3><table>
+<thead>
+<tr>
+<th>DOM/Virtual DOM</th>
+<th>canvas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pros</td>
+<td>Pros</td>
+</tr>
+<tr>
+<td>Great for UI/UX animation</td>
+<td>Dance, pixels, dance!</td>
+</tr>
+<tr>
+<td>Great for SVG that is resolution indenpendent</td>
+<td>Great for really impressive 3d or immersive stuff</td>
+</tr>
+<tr>
+<td>Easier to debug</td>
+<td>Movement of a tons of objects</td>
+</tr>
+<tr>
+<td>Cons</td>
+<td>Cons</td>
+</tr>
+<tr>
+<td>Tanks with a lot of objects</td>
+<td>Harder to make accessible</td>
+</tr>
+<tr>
+<td>Beaucase of this you have to care about the way you animate</td>
+<td>Not resolution independent out of the box</td>
+</tr>
+<tr>
+<td></td>
+<td>Breaks to nothing</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Correct Tools for the job<ul>
+<li>My recommendations</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>css/scss</th>
+<th>GASP(GreenSock)</th>
+<th>React Spring/React-Motion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small sequences and simple interactions</td>
+<td>Great for sequencing and complex movement</td>
+<td>Great for single movements that you’d like to look realistic</td>
+</tr>
+<tr>
+<td>Once you get more than 3…switch to:</td>
+<td>Corss-browser consistency</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Snap.svg is more like jQuery for SVG</li>
+<li>AnimeJS is more like GSAP! But less plugins</li>
+<li>Web Animations API looks great, still waiting on support</li>
+<li>Velocity is similar to GSAP with less bells and whistles</li>
+<li>Mo.js won’t come out of beta</li>
+<li>D3.js was built for data vis but you can do a lot more with it</li>
+</ul>
+<h3 id="Performance-amp-GSAP"><a href="#Performance-amp-GSAP" class="headerlink" title="Performance &amp; GSAP"></a>Performance &amp; GSAP</h3><ul>
+<li>Not all are created equal<ul>
+<li>Opacity</li>
+<li>Transforms</li>
+<li>Hardware Acceleration</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">mixin</span> accelerate() &#123;</span><br><span class="line"> <span class="selector-tag">transform</span>: <span class="selector-tag">translateZ</span>(0);</span><br><span class="line"> <span class="selector-tag">backface-visibility</span>: <span class="selector-tag">hidden</span>;</span><br><span class="line"> <span class="selector-tag">perspective</span>: 1000<span class="selector-tag">px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  @include accelerate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Resources</p>
+<ul>
+<li><a href="https://css-tricks.com/debugging-css-keyframe-animations/" target="_blank" rel="noopener">Debugging Keyframe Animations</a></li>
+<li><a href="https://www.html5rocks.com/en/tutorials/speed/high-performance-animations/" target="_blank" rel="noopener">High Performance Animations</a></li>
+<li><a href="http://eng.wealthfront.com/2015/06/30/implementing-netflix-redesign/" target="_blank" rel="noopener">Performant CSS Animations: Netflix Case Study</a></li>
+</ul>
+</li>
+<li><p>GreenSock Killer Feature</p>
+<ul>
+<li>Simple syntax</li>
+<li>Timelines</li>
+<li>Nested Timelines</li>
+<li>Draggable</li>
+<li>DrawSVG</li>
+<li>Stagger</li>
+<li>MorphSVG</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://codepen.io/sdras/full/JobJMO" target="_blank" rel="noopener">CodePen demo</a></p>
+<ul>
+<li><p>SOLVES CROSS-BROWSER INCONSISTENCIES</p>
+<ul>
+<li>Historically bad transform origin bug on rotation in CSS,</li>
+<li>now about to be resolved in Firefox.</li>
+</ul>
+</li>
+<li><p>SOLVES WEIRD SPEC ISSUES</p>
+</li>
+</ul>
+<h3 id="TweenMax-Syntax"><a href="#TweenMax-Syntax" class="headerlink" title="TweenMax Syntax"></a>TweenMax Syntax</h3><ul>
+<li>Syntax</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TweenMax.to/.from/.fromTo(element, duration&#123;</span><br><span class="line">  property: amount</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TweenMax.to(<span class="string">'div'</span>, <span class="number">2</span>, &#123;</span><br><span class="line">  scaleY: <span class="number">.75</span>, <span class="attr">scaleX</span>: <span class="number">1.25</span>, <span class="attr">y</span>: <span class="number">100</span>, <span class="attr">opacity</span>: <span class="number">.75</span>, <span class="attr">ease</span>: Elastic.easeOut</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/sdras/svg-workshop/blob/master/gsap-cheatsheet.js" target="_blank" rel="noopener">gsap-cheatsheet</a></p>
+<h3 id="Stagger"><a href="#Stagger" class="headerlink" title="Stagger"></a>Stagger</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> staggerFoo &#123;</span><br><span class="line">  <span class="selector-tag">to</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: orange;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(90deg);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.css</span> <span class="selector-class">.bar</span><span class="selector-pseudo">:nth-child(1)</span> &#123; <span class="attribute">animation</span>: staggerFoo <span class="number">1s</span> <span class="number">0.1s</span> ease-out both; &#125;</span><br><span class="line"><span class="selector-class">.css</span> <span class="selector-class">.bar</span><span class="selector-pseudo">:nth-child(2)</span> &#123; <span class="attribute">animation</span>: staggerFoo <span class="number">1s</span> <span class="number">0.2s</span> ease-out both; &#125;</span><br><span class="line"><span class="selector-class">.css</span> <span class="selector-class">.bar</span><span class="selector-pseudo">:nth-child(3)</span> &#123; <span class="attribute">animation</span>: staggerFoo <span class="number">1s</span> <span class="number">0.3s</span> ease-out both; &#125;</span><br><span class="line"><span class="selector-class">.css</span> <span class="selector-class">.bar</span><span class="selector-pseudo">:nth-child(4)</span> &#123; <span class="attribute">animation</span>: staggerFoo <span class="number">1s</span> <span class="number">0.4s</span> ease-out both; &#125;</span><br><span class="line"><span class="selector-class">.css</span> <span class="selector-class">.bar</span><span class="selector-pseudo">:nth-child(5)</span> &#123; <span class="attribute">animation</span>: staggerFoo <span class="number">1s</span> <span class="number">0.5s</span> ease-out both; &#125;</span><br><span class="line"><span class="selector-class">.css</span> <span class="selector-class">.bar</span><span class="selector-pseudo">:nth-child(6)</span> &#123; <span class="attribute">animation</span>: staggerFoo <span class="number">1s</span> <span class="number">0.5s</span> ease-out both; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@keyframes staggerFoo &#123;</span><br><span class="line">  to &#123;</span><br><span class="line">    <span class="attribute">background</span>: orange;</span><br><span class="line">    <span class="attribute">transform</span>: rotate(<span class="number">90deg</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">for</span> <span class="variable">$i</span> from 1 through 6 &#123;</span><br><span class="line">  <span class="selector-class">.sass</span> <span class="selector-class">.bar</span>:nth-child(#&#123;<span class="variable">$i</span>&#125; ) &#123;</span><br><span class="line">      <span class="attribute">animation</span>: staggerFoo <span class="number">1s</span> (<span class="variable">$i</span> * <span class="number">0.1s</span>) ease-out both;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TweenMax.staggerTo(<span class="string">'.gsap .bar'</span>, <span class="number">1</span>, &#123;</span><br><span class="line">  backgroundColor: <span class="string">'orange'</span>,</span><br><span class="line">  rotation: <span class="number">90</span>,</span><br><span class="line">  ease: Sine.easeOut</span><br><span class="line">&#125;, <span class="number">0.1</span>);</span><br></pre></td></tr></table></figure>
+<p>上面三个代码块分别为用css、sass和gsap实现同一个动画。可见使用gsap更简洁明了。</p>
+<ul>
+<li>STAGGER<ul>
+<li>Things like stagger are really complicated to do in CSS animation, and in GSAP are one line of code.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">TweenMax.staggerTo(<span class="string">".squares"</span>, <span class="number">2</span>, &#123;</span><br><span class="line">  y:<span class="number">100</span>, <span class="attr">backgroundColor</span>:<span class="string">"#4f9d88"</span>, <span class="attr">ease</span>:Elastic.easeOut</span><br><span class="line">&#125;, <span class="number">0.05</span>);</span><br><span class="line">TweenMax.staggerTo(<span class="string">".squares"</span>, <span class="number">2</span>, &#123;</span><br><span class="line">  rotation:<span class="number">200</span>, <span class="attr">delay</span>:<span class="number">1</span>, <span class="attr">scale</span>:<span class="number">0.5</span>, <span class="attr">backgroundColor</span>:<span class="string">"#72b165"</span>, <span class="attr">ease</span>:Elastic.easeOut</span><br><span class="line">&#125;, <span class="number">0.025</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="GSAP-Monster-Demo"><a href="#GSAP-Monster-Demo" class="headerlink" title="GSAP Monster Demo"></a>GSAP Monster Demo</h3><p><a href="https://codepen.io/sdras/full/Wramvo" target="_blank" rel="noopener">gsap demo</a></p>
+<h3 id="Cycle-Stagger"><a href="#Cycle-Stagger" class="headerlink" title="Cycle Stagger"></a>Cycle Stagger</h3><p><a href="https://davidwalsh.name/gsap-features" target="_blank" rel="noopener">GSAP + SVG Article</a></p>
+<h3 id="Setting-CSS-Properties"><a href="#Setting-CSS-Properties" class="headerlink" title="Setting CSS Properties"></a>Setting CSS Properties</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TweenMax.set(<span class="string">'.squares'</span>, &#123;</span><br><span class="line">  transformPerspective:<span class="number">200</span>, <span class="attr">perspective</span>:<span class="number">200</span>, <span class="attr">transformStyle</span>:<span class="string">"preserve-3d"</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">TweenMax.to(<span class="string">'.squares'</span>, <span class="number">2.5</span>, &#123;</span><br><span class="line">  rotationX:<span class="number">230</span>, <span class="attr">z</span>:<span class="number">-150</span>, <span class="attr">y</span>:<span class="number">180</span>, <span class="attr">opacity</span>:<span class="number">0.2</span>, <span class="attr">ease</span>:Power2.easeOut</span><br><span class="line">&#125;, <span class="string">"+=0.2"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Comments-on-D3"><a href="#Comments-on-D3" class="headerlink" title="Comments on D3"></a>Comments on D3</h3><p>使用D3来创建DOM，使用gsap来创建动画。</p>
+<h3 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h3><ul>
+<li><p>Timeline</p>
+<ul>
+<li>stack tweens</li>
+<li>set them a little before and after one another</li>
+<li>change their placement in time</li>
+<li>group them into scenes</li>
+<li>add relative labels</li>
+<li>animate the scenes</li>
+<li>make the whole thing faster, move the placement of the whole scene, nesting</li>
+</ul>
+</li>
+<li><p>Position Parameter</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tl = <span class="keyword">new</span> TimelineLite()</span><br><span class="line">tl</span><br><span class="line">  .to(<span class="string">'.orange'</span>, <span class="number">1</span>, &#123;<span class="attr">x</span>: <span class="number">750</span>&#125;)</span><br><span class="line">  <span class="comment">// this just follows the first</span></span><br><span class="line">  .to(<span class="string">'.green'</span>, <span class="number">1</span>, &#123;<span class="attr">x</span>: <span class="number">750</span>&#125;)</span><br><span class="line">  <span class="comment">// there is a one second gap between these two tweens</span></span><br><span class="line">  .to(<span class="string">'.blue'</span>, <span class="number">1</span>, &#123;<span class="attr">x</span>: <span class="number">750</span>&#125;, <span class="string">'+=1'</span>)</span><br><span class="line">  <span class="comment">// this goes to two seconds in</span></span><br><span class="line">  .to(<span class="string">'.red'</span>, <span class="number">1</span>, &#123;<span class="attr">x</span>: <span class="number">750</span>&#125;, <span class="string">'2'</span>)</span><br><span class="line">  <span class="comment">// add a relative label at this part of the timeline</span></span><br><span class="line">  .add(<span class="string">'newLabel'</span>)</span><br><span class="line">  <span class="comment">// tween at 3 seconds past the relative label</span></span><br><span class="line">  .to(<span class="string">'purple'</span>, <span class="number">1</span>, &#123;<span class="attr">x</span>: <span class="number">750</span>&#125;, <span class="string">'newLabel+=3'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Simple Timeline</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tl = <span class="keyword">new</span> TimelineMax()</span><br><span class="line"></span><br><span class="line">tl.to(el, <span class="number">3</span>, &#123;</span><br><span class="line">  fill: <span class="string">'white'</span>,</span><br><span class="line">  opacity: <span class="number">.3</span>,</span><br><span class="line">  ease: Elastic.easeOut</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">tl.to(el2, <span class="number">3</span>, &#123;</span><br><span class="line">  fill: <span class="string">'orange'</span>,</span><br><span class="line">  ease: Sine.easeOut</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NESTING TIMELINES</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//set properties needed for animation outside</span></span><br><span class="line">TweenMax.set(el, &#123;</span><br><span class="line">  perspective: <span class="number">400</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// the first scene</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sceneOne</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tl = <span class="keyword">new</span> TimelineMax();</span><br><span class="line"></span><br><span class="line">  tl.to(el, <span class="number">3</span>, &#123;</span><br><span class="line">    fill: <span class="string">'white'</span>,</span><br><span class="line">    opacity: <span class="number">0.3</span>,</span><br><span class="line">    ease: Elastic.easeOut</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> tl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a master timeline</span></span><br><span class="line"><span class="keyword">var</span> master = <span class="keyword">new</span> TimelineMax(&#123;options&#125;);</span><br><span class="line"><span class="comment">// Add the scene function to the master</span></span><br><span class="line">master.add(sceneOne(), <span class="string">"labelOnMaster"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//use this while you're working to get to a place in time</span></span><br><span class="line"><span class="comment">//master.seek("labelOnMaster+=2");</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://codepen.io/sdras/pen/ByEWON" target="_blank" rel="noopener">codepen demo</a></p>
+<ul>
+<li>No Momentary Display</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* set to hide in css */</span></span><br><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// set back in js</span></span><br><span class="line">TweenMax.set(<span class="string">'.foo'</span>, &#123;</span><br><span class="line">  visibility: <span class="string">'visible'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Percentage based transforms on SVG</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tl.staggerTo(<span class="string">'.box'</span>, <span class="number">0.5</span>, &#123;<span class="attr">x</span>: <span class="string">'100%'</span>&#125;, <span class="number">0.4</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="GSAP-Demo"><a href="#GSAP-Demo" class="headerlink" title="GSAP Demo"></a>GSAP Demo</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"newbox"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: teal;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: indigo;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">100px</span> <span class="number">30px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.newbox</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">100px</span> <span class="number">30px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tl = <span class="keyword">new</span> TimelineMax(),</span><br><span class="line">    box = <span class="built_in">document</span>.querySelectorAll(<span class="string">".box"</span>);</span><br><span class="line"></span><br><span class="line">tl.staggerFrom(box, <span class="number">5</span>, &#123;</span><br><span class="line">  y: <span class="number">-300</span>,</span><br><span class="line">  ease: Bounce.easeOut</span><br><span class="line">&#125;, <span class="number">0.05</span>)</span><br><span class="line"></span><br><span class="line">tl.add(<span class="string">'rotate'</span>)</span><br><span class="line">tl.staggerFrom(box, <span class="number">2</span>, &#123;</span><br><span class="line">  rotation: <span class="number">90</span>,</span><br><span class="line">  ease: Bounce.easeIn</span><br><span class="line">&#125;, <span class="number">0.05</span>, <span class="string">'rotate'</span>)</span><br><span class="line">tl.staggerFrom(box, <span class="number">1</span>, &#123;</span><br><span class="line">  rotation: <span class="number">180</span>,</span><br><span class="line">  ease: Bounce.easeOut</span><br><span class="line">&#125;, <span class="number">0.05</span>, <span class="string">'rotate+=1.75'</span>)</span><br><span class="line"></span><br><span class="line">tl.from(<span class="string">'.newbox'</span>, <span class="number">2</span>, &#123;</span><br><span class="line">  rotation: <span class="number">90</span>,</span><br><span class="line">  ease: Bounce.easeIn</span><br><span class="line">&#125;, <span class="string">'rotate'</span>)</span><br><span class="line">tl.from(<span class="string">'.newbox'</span>, <span class="number">1</span>, &#123;</span><br><span class="line">  rotation: <span class="number">180</span>,</span><br><span class="line">  ease: Bounce.easeOut</span><br><span class="line">&#125;, <span class="string">'rotate+=1.75'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="UI-UX-Animation"><a href="#UI-UX-Animation" class="headerlink" title="UI/UX Animation"></a>UI/UX Animation</h2><ul>
+<li>UI/UX ANIMATION VS. STANDALONE + INTERACTION</li>
+</ul>
+<p>ANIMATED ICONS THIS <a href="https://github.com/sdras/vue-sample-svg-icons" target="_blank" rel="noopener">REPO</a></p>
+<p><a href="https://codepen.io/sdras/pen/Kwjyzo" target="_blank" rel="noopener">codepen demo</a></p>
+<ul>
+<li><p>UI/UX ANIMATION</p>
+<ul>
+<li>Pieces of the UI move to aid in an informative UX choreography. This can typically be done with well placed CSS, some JS to trigger interactions. Responsive can be achieved with <strong>good CSS media queries</strong></li>
+</ul>
+</li>
+<li><p>UI/UX ANIMATION: CONTEXT-SHIFTING</p>
+</li>
+</ul>
+<p><a href="https://cssanimation.rocks/list-items/" target="_blank" rel="noopener">demo</a></p>
+<p><a href="https://www.concrete-matter.com/" target="_blank" rel="noopener">navigation example</a></p>
+<ul>
+<li>STANDALONE<ul>
+<li>Used to illustrate concepts in the body of the page, either alongside or on it’s own. Most of the basis of this talk is complex standalone animation. JavaScript is recommended for much longer implementations (explained later).</li>
+</ul>
+</li>
+</ul>
+<p>ui/ux动效更多的是为了视觉化用户操作，给用户一个视觉化的反馈，不应喧宾夺主，过渡吸引用户注意。单独的动画目的就是吸引用户注意力。</p>
+<p><a href="https://codepen.io/sdras/full/LEorev" target="_blank" rel="noopener">联系界面demo</a></p>
+<h3 id="Social-Engineering-with-Animation"><a href="#Social-Engineering-with-Animation" class="headerlink" title="Social Engineering with Animation"></a>Social Engineering with Animation</h3><ul>
+<li>Anticipatory Cues<ul>
+<li>Custom Loaders</li>
+<li><a href="https://www.viget.com/articles/experiments-in-loading-how-long-will-you-wait/" target="_blank" rel="noopener">Viget did an experiment</a> and found that despite some individual variation, novel loaders as a whole had a higher wait time and lower abandon rate than generic ones</li>
+</ul>
+</li>
+</ul>
+<p>可以看到一个良好的页面等待动效会增加用户的留存时间。</p>
+<ul>
+<li>STANDALONE SVG AS AN ILLUSTRATION OF TEXT<ul>
+<li>THE <a href="http://codepen.io/sdras/full/7f31b37ae59639b3f7f66b76bd6f010d" target="_blank" rel="noopener">POOR-MAN VERSION</a></li>
+<li>Very easy to implement. SVG stays a consistent size</li>
+</ul>
+</li>
+</ul>
+<h3 id="Context-Switching"><a href="#Context-Switching" class="headerlink" title="Context Switching"></a>Context Switching</h3><ul>
+<li><p>UI/UX ANIMATION WITH INTERACTION HELPS WITH <a href="https://css-tricks.com/the-importance-of-context-shifting-in-ux-patterns/" target="_blank" rel="noopener">CONTEXT-SHIFTING</a></p>
+<ul>
+<li><a href="https://codepen.io/sdras/full/qOdwdB" target="_blank" rel="noopener">CodePen demo</a></li>
+</ul>
+</li>
+<li><p>UI/UX ANIMATION: <a href="http://codepen.io/sdras/full/qOdWEP" target="_blank" rel="noopener">CONTEXT-SHIFTING</a></p>
+</li>
+</ul>
+<h3 id="Improving-an-Existing-UI-Demo"><a href="#Improving-an-Existing-UI-Demo" class="headerlink" title="Improving an Existing UI Demo"></a>Improving an Existing UI Demo</h3><ul>
+<li>Apply this to realy dev</li>
+</ul>
+<p><a href="https://codepen.io/sdras/full/amJLxN" target="_blank" rel="noopener">demo</a></p>
+<h3 id="Interaction-JS-Detection-amp-Scaling"><a href="#Interaction-JS-Detection-amp-Scaling" class="headerlink" title="Interaction, JS Detection &amp; Scaling"></a>Interaction, JS Detection &amp; Scaling</h3><p>可以使用js来监听动画</p>
+<ul>
+<li>HOOK INTO<ul>
+<li>animationstart</li>
+<li>animationiteration</li>
+<li>animationend</li>
+</ul>
+</li>
+</ul>
+<h3 id="Interaction-amp-GSAP-Timeline-Functions"><a href="#Interaction-amp-GSAP-Timeline-Functions" class="headerlink" title="Interaction &amp; GSAP Timeline Functions"></a>Interaction &amp; GSAP Timeline Functions</h3><ul>
+<li>USEFUL FUNCTIONS FOR INTERACTION + GSAP TIMELINE</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tl.pause() <span class="comment">// Pause timeline</span></span><br><span class="line">tl.resume() <span class="comment">// Continue playback</span></span><br><span class="line">tl.restart() <span class="comment">// Restart the timeline</span></span><br><span class="line">tl.play(X) <span class="comment">// Play from Xs</span></span><br><span class="line">tl.play(-X) <span class="comment">// Play Xs from end</span></span><br><span class="line">tl.seek(X) <span class="comment">// Go to Xs or 'label'</span></span><br><span class="line">tl.reverse() <span class="comment">// Reverse playback anytime</span></span><br><span class="line">tl.timeScale(x) <span class="comment">// Speed up/slow down timeline</span></span><br><span class="line">tl.progress(<span class="number">0.5</span>) <span class="comment">// Skip to halfway</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/sdras/svg-workshop/blob/master/gsap-basic-timeline.js" target="_blank" rel="noopener">cheatsheet</a></p>
+<h3 id="Interaction-Demo"><a href="#Interaction-Demo" class="headerlink" title="Interaction Demo"></a>Interaction Demo</h3><ul>
+<li><a href="https://codepen.io/sdras/full/waXKPw" target="_blank" rel="noopener">Interaction plus response</a></li>
+</ul>
+<h3 id="Graggable"><a href="#Graggable" class="headerlink" title="Graggable"></a>Graggable</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Draggable.create(<span class="string">".box"</span>, &#123;<span class="attr">type</span>:<span class="string">"x,y"</span>, <span class="attr">edgeResistance</span>:<span class="number">0.65</span>, <span class="attr">bounds</span>:<span class="string">"#container"</span>, <span class="attr">throwProps</span>:<span class="literal">true</span>&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Device-enabled for touchscreen</li>
+<li>Impose bounds- containing units or pixel parameters bounds:{top:100, left:0, width:1000, height:800}</li>
+<li>Momentum: If you have ThrowPropsPlugin you can set throwProps:true</li>
+<li>Draggable.hitTest() to sense if elements touch eachother (more on this in a moment)</li>
+<li>Honors transform-origin</li>
+<li>Still works on transformed elements</li>
+<li>Lock movement to an axis lockAxis:true</li>
+<li>GPU-accelerated and requestAnimationFrame-driven</li>
+<li><p><a href="https://greensock.com/draggable" target="_blank" rel="noopener">more</a></p>
+</li>
+<li><p>RICH CALLBACK SYSTEM AND EVENT DISPATCHING</p>
+<ul>
+<li>onPress</li>
+<li>onDragStart</li>
+<li>onDrag</li>
+<li>onDragEnd</li>
+<li>onRelease</li>
+<li>onLockAxis</li>
+<li>onClick</li>
+</ul>
+</li>
+<li><p>“this” refers to the Draggable instance itself, so you can easily access its “target” or bounds.</p>
+</li>
+<li>If you prefer event listeners, Draggable dispatches events:<ul>
+<li><code>yourDraggable.addEventListener(&quot;dragend&quot;, yourFunc);</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="GSAP-Extras"><a href="#GSAP-Extras" class="headerlink" title="GSAP Extras"></a>GSAP Extras</h2><h3 id="DrwaSVG"><a href="#DrwaSVG" class="headerlink" title="DrwaSVG"></a>DrwaSVG</h3><p><a href="https://greensock.com/drawSVG" target="_blank" rel="noopener">document</a></p>
+<h3 id="Motion-Along-a-Path"><a href="#Motion-Along-a-Path" class="headerlink" title="Motion Along a Path"></a>Motion Along a Path</h3><ul>
+<li>This is one of the coolest things about SMIL, but the promise of support has a longer tail with GreenSock<ul>
+<li>Backwards compatibility and cross browser even IE</li>
+<li>SMIL motion along a path will probably continue to be unsupported in IE, but support for this future will move into CSS. However, this is down the line. In the meantime, use GSAP for the widest support</li>
+</ul>
+</li>
+</ul>
+<h3 id="Curviness-amp-Rotation"><a href="#Curviness-amp-Rotation" class="headerlink" title="Curviness &amp; Rotation"></a>Curviness &amp; Rotation</h3><ul>
+<li>MOTION ALONG A PATH: CURVINESS<ul>
+<li>Can just use paths as general coordinates and smooth out the motion between</li>
+<li>Either set the type parameter to soft</li>
+<li>Or for more control set the type to thru (this is the default), and define a curviness value. 0 defines no curviness, 1 is normal, 2 is twice as curvy, etc</li>
+</ul>
+</li>
+</ul>
+<h3 id="Animating-Text"><a href="#Animating-Text" class="headerlink" title="Animating Text"></a>Animating Text</h3><ul>
+<li>SPLIT TEXT<ul>
+<li>Plugin- no dependencies, even on TweenMax</li>
+<li>Support Back to IE8</li>
+<li>Breaks into characters, words or lines</li>
+<li>Honors natural line breaks</li>
+<li>Option to create auto-incrementing classes, i.e. .char1, .char2, .char3</li>
+</ul>
+</li>
+</ul>
+<h3 id="Relative-Color-Values"><a href="#Relative-Color-Values" class="headerlink" title="Relative Color Values"></a>Relative Color Values</h3><ul>
+<li>HOW WOULD WE TURN A MANY ELEMENT SCENE FROM DAY TO NIGHT?<ul>
+<li>HSL RELATIVE COLOR<ul>
+<li>Hue</li>
+<li>Saturation</li>
+<li>Lightness</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="MorphSVG"><a href="#MorphSVG" class="headerlink" title="MorphSVG"></a>MorphSVG</h3><p><a href="https://greensock.com/morphSVG" target="_blank" rel="noopener">GreenSocks documents</a></p>
+<h3 id="Bonus-Demos"><a href="#Bonus-Demos" class="headerlink" title="Bonus Demos"></a>Bonus Demos</h3><p><a href="https://codepen.io/osublake/" target="_blank" rel="noopener">Blake Bowen</a></p>
+<p><a href="https://codepen.io/sdras/full/EVRJqg" target="_blank" rel="noopener">demo</a></p>
+<p><a href="https://s.codepen.io/sdras/debug/VpYeNj" target="_blank" rel="noopener">demo</a></p>
+<p><a href="https://codepen.io/sdras/full/zvXbGJ/" target="_blank" rel="noopener">Sound, Interaction, Animation</a></p>
+<h2 id="Advanced-SVGs"><a href="#Advanced-SVGs" class="headerlink" title="Advanced SVGs"></a>Advanced SVGs</h2><h3 id="Clipping-amp-Masking"><a href="#Clipping-amp-Masking" class="headerlink" title="Clipping &amp; Masking"></a>Clipping &amp; Masking</h3><p><a href="https://css-tricks.com/masking-vs-clipping-use/" target="_blank" rel="noopener">Masking vs. Clipping: When to Use Each</a></p>
+<h3 id="viewBox"><a href="#viewBox" class="headerlink" title="viewBox"></a>viewBox</h3><h3 id="svgOrigin"><a href="#svgOrigin" class="headerlink" title="svgOrigin"></a>svgOrigin</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+            <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+          
+            <a href="/tags/SVG/" rel="tag"># SVG</a>
+          
+            <a href="/tags/GSAP/" rel="tag"># GSAP</a>
+          
+            <a href="/tags/Animation/" rel="tag"># Animation</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/11/JS全解-JS语法/" rel="next" title="[JS全解]JS语法">
+                <i class="fa fa-chevron-left"></i> [JS全解]JS语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg" alt="刘勇">
+            
+              <p class="site-author-name" itemprop="name">刘勇</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">109</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/blingblingredstar" title="GitHub &rarr; https://github.com/blingblingredstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:564447023@qq.com" title="E-Mail &rarr; mailto:564447023@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVG-Anatomy-Overview"><span class="nav-number">2.</span> <span class="nav-text">SVG Anatomy Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-SVG-Scalable-Vector-Graphics"><span class="nav-number">2.1.</span> <span class="nav-text">What is SVG(Scalable Vector Graphics)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVG-Support-amp-Performance"><span class="nav-number">2.2.</span> <span class="nav-text">SVG Support &amp; Performance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Antidote-to-Positioning-in-CSS"><span class="nav-number">2.3.</span> <span class="nav-text">The Antidote to Positioning in CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Platonic-Shapes"><span class="nav-number">2.4.</span> <span class="nav-text">Platonic Shapes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewBox-amp-Responsive"><span class="nav-number">2.5.</span> <span class="nav-text">ViewBox &amp; Responsive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#preserveAspectRatio"><span class="nav-number">2.6.</span> <span class="nav-text">preserveAspectRatio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paths-Groups-amp-Polylines"><span class="nav-number">2.7.</span> <span class="nav-text">Paths, Groups &amp; Polylines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Animated-Bezier-Curves-amp-Template-Literals"><span class="nav-number">2.8.</span> <span class="nav-text">Animated Bezier Curves &amp; Template Literals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Accessibility"><span class="nav-number">2.9.</span> <span class="nav-text">Accessibility</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-Animation"><span class="nav-number">3.</span> <span class="nav-text">CSS Animation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimizing-amp-Building"><span class="nav-number">3.1.</span> <span class="nav-text">Optimizing &amp; Building</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consturcting-an-SVG"><span class="nav-number">3.2.</span> <span class="nav-text">Consturcting an SVG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Starting-an-SVG"><span class="nav-number">3.3.</span> <span class="nav-text">Starting an SVG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prototyping"><span class="nav-number">3.4.</span> <span class="nav-text">Prototyping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Planning-an-Animation-Exercise"><span class="nav-number">3.5.</span> <span class="nav-text">Planning an Animation Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Planning-an-Animation-Review"><span class="nav-number">3.6.</span> <span class="nav-text">Planning an Animation Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Animation-Support-Breakdown"><span class="nav-number">3.7.</span> <span class="nav-text">Animation Support Breakdown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Differences-in-Functionality"><span class="nav-number">3.8.</span> <span class="nav-text">Differences in Functionality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-SVG"><span class="nav-number">3.9.</span> <span class="nav-text">Why SVG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transform-Origin"><span class="nav-number">3.10.</span> <span class="nav-text">Transform-Origin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Animate-an-SVG-Exercise"><span class="nav-number">3.11.</span> <span class="nav-text">Animate an SVG Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVG-Tools-and-Ideas"><span class="nav-number">3.12.</span> <span class="nav-text">SVG Tools and Ideas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sprites"><span class="nav-number">3.13.</span> <span class="nav-text">Sprites</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Atmospheric-and-Elemental-Motion"><span class="nav-number">3.14.</span> <span class="nav-text">Atmospheric and Elemental Motion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GreenSock"><span class="nav-number">4.</span> <span class="nav-text">GreenSock</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tools-Overview"><span class="nav-number">4.1.</span> <span class="nav-text">Tools Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Performance-amp-GSAP"><span class="nav-number">4.2.</span> <span class="nav-text">Performance &amp; GSAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TweenMax-Syntax"><span class="nav-number">4.3.</span> <span class="nav-text">TweenMax Syntax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stagger"><span class="nav-number">4.4.</span> <span class="nav-text">Stagger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GSAP-Monster-Demo"><span class="nav-number">4.5.</span> <span class="nav-text">GSAP Monster Demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cycle-Stagger"><span class="nav-number">4.6.</span> <span class="nav-text">Cycle Stagger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setting-CSS-Properties"><span class="nav-number">4.7.</span> <span class="nav-text">Setting CSS Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comments-on-D3"><span class="nav-number">4.8.</span> <span class="nav-text">Comments on D3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timeline"><span class="nav-number">4.9.</span> <span class="nav-text">Timeline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GSAP-Demo"><span class="nav-number">4.10.</span> <span class="nav-text">GSAP Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI-UX-Animation"><span class="nav-number">5.</span> <span class="nav-text">UI/UX Animation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Social-Engineering-with-Animation"><span class="nav-number">5.1.</span> <span class="nav-text">Social Engineering with Animation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Context-Switching"><span class="nav-number">5.2.</span> <span class="nav-text">Context Switching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improving-an-Existing-UI-Demo"><span class="nav-number">5.3.</span> <span class="nav-text">Improving an Existing UI Demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interaction-JS-Detection-amp-Scaling"><span class="nav-number">5.4.</span> <span class="nav-text">Interaction, JS Detection &amp; Scaling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interaction-amp-GSAP-Timeline-Functions"><span class="nav-number">5.5.</span> <span class="nav-text">Interaction &amp; GSAP Timeline Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interaction-Demo"><span class="nav-number">5.6.</span> <span class="nav-text">Interaction Demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Graggable"><span class="nav-number">5.7.</span> <span class="nav-text">Graggable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GSAP-Extras"><span class="nav-number">6.</span> <span class="nav-text">GSAP Extras</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DrwaSVG"><span class="nav-number">6.1.</span> <span class="nav-text">DrwaSVG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Motion-Along-a-Path"><span class="nav-number">6.2.</span> <span class="nav-text">Motion Along a Path</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Curviness-amp-Rotation"><span class="nav-number">6.3.</span> <span class="nav-text">Curviness &amp; Rotation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Animating-Text"><span class="nav-number">6.4.</span> <span class="nav-text">Animating Text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Relative-Color-Values"><span class="nav-number">6.5.</span> <span class="nav-text">Relative Color Values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MorphSVG"><span class="nav-number">6.6.</span> <span class="nav-text">MorphSVG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bonus-Demos"><span class="nav-number">6.7.</span> <span class="nav-text">Bonus Demos</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advanced-SVGs"><span class="nav-number">7.</span> <span class="nav-text">Advanced SVGs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clipping-amp-Masking"><span class="nav-number">7.1.</span> <span class="nav-text">Clipping &amp; Masking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#viewBox"><span class="nav-number">7.2.</span> <span class="nav-text">viewBox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#svgOrigin"><span class="nav-number">7.3.</span> <span class="nav-text">svgOrigin</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
