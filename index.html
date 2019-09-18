@@ -364,7 +364,7 @@
                 
               
 
-              <time title="创建时间：2019-09-18 09:42:57 / 修改时间：09:43:47" itemprop="dateCreated datePublished" datetime="2019-09-18T09:42:57+08:00">2019-09-18</time>
+              <time title="创建时间：2019-09-18 09:42:57 / 修改时间：09:46:36" itemprop="dateCreated datePublished" datetime="2019-09-18T09:42:57+08:00">2019-09-18</time>
             
 
             
@@ -422,8 +422,7 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>本文章资料主要来自<a href="https://mp.weixin.qq.com/s/nEzhoM75UCRMWReDEMnAfQ" target="_blank" rel="noopener">饥人谷2020版前端体系课</a>，本文为课程笔记</p>
 </blockquote>
 <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ul>
@@ -437,136 +436,19 @@
 <ul>
 <li><code>const obj = { &#39;name&#39;: &#39;Frank&#39;, &#39;age&#39;: 18 }</code></li>
 <li><code>const obj = new Object({ &#39;name&#39;: &#39;Frank&#39; })</code></li>
-<li><code>console.log({ &#39;name&#39;: &#39;Frank&#39;, &#39;age&#39;: 18 })</code></li>
-</ul>
-</li>
-<li><p>细节</p>
-<ul>
-<li>键名为字符串，不是标识符，可以包含任意字符</li>
-<li>引号可省略，省略后只能写标识符</li>
-<li><strong>即使省略引号，键名仍为字符串</strong></li>
-<li>使用<code>Object.keys()</code>可获取对象的所有键名</li>
-</ul>
-</li>
-<li><p>使用变量的值作为属性名</p>
-<ul>
-<li><code>const p1 = &#39;name&#39;</code> 定义一个变量</li>
-<li><code>const obj = { p1: &#39;Frank&#39; } // { &#39;p1&#39;: &#39;Frank&#39; }</code> 直接书写，键名为p1</li>
-<li><code>const obj = { [p1]: &#39;Frank&#39; } // { &#39;name&#39;: &#39;Frank&#39; }</code> 使用方括号包裹，键名为变量p1的值</li>
-</ul>
-</li>
-<li><p>对比</p>
-<ul>
-<li>不加[]的属性名会自动转换为字符串</li>
-<li>加了[]后会当做表达式求值</li>
-</ul>
-</li>
-<li><p>对象的隐藏属性</p>
-<ul>
-<li>JS中每个对象都有一个隐藏属性</li>
-<li>这个隐藏属性存储着其共有属性和方法组成的对象的地址</li>
-<li>这个由其公共属性和方法组成的对象叫做原型</li>
-<li>也就是说每个对象都有一个隐藏属性，存储着其原型的地址</li>
-</ul>
-</li>
-<li><p>Symbol也可作为属性名</p>
-<ul>
-<li>迭代时会使用</li>
-<li>可见<a href="https://blingblingredstar.github.io/2019/05/02/JavaScript-The-Recent-Parts/#Data-Structure-Without-Iterators" target="_blank" rel="noopener">这里</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="对象属性的增删改查"><a href="#对象属性的增删改查" class="headerlink" title="对象属性的增删改查"></a>对象属性的增删改查</h2><h3 id="删除属性"><a href="#删除属性" class="headerlink" title="删除属性"></a>删除属性</h3><ul>
-<li><code>delete obj.propertyName</code>或<code>delete obj[&#39;propertyName&#39;]</code><ul>
-<li>可以删除obj的propertyName属性</li>
-</ul>
-</li>
-<li>不含属性名<ul>
-<li><code>&#39;propertyName&#39; in obj === false</code></li>
-</ul>
-</li>
-<li>含有属性，但值为undefined<ul>
-<li><code>&#39;property&#39; in obj &amp;&amp; obj.property === undefined</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h3><ul>
-<li><p>每个对象都有一个原型对象(使用Object.create(null)创建的除外)</p>
-<ul>
-<li>原型对象保存着实例对象的共有属性和方法</li>
-</ul>
-</li>
-<li><p>实例对象的原型对象也是对象</p>
-<ul>
-<li>所以原型对象也有原型对象</li>
-<li><code>const obj = {}</code>，obj的原型对象也是所有Object的实例对象的原型对象</li>
-<li>这个原型对象包含了所有对象的公共属性和方法，是对象的根</li>
-<li>这个原型对象的原型指向了null(原型链的最终指向)</li>
-</ul>
-</li>
-</ul>
-<h3 id="查看属性"><a href="#查看属性" class="headerlink" title="查看属性"></a>查看属性</h3><ul>
-<li>查看自身所有属性<ul>
-<li><code>Object.keys(obj)</code></li>
-</ul>
-</li>
-<li>查看自身属性 + 共有属性<ul>
-<li><code>console.dir(obj)</code></li>
-<li>使用<code>Object.keys()</code>分别传入<code>obj</code>和<code>obj.__proto__</code></li>
-</ul>
-</li>
-<li>判断属性是否为自身属性<ul>
-<li><code>obj.hasOwnProperty(&#39;toString&#39;)</code></li>
-<li>使用<code>in</code>关键字，可以查看当前对象或者原型对象上是否有对应属性，使用<code>hasOwnProperty</code>，可以查看当前对象上是否有特定属性</li>
-</ul>
-</li>
-<li>查看指定属性<ul>
-<li>中括号语法<ul>
-<li><code>obj[&#39;key&#39;]</code></li>
-</ul>
-</li>
-<li>点语法<ul>
-<li><code>obj.key</code></li>
-</ul>
-</li>
-<li>两种语法功能上没有区别，使用中括号语法，可以使用变量来访问属性</li>
-</ul>
-</li>
-</ul>
-<h3 id="修改-增加属性"><a href="#修改-增加属性" class="headerlink" title="修改/增加属性"></a>修改/增加属性</h3><ul>
-<li><p>直接赋值</p>
-<ul>
-<li><code>const obj = { &#39;name&#39;: &#39;Frank&#39; }</code></li>
-<li><code>obj.name = &#39;Frank&#39; // name是字符串</code></li>
-<li><code>obj[&#39;name&#39;] = &#39;Frank&#39;</code></li>
-<li><code>obj[&#39;na&#39; + &#39;me&#39;] = &#39;Frank&#39;</code></li>
-<li><code>const key = &#39;name&#39;; obj[key] = &#39;Frank&#39;</code></li>
-</ul>
-</li>
-<li><p>批量赋值</p>
-<ul>
-<li><code>Object.assign(obj, {&#39;age&#39;: 18, &#39;gender&#39;: &#39;man&#39;})</code></li>
-</ul>
-</li>
-<li><p>修改/增加原型对象属性</p>
-<ul>
-<li>无法通过自身修改或增加原型对象属性</li>
-<li>一般来说，不推荐修改原型</li>
-<li>如果要修改，通过构造函数的原型属性进行修改</li>
-</ul>
-</li>
-<li><p>修改原型对象</p>
-<ul>
-<li>不推荐使用<code>__proto__</code>属性进行修改</li>
-<li>在创建时直接使用<code>Object.create()</code>，传入一个对象作为新建对象的原型对象</li>
-</ul>
-</li>
-</ul>
-
+<li><code>console.log({ &#39;name&#39;: &#39;Frank&#39;, &#39;age&#39;: 18 })</code>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/18/JS全解-JS对象/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </li></ul></li></ul></div>
 
     
 
