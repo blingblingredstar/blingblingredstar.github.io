@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="刘勇的博客">
 <meta property="og:description" content="一段代码在讨论JS函数执行的时机之前，我们先来看一段代码 123456let i = 0for(i = 0; i&amp;lt;6; i++)&amp;#123;  setTimeout(()=&amp;gt;&amp;#123;    console.log(i)  &amp;#125;,0)&amp;#125; 请问，执行上述代码，最终控制台输出结果是什么？  setTimeout的id, 0, 1, 2, 3, 4, 5 setTimeo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-25T02:33:13.940Z">
+<meta property="og:updated_time" content="2019-09-25T02:37:17.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS函数执行的时机">
 <meta name="twitter:description" content="一段代码在讨论JS函数执行的时机之前，我们先来看一段代码 123456let i = 0for(i = 0; i&amp;lt;6; i++)&amp;#123;  setTimeout(()=&amp;gt;&amp;#123;    console.log(i)  &amp;#125;,0)&amp;#125; 请问，执行上述代码，最终控制台输出结果是什么？  setTimeout的id, 0, 1, 2, 3, 4, 5 setTimeo">
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2019-09-25 10:29:20 / 修改时间：10:33:13" itemprop="dateCreated datePublished" datetime="2019-09-25T10:29:20+08:00">2019-09-25</time>
+              <time title="创建时间：2019-09-25 10:29:20 / 修改时间：10:37:17" itemprop="dateCreated datePublished" datetime="2019-09-25T10:29:20+08:00">2019-09-25</time>
             
 
             
@@ -437,7 +437,7 @@
 
 <h2 id="使用let关键字更改输出"><a href="#使用let关键字更改输出" class="headerlink" title="使用let关键字更改输出"></a>使用let关键字更改输出</h2><p>这里的关键点，我认为有以下几点</p>
 <p>首先是setTimeout内回调函数的执行时间，其次是setTimeout内回调函数使用的i变量的作用域</p>
-<p>其实搞清i的作用域我们就知道，整个执行过程中，我们使用了一个i变量，并在最后输出5次i。</p>
+<p>其实搞清i的作用域我们就知道，整个执行过程中，我们使用了一个i变量，并在最后输出6次i。</p>
 <p>那么如果不更改setTimeout内的代码，有没有办法记录下i的值，并在之后输出呢，也就是实现控制台输出0, 1, 2, 3, 4, 5的效果呢</p>
 <p>很显然，我们需要6个额外的变量来保存i每次循环时的值</p>
 <p>在ES6之前，js并没有块级作用域，但在ES6新出的<code>let</code>和<code>const</code>中，使用这两个关键字会自动将其所在的{}变更为一个新的作用域。</p>
