@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="刘勇的博客">
 <meta property="og:description" content="一段代码在讨论JS函数执行的时机之前，我们先来看一段代码 123456let i = 0for(i = 0; i&amp;lt;6; i++)&amp;#123;  setTimeout(()=&amp;gt;&amp;#123;    console.log(i)  &amp;#125;,0)&amp;#125; 请问，执行上述代码，最终控制台输出结果是什么？  setTimeout的id, 0, 1, 2, 3, 4, 5 setTimeo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-25T02:37:17.884Z">
+<meta property="og:updated_time" content="2019-09-25T03:24:00.372Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS函数执行的时机">
 <meta name="twitter:description" content="一段代码在讨论JS函数执行的时机之前，我们先来看一段代码 123456let i = 0for(i = 0; i&amp;lt;6; i++)&amp;#123;  setTimeout(()=&amp;gt;&amp;#123;    console.log(i)  &amp;#125;,0)&amp;#125; 请问，执行上述代码，最终控制台输出结果是什么？  setTimeout的id, 0, 1, 2, 3, 4, 5 setTimeo">
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2019-09-25 10:29:20 / 修改时间：10:37:17" itemprop="dateCreated datePublished" datetime="2019-09-25T10:29:20+08:00">2019-09-25</time>
+              <time title="创建时间：2019-09-25 10:29:20 / 修改时间：11:24:00" itemprop="dateCreated datePublished" datetime="2019-09-25T10:29:20+08:00">2019-09-25</time>
             
 
             
@@ -445,7 +445,7 @@
 <p>此时我们改写代码如下</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(i))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>为了理解，我会将代码转化如下</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> _i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span>(_i &lt; <span class="number">6</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> i = _i</span><br><span class="line">    setTimeout(<span class="built_in">console</span>.log(i))</span><br><span class="line">    _i++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> _i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span>(_i &lt; <span class="number">6</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> i = _i</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(i) &#125;)</span><br><span class="line">    _i++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此时在js执行完毕后，根据作用域链，查找到for循环的{}内，因为每次执行都创建新的作用域，所以每一轮循环都会有一个“新的i”，也就是类似于js保存了i变量此时的快照，所以总共有6个i，并且在for循环外是访问不到的，也就是setTimeout内的<code>console.log(i)</code>携带了一个闭包。</p>
 <p>关于闭包的定义及使用，如果有不清楚的小伙伴可以多查找一些资料。</p>
 <p>这里也推荐一个<a href="https://www.youtube.com/playlist?list=PLWrQZnG8l0E4kd1T_nyuVoxQUaYEWFgcD" target="_blank" rel="noopener">系列视频</a></p>
