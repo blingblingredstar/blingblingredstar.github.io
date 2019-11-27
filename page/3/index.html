@@ -319,6 +319,201 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/07/CSS全解-CSS动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/07/CSS全解-CSS动画/" class="post-title-link" itemprop="url">[CSS全解]CSS动画</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-07 08:12:13 / 修改时间：08:15:01" itemprop="dateCreated datePublished" datetime="2019-09-07T08:12:13+08:00">2019-09-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>本文章资料主要来自<a href="https://mp.weixin.qq.com/s/nEzhoM75UCRMWReDEMnAfQ" target="_blank" rel="noopener">饥人谷2020版前端体系课</a>，本文为课程笔记</p>
+</blockquote>
+<h2 id="什么是动画"><a href="#什么是动画" class="headerlink" title="什么是动画"></a>什么是动画</h2><ul>
+<li><p>定义</p>
+<ul>
+<li>由许多静止画面组成(帧)</li>
+<li>以一定速度播放</li>
+<li>人眼因视觉残像产生错觉</li>
+<li>误以为是活动画面</li>
+</ul>
+</li>
+<li><p>概念</p>
+<ul>
+<li>帧： 每个静止的画面为一帧</li>
+<li>播放速度：每秒24帧（影视）或每秒30帧（游戏）</li>
+</ul>
+</li>
+<li><p>JS实现方法(使用setInterval与left)</p>
+<ul>
+<li>使用setInterval周期性改变元素left或top值，会使浏览器进行repaint</li>
+<li>性能及其他问题，可以看<a href="https://www.youtube.com/watch?v=cCOL7MC4Pl0" target="_blank" rel="noopener">这个视频</a></li>
+</ul>
+</li>
+<li><p>使用transform实现</p>
+<ul>
+<li>使用transform修改transformX或transformY的值来实现</li>
+<li>直接修改会被合并到当前的requestAnimationFrame，需要设置延时器延时修改</li>
+<li>添加transition属性来自动添加中间帧，没有repaint
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/07/CSS全解-CSS动画/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </li></ul></li></ul></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/05/Responsive-Web-Typography-v2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1917,234 +2112,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/HTML全解-HTML重难点/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="刘勇">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="刘勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/27/HTML全解-HTML重难点/" class="post-title-link" itemprop="url">[HTML全解]HTML重难点</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-27 13:38:39 / 修改时间：13:39:51" itemprop="dateCreated datePublished" datetime="2019-08-27T13:38:39+08:00">2019-08-27</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="英语小课堂"><a href="#英语小课堂" class="headerlink" title="英语小课堂"></a>英语小课堂</h2><table>
-<thead>
-<tr>
-<th>英文</th>
-<th>翻译</th>
-<th>英文</th>
-<th>翻译</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>hyper</td>
-<td>超级</td>
-<td>blank</td>
-<td>空白</td>
-</tr>
-<tr>
-<td>target</td>
-<td>目标</td>
-<td>parent</td>
-<td>父母</td>
-</tr>
-<tr>
-<td>reference</td>
-<td>引用</td>
-<td>self</td>
-<td>自己</td>
-</tr>
-<tr>
-<td>frame</td>
-<td>框架</td>
-<td>load</td>
-<td>加载</td>
-</tr>
-<tr>
-<td>error</td>
-<td>错误</td>
-<td>canvas</td>
-<td>画布</td>
-</tr>
-</tbody>
-</table>
-<h2 id="HTML预览方式"><a href="#HTML预览方式" class="headerlink" title="HTML预览方式"></a>HTML预览方式</h2><ul>
-<li>http-server<ul>
-<li>全局安装http-server<ul>
-<li><code>yarn global add http-server</code></li>
-</ul>
-</li>
-<li>启动http-server<ul>
-<li><code>http-server . -c-1</code>或<code>hs . -c-1</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>parcel</p>
-<ul>
-<li>全局安装parcel<ul>
-<li><code>yarn global add parcel</code></li>
-</ul>
-</li>
-<li>启动parcel<ul>
-<li><code>parcel &lt;filenanme&gt;</code>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/27/HTML全解-HTML重难点/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </li></ul></li></ul></li></ul></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2193,7 +2160,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">78</span>
+                    <span class="site-state-item-count">79</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2505,7 +2472,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">133</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">137</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
