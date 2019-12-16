@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="英语小课堂   英文 翻译 英文 翻译     hyper 超级 blank 空白   target 目标 parent 父母   reference 引用 self 自己   frame 框架 load 加载   error 错误 canvas 画布    HTML预览方式 http-server 全局安装http-server yarn global add http-server   启动h">
-<meta name="keywords" content="饥人谷,HTML">
+  <meta name="description" content="Plugin SystemTapable Plugin Systemwebpack本身可以看做一个custom plugin，由许多其他plugin组成。  What is Tapable? 200 line plugin library the backbone of the plugin system Tapbale instance A class/object that extends T">
+<meta name="keywords" content="FrontEndMasters,Webpack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[HTML全解]HTML重难点">
-<meta property="og:url" content="http://yoursite.com/2019/08/27/HTML全解-HTML重难点/index.html">
+<meta property="og:title" content="Webpack Plugin System">
+<meta property="og:url" content="http://yoursite.com/2019/12/16/Webpack-Plugin-System/index.html">
 <meta property="og:site_name" content="刘勇的博客">
-<meta property="og:description" content="英语小课堂   英文 翻译 英文 翻译     hyper 超级 blank 空白   target 目标 parent 父母   reference 引用 self 自己   frame 框架 load 加载   error 错误 canvas 画布    HTML预览方式 http-server 全局安装http-server yarn global add http-server   启动h">
+<meta property="og:description" content="Plugin SystemTapable Plugin Systemwebpack本身可以看做一个custom plugin，由许多其他plugin组成。  What is Tapable? 200 line plugin library the backbone of the plugin system Tapbale instance A class/object that extends T">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-27T05:39:51.818Z">
+<meta property="og:updated_time" content="2019-12-16T07:20:56.253Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[HTML全解]HTML重难点">
-<meta name="twitter:description" content="英语小课堂   英文 翻译 英文 翻译     hyper 超级 blank 空白   target 目标 parent 父母   reference 引用 self 自己   frame 框架 load 加载   error 错误 canvas 画布    HTML预览方式 http-server 全局安装http-server yarn global add http-server   启动h">
+<meta name="twitter:title" content="Webpack Plugin System">
+<meta name="twitter:description" content="Plugin SystemTapable Plugin Systemwebpack本身可以看做一个custom plugin，由许多其他plugin组成。  What is Tapable? 200 line plugin library the backbone of the plugin system Tapbale instance A class/object that extends T">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/27/HTML全解-HTML重难点/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/16/Webpack-Plugin-System/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>[HTML全解]HTML重难点 | 刘勇的博客</title>
+  <title>Webpack Plugin System | 刘勇的博客</title>
   
 
 
@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/HTML全解-HTML重难点/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/16/Webpack-Plugin-System/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="刘勇">
@@ -340,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[HTML全解]HTML重难点
+          <h1 class="post-title" itemprop="name headline">Webpack Plugin System
 
               
             
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2019-08-27 13:38:39 / 修改时间：13:39:51" itemprop="dateCreated datePublished" datetime="2019-08-27T13:38:39+08:00">2019-08-27</time>
+              <time title="创建时间：2019-12-16 15:20:12 / 修改时间：15:20:56" itemprop="dateCreated datePublished" datetime="2019-12-16T15:20:12+08:00">2019-12-16</time>
             
 
             
@@ -423,336 +423,86 @@
       
 
       
-        <h2 id="英语小课堂"><a href="#英语小课堂" class="headerlink" title="英语小课堂"></a>英语小课堂</h2><table>
-<thead>
-<tr>
-<th>英文</th>
-<th>翻译</th>
-<th>英文</th>
-<th>翻译</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>hyper</td>
-<td>超级</td>
-<td>blank</td>
-<td>空白</td>
-</tr>
-<tr>
-<td>target</td>
-<td>目标</td>
-<td>parent</td>
-<td>父母</td>
-</tr>
-<tr>
-<td>reference</td>
-<td>引用</td>
-<td>self</td>
-<td>自己</td>
-</tr>
-<tr>
-<td>frame</td>
-<td>框架</td>
-<td>load</td>
-<td>加载</td>
-</tr>
-<tr>
-<td>error</td>
-<td>错误</td>
-<td>canvas</td>
-<td>画布</td>
-</tr>
-</tbody>
-</table>
-<h2 id="HTML预览方式"><a href="#HTML预览方式" class="headerlink" title="HTML预览方式"></a>HTML预览方式</h2><ul>
-<li>http-server<ul>
-<li>全局安装http-server<ul>
-<li><code>yarn global add http-server</code></li>
-</ul>
-</li>
-<li>启动http-server<ul>
-<li><code>http-server . -c-1</code>或<code>hs . -c-1</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>parcel</p>
+        <h2 id="Plugin-System"><a href="#Plugin-System" class="headerlink" title="Plugin System"></a>Plugin System</h2><h3 id="Tapable-Plugin-System"><a href="#Tapable-Plugin-System" class="headerlink" title="Tapable Plugin System"></a>Tapable Plugin System</h3><p>webpack本身可以看做一个custom plugin，由许多其他plugin组成。</p>
 <ul>
-<li>全局安装parcel<ul>
-<li><code>yarn global add parcel</code></li>
+<li>What is Tapable?<ul>
+<li>200 line plugin library</li>
+<li>the backbone of the plugin system</li>
+<li>Tapbale instance<ul>
+<li>A class/object that extends Tapable(a.k.a something you can plug into)<a id="more"></a>
+webpack 4之前，api工作原理类似如下</li>
 </ul>
 </li>
-<li>启动parcel<ul>
-<li><code>parcel &lt;filenanme&gt;</code><a id="more"></a>
-<h2 id="a标签"><a href="#a标签" class="headerlink" title="a标签"></a>a标签</h2></li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p>a标签属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Compiler.prototype.compile = <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">var</span> params = self.newCompilationParams();</span><br><span class="line">  self.applyPluginAsync(<span class="string">"before-compile"</span>, params, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> callback(err);</span><br><span class="line"></span><br><span class="line">    self.applyPlugins(<span class="string">"compile"</span>, params);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> compilation = self.newCompilation(params);</span><br><span class="line"></span><br><span class="line">    self.applyPluginsParallel(<span class="string">"make"</span>, compilation, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) <span class="keyword">return</span> callback(err);</span><br><span class="line"></span><br><span class="line">      compilation.finish();</span><br><span class="line">       </span><br><span class="line">      compilation.seal(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err) <span class="keyword">return</span> callback(err);</span><br><span class="line"></span><br><span class="line">        self.applyPluginAsync(<span class="string">"after-compile"</span>, compilation, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (err) <span class="keyword">return</span> callback(err);</span><br><span class="line"></span><br><span class="line">          <span class="keyword">return</span> callback(<span class="literal">null</span>, compilation);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在webpack 3中，我们可以如下编写plugin</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BasicPlugin</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">  apply(compiler) &#123;</span><br><span class="line">    compiler.plugin(<span class="string">'make'</span>, (compilation) =&gt; &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"I now have access to the compilation!!!"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = BasicPlugin</span><br></pre></td></tr></table></figure>
+<h3 id="Compiler-amp-Compilation"><a href="#Compiler-amp-Compilation" class="headerlink" title="Compiler &amp; Compilation"></a>Compiler &amp; Compilation</h3><ul>
+<li>7ish Tapable Instances(aka classes)</li>
+</ul>
+<p>最重要的一个就是complier</p>
+<p>webpack4的源代码中，compiler最重要的属性就是hooks。</p>
 <ul>
-<li>href(hyper reference)</li>
-<li>target<ul>
-<li>如何打开链接，新tab页/同一tab页</li>
-</ul>
-</li>
-<li>download<ul>
-<li>HTML5新属性，可用来下载url</li>
-</ul>
-</li>
-<li>rel=noopener</li>
-</ul>
-</li>
-<li>a标签作用<ul>
-<li>跳转外部页面</li>
-<li>跳转到内部锚点</li>
-<li>跳转到邮箱或电话等</li>
-</ul>
-</li>
-</ul>
-<h3 id="a标签href属性的值"><a href="#a标签href属性的值" class="headerlink" title="a标签href属性的值"></a>a标签href属性的值</h3><!-- markdownlint-disable md034 -->
+<li><p>Compiler</p>
 <ul>
-<li>网址<ul>
-<li><a href="https://google.com" target="_blank" rel="noopener">https://google.com</a></li>
-<li><a href="http://google.com" target="_blank" rel="noopener">http://google.com</a></li>
-<li>//google.com<ul>
-<li><strong>推荐使用，可自动跳转</strong></li>
+<li>Exosed via Node API</li>
+<li>Central dispatch</li>
+<li>Start/Stop</li>
 </ul>
 </li>
-</ul>
-</li>
-<li>路径<ul>
-<li>/a/b/c及a/b/c<ul>
-<li>http协议中绝对路径指向网站根目录</li>
-</ul>
-</li>
-<li>index.html及./index.html</li>
-</ul>
-</li>
-<li>伪协议<ul>
-<li>javascript:代码;</li>
-<li>mailto:邮箱</li>
-<li>tel:电话</li>
-</ul>
-</li>
-<li>id<ul>
-<li>指定id值，跳转到页面中id值相同的元素</li>
-</ul>
-</li>
-</ul>
-<h3 id="a标签target属性的值"><a href="#a标签target属性的值" class="headerlink" title="a标签target属性的值"></a>a标签target属性的值</h3><ul>
-<li>内置名字<ul>
-<li>_blank<ul>
-<li>新tab页打开</li>
-</ul>
-</li>
-<li>_top<ul>
-<li>结合iframe使用，修改iframe页面最外层页面的地址</li>
-</ul>
-</li>
-<li>_parent<ul>
-<li>结合iframe使用，修改iframe页面上一层页面的地址</li>
-</ul>
-</li>
-<li>_self<ul>
-<li>当前tab页或者iframe页面打开</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>程序员命名<ul>
-<li>window的name<ul>
-<li>如果没有就创建一个窗口打开，如果有就使用这个窗口打开</li>
-</ul>
-</li>
-<li>iframe的name<ul>
-<li>使用具有同样name属性值得iframe打开</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="iframe标签"><a href="#iframe标签" class="headerlink" title="iframe标签"></a>iframe标签</h2><ul>
-<li>内嵌窗口<ul>
-<li>很少使用</li>
-</ul>
-</li>
-</ul>
-<h2 id="table标签"><a href="#table标签" class="headerlink" title="table标签"></a>table标签</h2><h3 id="table语法"><a href="#table语法" class="headerlink" title="table语法"></a>table语法</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- table row --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- table header --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- table data --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">tfoot</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tfoot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="相关标签"><a href="#相关标签" class="headerlink" title="相关标签"></a>相关标签</h3><ul>
-<li><p>相关标签</p>
+<li><p>Compilation</p>
 <ul>
-<li>table</li>
-<li>thead</li>
-<li>tbody</li>
-<li>tfoot</li>
-<li>th</li>
-<li>tr</li>
-<li>td</li>
+<li>AKA: The dependency graph! Like human brain.</li>
+<li>Created by the compiler</li>
+<li>Contains dep graph traversal algo.</li>
 </ul>
 </li>
-<li><p>相关样式</p>
+</ul>
+<h3 id="Resolver-amp-Module-Factories"><a href="#Resolver-amp-Module-Factories" class="headerlink" title="Resolver &amp; Module Factories"></a>Resolver &amp; Module Factories</h3><ul>
+<li><p>Resolvers</p>
 <ul>
-<li>table-layout</li>
-<li>border-collapse<ul>
-<li>最好重置为collapse</li>
+<li>给定一个路径，确保引入的模块存在</li>
 </ul>
 </li>
-<li>border-spacing<ul>
-<li>最好重置为0</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="img标签"><a href="#img标签" class="headerlink" title="img标签"></a>img标签</h2><ul>
-<li>作用<ul>
-<li>发送一个get请求，展示一张图片</li>
-</ul>
-</li>
-<li>属性<ul>
-<li>alt<ul>
-<li>提高页面可读性</li>
-</ul>
-</li>
-<li>height<ul>
-<li>只指定高度，宽度自适应</li>
-</ul>
-</li>
-<li>width<ul>
-<li>只指定宽度，高度自适应</li>
-</ul>
-</li>
-<li>src</li>
-</ul>
-</li>
-<li>事件<ul>
-<li>onload</li>
-<li>onerror</li>
-</ul>
-</li>
-<li>响应式<ul>
-<li>max-width: 100%</li>
-</ul>
-</li>
-<li>可替换元素<ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Replaced_element" target="_blank" rel="noopener">MDN</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="form标签"><a href="#form标签" class="headerlink" title="form标签"></a>form标签</h2><ul>
-<li>作用<ul>
-<li>发送get/post请求，然后刷新页面</li>
-</ul>
-</li>
-<li>属性<ul>
-<li>action<ul>
-<li>请求页面地址</li>
-</ul>
-</li>
-<li>autocomplete<ul>
-<li>自动填充，需要标签添加name属性及值</li>
-</ul>
-</li>
-<li>method<ul>
-<li>指定请求方式</li>
-</ul>
-</li>
-<li>target<ul>
-<li>与a标签target属性类似</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>事件<ul>
-<li>onsubmit</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>form标签内必须添加submit按钮(input或button)</p>
-</blockquote>
-<h2 id="input标签"><a href="#input标签" class="headerlink" title="input标签"></a>input标签</h2><ul>
-<li>作用<ul>
-<li>让用户输入内容</li>
-</ul>
-</li>
-<li>属性<ul>
-<li>类型type:<ul>
-<li>button</li>
-<li>checkbox</li>
-<li>email</li>
-<li>file</li>
-<li>hidden</li>
-<li>number</li>
-<li>password</li>
-<li>radio</li>
-<li>search</li>
-<li>submit</li>
-<li>tel</li>
-<li>text</li>
-</ul>
-</li>
-<li>其他<ul>
-<li>name</li>
-<li>autofocus</li>
-<li>checked</li>
-<li>disabled</li>
-<li>maxlength</li>
-<li>pattern</li>
-<li>value</li>
-<li>placeholder</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>事件<ul>
-<li>onchange</li>
-<li>onfocus</li>
-<li>onblur</li>
-</ul>
-</li>
-<li>验证器<ul>
-<li>HTML5新功能</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><code>&lt;input type=&quot;submit&quot; /&gt;</code>与<code>&lt;button type=&quot;submit&quot;&gt;&lt;/button&gt;</code>区别：input为自闭和标签，中间无法添加其他标签，button可以</p>
-</blockquote>
-<h2 id="其他输入标签"><a href="#其他输入标签" class="headerlink" title="其他输入标签"></a>其他输入标签</h2><ul>
-<li>标签<ul>
-<li>select + option</li>
-<li>textarea<ul>
-<li>可以通过css样式resize值为none来禁用手动缩放</li>
-</ul>
-</li>
-<li>label</li>
-</ul>
-</li>
-<li>注意事项<ul>
-<li>一般不监听input的click事件</li>
-<li>form内的input标签应添加name属性</li>
-<li>from标签内需要一个input标签或button标签且type属性为submit才会触发submit事件</li>
-</ul>
-</li>
-</ul>
-<h2 id="其他标签"><a href="#其他标签" class="headerlink" title="其他标签"></a>其他标签</h2><ul>
-<li><p>标签</p>
+<li><p>Module Factories</p>
 <ul>
-<li>video</li>
-<li>audio</li>
-<li>canvas</li>
-<li>svg</li>
+<li>Create Module instance</li>
+<li>Take successfully resolved requests</li>
+<li>Collect source for that file</li>
+<li>Create a Module obj</li>
 </ul>
 </li>
-<li><p>注意事项</p>
+</ul>
+<h3 id="Parser-amp-Templates"><a href="#Parser-amp-Templates" class="headerlink" title="Parser &amp; Templates"></a>Parser &amp; Templates</h3><ul>
+<li><p>Parser</p>
 <ul>
-<li>注意查看文档，确认兼容性</li>
+<li>Take a string and converts to an AST</li>
+<li>Take a module Object, turns into AST to parse</li>
+<li>Find all requires/imports, create Dependency’s</li>
+</ul>
+</li>
+<li><p>Templates</p>
+<ul>
+<li>Data binding for your modules</li>
+<li>Create the code you see in your bundles</li>
 </ul>
 </li>
 </ul>
+<p>webpack的工作流程可以概述为以下三个阶段</p>
+<ol>
+<li>build the graph</li>
+<li>optimize the graph</li>
+<li>render the graph to the bundles</li>
+</ol>
+<h2 id="Creating-Plugins"><a href="#Creating-Plugins" class="headerlink" title="Creating Plugins"></a>Creating Plugins</h2><h3 id="Creating-a-Webpack-Plugin"><a href="#Creating-a-Webpack-Plugin" class="headerlink" title="Creating a Webpack Plugin"></a>Creating a Webpack Plugin</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyFirstWebpackPlugin</span> </span>&#123;</span><br><span class="line">  apply(compiler) &#123;</span><br><span class="line">    compiler.hooks.done.tapAsync(<span class="string">"MyFirstWebpackPlugin"</span>, (status, cb) =&gt; &#123;</span><br><span class="line">      <span class="keyword">const</span> assetNames = <span class="built_in">Object</span>.keys(status.compilation.assets);</span><br><span class="line">      <span class="built_in">console</span>.log(assetNames.join(<span class="string">"\n"</span>));</span><br><span class="line">      cb();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = MyFirstWebpackPlugin;</span><br></pre></td></tr></table></figure>
+<h3 id="Plugin-Instance-Hooks"><a href="#Plugin-Instance-Hooks" class="headerlink" title="Plugin Instance Hooks"></a>Plugin Instance Hooks</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyFirstWebpackPlugin</span> </span>&#123;</span><br><span class="line">  apply(compiler) &#123;</span><br><span class="line">    compiler.hooks.done.tapAsync(<span class="string">"MyFirstWebpackPlugin"</span>, (status, cb) =&gt; &#123;</span><br><span class="line">      <span class="keyword">const</span> assetNames = <span class="built_in">Object</span>.keys(status.compilation.assets);</span><br><span class="line">      <span class="built_in">console</span>.log(assetNames.join(<span class="string">"\n"</span>));</span><br><span class="line">      cb();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    compiler.hooks.compilation.tap(</span><br><span class="line">      <span class="string">"MyFirstWebpackPlugin"</span>,</span><br><span class="line">      (compilation, params) =&gt; &#123;</span><br><span class="line">        <span class="keyword">new</span> MyFirstWebpackCompilationPlugin().apply(compilation);</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyFirstWebpackCompilationPlugin</span> </span>&#123;</span><br><span class="line">  apply() &#123;</span><br><span class="line">    compilation.hooks.seal.tap(<span class="string">"MyFirstWebpackCompilationPlugin"</span>, () =&gt; &#123;</span><br><span class="line">      <span class="keyword">debugger</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = MyFirstWebpackPlugin;</span><br></pre></td></tr></table></figure>
+<h2 id="Config-Loaders-amp-Babel"><a href="#Config-Loaders-amp-Babel" class="headerlink" title="Config, Loaders &amp; Babel"></a>Config, Loaders &amp; Babel</h2><h3 id="Creating-a-Custom-Loader"><a href="#Creating-a-Custom-Loader" class="headerlink" title="Creating a Custom Loader"></a>Creating a Custom Loader</h3><p>首先配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</span><br><span class="line">  resolveLoader: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">"my-loader"</span>: <span class="built_in">require</span>.resolve(<span class="string">"./my-loader.js"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [&#123; <span class="attr">test</span>: <span class="regexp">/\.js/</span>, <span class="attr">use</span>: <span class="string">"my-loader"</span> &#125;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myLoader</span>(<span class="params">source</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">debugger</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.resource === <span class="string">"/Users/wecomm/seanlarkin/webpack-workshop-2018/src/index.js"</span>) &#123;</span><br><span class="line">        source+=<span class="string">"; console.log('ilovebanananas');"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> source;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = myLoader;</span><br></pre></td></tr></table></figure>
+<h3 id="Configuring-Babel-for-Webpack"><a href="#Configuring-Babel-for-Webpack" class="headerlink" title="Configuring Babel for Webpack"></a>Configuring Babel for Webpack</h3><p>推荐将babel的presets中env中的modules属性设置为false。</p>
+<h3 id="Webpack-Dev-Kit-amp-Wrap-Up"><a href="#Webpack-Dev-Kit-amp-Wrap-Up" class="headerlink" title="Webpack Dev Kit &amp; Wrap Up"></a>Webpack Dev Kit &amp; Wrap Up</h3><p><a href="https://github.com/TheLarkInn/webpack-developer-kit" target="_blank" rel="noopener">webpack-developer-kit</a></p>
 
       
     </div>
@@ -776,9 +526,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/饥人谷/" rel="tag"># 饥人谷</a>
+            <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
           
-            <a href="/tags/HTML/" rel="tag"># HTML</a>
+            <a href="/tags/Webpack/" rel="tag"># Webpack</a>
           
         </div>
       
@@ -791,8 +541,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/27/《HTML》入门笔记1/" rel="next" title="《HTML》入门笔记1">
-                <i class="fa fa-chevron-left"></i> 《HTML》入门笔记1
+              <a href="/2019/12/15/web-performance-with-webpack/" rel="next" title="web-performance-with-webpack">
+                <i class="fa fa-chevron-left"></i> web-performance-with-webpack
               </a>
             
           </div>
@@ -800,10 +550,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/27/《HTML》常用标签/" rel="prev" title="《HTML》常用标签">
-                《HTML》常用标签 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1264,7 +1010,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#英语小课堂"><span class="nav-number">1.</span> <span class="nav-text">英语小课堂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML预览方式"><span class="nav-number">2.</span> <span class="nav-text">HTML预览方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a标签"><span class="nav-number">3.</span> <span class="nav-text">a标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a标签href属性的值"><span class="nav-number">3.1.</span> <span class="nav-text">a标签href属性的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a标签target属性的值"><span class="nav-number">3.2.</span> <span class="nav-text">a标签target属性的值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iframe标签"><span class="nav-number">4.</span> <span class="nav-text">iframe标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#table标签"><span class="nav-number">5.</span> <span class="nav-text">table标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#table语法"><span class="nav-number">5.1.</span> <span class="nav-text">table语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关标签"><span class="nav-number">5.2.</span> <span class="nav-text">相关标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#img标签"><span class="nav-number">6.</span> <span class="nav-text">img标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#form标签"><span class="nav-number">7.</span> <span class="nav-text">form标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#input标签"><span class="nav-number">8.</span> <span class="nav-text">input标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他输入标签"><span class="nav-number">9.</span> <span class="nav-text">其他输入标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他标签"><span class="nav-number">10.</span> <span class="nav-text">其他标签</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Plugin-System"><span class="nav-number">1.</span> <span class="nav-text">Plugin System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tapable-Plugin-System"><span class="nav-number">1.1.</span> <span class="nav-text">Tapable Plugin System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compiler-amp-Compilation"><span class="nav-number">1.2.</span> <span class="nav-text">Compiler &amp; Compilation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolver-amp-Module-Factories"><span class="nav-number">1.3.</span> <span class="nav-text">Resolver &amp; Module Factories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parser-amp-Templates"><span class="nav-number">1.4.</span> <span class="nav-text">Parser &amp; Templates</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-Plugins"><span class="nav-number">2.</span> <span class="nav-text">Creating Plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-Webpack-Plugin"><span class="nav-number">2.1.</span> <span class="nav-text">Creating a Webpack Plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plugin-Instance-Hooks"><span class="nav-number">2.2.</span> <span class="nav-text">Plugin Instance Hooks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config-Loaders-amp-Babel"><span class="nav-number">3.</span> <span class="nav-text">Config, Loaders &amp; Babel</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-Custom-Loader"><span class="nav-number">3.1.</span> <span class="nav-text">Creating a Custom Loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configuring-Babel-for-Webpack"><span class="nav-number">3.2.</span> <span class="nav-text">Configuring Babel for Webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack-Dev-Kit-amp-Wrap-Up"><span class="nav-number">3.3.</span> <span class="nav-text">Webpack Dev Kit &amp; Wrap Up</span></a></li></ol></li></ol></div>
             
 
           </div>
