@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Introductionslides  Overview  JavaScript principles Callbacks &amp;amp; High Order functions Closure Classes/Prototypes &amp;amp; Asynchronicity   What to focus on in the workshop?  Analytical problem solving">
+<meta name="keywords" content="JavaScript,FrontEndMasters,闭包,高阶函数,面相对象,Promise,原型机制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript The Hard Parts, v2">
+<meta property="og:url" content="http://yoursite.com/2020/04/06/JavaScript-The-Hard-Parts-v2/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introductionslides  Overview  JavaScript principles Callbacks &amp;amp; High Order functions Closure Classes/Prototypes &amp;amp; Asynchronicity   What to focus on in the workshop?  Analytical problem solving">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-05T16:44:23.982Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript The Hard Parts, v2">
+<meta name="twitter:description" content="Introductionslides  Overview  JavaScript principles Callbacks &amp;amp; High Order functions Closure Classes/Prototypes &amp;amp; Asynchronicity   What to focus on in the workshop?  Analytical problem solving">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/06/JavaScript-The-Hard-Parts-v2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript The Hard Parts, v2 | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘勇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/JavaScript-The-Hard-Parts-v2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript The Hard Parts, v2
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-06 00:42:47 / 修改时间：00:44:23" itemprop="dateCreated datePublished" datetime="2020-04-06T00:42:47+08:00">2020-04-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><a href="https://static.frontendmasters.com/resources/2019-09-18-javascript-hard-parts-v2/javascript-hard-parts-v2.pdf" target="_blank" rel="noopener">slides</a></p>
+<ul>
+<li><p>Overview</p>
+<ul>
+<li>JavaScript principles</li>
+<li>Callbacks &amp; High Order functions</li>
+<li>Closure</li>
+<li>Classes/Prototypes &amp; Asynchronicity</li>
+</ul>
+</li>
+<li><p>What to focus on in the workshop?</p>
+<ul>
+<li>Analytical problem solving</li>
+<li>Engineering approach</li>
+<li>Technical communication</li>
+<li>Non-technical communication</li>
+<li>JavaScript and programming experience<a id="more"></a></li>
+</ul>
+</li>
+<li>Junior engineer takes any feature they’re given to build. And if they’ve seen technology or maybe the solution before, they can solve it.</li>
+<li>Mid-level engineer takes any feature they’re given to build. And even if they’ve not seen the technology or solution before, they can figure it out because they’ve learned how to learn, they’re problem solving strong.</li>
+<li>Senior engineer is somebody who can take any given feature, and not only just figure for themselves, but enable the rest of their team to figure it out. Because they have technical communication, the ability to explain what their code is doing to somebody else in their team, in a clear and cordial manner.</li>
+</ul>
+<h2 id="JavaScript-Principles"><a href="#JavaScript-Principles" class="headerlink" title="JavaScript Principles"></a>JavaScript Principles</h2><h3 id="Thread-of-Execution"><a href="#Thread-of-Execution" class="headerlink" title="Thread of Execution"></a>Thread of Execution</h3><ul>
+<li>When JavaScript code runs, it:<ul>
+<li>Goes through the code line-by-line and runs/‘executes’ each line - known as <strong>thread of execution</strong></li>
+<li>Saves ‘data’ like strings and arrays so we can use that data later - in its <strong>memory</strong><ul>
+<li>We can even save code(‘functions’)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> num = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span> (<span class="params">inputNumber</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> result = inputNumber * <span class="number">2</span></span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> output = multiplyBy2(num)</span><br><span class="line"><span class="keyword">const</span> newOutput = multiplyBy2(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><ul>
+<li><p>Code we save (‘define’) functions &amp; can use (call/invoke/execute/run) later with the function’s name &amp; ()</p>
+</li>
+<li><p>Execution context</p>
+<ul>
+<li>Created to run the code of a function - has 2 parts(we’ve already seen them)<ul>
+<li>Thread of execution</li>
+<li>Memory</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Call-Stack"><a href="#Call-Stack" class="headerlink" title="Call Stack"></a>Call Stack</h3><ul>
+<li>JavaScript keeps track of what function is currently running(where’s the thread of execution)</li>
+<li>Run a function - add to call stack</li>
+<li>Finish running the function - JS removes it from call stack</li>
+<li>Whatever is top of the call stack - that’s the function we’re currently running</li>
+</ul>
+<h2 id="Functions-amp-Callbacks"><a href="#Functions-amp-Callbacks" class="headerlink" title="Functions &amp; Callbacks"></a>Functions &amp; Callbacks</h2><h3 id="Generalized-Functions"><a href="#Generalized-Functions" class="headerlink" title="Generalized Functions"></a>Generalized Functions</h3><ul>
+<li>Why do we even have functions?<ul>
+<li>Let’s see why…</li>
+<li>Create a function 10 squared<ul>
+<li>Takes no input</li>
+<li>Returns 10 * 10</li>
+</ul>
+</li>
+<li>What is the syntax(the exact code we type)?</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tenSquared</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">10</span> * <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tenSquared() <span class="comment">// 100</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>What about a 9 squared function?</li>
+<li>What about a 8 squared function? 125 squared function?</li>
+<li>What principle are we breaking?</li>
+<li><p>DRY</p>
+</li>
+<li><p>We can generalize the function to make it reuseable</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">squareNum</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num * num</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">squareNum(<span class="number">10</span>) <span class="comment">// 100</span></span><br><span class="line">squareNum(<span class="number">9</span>) <span class="comment">// 81</span></span><br><span class="line">squareNum(<span class="number">8</span>) <span class="comment">// 64</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Generalizing functions<ul>
+<li>‘Parameters’(placeholders) mean we don’t need to decide what data to run our functionality on until we run the function<ul>
+<li>Then provide an actual value(‘argument’) when we run the function</li>
+</ul>
+</li>
+<li>High order functions follow this same principle<ul>
+<li>We may not want to decide exactly what some of our functionality is until we run our function</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Repeating-Functionality"><a href="#Repeating-Functionality" class="headerlink" title="Repeating Functionality"></a>Repeating Functionality</h3><ul>
+<li>Now suppose we have a function <code>copyArrayAndMultiplyBy2</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copyArrayAndMultiplyBy2</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> output = []</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    output.push(array[i] * <span class="number">2</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> output</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">const</span> result = copyArrayAndMultiplyBy2(myArray)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>What if we want to copy array and divide by 2?</li>
+<li>Or add 3?</li>
+</ul>
+<h3 id="High-Order-Functions"><a href="#High-Order-Functions" class="headerlink" title="High Order Functions"></a>High Order Functions</h3><ul>
+<li>We could generalize our function - So we pass in our specific instruction only when we run copyArrayAndManipulate!</li>
+</ul>
+<h3 id="Higher-Order-Functions-Example"><a href="#Higher-Order-Functions-Example" class="headerlink" title="Higher Order Functions Example"></a>Higher Order Functions Example</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copyArrayAndManipulate</span>(<span class="params">array, instructions</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> output = []</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    output.push(instructions(array[i]))</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> output</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span>(<span class="params">input</span>) </span>&#123; <span class="keyword">return</span> input * <span class="number">2</span> &#125;</span><br><span class="line"><span class="keyword">const</span> result = copyArrayAndManipulate([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], multiplyBy2)</span><br></pre></td></tr></table></figure>
+<h3 id="Callbacks-amp-Higher-Order-Functions"><a href="#Callbacks-amp-Higher-Order-Functions" class="headerlink" title="Callbacks &amp; Higher Order Functions"></a>Callbacks &amp; Higher Order Functions</h3><ul>
+<li><p>How was this possible?</p>
+<ul>
+<li>Functions in JavaScript = first class objects</li>
+<li>They can co-exist with and can be treated like any other JavaScript object<ol>
+<li>Assigned to variables and properties of other objects</li>
+<li>Passed as arguments into functions</li>
+<li>Returned as values from functions</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>Which is our Higher Order Function?</p>
+<ul>
+<li>The outer function that takes in a function is our higher-order function</li>
+</ul>
+</li>
+<li><p>Which is our Callback Function?</p>
+<ul>
+<li>The function we insert is our callback function</li>
+</ul>
+</li>
+<li><p>Higher-order functions</p>
+<ul>
+<li>Takes in a function or passes out a function</li>
+<li>Just a term to describe these functions - any function that does it we call that - but there’s nothing different about them inherently</li>
+</ul>
+</li>
+<li><p>Callbacks and Higher Order Functions simplify our code and keep it DRY</p>
+<ul>
+<li><strong>Declarative readable code:</strong> Map, filter, reduce - the most readable way to write code to work with data</li>
+<li><strong>Codesmith &amp; pro interview prep:</strong> One of the most popular topics to test in interview both for Codesmith and mid/senior level job interviews</li>
+<li><strong>Asynchronous JavaScript:</strong> Callbacks are a core aspect of async JavaScript, and are under-the-hood of promises, async/await</li>
+</ul>
+</li>
+</ul>
+<h3 id="Arrow-Functions"><a href="#Arrow-Functions" class="headerlink" title="Arrow Functions"></a>Arrow Functions</h3><ul>
+<li>Introducing arrow functions - a shorthand way to save functions</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span>(<span class="params">input</span>) </span>&#123; <span class="keyword">return</span> input * <span class="number">2</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> multiplyBy2 = <span class="function">(<span class="params">input</span>) =&gt;</span> &#123; <span class="keyword">return</span> input * <span class="number">2</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> multiplyBy2 = <span class="function">(<span class="params">input</span>) =&gt;</span> input * <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> multiplyBy2 = <span class="function"><span class="params">input</span> =&gt;</span> input * <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> output = multiplyBy2(<span class="number">3</span>) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Updating our callback function as an arrow function</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copyArrayAndManipulate</span>(<span class="params">array, instructions</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> output = []</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    output.push(instructions(array[i]))</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> output</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> multiplyBy2 = <span class="function"><span class="params">input</span> =&gt;</span> input * <span class="number">2</span></span><br><span class="line"><span class="keyword">const</span> result = copyArrayAndManipulate([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], multiplyBy2)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>We can even pass in multiplyBy2 directly without a name<ul>
+<li>But it’s still just the code of a function being passed into copyAndManipulate</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copyArrayAndManipulate</span>(<span class="params">array, instructions</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> output = []</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    output.push(instructions(array[i]))</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> output</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result = copyArrayAndManipulate([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], input =&gt; input * <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Anonymous and arrow functions<ul>
+<li>Improve immediate legibility of the code</li>
+<li>But at least for our purposes here they are ‘syntactic sugar’ - we’ll see their full effects later</li>
+<li>Understanding how they’re working under-the-hood is vital to avoid confusion</li>
+</ul>
+</li>
+</ul>
+<h3 id="Pair-Programming"><a href="#Pair-Programming" class="headerlink" title="Pair Programming"></a>Pair Programming</h3><ul>
+<li><p>Pair Programming</p>
+<ul>
+<li>The most effective way to grow as a software engineer</li>
+</ul>
+</li>
+<li><p>Researcher</p>
+<ul>
+<li>Avoids blocks by reading everything they can find on their block/bug</li>
+</ul>
+</li>
+<li>Stackoverflower<ul>
+<li>Uses code snippets to fix bug without knowing how they work</li>
+</ul>
+</li>
+<li><p>Pair programming</p>
+<ul>
+<li>Tackle blocks with a partner</li>
+<li>Stay focused on the problem</li>
+<li>Refine technical communication</li>
+<li>Collaborate to solve problem</li>
+</ul>
+</li>
+<li><p>For each topic you know give yourself a point to get a total out of</p>
+<ul>
+<li>I know what a variable is</li>
+<li>I’ve created a function before</li>
+<li>I’ve added a CSS style before</li>
+<li>I have implemented a sort algorithm(bubble, merge, etc)</li>
+<li>I can add a method to an object’s prototype</li>
+<li>I understand the event loop in JavaScript</li>
+<li>I understand ‘callback functions’</li>
+<li>I can implement filter</li>
+<li>I can handle collisions in a hash table</li>
+</ul>
+</li>
+</ul>
+<h2 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h2><h3 id="Closure-Introduction"><a href="#Closure-Introduction" class="headerlink" title="Closure Introduction"></a>Closure Introduction</h3><ul>
+<li><p>Closure</p>
+<ul>
+<li>Closure is the most esoteric of JavaScript concepts</li>
+<li>Enables powerful pro-level functions like ‘once’ and ‘memoize’</li>
+<li>Many JavaScript design patterns including the module pattern use closure</li>
+<li>Built iterators, handle partial application and maintain state in an asynchronous world</li>
+</ul>
+</li>
+<li><p>Functions get a new memory every run/invocation</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span> (<span class="params">inputNumber</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> result = inputNumber * <span class="number">2</span></span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> output = multiplyBy2(<span class="number">7</span>)</span><br><span class="line"><span class="keyword">const</span> newOutput = multiplyBy2(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Function with memories<ul>
+<li>When our functions get called, we created a live store of data(local memory/variable environment/state) for that function’s execution context.</li>
+<li>When the function finishes executing, its local memory is deleted(except the returned value)</li>
+<li>But what if our function could hold on to live data between executions?</li>
+<li>This would let our function definitions have an associated cache/persistent memory</li>
+<li>But it all starts with us <strong>returning a function from another function</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="Returning-Functions"><a href="#Returning-Functions" class="headerlink" title="Returning Functions"></a>Returning Functions</h3><ul>
+<li>Functions can be returned from other functions in JavaScript</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num * <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> multiplyBy2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> generatedFunc = createFunction()</span><br><span class="line"><span class="keyword">const</span> result = generatedFunc(<span class="number">3</span>) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<h3 id="Nested-Function-Scope"><a href="#Nested-Function-Scope" class="headerlink" title="Nested Function Scope"></a>Nested Function Scope</h3><ul>
+<li>Calling a function in the same function call as it was defined</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outer</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> counter = <span class="number">0</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">incrementCounter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    counter++</span><br><span class="line">  &#125;</span><br><span class="line">  incrementCounter()</span><br><span class="line">&#125;</span><br><span class="line">outer()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Where you define your functions determines what data it has access to when you call it</p>
+</blockquote>
+<h3 id="Retaining-Function-Memory"><a href="#Retaining-Function-Memory" class="headerlink" title="Retaining Function Memory"></a>Retaining Function Memory</h3><ul>
+<li>Calling a function outside of the function call in which it was defined</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outer</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> counter = <span class="number">0</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">incrementCounter</span>(<span class="params"></span>) </span>&#123; counter++ &#125;</span><br><span class="line">  <span class="keyword">return</span> incrementCounter</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myNewFunction = outer()</span><br><span class="line">myNewFunction()</span><br><span class="line">myNewFunction()</span><br></pre></td></tr></table></figure>
+<h3 id="Function-Closure"><a href="#Function-Closure" class="headerlink" title="Function Closure"></a>Function Closure</h3><ul>
+<li>函数声明时会获得一个私有属性，一般为<code>[[scope]]</code>，里面保存了函数执行上下文所涉及到的变量环境（也就是函数的背包或者闭包的实际实现的方式）<ul>
+<li>当函数使用上上级执行上下文是的变量，也会保存上上级执行上下文的变量环境（作用域链）</li>
+</ul>
+</li>
+</ul>
+<h3 id="Closure-Technical-Definition-amp-Review"><a href="#Closure-Technical-Definition-amp-Review" class="headerlink" title="Closure Technical Definition &amp; Review"></a>Closure Technical Definition &amp; Review</h3><ul>
+<li><p><a href="https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8" target="_blank" rel="noopener">I never understood JavaScript closures</a></p>
+</li>
+<li><p><a href="https://nostarch.com/hemingway?__cf_chl_captcha_tk__=b759174fad03f3f24dda56cb6c2ae2ee4239838b-1585970682-0-AXERc6qisOqUz7bjRmojbQHq_2MXylDLXb-hhNpEAPb_chqu_pJe2ST1k0khNVvd8_BJYrNehqv6J2Q39kIRdJIqDlt833grZTP8ur6ai2ULzcGLCKSR3WDNT2ZguBb76UktrHMs5KGdQVneazRWP6YGuIiUjPFenso4mcBs4XBaAfyqBMtUH7-sqAEnJrHxK-yLeHJ-EXTphTuPWJMEyOUPAtBLgUR4--QMXplbRxAoChLY64ajVgPNY6wX3BePYMypHaLQTWjWoiK9xyG-j9Zufm94rlM0SUkQLCchLAlqlPP0IK-pQBHVTa9kcLIrOA" target="_blank" rel="noopener">If Hemingway Wrote JavaScript</a></p>
+<ul>
+<li>在这本书中，作者将closure(闭包)称为Closed Over Variable Environment</li>
+<li>闭包里保存的变量称为Persistent Lexically(or Static) Scope Reference Data</li>
+<li>或者可以简单的称闭包为背包(Backpack)😂</li>
+</ul>
+</li>
+<li><p>每种语言都可以根据自己的需求制定自己的作用域规则，在JavaScript中，使用词法作用域(lexical Scope)或称静态作用域(Static Scope)的规则，既当函数定义时，就确定的函数所可以访问的变量范围。</p>
+<ul>
+<li>同样，如果函数执行时才能确定访问的变量，称作动态作用域，具体区别可见<a href="https://blingblingredstar.github.io/2019/04/29/Deep-JavaScript-Foundations/#Scope-%E4%BD%9C%E7%94%A8%E5%9F%9F" target="_blank" rel="noopener">这篇博客</a></li>
+</ul>
+</li>
+<li><p>What can we call this ‘backpack’</p>
+<ul>
+<li>Closed over ‘Variable Environment’(C.O.V.E.)</li>
+<li>Persistent Lexical Scope Referenced Data(P.L.S.R.D.)</li>
+<li>‘backpack’</li>
+<li>‘Closure’</li>
+</ul>
+</li>
+<li><p>The ‘backpack’(or ‘closure’) of live data is attached incrementCounter (then to myNewFunction) through a hidden property know as <code>[[scope]]</code> which persists when the inner function is returned out</p>
+</li>
+</ul>
+<h3 id="Multiple-Closure-Instance"><a href="#Multiple-Closure-Instance" class="headerlink" title="Multiple Closure Instance"></a>Multiple Closure Instance</h3><ul>
+<li>Let’s run outer again</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> counter = <span class="number">0</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">incrementCounter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    counter++</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> incrementCounter</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myNewFunction = outer()</span><br><span class="line">myNewFunction() <span class="comment">// 1</span></span><br><span class="line">myNewFunction() <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> anotherFunction = outer()</span><br><span class="line">anotherFunction() <span class="comment">// 1</span></span><br><span class="line">anotherFunction() <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<h3 id="Practical-Application"><a href="#Practical-Application" class="headerlink" title="Practical Application"></a>Practical Application</h3><ul>
+<li>Closure gives out functions persistent memories and entirely new toolkit for writing professional code<ul>
+<li><strong>Helper functions:</strong> Everyday professional helper functions like ‘once’ and ‘memorize’</li>
+<li><strong>Iterators and generators:</strong> Which use lexical scoping and closure to achieve the most contemporary patterns for handling data in JavaScript</li>
+<li><strong>Module pattern:</strong> Preserve state for the life of an application without polluting the global namespace</li>
+<li><strong>Asynchronous JavaScript:</strong> Callbacks and promises rely on closure to persist state in an asynchronous environment</li>
+</ul>
+</li>
+</ul>
+<h3 id="Closure-Exercise"><a href="#Closure-Exercise" class="headerlink" title="Closure Exercise"></a>Closure Exercise</h3><ul>
+<li><a href="http://csbin.io/closures" target="_blank" rel="noopener">exercise link</a></li>
+</ul>
+<h2 id="Asynchronous-JavaScript"><a href="#Asynchronous-JavaScript" class="headerlink" title="Asynchronous JavaScript"></a>Asynchronous JavaScript</h2><h3 id="Single-Threaded-Execution-Review"><a href="#Single-Threaded-Execution-Review" class="headerlink" title="Single Threaded Execution Review"></a>Single Threaded Execution Review</h3><ul>
+<li><p>Promises, Async &amp; Event Loop</p>
+<ul>
+<li>Promises - the most significant ES6 feature</li>
+<li>Asynchronicity - the feature that makes dynamic web applications possible</li>
+<li>The event loop - JavaScript triage</li>
+<li>Microtask queue, callback queue and Web Browser features(APIs)</li>
+</ul>
+</li>
+<li><p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="noopener">Tasks, microtasks, queues and schedules</a></p>
+</li>
+<li><p>A reminder of how JavaScript executes code</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> num = <span class="number">3</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span> (<span class="params">inputNumber</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> result = inputNumber * <span class="number">2</span></span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> output = multiplyBy2(num)</span><br><span class="line"><span class="keyword">const</span> newOutput = multiplyBy2(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Asynchronicity-in-JavaScript"><a href="#Asynchronicity-in-JavaScript" class="headerlink" title="Asynchronicity in JavaScript"></a>Asynchronicity in JavaScript</h3><ul>
+<li><p>Asynchronicity is the backbone of modern web development in JavaScript yet…</p>
+<ul>
+<li>JavaScript is:<ul>
+<li>Single thread (one commend runs at a time)</li>
+<li>Synchronously executed (each line is run in order the code appears)</li>
+</ul>
+</li>
+<li>So what if we have a task:<ul>
+<li>Accessing Twitter’s server to get new tweets that takes a long time</li>
+<li>Code we want to run using those tweets</li>
+</ul>
+</li>
+<li><strong>Challenge</strong>: We want to wait for the tweets to be stored in tweets so that they’re there to run displayTweets on - but no code can run in the meantime</li>
+</ul>
+</li>
+<li><p>Slow function blocks further code running</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tweets = getTweets(<span class="string">'http://twitter.com/will/1'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ⛔️ 350ms wait while a request is sent to Twitter's server</span></span><br><span class="line"></span><br><span class="line">displayTweets(tweets)</span><br><span class="line"></span><br><span class="line"><span class="comment">// more code to run</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'I want to running!'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>What if we try to delay a function directly using setTimeout?<ul>
+<li>setTimeout is a built in function - its first arguments is to function to delay followed by ms to delay by</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printHello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Hello'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(printHello, <span class="number">1000</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Me first'</span>)</span><br><span class="line"><span class="comment">// In what order will our console.log appear?</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>So what about a delay of 0ms<ul>
+<li>Now, in what order will our console.log occur?</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printHello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(printHello, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Me first!'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>JavaScript is not enough - We need new pieces(some of which aren’t JavaScript at all)<ul>
+<li>Our core JavaScript engine has 3 main parts:<ol>
+<li>Thread of execution</li>
+<li>Memory/variable environment</li>
+<li>Call stack</li>
+</ol>
+</li>
+<li>We need to add some new components:<ul>
+<li>Web Browser APIs/Node background APIs</li>
+<li>Promises</li>
+<li>Event loop, Callback/Task queue and micro task queue</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Asynchronous-Browser-Features"><a href="#Asynchronous-Browser-Features" class="headerlink" title="Asynchronous Browser Features"></a>Asynchronous Browser Features</h3><ul>
+<li>ES5 solution: Introducing ‘callback functions’, and Web Browser APIs</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printHello</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'Hello'</span>) &#125;</span><br><span class="line"></span><br><span class="line">setTimeout(printHello, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Me first!'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Web-API-Rules"><a href="#Web-API-Rules" class="headerlink" title="Web API Rules"></a>Web API Rules</h3><ul>
+<li>We’re interacting with a world outside of JavaScript now - so we need rule</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printHello</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'hello'</span>) &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blockFor1Sec</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// blocks in the JavaScript thread for 1 sec</span></span><br><span class="line">&#125;</span><br><span class="line">setTimeout(printHello, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">blockFor1Sec()</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Me first!'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Callback-Queue-amp-Event-Loop"><a href="#Callback-Queue-amp-Event-Loop" class="headerlink" title="Callback Queue &amp; Event Loop"></a>Callback Queue &amp; Event Loop</h3><ul>
+<li>使用setTimeout或者setTimeout时，传入的回调函数在其他线程中开始计时，计时结束时推入callback queue, 此时代码不会阻塞线程，而是会继续执行，只有当前代码全部执行完毕，event loop才会开始轮询callback queue内是否有需要执行的回调函数</li>
+</ul>
+<h3 id="Callback-Hell-amp-Async-Exercise"><a href="#Callback-Hell-amp-Async-Exercise" class="headerlink" title="Callback Hell &amp; Async Exercise"></a>Callback Hell &amp; Async Exercise</h3><ul>
+<li><p>ES5 Web Browser APIs with callback functions</p>
+<ul>
+<li>Problems<ul>
+<li>Our response data is only available in the callback function - Callback Hell</li>
+<li>Maybe it feels a little odd to think of passing a function into another function only for it to run much later</li>
+</ul>
+</li>
+<li>Benefits<ul>
+<li>Super explicit once you understand how it works under-the-hood</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="http://csbin.io/async" target="_blank" rel="noopener">Exercise Link</a></p>
+</li>
+</ul>
+<h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><h3 id="Promises-Introduction"><a href="#Promises-Introduction" class="headerlink" title="Promises Introduction"></a>Promises Introduction</h3><ul>
+<li>ES6+ Solution(Promises)<ul>
+<li>Using two-pronged ‘facade’ functions that both:<ul>
+<li>Initiate background web browser work and</li>
+<li>Return a placeholder object(promise) immediately in JavaScript</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Promises-Example-fetch"><a href="#Promises-Example-fetch" class="headerlink" title="Promises Example: fetch"></a>Promises Example: fetch</h3><ul>
+<li>ES6+ Promises</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> futureData = fetch(<span class="string">'http://twitter.com/will/tweets/1'</span>)</span><br><span class="line">futureData.then(display)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Me first'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Promises-Example-then"><a href="#Promises-Example-then" class="headerlink" title="Promises Example: then"></a>Promises Example: then</h3><ul>
+<li>当我们使用Promise时，会会返回一个promise对象，其中对象会有一个隐藏的value属性代表新建promise时传入的回调函数的返回值，还有一个onFulfilled属性数组。当我们使用then方法是，就会将传入then方法的回调函数推入这个数组，在promise的状态变为resolved时，会将value作为参数传入onFulfilled数组中的函数依次执行。</li>
+</ul>
+<h3 id="Web-APIs-amp-Promises-Example-fetch"><a href="#Web-APIs-amp-Promises-Example-fetch" class="headerlink" title="Web APIs &amp; Promises Example: fetch"></a>Web APIs &amp; Promises Example: fetch</h3><ul>
+<li>But we need to know how our promise-deferred functionality gets back into JavaScript to be run</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">data</span>) </span>&#123; <span class="built_in">console</span>.log(data) &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printHello</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'hello'</span>) &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blockFor300ms</span>(<span class="params"></span>) </span>&#123;<span class="comment">/* blocks js thread for 300ms */</span>&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(printHello, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> futureData = fetch(<span class="string">'http://twitter.com/will/tweets/1'</span>)</span><br><span class="line">futureData.then(display)</span><br><span class="line"></span><br><span class="line">blockFor300ms()</span><br><span class="line"><span class="built_in">console</span>.loo(<span class="string">'me first'</span>)</span><br><span class="line"><span class="comment">// me first</span></span><br><span class="line"><span class="comment">// display</span></span><br><span class="line"><span class="comment">// hello</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>then</code> method and functionality to call on completion<ul>
+<li>Any code we want to run on the returned data must also be saved on the promise object</li>
+<li>Added using <code>.then</code> method to the hidden property <code>onFulfillment</code></li>
+<li>Promise objects will automatically trigger the attached function to run(with its input being returned data)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Web-APIs-amp-Promises-Example-Microtask-Queue"><a href="#Web-APIs-amp-Promises-Example-Microtask-Queue" class="headerlink" title="Web APIs &amp; Promises Example: Microtask Queue"></a>Web APIs &amp; Promises Example: Microtask Queue</h3><ul>
+<li>上面的代码中，在控制台打印’me first’之后会执行display而不是printHello，这是由于promise使用了microtask queue，而setTimeout使用callback queue(规范中称为task queue)</li>
+<li>microtask queue的优先级是高于callback queue的，event loop会在当前执行线程完毕后首先检查microtask queue中是否有回调函数并执行，也就是将回调推入call stack，在microtask queue全部执行完后才会检查callback queue，所以在microtask queue中返回promise有可能造成死循环。而</li>
+<li><p>callback queue执行完一个回调之后并不会阻塞线程，如果有未执行完毕的会推迟到下一个执行周期去执行、</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API" target="_blank" rel="noopener">Web APIs</a></p>
+</li>
+</ul>
+<h3 id="Promises-Review"><a href="#Promises-Review" class="headerlink" title="Promises Review"></a>Promises Review</h3><ul>
+<li>Problems<ul>
+<li>99% of developers have no idea how they’re working under the hood</li>
+<li>Debugging becomes super-hard as a result</li>
+<li>Developers fail technical interviews</li>
+</ul>
+</li>
+<li><p>Benefits</p>
+<ul>
+<li>Cleaner readable style with pseudo-synchronous style code</li>
+<li>Nice error handling process</li>
+</ul>
+</li>
+<li><p>这里作者吐槽了then方法的命名有可能造成误解，应该命名为storeFunctionToRunLater😂,Promise应该命名为FutureData</p>
+</li>
+<li><p>如上所述，Promise的优点还有对错误处理的良好风格。</p>
+<ul>
+<li>Promise除了value、onFulfilled数组，还有一个onRejection数组，用来放置错误处理的回调函数。我们可以使用<code>.catch</code>方法或者在<code>.then</code>方法中传入第二个参数来将回调添加到onRejection数组中。</li>
+</ul>
+</li>
+<li><p>We have rules for the execution of our asynchronously delayed code</p>
+<ul>
+<li>Hold promise-deferred functions in a microtask queue and callback function in a task queue(Callback queue) when Web Browser Feature(API) finishes</li>
+<li>Add the function to the Call stack(i.e. run the function) when:<ul>
+<li>Call stack is empty &amp; all global code run (have the event loop check this condition)</li>
+</ul>
+</li>
+<li>Prioritize functions in the microtask queue over the Callback queue</li>
+</ul>
+</li>
+<li><p>Promises, Web APIs, the Callback &amp; Microtask Queues and Event loop enable:</p>
+<ul>
+<li><strong>Non-blocking applications:</strong> This means we don’t have to wait in the single thread and don’t block further code from running</li>
+<li><strong>However long it takes:</strong> We cannot predict when our Browser feature’s work will finish so we let JS handle automatically running the function on its completion</li>
+<li><strong>Web applications:</strong> Asynchronous JavaScript is the backbone of the modern web - letting us build fast ‘non-blocking’ applications</li>
+</ul>
+</li>
+</ul>
+<h2 id="Classes-amp-Prototypes"><a href="#Classes-amp-Prototypes" class="headerlink" title="Classes &amp; Prototypes"></a>Classes &amp; Prototypes</h2><h3 id="Class-amp-OOP-Introduction"><a href="#Class-amp-OOP-Introduction" class="headerlink" title="Class &amp; OOP Introduction"></a>Class &amp; OOP Introduction</h3><ul>
+<li><p>Classes, Prototypes - Object Oriented JavaScript</p>
+<ul>
+<li>An environment popular paradigm for structuring our complex code</li>
+<li>Prototype chain - the feature behind-the-scenes that enables emulation of OOP but is a compelling tool in itself</li>
+<li>Understanding the difference between <code>__proto__</code> and prototype</li>
+<li>The new and class keywords as tools to automate our object &amp; method creation</li>
+</ul>
+</li>
+<li><p>Core of development(and running code)</p>
+<ol>
+<li>Save data(e.g. in a quiz game the scores of user1 and user2)</li>
+<li>Run code(functions) using that data(e.g. increase user 2’s score)</li>
+</ol>
+<ul>
+<li>Easy! So why is development hard?</li>
+<li>In a quiz game I need to save lots of users, but also admins, quiz questions, quiz outcomes, league tables - all have data and associated functionality</li>
+<li>In 1000,000 lines of code<ul>
+<li>Where is the functionality when I need it?</li>
+<li>How do I make sure the functionality is only used on the right data!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>That is, I want my code to be:</p>
+<ol>
+<li>Easy to reason about, but also</li>
+<li>Easy to add feature to(new functionality)</li>
+<li>Nevertheless efficient and performance</li>
+</ol>
+</li>
+<li>The Object-oriented paradigm aims to let us achieve these three goals</li>
+</ul>
+<h3 id="Object-Dot-Notation"><a href="#Object-Dot-Notation" class="headerlink" title="Object Dot Notation"></a>Object Dot Notation</h3><ul>
+<li>So if I’m storing each user in my app with their respective data(let’s simplify)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>–</th>
+<th>User 1</th>
+<th>User 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>Tim</td>
+<td>Stephanie</td>
+</tr>
+<tr>
+<td>score</td>
+<td>3</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>And the functionality I need to have for each user(again simplifying!)<ul>
+<li>Increment functionality(there’d be a ton of functions in practice)</li>
+</ul>
+</li>
+<li><p>How could I store my data and functionality together in one piece?</p>
+</li>
+<li><p>Objects - store functions with their associated data!</p>
+<ul>
+<li>This is the principle of encapsulation - and it’s going to transform how we can ‘reason about’ our code</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user1 = &#123;</span><br><span class="line">  name: <span class="string">'Will'</span>,</span><br><span class="line">  score: <span class="number">3</span>,</span><br><span class="line">  increment() &#123;</span><br><span class="line">    user1.score++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">user1.increment() <span class="comment">// user1.score -&gt; 4</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Let’s keep creating our objects. What alternative techniques do we have for creating objects?</p>
+</li>
+<li><p>Creating user2 use dot natation</p>
+<ul>
+<li>Declare an empty object and add properties with dot natation</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user2 = &#123;&#125; <span class="comment">// create an empty object</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// assign properties to that object</span></span><br><span class="line">user2.name = <span class="string">'Tim'</span></span><br><span class="line">user2.score = <span class="number">6</span></span><br><span class="line">user2.increment = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  user2.score++</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Creating user3 using <code>Object.create</code><ul>
+<li>Object.create is going to give us fine-grained control over our object later on</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user3 = <span class="built_in">Object</span>.create(<span class="literal">null</span>)</span><br><span class="line"></span><br><span class="line">user3.name = <span class="string">'Eva'</span></span><br><span class="line">user3.score = <span class="number">9</span></span><br><span class="line">user3.increment = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  user3.score++</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Our code is getting repetitive, we’re breaking our DRY principle. And suppose we have millions of users! What could we do?</p>
+</li>
+<li><p>Solution 1</p>
+<ul>
+<li>Generate objects using a function</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newUser = &#123;&#125;</span><br><span class="line">  newUser.name = name</span><br><span class="line">  newUser.score = score</span><br><span class="line">  newUser.increment = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    newUser.score++ <span class="comment">// 注意这里使用了闭包</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newUser</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = userCreator(<span class="string">'Will'</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">const</span> user2 = userCreator(<span class="string">'Tim'</span>, <span class="number">5</span>)</span><br><span class="line">user1.increment()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Solution 1. Generate Objects using a function<ul>
+<li><strong>Problems:</strong> Each time we create a new user we make space in our computer’s memory for all our data and functions. But our functions are just copies</li>
+<li>Is there a better way?</li>
+<li><strong>Benefits:</strong> It’s simple and easy to reason about!</li>
+</ul>
+</li>
+</ul>
+<h3 id="Prototype-Chain"><a href="#Prototype-Chain" class="headerlink" title="Prototype Chain"></a>Prototype Chain</h3><ul>
+<li><p>Solution 2: Using the prototype chain</p>
+<ul>
+<li>Store the increment function in just one object and have the interpreter, if it doesn’t find the function on user1, look up to that object to check if it’s there</li>
+<li>Link user1 and functionScore so the interpreter, on not finding <code>.increment</code>. makes sure to check up in functionStore where it would find it</li>
+<li>Make the link with <code>Object.create()</code> technique</li>
+</ul>
+</li>
+<li><p>Solution 2: Using the prototype chain</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newUser = <span class="built_in">Object</span>.create(userFunctionStore) <span class="comment">// 此时newUser.__proto__指向userFunctionStore</span></span><br><span class="line">  newUser.name = name</span><br><span class="line">  newUser.score = score</span><br><span class="line">  <span class="keyword">return</span> newUser</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userFunctionStore = &#123;</span><br><span class="line">  increment() &#123; <span class="keyword">this</span>.score++ &#125;,</span><br><span class="line">  login() &#123; <span class="built_in">console</span>.log(<span class="string">'Logged in'</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = userCreator(<span class="string">'Will'</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">const</span> user2 = userCreator(<span class="string">'Tim'</span>, <span class="number">5</span>)</span><br><span class="line">user1.increment()</span><br><span class="line"><span class="comment">// 当js引擎在user1上没有找到increment方法时，就会去user1的__proto__属性所指向的对象上去寻找（原型）</span></span><br><span class="line"><span class="comment">// 如果这个对象上也没有，就去这个对象的__proto__属性所指向的对象上寻找（原型链)</span></span><br></pre></td></tr></table></figure>
+<h3 id="Prototype-Chain-Example-Implicit-Parameters"><a href="#Prototype-Chain-Example-Implicit-Parameters" class="headerlink" title="Prototype Chain Example: Implicit Parameters"></a>Prototype Chain Example: Implicit Parameters</h3><ul>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf" target="_blank" rel="noopener">MDN <code>Object.getPrototypeOf()</code></a></p>
+</li>
+<li><p>在上面的代码中，我们在声明increment方法时并不清楚会是user1还是user2调用此方法，那么我们如何确定我们需要增加分数的对象呢？</p>
+</li>
+<li>可以看到，这也正是<code>this</code>关键字的作用</li>
+<li>可以认为<code>this</code>指向方法调用时<code>.</code>关键字前面的对象，如果没使用<code>.</code>语法调用方法，可以认为<code>this</code>指向全局对象</li>
+</ul>
+<h3 id="hasOwnProperty-Method"><a href="#hasOwnProperty-Method" class="headerlink" title="hasOwnProperty Method"></a>hasOwnProperty Method</h3><ul>
+<li>What if we want to confirm our user! has property score</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newUser = <span class="built_in">Object</span>.create(userFunctionStore)</span><br><span class="line">  newUser.name = name</span><br><span class="line">  newUser.score = score</span><br><span class="line">  <span class="keyword">return</span> newUser</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userFunctionStore = &#123;</span><br><span class="line">  increment() &#123; <span class="keyword">this</span>.score++ &#125;,</span><br><span class="line">  login() &#123; <span class="built_in">console</span>.log(<span class="string">'Login in'</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = userCreator(<span class="string">'Will'</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">const</span> user2 = userCreator(<span class="string">'Tim'</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">user1.hasOwnProperty(<span class="string">'score'</span>)</span><br><span class="line"><span class="comment">// user1.__proto__.__proto__.hasOwnProperty</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>We can use the <code>hasOwnProperty</code> method - but where is it?</p>
+<ul>
+<li>Object.prototype.hasOwnProperty</li>
+</ul>
+</li>
+<li><p>What if we want to confirm our user1 has the property score?</p>
+<ul>
+<li>We can use the hasOwnProperty method - but where is it? Is it on user1?</li>
+<li>All objects have a <code>__proto__</code> property by default which defaults to linking to a big object - Object.prototype full of (somewhat) useful functions</li>
+<li>We get access to it via userFunctionStore’s <code>__proto__</code> property - the chain</li>
+</ul>
+</li>
+</ul>
+<h3 id="this-Keyword"><a href="#this-Keyword" class="headerlink" title="this Keyword"></a>this Keyword</h3><ul>
+<li>Declaring &amp; calling a new function <em>inside</em> our ‘method’ increment</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newUser = <span class="built_in">Object</span>.create(userFunctionStore) <span class="comment">// 此时newUser.__proto__指向userFunctionStore</span></span><br><span class="line">  newUser.name = name</span><br><span class="line">  newUser.score = score</span><br><span class="line">  <span class="keyword">return</span> newUser</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userFunctionStore = &#123;</span><br><span class="line">  increment() &#123; <span class="keyword">this</span>.score++ &#125;,</span><br><span class="line">  login() &#123; <span class="built_in">console</span>.log(<span class="string">'Logged in'</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = userCreator(<span class="string">'Will'</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">const</span> user2 = userCreator(<span class="string">'Tim'</span>, <span class="number">5</span>)</span><br><span class="line">user1.increment()</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Let’s start by simplifying(just increment method - written over 3 lines now)</p>
+</li>
+<li><p>Create and invoke a new function (add1) inside increment</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newUser = <span class="built_in">Object</span>.create(userFunctionStore)</span><br><span class="line">  newUser.name = name</span><br><span class="line">  newUser.score = score</span><br><span class="line">  <span class="keyword">return</span> newUser</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userFunctionStore = &#123;</span><br><span class="line">  increment() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">add1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.score++</span><br><span class="line">    &#125;</span><br><span class="line">    add1()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = userCreator(<span class="string">'Will'</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">const</span> user2 = userCreator(<span class="string">'Tim'</span>, <span class="number">4</span>)</span><br><span class="line">user1.increment()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>What does <code>this</code> get auto-assigned to?<ul>
+<li>window/global</li>
+</ul>
+</li>
+</ul>
+<h3 id="Arrow-Function-Scope-amp-this"><a href="#Arrow-Function-Scope-amp-this" class="headerlink" title="Arrow Function Scope &amp; this"></a>Arrow Function Scope &amp; this</h3><ul>
+<li>Arrow functions override the normal <code>this</code> rules</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newUser = <span class="built_in">Object</span>.create(userFunctionStore)</span><br><span class="line">  newUser.name = name</span><br><span class="line">  newUser.score = score</span><br><span class="line">  <span class="keyword">return</span> newUser</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userFunctionStore = &#123;</span><br><span class="line">  increment() &#123;</span><br><span class="line">    <span class="keyword">const</span> add1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="keyword">this</span>.score++ &#125;</span><br><span class="line">    add1()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = userCreator(<span class="string">'Will'</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">const</span> user2 = userCreator(<span class="string">'Tim'</span>, <span class="number">5</span>)</span><br><span class="line">user1.increment()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Now our inner function gets its <code>this</code> set by where it was saved - it’s a <code>lexical scoped this</code></li>
+</ul>
+<h3 id="Prototype-Chain-Review"><a href="#Prototype-Chain-Review" class="headerlink" title="Prototype Chain Review"></a>Prototype Chain Review</h3><ul>
+<li><p>Solution 2: Using the prototype chain</p>
+<ul>
+<li>Problems: No problems! It’s beautiful. Maybe a little long-winded</li>
+<li><p>Write this every single time - but it’s 6 words!</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newUser = <span class="built_in">Object</span>.create(userFunctionStore)</span><br><span class="line"><span class="comment">/** ... **/</span></span><br><span class="line"><span class="keyword">return</span> newUser</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Benefit: Super sophisticated but not standard</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="new-Keyword"><a href="#new-Keyword" class="headerlink" title="new Keyword"></a>new Keyword</h3><ul>
+<li><p>Solution 3 - Introducing the keyword that automates the hard work: new</p>
+<ul>
+<li>When we call the function that returns an object with <code>new</code> in front we automate 2 things<ol>
+<li>Create a new user object</li>
+<li>Return the new user object</li>
+</ol>
+</li>
+<li>But now we need to adjust how we write the body of userCreator - how can we:<ul>
+<li>Refer to the auto-created object?<ul>
+<li><code>this</code></li>
+</ul>
+</li>
+<li>Know where to put our single copies of functions?<ul>
+<li>prototype</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>The <code>new</code> keyword automates a lot of our manual work</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name</span><br><span class="line">  <span class="keyword">this</span>.score = score</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">userCreator.prototype.increment = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.score++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = <span class="keyword">new</span> userCreator(<span class="string">'Will'</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Interlude - functions are both objects and functions</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyBy2</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num * <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">multiplyBy2.stored = <span class="number">5</span></span><br><span class="line">multiplyBy2(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">multiplyBy2.stored <span class="comment">// 5</span></span><br><span class="line">multiplyBy2.prototype <span class="comment">// &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>We could use the fact that all functions have a default property ‘prototype’ on their object version.(itself an object) - to replace our ‘functionStore’ object</li>
+</ul>
+<h3 id="new-Keyword-Example"><a href="#new-Keyword-Example" class="headerlink" title="new Keyword Example"></a>new Keyword Example</h3><ul>
+<li>The new keyword automates a lot of our manual work</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userCreator</span>(<span class="params">name, score</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name</span><br><span class="line">  <span class="keyword">this</span>.score = score</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">userCreator.prototype.increment = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">this</span>.score++ &#125;</span><br><span class="line">userCreator.prototype.login = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'Logged in'</span>) &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = <span class="keyword">new</span> userCreator(<span class="string">'Eva'</span>, <span class="number">9</span>)</span><br><span class="line"></span><br><span class="line">user1.increment()</span><br></pre></td></tr></table></figure>
+<h3 id="class-keyword"><a href="#class-keyword" class="headerlink" title="class keyword"></a>class keyword</h3><ul>
+<li><p>Solution 3 - Introducing the keyword that automates the hard work: new</p>
+<ul>
+<li><strong>Benefits:</strong><ul>
+<li>Faster to write. Often used in practice in professional code</li>
+</ul>
+</li>
+<li><strong>Problem:</strong><ul>
+<li>95% of developers have no idea how it works and therefore fail interviews</li>
+<li>We have to upper case first letter of the function so we know it requires <code>new</code> to work!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Solution 4: The class ‘syntactic sugar’</p>
+<ul>
+<li>We’re writing our shared methods separately from our object ‘constructor’ itself(off in the <code>userCreator.prototype</code> object)</li>
+<li>Other languages let us do this all in one place. ES2015 lets us do so too</li>
+</ul>
+</li>
+<li><p>Solution 4: The class ‘syntactic sugar’</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserCreator</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, score) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.score = score</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  increment() &#123; <span class="keyword">this</span>.score++ &#125;</span><br><span class="line">  login() &#123; <span class="built_in">console</span>.log(<span class="string">'login'</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user1 = <span class="keyword">new</span> UserCreator(<span class="string">'Eva'</span>, <span class="number">4</span>)</span><br><span class="line">user1.increment()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Solution 4: The class ‘syntactic sugar’<ul>
+<li><strong>Benefit:</strong><ul>
+<li>Emerging as a new standard</li>
+<li>Feels more like style of other languages(e.g. Python)</li>
+</ul>
+</li>
+<li><strong>Problems:</strong><ul>
+<li>99% of developers have no idea how it works and therefore fail interviews</li>
+<li>But you will not be one of them</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+          
+            <a href="/tags/闭包/" rel="tag"># 闭包</a>
+          
+            <a href="/tags/高阶函数/" rel="tag"># 高阶函数</a>
+          
+            <a href="/tags/面相对象/" rel="tag"># 面相对象</a>
+          
+            <a href="/tags/Promise/" rel="tag"># Promise</a>
+          
+            <a href="/tags/原型机制/" rel="tag"># 原型机制</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/29/Interviewing-For-Front-End-Engineers/" rel="next" title="Interviewing For Front-End Engineers">
+                <i class="fa fa-chevron-left"></i> Interviewing For Front-End Engineers
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://img.zcool.cn/community/04c6fd55fa1a4a000001b19c79e625.jpg@160w_160h_1c_1e_1o_100sh.jpg" alt="刘勇">
+            
+              <p class="site-author-name" itemprop="name">刘勇</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">140</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/blingblingredstar" title="GitHub &rarr; https://github.com/blingblingredstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:564447023@qq.com" title="E-Mail &rarr; mailto:564447023@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Principles"><span class="nav-number">2.</span> <span class="nav-text">JavaScript Principles</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Thread-of-Execution"><span class="nav-number">2.1.</span> <span class="nav-text">Thread of Execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Functions"><span class="nav-number">2.2.</span> <span class="nav-text">Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Call-Stack"><span class="nav-number">2.3.</span> <span class="nav-text">Call Stack</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions-amp-Callbacks"><span class="nav-number">3.</span> <span class="nav-text">Functions &amp; Callbacks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generalized-Functions"><span class="nav-number">3.1.</span> <span class="nav-text">Generalized Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Repeating-Functionality"><span class="nav-number">3.2.</span> <span class="nav-text">Repeating Functionality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#High-Order-Functions"><span class="nav-number">3.3.</span> <span class="nav-text">High Order Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Higher-Order-Functions-Example"><span class="nav-number">3.4.</span> <span class="nav-text">Higher Order Functions Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Callbacks-amp-Higher-Order-Functions"><span class="nav-number">3.5.</span> <span class="nav-text">Callbacks &amp; Higher Order Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrow-Functions"><span class="nav-number">3.6.</span> <span class="nav-text">Arrow Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pair-Programming"><span class="nav-number">3.7.</span> <span class="nav-text">Pair Programming</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure"><span class="nav-number">4.</span> <span class="nav-text">Closure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Closure-Introduction"><span class="nav-number">4.1.</span> <span class="nav-text">Closure Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Returning-Functions"><span class="nav-number">4.2.</span> <span class="nav-text">Returning Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nested-Function-Scope"><span class="nav-number">4.3.</span> <span class="nav-text">Nested Function Scope</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Retaining-Function-Memory"><span class="nav-number">4.4.</span> <span class="nav-text">Retaining Function Memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-Closure"><span class="nav-number">4.5.</span> <span class="nav-text">Function Closure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Closure-Technical-Definition-amp-Review"><span class="nav-number">4.6.</span> <span class="nav-text">Closure Technical Definition &amp; Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multiple-Closure-Instance"><span class="nav-number">4.7.</span> <span class="nav-text">Multiple Closure Instance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Practical-Application"><span class="nav-number">4.8.</span> <span class="nav-text">Practical Application</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Closure-Exercise"><span class="nav-number">4.9.</span> <span class="nav-text">Closure Exercise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Asynchronous-JavaScript"><span class="nav-number">5.</span> <span class="nav-text">Asynchronous JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Single-Threaded-Execution-Review"><span class="nav-number">5.1.</span> <span class="nav-text">Single Threaded Execution Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Asynchronicity-in-JavaScript"><span class="nav-number">5.2.</span> <span class="nav-text">Asynchronicity in JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Asynchronous-Browser-Features"><span class="nav-number">5.3.</span> <span class="nav-text">Asynchronous Browser Features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-API-Rules"><span class="nav-number">5.4.</span> <span class="nav-text">Web API Rules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Callback-Queue-amp-Event-Loop"><span class="nav-number">5.5.</span> <span class="nav-text">Callback Queue &amp; Event Loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Callback-Hell-amp-Async-Exercise"><span class="nav-number">5.6.</span> <span class="nav-text">Callback Hell &amp; Async Exercise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promises"><span class="nav-number">6.</span> <span class="nav-text">Promises</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promises-Introduction"><span class="nav-number">6.1.</span> <span class="nav-text">Promises Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promises-Example-fetch"><span class="nav-number">6.2.</span> <span class="nav-text">Promises Example: fetch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promises-Example-then"><span class="nav-number">6.3.</span> <span class="nav-text">Promises Example: then</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-APIs-amp-Promises-Example-fetch"><span class="nav-number">6.4.</span> <span class="nav-text">Web APIs &amp; Promises Example: fetch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-APIs-amp-Promises-Example-Microtask-Queue"><span class="nav-number">6.5.</span> <span class="nav-text">Web APIs &amp; Promises Example: Microtask Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promises-Review"><span class="nav-number">6.6.</span> <span class="nav-text">Promises Review</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classes-amp-Prototypes"><span class="nav-number">7.</span> <span class="nav-text">Classes &amp; Prototypes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-amp-OOP-Introduction"><span class="nav-number">7.1.</span> <span class="nav-text">Class &amp; OOP Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Dot-Notation"><span class="nav-number">7.2.</span> <span class="nav-text">Object Dot Notation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prototype-Chain"><span class="nav-number">7.3.</span> <span class="nav-text">Prototype Chain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prototype-Chain-Example-Implicit-Parameters"><span class="nav-number">7.4.</span> <span class="nav-text">Prototype Chain Example: Implicit Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasOwnProperty-Method"><span class="nav-number">7.5.</span> <span class="nav-text">hasOwnProperty Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this-Keyword"><span class="nav-number">7.6.</span> <span class="nav-text">this Keyword</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrow-Function-Scope-amp-this"><span class="nav-number">7.7.</span> <span class="nav-text">Arrow Function Scope &amp; this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prototype-Chain-Review"><span class="nav-number">7.8.</span> <span class="nav-text">Prototype Chain Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-Keyword"><span class="nav-number">7.9.</span> <span class="nav-text">new Keyword</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-Keyword-Example"><span class="nav-number">7.10.</span> <span class="nav-text">new Keyword Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class-keyword"><span class="nav-number">7.11.</span> <span class="nav-text">class keyword</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
