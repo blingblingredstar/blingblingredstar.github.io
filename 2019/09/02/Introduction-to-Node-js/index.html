@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="IntroductionWhat is Node.js tldr; Environment to run JavaScript outside a browser   Open source runtime Built on Chrome’s V8 JavaScript engine Created by Ryan Dahl in 2009 Evolved since creation to al">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to Node.js">
+<meta property="og:url" content="http://yoursite.com/2019/09/02/Introduction-to-Node-js/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="IntroductionWhat is Node.js tldr; Environment to run JavaScript outside a browser   Open source runtime Built on Chrome’s V8 JavaScript engine Created by Ryan Dahl in 2009 Evolved since creation to al">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-09-02T06:29:29.000Z">
+<meta property="article:modified_time" content="2019-09-02T06:31:16.809Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/02/Introduction-to-Node-js/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;02&#x2F;Introduction-to-Node-js&#x2F;&quot;,&quot;path&quot;:&quot;2019&#x2F;09&#x2F;02&#x2F;Introduction-to-Node-js&#x2F;&quot;,&quot;title&quot;:&quot;Introduction to Node.js&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Introduction to Node.js | 刘勇的博客</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">刘勇的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Node-js"><span class="nav-number">1.1.</span> <span class="nav-text">What is Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-can-I-create-with-Node-js"><span class="nav-number">1.2.</span> <span class="nav-text">What can I create with Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installing-Node-js"><span class="nav-number">1.3.</span> <span class="nav-text">Installing Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Running-Node-js-Code"><span class="nav-number">1.4.</span> <span class="nav-text">Running Node.js Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-Modules"><span class="nav-number">2.</span> <span class="nav-text">Node.js Modules</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Browser-JavaScript-vs-Node-js"><span class="nav-number">2.1.</span> <span class="nav-text">Browser JavaScript vs Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Globals-in-Node-js"><span class="nav-number">2.2.</span> <span class="nav-text">Globals in Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js-Module"><span class="nav-number">2.3.</span> <span class="nav-text">Node.js Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-Node-Modules"><span class="nav-number">2.4.</span> <span class="nav-text">Creating Node Modules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Importing-Node-Modules"><span class="nav-number">2.5.</span> <span class="nav-text">Importing Node Modules</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Internal-Modules-amp-npm"><span class="nav-number">3.</span> <span class="nav-text">Internal Modules &amp; npm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-fs-Module"><span class="nav-number">3.1.</span> <span class="nav-text">The fs Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Internal-Node-Modules"><span class="nav-number">3.2.</span> <span class="nav-text">Other Internal Node Modules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Remote-Modules"><span class="nav-number">3.3.</span> <span class="nav-text">Remote Modules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modules-Recap"><span class="nav-number">3.4.</span> <span class="nav-text">Modules Recap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm"><span class="nav-number">3.5.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yarn"><span class="nav-number">3.6.</span> <span class="nav-text">yarn</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Asynchronous-Node-js"><span class="nav-number">4.</span> <span class="nav-text">Asynchronous Node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Asynchronous-Code-in-Node-js"><span class="nav-number">4.1.</span> <span class="nav-text">Asynchronous Code in Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Asynchronous-Patterns"><span class="nav-number">4.2.</span> <span class="nav-text">Asynchronous Patterns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-handling"><span class="nav-number">4.3.</span> <span class="nav-text">Error handling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servers"><span class="nav-number">4.4.</span> <span class="nav-text">Servers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debugging-amp-Testing"><span class="nav-number">5.</span> <span class="nav-text">Debugging &amp; Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Debugging-Node"><span class="nav-number">5.1.</span> <span class="nav-text">Debugging Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Testing-Node-Libraries"><span class="nav-number">5.2.</span> <span class="nav-text">Testing Node Libraries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anatomy-of-Tests"><span class="nav-number">5.3.</span> <span class="nav-text">Anatomy of Tests</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Type-of-Tests"><span class="nav-number">5.4.</span> <span class="nav-text">Type of Tests</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Publishing-and-Deploying"><span class="nav-number">6.</span> <span class="nav-text">Publishing and Deploying</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sharing-Modules"><span class="nav-number">6.1.</span> <span class="nav-text">Sharing Modules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploying-Your-Servers"><span class="nav-number">6.2.</span> <span class="nav-text">Deploying Your Servers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Futher-Tools-amp-Resources"><span class="nav-number">6.3.</span> <span class="nav-text">Futher Tools &amp; Resources</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">144</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/02/Introduction-to-Node-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introduction to Node.js
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2019-09-02 14:29:29 / 修改时间：14:31:16" itemprop="dateCreated datePublished" datetime="2019-09-02T14:29:29+08:00">2019-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="What-is-Node-js"><a href="#What-is-Node-js" class="headerlink" title="What is Node.js"></a>What is Node.js</h3><blockquote>
+<p>tldr; Environment to run JavaScript outside a browser</p>
+</blockquote>
+<ul>
+<li>Open source runtime</li>
+<li>Built on Chrome’s V8 JavaScript engine</li>
+<li>Created by Ryan Dahl in 2009</li>
+<li>Evolved since creation to allow developers to build almost anything</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/">nodejs</a></p>
+<p><a target="_blank" rel="noopener" href="https://v8.dev/">v8</a></p>
+<span id="more"></span>
+<h3 id="What-can-I-create-with-Node-js"><a href="#What-can-I-create-with-Node-js" class="headerlink" title="What can I create with Node.js"></a>What can I create with Node.js</h3><p>tldr; Pretty much anything a scripting and server language like python or ruby can, but with JavaScript</p>
+<ul>
+<li>Tooling (build, automation, etc)</li>
+<li>API’s (REST, Realtime, etc)</li>
+<li>CDNs</li>
+<li>Shareable libraries</li>
+<li>Desktop applications 💯😎🎉👌🏾</li>
+<li>IOT(Internet of Things)</li>
+<li>Pretty much anything because node is on everything now</li>
+</ul>
+<h3 id="Installing-Node-js"><a href="#Installing-Node-js" class="headerlink" title="Installing Node.js"></a>Installing Node.js</h3><p>tldr; Use NVM(Node Version Manager)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/nvm-sh/nvm#installation">GitHub NVM</a></p>
+<p><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</code></p>
+<p><code>nvm install node</code></p>
+<h3 id="Running-Node-js-Code"><a href="#Running-Node-js-Code" class="headerlink" title="Running Node.js Code"></a>Running Node.js Code</h3><p>tldr; REPL for playing around, cli for everything else</p>
+<ul>
+<li><p>Interactive REPL</p>
+<ul>
+<li>Great for trying things out, think console on the browser</li>
+<li>Just type the node command with no args and begin</li>
+</ul>
+</li>
+<li><p>CLI Executable</p>
+<ul>
+<li>Use to execute your node apps</li>
+<li><code>node path/to/your/file.js</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Node-js-Modules"><a href="#Node-js-Modules" class="headerlink" title="Node.js Modules"></a>Node.js Modules</h2><h3 id="Browser-JavaScript-vs-Node-js"><a href="#Browser-JavaScript-vs-Node-js" class="headerlink" title="Browser JavaScript vs Node.js"></a>Browser JavaScript vs Node.js</h3><table>
+<thead>
+<tr>
+<th>Browser</th>
+<th>Node.js</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bulid Interactive apps for the web</td>
+<td>Bulid server side apps and scripts</td>
+</tr>
+<tr>
+<td>DOM</td>
+<td>Nope, no GUI(can virtualize)</td>
+</tr>
+<tr>
+<td>Window</td>
+<td>No window, but does have a global</td>
+</tr>
+<tr>
+<td>Fragmentation</td>
+<td>Versioned, so no fragmentation</td>
+</tr>
+<tr>
+<td>Optional modules(es6)</td>
+<td>Required modules(commonjs+)</td>
+</tr>
+<tr>
+<td>Cann’t not access filesystem</td>
+<td>Can access filesystem</td>
+</tr>
+<tr>
+<td>Async</td>
+<td>Async</td>
+</tr>
+<tr>
+<td></td>
+<td>No browser based APIs</td>
+</tr>
+</tbody></table>
+<h3 id="Globals-in-Node-js"><a href="#Globals-in-Node-js" class="headerlink" title="Globals in Node.js"></a>Globals in Node.js</h3><p>tldr; Nodejs gives you helpful globals, but just like the browser, you should not create your own</p>
+<ul>
+<li>process<ul>
+<li>has information about the environment the program is running in</li>
+</ul>
+</li>
+<li>require<ul>
+<li>function to find and use modules in current module</li>
+</ul>
+</li>
+<li>__dirname<ul>
+<li>the current directory path</li>
+</ul>
+</li>
+<li>module<ul>
+<li>information about current module, methods or making module consumable</li>
+</ul>
+</li>
+<li>global<ul>
+<li>like window, its the “global” object. Almost <strong>NEVER</strong> use this</li>
+</ul>
+</li>
+<li>…. many more</li>
+</ul>
+<h3 id="Node-js-Module"><a href="#Node-js-Module" class="headerlink" title="Node.js Module"></a>Node.js Module</h3><ul>
+<li>What are modules?<ul>
+<li>tldr; Encapsulated code</li>
+</ul>
+</li>
+</ul>
+<p>node会自动将文件转换为模块，类似下面代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> module1 = (<span class="function"><span class="keyword">function</span>(<span class="params"><span class="built_in">exports</span>, <span class="built_in">require</span>, <span class="built_in">module</span>, __filename, __dirname</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// your node js code in a file</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> module2 = (<span class="function"><span class="keyword">function</span>(<span class="params"><span class="built_in">exports</span>, <span class="built_in">require</span>, <span class="built_in">module</span>, __filename, __dirname</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// your node js code in another file</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>可以看到默认只传入五个参数，那么我们是如何调用其他全局方法或变量的呢？</p>
+<p>可以理解为类似浏览器有个兜底对象windows，node有个兜底对象global。没有传入的方法和属性都挂载在上面，而上面五个变量会因为每个module实例的不同而不同(例如文件路径，模块路径等)，所以需要单独传入。</p>
+<ul>
+<li>Modules in Node.js<ul>
+<li>tldr; CommonJs</li>
+</ul>
+</li>
+<li>NodeJs uses commonJs for its module system.</li>
+<li>There are other module systems out there like:<ul>
+<li>ESM (ecmascript modules) <em>new standard</em></li>
+<li>AMD (pretty much dead)</li>
+<li>… others, but don’t matter at all</li>
+</ul>
+</li>
+</ul>
+<h3 id="Creating-Node-Modules"><a href="#Creating-Node-Modules" class="headerlink" title="Creating Node Modules"></a>Creating Node Modules</h3><ul>
+<li><p>Creating modules</p>
+<ul>
+<li>tldr; Regular code, just export it</li>
+</ul>
+</li>
+<li><p>All your Nodejs code are modules.</p>
+</li>
+<li><p>As the author, you decide how and what to expose from your modules, to other modules.</p>
+</li>
+<li><p>You do this with the module global object provided you by the Nodejs runtime</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Importing-Node-Modules"><a href="#Importing-Node-Modules" class="headerlink" title="Importing Node Modules"></a>Importing Node Modules</h3><ul>
+<li>Using modules<ul>
+<li>tldr; require</li>
+</ul>
+</li>
+<li>The Nodejs runtime injects another global, require.</li>
+<li>This function takes a relative path to the module that you want to consume, and synchronously loads it by returning whatever the target module exported.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myModule = <span class="built_in">require</span>(<span class="string">&#x27;./myModule&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Internal-Modules-amp-npm"><a href="#Internal-Modules-amp-npm" class="headerlink" title="Internal Modules &amp; npm"></a>Internal Modules &amp; npm</h2><h3 id="The-fs-Module"><a href="#The-fs-Module" class="headerlink" title="The fs Module"></a>The fs Module</h3><ul>
+<li><p>Shipped modules</p>
+<ul>
+<li>tldr; Node.js ships with a bunch of helpful modules already</li>
+</ul>
+</li>
+<li><p>fs - fileSystem module to interacting with files on a machine</p>
+</li>
+<li><p>http - low level-ish module for creating network based programs, like APIs</p>
+</li>
+<li><p>path - useful for mainpulating path strings and handling differences across many OS’s</p>
+</li>
+<li><p>…many more</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>node内核自带模块引入时不需要加路径参数。</p>
+<h3 id="Other-Internal-Node-Modules"><a href="#Other-Internal-Node-Modules" class="headerlink" title="Other Internal Node Modules"></a>Other Internal Node Modules</h3><h3 id="Remote-Modules"><a href="#Remote-Modules" class="headerlink" title="Remote Modules"></a>Remote Modules</h3><p>tldr; download and use other modules from the internet</p>
+<ul>
+<li>Node.js has grown a bunch, and a bunch of that growth is due to its community and the ability to share modules and consume them at will</li>
+<li>You can slap together an app really fast by reusing public modules. Which are the same as the modules you make, but packaged for downloading</li>
+<li>This sounds nice, but now you have to be aware of malicious code. Also, you need a system to help with the management ogf remote modules(downloading, publishing, updating, etc)</li>
+</ul>
+<h3 id="Modules-Recap"><a href="#Modules-Recap" class="headerlink" title="Modules Recap"></a>Modules Recap</h3><ul>
+<li>Three module types, on require<ul>
+<li>tldr; modules you created are always relative paths.”.js” is implied.</li>
+</ul>
+</li>
+</ul>
+<p>Custom local modules</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lib = <span class="built_in">require</span>(<span class="string">&#x27;../rel/path/to/lib&#x27;</span>) <span class="comment">// 相对路径</span></span><br></pre></td></tr></table></figure>
+
+<p>Remote modules</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lib = <span class="built_in">require</span>(<span class="string">&#x27;lib&#x27;</span>) <span class="comment">// 与在npm进行安装时同样的名称</span></span><br></pre></td></tr></table></figure>
+
+<p>Shipped modules</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>) <span class="comment">// 内置模块，直接用模块名称</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>tldr; CLI(Command Line Interface) to manage remote modules</p>
+<ul>
+<li>Ships with Node.js</li>
+<li>Allows you to publish, download, and update modules</li>
+<li>Use <code>package.json</code> file in your Node.js project to determine dependedcies</li>
+<li>Store remote modules in the <code>node_modules</code> folder</li>
+<li>…whole bunch of other stuff</li>
+</ul>
+<h3 id="yarn"><a href="#yarn" class="headerlink" title="yarn"></a>yarn</h3><p><a target="_blank" rel="noopener" href="https://yarnpkg.com/en/">yarn</a></p>
+<h2 id="Asynchronous-Node-js"><a href="#Asynchronous-Node-js" class="headerlink" title="Asynchronous Node.js"></a>Asynchronous Node.js</h2><h3 id="Asynchronous-Code-in-Node-js"><a href="#Asynchronous-Code-in-Node-js" class="headerlink" title="Asynchronous Code in Node.js"></a>Asynchronous Code in Node.js</h3><ul>
+<li><p>Async code</p>
+<ul>
+<li>tldr; Node.js is single threaded and async like the browser, but you’ll probably do more async things</li>
+</ul>
+</li>
+<li><p>Node.js is single threaded and event based. Just like the browser</p>
+</li>
+<li><p>Unlike the browser, your Node.js app will be shared by all clients</p>
+</li>
+<li><p>You now have consider CPU intensive tasks that block the single thread(while loops)</p>
+</li>
+</ul>
+<h3 id="Asynchronous-Patterns"><a href="#Asynchronous-Patterns" class="headerlink" title="Asynchronous Patterns"></a>Asynchronous Patterns</h3><ul>
+<li><p>Async patterns</p>
+<ul>
+<li>tldr; async/await is legit</li>
+</ul>
+</li>
+<li><p>callback parrern</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doAsyncThing(<span class="function">(<span class="params">err, result</span>) =&gt;</span> &#123; <span class="comment">/* do somethins */</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>promises</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">doAsyncThing()</span><br><span class="line">  .then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;&#125;)</span><br><span class="line">  .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>async/await</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> run  = <span class="keyword">async</span>() =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> result = <span class="keyword">await</span> doAsyncThing() <span class="comment">// must return a promise</span></span><br><span class="line">  <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Error-handling"><a href="#Error-handling" class="headerlink" title="Error handling"></a>Error handling</h3><p>tldr; Errors kill your app, just like the browser</p>
+<ul>
+<li>Any thrown or unhandled errors will cause the process to crash and exit</li>
+<li>Your app may have errors that should not cause a crash, so you must handle accordingly</li>
+</ul>
+<h3 id="Servers"><a href="#Servers" class="headerlink" title="Servers"></a>Servers</h3><p>tldr; one server, handling many requests from clients</p>
+<ul>
+<li>A server’s job is to handle a request from some sort of client(browser, mobile app, another server, etc)</li>
+<li>Without considering scaling, one server instance will handle many client requesets.Compared to a client app where that code only cared about itself on the host machine.</li>
+<li>Node.js has built in and community packages for build all types of servers(API’s, static, realtime, etc)</li>
+</ul>
+<h2 id="Debugging-amp-Testing"><a href="#Debugging-amp-Testing" class="headerlink" title="Debugging &amp; Testing"></a>Debugging &amp; Testing</h2><h3 id="Debugging-Node"><a href="#Debugging-Node" class="headerlink" title="Debugging Node"></a>Debugging Node</h3><ul>
+<li><p>Debugging</p>
+<ul>
+<li>tldr; just like chrome</li>
+</ul>
+</li>
+<li><p>Level 1</p>
+<ul>
+<li>Use <code>console.log</code> to log your way through fixing your app. In production, record your logs</li>
+</ul>
+</li>
+<li><p>Level 2</p>
+<ul>
+<li>Use the node inspector when starting your app and debug just like you would an browser app in chrome</li>
+</ul>
+</li>
+<li><p>Level 3</p>
+<ul>
+<li>Text editor integration offers the most seamless experience</li>
+</ul>
+</li>
+</ul>
+<h3 id="Testing-Node-Libraries"><a href="#Testing-Node-Libraries" class="headerlink" title="Testing Node Libraries"></a>Testing Node Libraries</h3><ul>
+<li><p>Testing</p>
+<ul>
+<li>tldr; export you modules and use a testing framework</li>
+</ul>
+</li>
+<li><p>Before you can test your code, make sure it is testable. As long as you can export what you want to test, you should be able to test it. There are other concerns specific to what libraries and frameworks you use</p>
+</li>
+<li><p>You can test pretty much antthing in Node.js. Browser apps, API’s, CLI’s, scripts, tools, etc. Your test themselves will be executed in Node.js, so they have the abality to pretty much do anything.</p>
+</li>
+</ul>
+<h3 id="Anatomy-of-Tests"><a href="#Anatomy-of-Tests" class="headerlink" title="Anatomy of Tests"></a>Anatomy of Tests</h3><p>tldr; many tools for the same job</p>
+<ul>
+<li>Your code to be tested</li>
+<li>Test Suite - responsible for helping organize you tests, provide hooks, and overall envionment</li>
+<li>Assertion Library - does the actual comparisons in your test</li>
+<li>Mocks + Spies - tools to help you test your code without testing other code or actually running your code(mock out api calls, check to see if an internal function was called)</li>
+</ul>
+<h3 id="Type-of-Tests"><a href="#Type-of-Tests" class="headerlink" title="Type of Tests"></a>Type of Tests</h3><p>tldr; everything can be tested with Node</p>
+<ul>
+<li>unit</li>
+<li>integration</li>
+<li>end-to-end</li>
+<li>UI</li>
+<li>snapshot</li>
+<li>performance</li>
+<li>…so many more</li>
+</ul>
+<h2 id="Publishing-and-Deploying"><a href="#Publishing-and-Deploying" class="headerlink" title="Publishing and Deploying"></a>Publishing and Deploying</h2><h3 id="Sharing-Modules"><a href="#Sharing-Modules" class="headerlink" title="Sharing Modules"></a>Sharing Modules</h3><p>tldr; push code to github, publish to NPM</p>
+<ul>
+<li>Sharing your modules are easy. Just a few things you have to check:<ul>
+<li>add <code>node_modules</code> to gitignore</li>
+<li>declare remote modules as devDependencies if you only need them to develop with(like jest)</li>
+<li>think about how your app will be used and what dependencies the host app might have, you don’t want to include another version(although NPM tries ti fix this for you)</li>
+<li>is this private or public?</li>
+</ul>
+</li>
+</ul>
+<h3 id="Deploying-Your-Servers"><a href="#Deploying-Your-Servers" class="headerlink" title="Deploying Your Servers"></a>Deploying Your Servers</h3><p>tldr; follow cloud provider instructions, and never hard code secrets</p>
+<ul>
+<li><p>Each cloud provider has it’s own method of deploying your apps on their platforms. Most of them have some integration with github or a CLI to assist.</p>
+</li>
+<li><p>Few things to remember</p>
+<ul>
+<li>remove secrets and use environment vars</li>
+<li>setup a CI flow for your app</li>
+<li>make sure you are developing with the same version of node you are deploying to</li>
+</ul>
+</li>
+</ul>
+<h3 id="Futher-Tools-amp-Resources"><a href="#Futher-Tools-amp-Resources" class="headerlink" title="Futher Tools &amp; Resources"></a>Futher Tools &amp; Resources</h3><p><a target="_blank" rel="noopener" href="https://expressjs.com/en/guide/routing.html">express</a><br><a target="_blank" rel="noopener" href="https://github.com/tj/commander.js/">commander</a><br><a target="_blank" rel="noopener" href="https://www.gatsbyjs.org/">Gatsby</a><br><a target="_blank" rel="noopener" href="https://nuxtjs.org/">Nuxt</a><br><a target="_blank" rel="noopener" href="https://nextjs.org/">Next.js</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/09/01/CSS%E5%85%A8%E8%A7%A3-CSS%E5%AE%9A%E4%BD%8D/" rel="prev" title="[CSS全解]CSS定位">
+                  <i class="fa fa-chevron-left"></i> [CSS全解]CSS定位
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/09/03/JS%E7%9A%84%E5%8E%86%E5%8F%B2/" rel="next" title="JS的历史">
+                  JS的历史 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

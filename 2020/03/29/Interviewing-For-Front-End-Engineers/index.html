@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="Introduction 为什么面试很难  因为技术栈不适合当前公司？ 即使编程技能很好但仍会当前公司使用的是不熟悉的技术？   也许是每个人对编程的理解不同  每个工程师对于构建产品或者解决问题的思路可能不同 所以并没有一个类似高考分数的同一标准   3 type of programmers  Programming is math 编程就是算法，操作数字的技术   Programming i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interviewing For Front-End Engineers">
+<meta property="og:url" content="http://yoursite.com/2020/03/29/Interviewing-For-Front-End-Engineers/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introduction 为什么面试很难  因为技术栈不适合当前公司？ 即使编程技能很好但仍会当前公司使用的是不熟悉的技术？   也许是每个人对编程的理解不同  每个工程师对于构建产品或者解决问题的思路可能不同 所以并没有一个类似高考分数的同一标准   3 type of programmers  Programming is math 编程就是算法，操作数字的技术   Programming i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-29T07:32:52.000Z">
+<meta property="article:modified_time" content="2020-03-29T07:33:49.647Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Interview">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/03/29/Interviewing-For-Front-End-Engineers/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;29&#x2F;Interviewing-For-Front-End-Engineers&#x2F;&quot;,&quot;path&quot;:&quot;2020&#x2F;03&#x2F;29&#x2F;Interviewing-For-Front-End-Engineers&#x2F;&quot;,&quot;title&quot;:&quot;Interviewing For Front-End Engineers&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Interviewing For Front-End Engineers | 刘勇的博客</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">刘勇的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenges-Interviewing-for-Front-End-Engineering"><span class="nav-number">1.1.</span> <span class="nav-text">Challenges Interviewing for Front-End Engineering</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">2.</span> <span class="nav-text">Application</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Interview-amp-Candidate-Perspectives"><span class="nav-number">2.1.</span> <span class="nav-text">Interview &amp; Candidate Perspectives</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Goal-Setting-amp-The-Interview-Process"><span class="nav-number">2.2.</span> <span class="nav-text">Goal Setting &amp; The Interview Process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Before-You-Apply"><span class="nav-number">2.3.</span> <span class="nav-text">Before You Apply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#About-Your-Resume"><span class="nav-number">2.4.</span> <span class="nav-text">About Your Resume</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-to-Do-with-No-Experience"><span class="nav-number">2.5.</span> <span class="nav-text">What to Do with No Experience</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluating-Application"><span class="nav-number">2.6.</span> <span class="nav-text">Evaluating Application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Initial-Call"><span class="nav-number">3.</span> <span class="nav-text">Initial Call</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Initial-Call-Overview"><span class="nav-number">3.1.</span> <span class="nav-text">Initial Call Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Preparing-Interview-Questions"><span class="nav-number">3.2.</span> <span class="nav-text">Preparing Interview Questions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prescreen-JavaScript-Questions"><span class="nav-number">3.3.</span> <span class="nav-text">Prescreen JavaScript Questions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Test"><span class="nav-number">4.</span> <span class="nav-text">Code Test</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-Test-Overview"><span class="nav-number">4.1.</span> <span class="nav-text">Code Test Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Giving-amp-Evaluating-a-Code-Test"><span class="nav-number">4.2.</span> <span class="nav-text">Giving &amp; Evaluating a Code Test</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Big-O"><span class="nav-number">4.3.</span> <span class="nav-text">Big-O</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phone-Screen"><span class="nav-number">5.</span> <span class="nav-text">Phone Screen</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Phone-Screen-Overview"><span class="nav-number">5.1.</span> <span class="nav-text">Phone Screen Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phone-Screen-Exercise"><span class="nav-number">5.2.</span> <span class="nav-text">Phone Screen Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#On-Site-Preparation"><span class="nav-number">5.3.</span> <span class="nav-text">On-Site Preparation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#On-Site-Interview-amp-Concept-Review"><span class="nav-number">6.</span> <span class="nav-text">On-Site Interview &amp; Concept Review</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#On-Site-Interview-Overview"><span class="nav-number">6.1.</span> <span class="nav-text">On-Site Interview Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-a-String"><span class="nav-number">6.2.</span> <span class="nav-text">What is a String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reversing-a-String"><span class="nav-number">6.3.</span> <span class="nav-text">Reversing a String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Built-in-Methods"><span class="nav-number">6.4.</span> <span class="nav-text">Built-in Methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#On-Site-Interview-Example-Questions"><span class="nav-number">7.</span> <span class="nav-text">On-Site Interview Example Questions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Removing-Duplicate-Strings-Exercise"><span class="nav-number">7.1.</span> <span class="nav-text">Removing Duplicate Strings Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flattening-an-Array-Exercise"><span class="nav-number">7.2.</span> <span class="nav-text">Flattening an Array Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Scope-bind-Exercise"><span class="nav-number">7.3.</span> <span class="nav-text">JavaScript Scope: bind Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timing-Debounce-Exercise"><span class="nav-number">7.4.</span> <span class="nav-text">Timing: Debounce Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trees-Exercise"><span class="nav-number">7.5.</span> <span class="nav-text">Trees Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rendering-Exercise"><span class="nav-number">7.6.</span> <span class="nav-text">Rendering Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promises-Exercise"><span class="nav-number">7.7.</span> <span class="nav-text">Promises Exercise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wrapping-Up"><span class="nav-number">8.</span> <span class="nav-text">Wrapping Up</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">144</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/29/Interviewing-For-Front-End-Engineers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Interviewing For Front-End Engineers
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-03-29 15:32:52 / 修改时间：15:33:49" itemprop="dateCreated datePublished" datetime="2020-03-29T15:32:52+08:00">2020-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li><p>为什么面试很难</p>
+<ul>
+<li>因为技术栈不适合当前公司？</li>
+<li>即使编程技能很好但仍会当前公司使用的是不熟悉的技术？</li>
+</ul>
+</li>
+<li><p>也许是每个人对编程的理解不同</p>
+<ul>
+<li>每个工程师对于构建产品或者解决问题的思路可能不同</li>
+<li>所以并没有一个类似高考分数的同一标准</li>
+</ul>
+</li>
+<li><p>3 type of programmers</p>
+<ol>
+<li>Programming is math<ul>
+<li>编程就是算法，操作数字的技术</li>
+</ul>
+</li>
+<li>Programming is for controlling hardware<ul>
+<li>编程的关键是硬件性能，程序是否足够接近底层以获得更高的性能表现</li>
+</ul>
+</li>
+<li>Programming is for building things<ul>
+<li>巨大多数人的类型，前端工程师的主要工作</li>
+<li>制作产品，用产品与用户沟通，理解规范与浏览器差异来实现功能</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://josephg.com/blog/3-tribes/">3 tribes of programming</a></p>
+<span id="more"></span>
+<h3 id="Challenges-Interviewing-for-Front-End-Engineering"><a href="#Challenges-Interviewing-for-Front-End-Engineering" class="headerlink" title="Challenges Interviewing for Front-End Engineering"></a>Challenges Interviewing for Front-End Engineering</h3></li>
+<li><p>Why is interviewing for Frontend so difficult?</p>
+</li>
+<li><p>问题特定到前端面试，为什么如此之难？</p>
+<ul>
+<li>技术更新过快，一夜间可能就多出许多概念</li>
+<li>前端涉及范围广泛<ul>
+<li>车载应用、电视应用、浏览器应用、桌面应用、移动应用等等</li>
+</ul>
+</li>
+<li>与其他技术相比，gui仍十分年轻，只在最近二三十年开始蓬勃发展</li>
+</ul>
+</li>
+<li><p>这里说了个笑话</p>
+<ul>
+<li>In JavaScript, how would _you_ define scope?</li>
+</ul>
+</li>
+<li><p>作用域在JS中是一个核心概念，可是即便是如此核心的概念，不同人对此仍有不同理解</p>
+</li>
+</ul>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><h3 id="Interview-amp-Candidate-Perspectives"><a href="#Interview-amp-Candidate-Perspectives" class="headerlink" title="Interview &amp; Candidate Perspectives"></a>Interview &amp; Candidate Perspectives</h3><ul>
+<li>Interviewer<ul>
+<li>这里提了一个问题，作为一个面试官，你总共花了多久学习面试？</li>
+<li>问题的答案可能就是从面试者的角度来说，面试很难的原因之一，因为我们花了许多时间学习如何通过面试，但很少学习如何面试他人</li>
+</ul>
+</li>
+</ul>
+<h3 id="Goal-Setting-amp-The-Interview-Process"><a href="#Goal-Setting-amp-The-Interview-Process" class="headerlink" title="Goal Setting &amp; The Interview Process"></a>Goal Setting &amp; The Interview Process</h3><ul>
+<li><p>0.300</p>
+<ul>
+<li>这个应该是美职棒的平均打击数量（10次挥棒七次不中）</li>
+<li>既每十次打中三次就可以在美职棒中处于平均水准之上，成为棒球明星</li>
+</ul>
+</li>
+<li><p>0.501</p>
+<ul>
+<li>这是作者提出的面试成功率，及面试两次就能成功一次</li>
+</ul>
+</li>
+<li><p>Steps of an interview</p>
+<ul>
+<li>Application</li>
+<li>Initial call</li>
+<li>Code test</li>
+<li>Phone screen</li>
+<li>On-site</li>
+<li>Result</li>
+</ul>
+</li>
+</ul>
+<h3 id="Before-You-Apply"><a href="#Before-You-Apply" class="headerlink" title="Before You Apply"></a>Before You Apply</h3><ul>
+<li>Application<ul>
+<li>What do you like about your current job?<ul>
+<li>是工作氛围很好，能帮助成长？</li>
+<li>解决了许多复杂难题并且获得了奖励？</li>
+<li>公司有所谓的工程师文化？</li>
+</ul>
+</li>
+<li>What sort of things are you looking for in your next role?<ul>
+<li>建议在入职前仔细考虑下自己的需求</li>
+</ul>
+</li>
+<li>Which companies have appealing engineering cultures? What makes it appealing?</li>
+</ul>
+</li>
+</ul>
+<h3 id="About-Your-Resume"><a href="#About-Your-Resume" class="headerlink" title="About Your Resume"></a>About Your Resume</h3><ul>
+<li>One page</li>
+<li>Skills</li>
+<li>Experience</li>
+<li>Technology familiarity</li>
+<li>Education</li>
+<li>Accomplishments</li>
+</ul>
+<h3 id="What-to-Do-with-No-Experience"><a href="#What-to-Do-with-No-Experience" class="headerlink" title="What to Do with No Experience"></a>What to Do with No Experience</h3><ul>
+<li>What do I do if I have little/no experience?<ul>
+<li>可以先做测试，进入互联网公司，再转型。</li>
+<li>以一个低价格帮助企业建站</li>
+<li>有人会说在GItHub上放一大堆样例代码，但作者认为可能并没有太大帮助，将算法等发到Twitter等社交媒体，将一些酷炫的ui和动画发到CodePen上的效果可能比GItHub上更好，能被更多人注意到。</li>
+<li>最好的办法还是多在网络上跟人交流，争取内推的机会。</li>
+<li>最终的建议总结<ul>
+<li>LinkedIn Profile</li>
+<li>Personal Webpage</li>
+<li>Network</li>
+</ul>
+</li>
+<li>非计算机相关的经历怎么处理<ul>
+<li>可以放在简历上</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Evaluating-Application"><a href="#Evaluating-Application" class="headerlink" title="Evaluating Application"></a>Evaluating Application</h3><ul>
+<li>Interviewer<ul>
+<li>Which roles does this person fit?</li>
+<li>What sort of experience is required?</li>
+<li>Is there any bias in your selection process?</li>
+</ul>
+</li>
+</ul>
+<h2 id="Initial-Call"><a href="#Initial-Call" class="headerlink" title="Initial Call"></a>Initial Call</h2><h3 id="Initial-Call-Overview"><a href="#Initial-Call-Overview" class="headerlink" title="Initial Call Overview"></a>Initial Call Overview</h3><ul>
+<li>What do you do  currently?</li>
+<li>What are some projects you’ve worked on recently?</li>
+<li>What are you looking for in your next role?</li>
+<li>Why do you want to work for ____?</li>
+<li>What is your availability for the next steps?</li>
+</ul>
+<h3 id="Preparing-Interview-Questions"><a href="#Preparing-Interview-Questions" class="headerlink" title="Preparing Interview Questions"></a>Preparing Interview Questions</h3><ol>
+<li>How many steps are in the interview process? How long does it generally take?</li>
+<li>How big is your engineering team?</li>
+<li>Which team would I be interviewing for?</li>
+<li>What is the culture like?</li>
+<li>Who are you competitors?</li>
+<li>What sort of projects would I work on?</li>
+</ol>
+<h3 id="Prescreen-JavaScript-Questions"><a href="#Prescreen-JavaScript-Questions" class="headerlink" title="Prescreen JavaScript Questions"></a>Prescreen JavaScript Questions</h3><ul>
+<li><p>What is the difference between const let, and var?</p>
+<ul>
+<li>var与let和const作用域不同；var会提升到作用域顶部，在初始化之前使用，let和const不能再初始化之前使用；const一旦初始化不可重新赋值，当然，还是可以更改引用类型的属性。</li>
+</ul>
+</li>
+<li><p>Explain prototypical inheritance</p>
+<ul>
+<li>JS使用原型提供面向对象的继承。通过指定新对象的原型属性来继承其他对象的属性或者方法。</li>
+</ul>
+</li>
+<li><p>What is “this” mean in JavaScript?</p>
+<ul>
+<li>当前执行上下文所指向的对象，如果没有的话就是全局对象</li>
+</ul>
+</li>
+<li><p>What is the data structure of the DOM?</p>
+<ul>
+<li>Tree</li>
+</ul>
+</li>
+<li><p>What is a Stack and Queue? How would you create data structures in JavaScript?</p>
+<ul>
+<li>Stack: FILO(First In Last Out)</li>
+<li>Queue: FIFO(First In First Out)</li>
+</ul>
+</li>
+<li><p>How can you tell if an image element is loaded on a page?</p>
+<ul>
+<li>Image元素有onload事件</li>
+</ul>
+</li>
+<li><p>What is call() and apply()?</p>
+<ul>
+<li>显式的更改this指向</li>
+</ul>
+</li>
+<li><p>What is event delegation and what are the performance tradeoffs?</p>
+<ul>
+<li>当有多个元素注册同一监听事件时，可以将事件注册在其共有的父级元素上，这就是事件委托。因为注册事件会消耗性能，所以应该尽可能少的减少注册事件</li>
+</ul>
+</li>
+<li><p>What is a Worker? When would you use one?</p>
+<ul>
+<li>浏览器内置功能，在后台可以做一些计算或者缓存，如果有一些复杂计算，并且不想阻塞当前进程，可以使用worker后台计算。</li>
+</ul>
+</li>
+<li><p>作者并不追求完全正确的答案，而是期待对这些知识有一定了解</p>
+</li>
+<li><p><del>Trivia</del></p>
+<ul>
+<li>{} === +[]</li>
+</ul>
+</li>
+<li><p>有时候你认为你出的面试题简单是因为你已经知道答案，如果你在独立解决一些怪异问题时，还认为这些问题简单吗？</p>
+</li>
+<li><p>面试本来就不简单，我们被赋予高额的工资来面试别人，有些困难和挑战才是工资如此之高的正常现象。</p>
+</li>
+</ul>
+<h2 id="Code-Test"><a href="#Code-Test" class="headerlink" title="Code Test"></a>Code Test</h2><h3 id="Code-Test-Overview"><a href="#Code-Test-Overview" class="headerlink" title="Code Test Overview"></a>Code Test Overview</h3><ul>
+<li>Interviewee Code test tips<ul>
+<li>Make your code as readable as possible<ul>
+<li>例如别用~~代替Math.round😂</li>
+<li>Comment your code</li>
+<li>即使追求self documenting也最好加注释，这样即使不赞同实现方式也可以顺着实现逻辑缕清代码思路</li>
+<li>Don’t over complicate the architecture</li>
+<li>还是尽量简单，简单易读的代码就是好代码</li>
+</ul>
+</li>
+<li>Don’t import too many libraries</li>
+<li>If you have time, add unit tests</li>
+<li>Ask questions!</li>
+</ul>
+</li>
+</ul>
+<h3 id="Giving-amp-Evaluating-a-Code-Test"><a href="#Giving-amp-Evaluating-a-Code-Test" class="headerlink" title="Giving &amp; Evaluating a Code Test"></a>Giving &amp; Evaluating a Code Test</h3><ul>
+<li>Interviewer Code Test Tips<ul>
+<li>Make the problem as straightforward as possible</li>
+<li>Be honest with the time constraints</li>
+<li>Have a code review checklist</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Average</th>
+<th>Good</th>
+<th>Exceptional</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Application starts properly</td>
+<td>Code is well documented</td>
+<td>Modular architecture designed for extensibility</td>
+</tr>
+<tr>
+<td>3/5 requirements completes</td>
+<td>All requirements are complete</td>
+<td>Created unit and integration tests</td>
+</tr>
+<tr>
+<td></td>
+<td>No errors and thrown in the console</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="Big-O"><a href="#Big-O" class="headerlink" title="Big-O"></a>Big-O</h3><ul>
+<li>Knowledge: Big-O<ul>
+<li>大O,没啥好说的，描述时间和空间复杂度的，简单说就是忽略一切常数和其他，只保留最高位的系数。</li>
+<li>Big Omega Ω “best case”</li>
+<li>Big Theta ⍬ “average case”</li>
+<li>Big O O “worst case”</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">search</span>(<span class="params">arr, num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(arr[i] === num) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Big Omega Constant</span></span><br><span class="line"><span class="comment">// Big Theta O(n)</span></span><br><span class="line"><span class="comment">// Big O O(n)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Phone-Screen"><a href="#Phone-Screen" class="headerlink" title="Phone Screen"></a>Phone Screen</h2><h3 id="Phone-Screen-Overview"><a href="#Phone-Screen-Overview" class="headerlink" title="Phone Screen Overview"></a>Phone Screen Overview</h3><ul>
+<li><p>Candidate</p>
+<ul>
+<li>Ask questions</li>
+<li>Talk out your solution</li>
+<li>Get comfortable with the environment</li>
+</ul>
+</li>
+<li><p>Interviewer</p>
+<ul>
+<li>Are you in a quiet area?</li>
+<li>Is the problem well worded?</li>
+<li>Does the candidate know what the requirements and restrictions are?</li>
+<li>Did you leave time for questions at the end?</li>
+</ul>
+</li>
+</ul>
+<h3 id="Phone-Screen-Exercise"><a href="#Phone-Screen-Exercise" class="headerlink" title="Phone Screen Exercise"></a>Phone Screen Exercise</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://codepen.io/jemyoung/pen/0817cc37159377752b6cd9bf70d40883?editors=1011">Exercise Link</a></p>
+</li>
+<li><p>My solution</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** YOUR CODE BELOW **/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foods</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">rootElement, foodData</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.rootElement = rootElement</span><br><span class="line">    <span class="built_in">this</span>.foodData = foodData</span><br><span class="line">    <span class="built_in">this</span>.staticClickHandler = <span class="built_in">this</span>.clickHandler.bind(<span class="built_in">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> lis = <span class="built_in">this</span>.foodData.map(<span class="function">(<span class="params">food, index</span>) =&gt;</span> (</span><br><span class="line">      <span class="string">`&lt;li data-index=<span class="subst">$&#123;index&#125;</span>&gt;<span class="subst">$&#123;food.image&#125;</span> <span class="subst">$&#123;food.name&#125;</span>&lt;/li&gt;`</span></span><br><span class="line">    ))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.rootElement.innerHTML = <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;ul&gt;<span class="subst">$&#123;lis.join(<span class="string">&#x27;&#x27;</span>)&#125;</span>&lt;/ul&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.rootElement.addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="built_in">this</span>.staticClickHandler)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="title">clickHandler</span>(<span class="params">e</span>)</span> &#123;</span><br><span class="line">     <span class="keyword">const</span> clickIndex = e.target.dataset.index</span><br><span class="line">     <span class="built_in">this</span>.foodData.splice(clickIndex, <span class="number">1</span>)</span><br><span class="line">     <span class="built_in">this</span>.rootElement.removeEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="built_in">this</span>.staticClickHandler)</span><br><span class="line">     <span class="built_in">this</span>.render()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foods = <span class="keyword">new</span> Foods(rootElement, foodData)</span><br><span class="line"></span><br><span class="line">foods.render()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Author’s Solution</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foods</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">el, foodData</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>._root = el</span><br><span class="line">    <span class="built_in">this</span>._data = foodData</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">renderList</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>._root.addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; target &#125; = e</span><br><span class="line">      target.remove()</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建一个fragment,将food同一插入至此元素后在将其同一放入rootElement内</span></span><br><span class="line">    <span class="comment">// 以防止多次操作页面dom，提高性能表现</span></span><br><span class="line">    <span class="keyword">const</span> fragment = <span class="built_in">document</span>.createDocumentFragment()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>._data.forEach(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">      fragment.appendChild(<span class="built_in">this</span>.createFoodItem(i))</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>._root.appendChild(fragment)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">createFoodItem</span>(<span class="params">item</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> itemEl = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line">    itemEl.innerText = item.image</span><br><span class="line">    itemEl.classList.add(item.name)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> itemEl</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="On-Site-Preparation"><a href="#On-Site-Preparation" class="headerlink" title="On-Site Preparation"></a>On-Site Preparation</h3><ul>
+<li><p>不是所有面试者都能走到On-Site这一步，如果进去了On-Site环节，即使此环节搞砸了，也要强于多数面试者。</p>
+</li>
+<li><p>Candidate</p>
+<ul>
+<li>Practice writing code without a computer</li>
+<li>Go over general sample problems</li>
+<li>Ask your friends to test you</li>
+<li>Try to ask what the style of technical questions will be</li>
+</ul>
+</li>
+<li><p>Interviewer</p>
+<ul>
+<li>Make sure questions are relevant to the role</li>
+<li>Have backup interviewers</li>
+<li>Book the room for the day</li>
+<li>Allow time for breaks(bathroom, lunch, etc)</li>
+</ul>
+</li>
+</ul>
+<h2 id="On-Site-Interview-amp-Concept-Review"><a href="#On-Site-Interview-amp-Concept-Review" class="headerlink" title="On-Site Interview &amp; Concept Review"></a>On-Site Interview &amp; Concept Review</h2><h3 id="On-Site-Interview-Overview"><a href="#On-Site-Interview-Overview" class="headerlink" title="On-Site Interview Overview"></a>On-Site Interview Overview</h3><ul>
+<li>一般来说，On-Site作为最后一个环节决定了是否发offer。那么除了大量的js基础问题，还涉及到作为面试者，在我问这些问题时我在寻找被面试者的那些特质？</li>
+<li>作为被面试者，你试图尽可能的表现出自己最好的一面，当已经进行到On-Site代表公司认同你的天分，所以此时其实寻找的是不发offer的原因，不要给公司这个机会。</li>
+</ul>
+<h3 id="What-is-a-String"><a href="#What-is-a-String" class="headerlink" title="What is a String"></a>What is a String</h3><ul>
+<li>Knowledge: strings<ul>
+<li>Primitive type</li>
+<li>Useful methods<ul>
+<li>.split()</li>
+<li>.toLowerCase()</li>
+<li>.substring()</li>
+<li>.startsWith()</li>
+</ul>
+</li>
+<li>Immutable</li>
+</ul>
+</li>
+</ul>
+<h3 id="Reversing-a-String"><a href="#Reversing-a-String" class="headerlink" title="Reversing a String"></a>Reversing a String</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reverseString = <span class="function">(<span class="params">str</span>) =&gt;</span> [...str].reverse().join(<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Built-in-Methods"><a href="#Built-in-Methods" class="headerlink" title="Built-in Methods"></a>Built-in Methods</h3><ul>
+<li>Knowledge: arrays<ul>
+<li>Convert methods<ul>
+<li>Object.entries()</li>
+<li>Array.from()</li>
+<li>[…item]</li>
+</ul>
+</li>
+<li>Useful methods<ul>
+<li>.isArray()</li>
+<li>.filter()</li>
+<li>.reduce()</li>
+<li>.map()</li>
+<li>.concat()</li>
+<li>.join()</li>
+<li>.pop()</li>
+<li>.push()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="On-Site-Interview-Example-Questions"><a href="#On-Site-Interview-Example-Questions" class="headerlink" title="On-Site Interview Example Questions"></a>On-Site Interview Example Questions</h2><h3 id="Removing-Duplicate-Strings-Exercise"><a href="#Removing-Duplicate-Strings-Exercise" class="headerlink" title="Removing Duplicate Strings Exercise"></a>Removing Duplicate Strings Exercise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create a function that takes a string and returns a</span></span><br><span class="line"><span class="comment">// new string with duplicates removed</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> removeDuplicates = <span class="function">(<span class="params">str</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> map = &#123;&#125;</span><br><span class="line">  <span class="keyword">return</span> str</span><br><span class="line">    .split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    .reduce(<span class="function">(<span class="params">arr, str</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(map[str]) <span class="keyword">return</span> arr</span><br><span class="line">      map[str] = <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> [...arr, str]</span><br><span class="line">    &#125;, [])</span><br><span class="line">    .join(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// author solution</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeDup</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> arr = str.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> set = <span class="keyword">new</span> <span class="built_in">Set</span>(arr)</span><br><span class="line">  <span class="keyword">return</span> [...set].join(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27;This is is a test test string&#x27;</span>;</span><br><span class="line">removeDuplicates(str); <span class="comment">// &#x27;This is a test string&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Tip<ul>
+<li>如果涉及到unique value，考虑使用Set</li>
+</ul>
+</li>
+</ul>
+<h3 id="Flattening-an-Array-Exercise"><a href="#Flattening-an-Array-Exercise" class="headerlink" title="Flattening an Array Exercise"></a>Flattening an Array Exercise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Without using .flat(), create a function to flatten an array</span></span><br><span class="line"><span class="keyword">const</span> flatten = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">res, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(item)) &#123;</span><br><span class="line">      <span class="keyword">return</span> [...res, ...flatten(item)]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [...res, item]</span><br><span class="line">  &#125;, [])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// author solution</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flattenArr</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  arr.reduce(<span class="function">(<span class="params">acc, curr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(curr)) &#123;</span><br><span class="line">      acc = acc.concat(flattenArr(curr))</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      acc.push(item)</span><br><span class="line">    &#125;</span><br><span class="line">      <span class="keyword">return</span> acc</span><br><span class="line">  &#125;, [])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> someNewArray</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> exampleArray = [<span class="number">1</span>,<span class="number">2</span>,[<span class="number">3</span>,<span class="number">4</span>, [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>], <span class="number">8</span>], <span class="number">9</span>, <span class="number">10</span>];</span><br><span class="line">flatten(exampleArray); <span class="comment">// [1,2,3,4,5,6,7,8,9,10]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="JavaScript-Scope-bind-Exercise"><a href="#JavaScript-Scope-bind-Exercise" class="headerlink" title="JavaScript Scope: bind Exercise"></a>JavaScript Scope: bind Exercise</h3><ul>
+<li>Knowledge: scope<ul>
+<li>.call()</li>
+<li>.apply()</li>
+<li>.bind()</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Implement Function.prototype.bind()</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">context, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> fn = <span class="built_in">this</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    fn.call(context, ...args)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.bar);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> baz = foo.bind(&#123;<span class="attr">bar</span>: <span class="string">&#x27;hello&#x27;</span>&#125;)</span><br><span class="line">baz(); <span class="comment">// Hello</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Timing-Debounce-Exercise"><a href="#Timing-Debounce-Exercise" class="headerlink" title="Timing: Debounce Exercise"></a>Timing: Debounce Exercise</h3><ul>
+<li>Knowledge: timing<ul>
+<li>setInterval()</li>
+<li>setTimeout()</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Implement debounce</span></span><br><span class="line"><span class="keyword">const</span> debounce = <span class="function"><span class="keyword">function</span> (<span class="params">fn, time</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> id = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(id) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(id)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    id = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>)</span><br><span class="line">      id = <span class="literal">null</span></span><br><span class="line">    &#125;, time)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> throttle = <span class="function"><span class="keyword">function</span> (<span class="params">fn, time</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> id = <span class="literal">null</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(id) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    id = <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      fn.apply(<span class="built_in">this</span>.arguments)</span><br><span class="line">      id = <span class="literal">null</span></span><br><span class="line">    &#125;, time)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Trees-Exercise"><a href="#Trees-Exercise" class="headerlink" title="Trees Exercise"></a>Trees Exercise</h3><ul>
+<li>Knowledge: trees</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// We have two identical DOM trees, A and B. For DOM tree A, we have</span></span><br><span class="line"><span class="comment">// the location of an element. Create a function to find that same element</span></span><br><span class="line"><span class="comment">// in tree B.</span></span><br><span class="line"><span class="keyword">const</span> reversePath = <span class="function">(<span class="params">element, root</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> steps = []</span><br><span class="line">  <span class="keyword">let</span> pointer = element</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(pointer.parent) &#123;</span><br><span class="line">    steps.push(</span><br><span class="line">      pointer.parent.indexOf(pointer)</span><br><span class="line">    )</span><br><span class="line">    pointer = pointer.parent</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pointer = root</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(steps.length) &#123;</span><br><span class="line">    pointer = pointer.children[steps.pop()]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> pointer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Rendering-Exercise"><a href="#Rendering-Exercise" class="headerlink" title="Rendering Exercise"></a>Rendering Exercise</h3><ul>
+<li>Knowledge: rendering<ul>
+<li>requestAnimationFrame()</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create a function to move an element. The function arguments are,</span></span><br><span class="line"><span class="comment">// distance, duration, and the element to move.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">moveElement</span>(<span class="params">duration, distance, element</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> start = performance.now()</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">currentTime</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> elapsed = currentTime - start</span><br><span class="line">    <span class="keyword">const</span> progress = elapsed / duration</span><br><span class="line">    <span class="keyword">const</span> amountToMove = distance * progress</span><br><span class="line"></span><br><span class="line">    element.style.transform = <span class="string">`translateX(<span class="subst">$&#123;amountToMove&#125;</span>px)`</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(amountToMove &lt; distance) &#123;</span><br><span class="line">      requestAnimationFrame(move)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  requestAnimationFrame(move)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Promises-Exercise"><a href="#Promises-Exercise" class="headerlink" title="Promises Exercise"></a>Promises Exercise</h3><ul>
+<li>Knowledge: Promises</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnApple</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    callback(<span class="string">&quot;🍎&quot;</span>)</span><br><span class="line">  &#125;, <span class="number">500</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnApplePromise</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">&quot;🍎&quot;</span>)</span><br><span class="line">    &#125;, <span class="number">500</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getApples</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> apple = <span class="keyword">await</span> returnApplePromise()</span><br><span class="line">  <span class="built_in">console</span>.log(apple)</span><br><span class="line"></span><br><span class="line">  returnApple(<span class="function"><span class="params">apple2</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(apple2)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create a sleep function that takes one parameter (time) and</span></span><br><span class="line"><span class="comment">// will wait &quot;time&quot; ms</span></span><br><span class="line"><span class="keyword">const</span> sleep = <span class="function">(<span class="params">time</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      res()</span><br><span class="line">    &#125;, time)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">await</span> sleep(<span class="number">500</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line">    <span class="keyword">await</span> sleep(<span class="number">500</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;world&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create a function to turn any function into a &quot;promisified&quot; function.</span></span><br><span class="line"><span class="comment">// Any function to be promisified will always have a callback as the last argument.</span></span><br><span class="line"><span class="comment">// The callback will always have this signature:</span></span><br><span class="line"><span class="comment">//   function(result)&#123;&#125;</span></span><br><span class="line"><span class="keyword">const</span> promisify = <span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> cb = <span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(result)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      fn.apply(<span class="built_in">this</span>, args.concat(cb))</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> exampleFn = <span class="function"><span class="keyword">function</span> (<span class="params">x, y, callback</span>) </span>&#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> promisedFn = promisify(exampleFn);</span><br><span class="line">promisedFn().then(...).then(...)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Wrapping-Up"><a href="#Wrapping-Up" class="headerlink" title="Wrapping Up"></a>Wrapping Up</h2><ul>
+<li><p>Results</p>
+<ul>
+<li>此时已通过所有面试流程，所以结果只有通过或者不通过</li>
+<li>有时你运气不错，基本回答上所有问题，有的时候也许只是运气不好，涉及到了知识盲区</li>
+<li>尽量获取到公司对面试的反馈，以便下一次的提升</li>
+</ul>
+</li>
+<li><p>Interviewer</p>
+<ul>
+<li>Give feedback</li>
+<li>Invite them to re-apply</li>
+<li>Stay in touch</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/Interview/" rel="tag"># Interview</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/07/State-Management-In-Pure-React-v2/" rel="prev" title="State Management In Pure React, v2">
+                  <i class="fa fa-chevron-left"></i> State Management In Pure React, v2
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/04/06/JavaScript-The-Hard-Parts-v2/" rel="next" title="JavaScript The Hard Parts, v2">
+                  JavaScript The Hard Parts, v2 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

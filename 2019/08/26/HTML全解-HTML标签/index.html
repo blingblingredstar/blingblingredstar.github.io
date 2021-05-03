@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="英语小课堂   英文 翻译 英文 翻译    heading 标题 order 顺序   body 正文 ordered 有序   paragraph 段落 unordered 无序   section 章节 description 描述   article 文章 term 术语   mian 主要的 data 数据   aside 旁边的 quote 引用   anchor 锚点 block 块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[HTML全解]HTML标签">
+<meta property="og:url" content="http://yoursite.com/2019/08/26/HTML%E5%85%A8%E8%A7%A3-HTML%E6%A0%87%E7%AD%BE/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="英语小课堂   英文 翻译 英文 翻译    heading 标题 order 顺序   body 正文 ordered 有序   paragraph 段落 unordered 无序   section 章节 description 描述   article 文章 term 术语   mian 主要的 data 数据   aside 旁边的 quote 引用   anchor 锚点 block 块">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-26T15:02:30.000Z">
+<meta property="article:modified_time" content="2019-08-27T00:50:47.539Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="饥人谷">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/08/26/HTML%E5%85%A8%E8%A7%A3-HTML%E6%A0%87%E7%AD%BE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;08&#x2F;26&#x2F;HTML%E5%85%A8%E8%A7%A3-HTML%E6%A0%87%E7%AD%BE&#x2F;&quot;,&quot;path&quot;:&quot;2019&#x2F;08&#x2F;26&#x2F;HTML全解-HTML标签&#x2F;&quot;,&quot;title&quot;:&quot;[HTML全解]HTML标签&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>[HTML全解]HTML标签 | 刘勇的博客</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">刘勇的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8B%B1%E8%AF%AD%E5%B0%8F%E8%AF%BE%E5%A0%82"><span class="nav-number">1.</span> <span class="nav-text">英语小课堂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">学习工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML%E8%B5%B7%E6%89%8B%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">HTML起手式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML%E6%A0%87%E7%AD%BE"><span class="nav-number">4.</span> <span class="nav-text">HTML标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%A0%E8%8A%82%E6%A0%87%E7%AD%BE"><span class="nav-number">4.1.</span> <span class="nav-text">章节标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E5%B1%9E%E6%80%A7"><span class="nav-number">4.2.</span> <span class="nav-text">全局属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%A0%B7%E5%BC%8F"><span class="nav-number">4.3.</span> <span class="nav-text">默认样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E6%A0%87%E7%AD%BE"><span class="nav-number">4.4.</span> <span class="nav-text">内容标签</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">144</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/26/HTML%E5%85%A8%E8%A7%A3-HTML%E6%A0%87%E7%AD%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘勇">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [HTML全解]HTML标签
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-26 23:02:30" itemprop="dateCreated datePublished" datetime="2019-08-26T23:02:30+08:00">2019-08-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2019-08-27 08:50:47" itemprop="dateModified" datetime="2019-08-27T08:50:47+08:00">2019-08-27</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="英语小课堂"><a href="#英语小课堂" class="headerlink" title="英语小课堂"></a>英语小课堂</h2><table>
+<thead>
+<tr>
+<th>英文</th>
+<th>翻译</th>
+<th>英文</th>
+<th>翻译</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>heading</td>
+<td>标题</td>
+<td>order</td>
+<td>顺序</td>
+</tr>
+<tr>
+<td>body</td>
+<td>正文</td>
+<td>ordered</td>
+<td>有序</td>
+</tr>
+<tr>
+<td>paragraph</td>
+<td>段落</td>
+<td>unordered</td>
+<td>无序</td>
+</tr>
+<tr>
+<td>section</td>
+<td>章节</td>
+<td>description</td>
+<td>描述</td>
+</tr>
+<tr>
+<td>article</td>
+<td>文章</td>
+<td>term</td>
+<td>术语</td>
+</tr>
+<tr>
+<td>mian</td>
+<td>主要的</td>
+<td>data</td>
+<td>数据</td>
+</tr>
+<tr>
+<td>aside</td>
+<td>旁边的</td>
+<td>quote</td>
+<td>引用</td>
+</tr>
+<tr>
+<td>anchor</td>
+<td>锚点</td>
+<td>block</td>
+<td>块</td>
+</tr>
+<tr>
+<td>strong</td>
+<td>强壮</td>
+<td>inline</td>
+<td>行内</td>
+</tr>
+<tr>
+<td>emphasis</td>
+<td>强调</td>
+<td>break</td>
+<td>打断</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+<h2 id="学习工具"><a href="#学习工具" class="headerlink" title="学习工具"></a>学习工具</h2><ul>
+<li>推荐书籍《网道HTML教程》<ul>
+<li>看书诀窍：三上（马山，枕上，厕上）- 顾名思义，源自欧阳修《归田录》</li>
+</ul>
+</li>
+<li>提问技巧<ul>
+<li>代码问题三要素<ol>
+<li>代码链接</li>
+<li>期望效果</li>
+<li>实际效果</li>
+</ol>
+</li>
+<li>非代码问题三要素<ol>
+<li>原始需求</li>
+<li>自己的思路</li>
+<li>遇到的问题</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>推荐网站<ul>
+<li>jsbin</li>
+<li>codesandbox</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTML起手式"><a href="#HTML起手式" class="headerlink" title="HTML起手式"></a>HTML起手式</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 文档类型 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 根标签，语言为中文 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;zh-CN&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 头部信息 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 字符编码类型 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 视窗选项，根据设备缩放，初始倍率为1.0 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 通知ie浏览器升级引擎 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 标题 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 网页主体 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="HTML标签"><a href="#HTML标签" class="headerlink" title="HTML标签"></a>HTML标签</h2><h3 id="章节标签"><a href="#章节标签" class="headerlink" title="章节标签"></a>章节标签</h3><ul>
+<li>表示文章/内容层级<ul>
+<li>标题 h1 - h6</li>
+<li>章节 section</li>
+<li>文章 article</li>
+<li>段落 p</li>
+<li>头部 header</li>
+<li>脚部 footer</li>
+<li>主体 main</li>
+<li>旁支 aside</li>
+<li>划分 div</li>
+</ul>
+</li>
+</ul>
+<h3 id="全局属性"><a href="#全局属性" class="headerlink" title="全局属性"></a>全局属性</h3><ul>
+<li>所有标签都有的属性<ul>
+<li>class</li>
+<li>contenteditable<ul>
+<li>标签内容是否可编辑，可结合下方hidden属性将style标签显示在页面上进行样式调试</li>
+</ul>
+</li>
+<li>hidden</li>
+<li>id<ul>
+<li>不推荐使用</li>
+</ul>
+</li>
+<li>style</li>
+<li>tabindex<ul>
+<li>使用tab键切换时的顺序（0是最后一个，负数为禁用tab键切换）</li>
+</ul>
+</li>
+<li>title<ul>
+<li>鼠标悬浮时显示属性值的全部内容</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="默认样式"><a href="#默认样式" class="headerlink" title="默认样式"></a>默认样式</h3><ul>
+<li>作为一个标记语言，HTML诞生之初就是为了方便排版，所以会有一些默认样式。为了定制我们自己页面的样式，需要CSS reset。</li>
+</ul>
+<p>代码示例：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line">*<span class="selector-pseudo">::before</span>,</span><br><span class="line">*<span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: inherit;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">input</span>,</span><br><span class="line"><span class="selector-tag">textarea</span>,</span><br><span class="line"><span class="selector-tag">button</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: inherit;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">ol</span>,</span><br><span class="line"><span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="attribute">list-style</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">table</span> &#123;</span><br><span class="line">  <span class="attribute">border-collapse</span>: collapse;</span><br><span class="line">  <span class="attribute">border-spacing</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里讲了一下通配符选择器的问题，之前根据<a target="_blank" rel="noopener" href="https://www.paulirish.com/2012/box-sizing-border-box-ftw/">这篇文章</a>，也表明了直接使用通配符重置默认样式不会造成性能瓶颈。这里也在复习下在性能优化中学到的两个原则</p>
+<ol>
+<li>优化之前先测量</li>
+<li>在没有性能瓶颈前不需要优化</li>
+</ol>
+<h3 id="内容标签"><a href="#内容标签" class="headerlink" title="内容标签"></a>内容标签</h3><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ol + li</td>
+<td>有序列表(ordered list + list item)</td>
+</tr>
+<tr>
+<td>ul + li</td>
+<td>无序列表(unordered list + list item)</td>
+</tr>
+<tr>
+<td>dl + dt + dd</td>
+<td>描述列表 (description list)</td>
+</tr>
+<tr>
+<td>pre</td>
+<td>可以展示HTML中的空格换行和tab(preformatted text)</td>
+</tr>
+<tr>
+<td>hr</td>
+<td>分割线(horizontal)</td>
+</tr>
+<tr>
+<td>br</td>
+<td>换行(break)</td>
+</tr>
+<tr>
+<td>a</td>
+<td>锚点(anchor)</td>
+</tr>
+<tr>
+<td>em</td>
+<td>语气上的强调，默认样式为倾斜(emphasis)</td>
+</tr>
+<tr>
+<td>strong</td>
+<td>内容上的强调，默认样式加粗</td>
+</tr>
+<tr>
+<td>code</td>
+<td>代码块 默认为等宽字体</td>
+</tr>
+<tr>
+<td>quote</td>
+<td>引用</td>
+</tr>
+<tr>
+<td>blockquote</td>
+<td>块级引用</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/%E9%A5%A5%E4%BA%BA%E8%B0%B7/" rel="tag"># 饥人谷</a>
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/08/26/HTML%E5%85%A8%E8%A7%A3-HTML%E6%A6%82%E8%A7%88/" rel="prev" title="[HTML全解]HTML概览">
+                  <i class="fa fa-chevron-left"></i> [HTML全解]HTML概览
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/08/27/%E3%80%8AHTML%E3%80%8B%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" rel="next" title="《HTML》入门笔记1">
+                  《HTML》入门笔记1 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
