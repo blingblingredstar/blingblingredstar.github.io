@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="提到前端，就不得不提到JavaScript，一般而言，我们会这样形容前端的三大支架  HTML决定了网页的结构 CSS决定了网页的样式 JavaScript决定了网页的行为  那么，JavaScript从何而来，在这篇博客中，我自己总结了一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS的历史">
+<meta property="og:url" content="http://yoursite.com/2019/09/03/JS%E7%9A%84%E5%8E%86%E5%8F%B2/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="提到前端，就不得不提到JavaScript，一般而言，我们会这样形容前端的三大支架  HTML决定了网页的结构 CSS决定了网页的样式 JavaScript决定了网页的行为  那么，JavaScript从何而来，在这篇博客中，我自己总结了一下。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-09-03T14:04:52.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.326Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="饥人谷">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/03/JS%E7%9A%84%E5%8E%86%E5%8F%B2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/09/03/JS%E7%9A%84%E5%8E%86%E5%8F%B2/","path":"2019/09/03/JS的历史/","title":"JS的历史"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>JS的历史 | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%9A%84%E5%8F%91%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">JS的发明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ECMAScript"><span class="nav-number">2.</span> <span class="nav-text">ECMAScript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js"><span class="nav-number">3.</span> <span class="nav-text">Node.js</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/JS%E7%9A%84%E5%8E%86%E5%8F%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="JS的历史 | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS的历史
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-09-03 22:04:52" itemprop="dateCreated datePublished" datetime="2019-09-03T22:04:52+08:00">2019-09-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>提到前端，就不得不提到JavaScript，一般而言，我们会这样形容前端的三大支架</p>
+<ol>
+<li>HTML决定了网页的结构</li>
+<li>CSS决定了网页的样式</li>
+<li>JavaScript决定了网页的行为</li>
+</ol>
+<p>那么，JavaScript从何而来，在这篇博客中，我自己总结了一下。</p>
+<span id="more"></span>
+<h2 id="JS的发明"><a href="#JS的发明" class="headerlink" title="JS的发明"></a>JS的发明</h2><p>JavaScript是于1995年，由当时供职于网景公司的Brendan Eich编写的。</p>
+<p>在当时的网络条件下，重新加载网页是一个耗时很长的操作，但是当时的浏览器没有一种同一的语言能进行登录校验等操作。如果一个用户输入了一个不合法的字符，那么就要耗费相当长的时间等待服务器返回的结果。浏览器需要一门语言来进行本地的登录校验等操作，来提高用户的体验，这就是JavaScript诞生的历史条件。</p>
+<p>网景公司将此任务交由Brendan Eich，并提出了一些要求，例如需要类似Java的语法，但是Brendan显然有自己的想法，作为一名函数式编程的使用者，他在js中加入了闭包，并且设计了基于原型的继承系统。最开始的名称也不叫做JavaScript，网景公司为了蹭Java的流量才将其改名为JavaScript。</p>
+<h2 id="ECMAScript"><a href="#ECMAScript" class="headerlink" title="ECMAScript"></a>ECMAScript</h2><p>提到JavaScript，也就不得不提到ECMAScript。</p>
+<p>当时为了抢占浏览器市场份额，微软推出了ie浏览器，并且模仿JavaScript的语法推出了自家的JScript。</p>
+<p>为了统一语言标准，防止语言在各浏览器实现上的分歧，最终由欧洲计算机协会(ECMA)提交了标准，描述了语言实现的细节。我们现在所书写的JavaScript正是ECMAScript标准实现的语言。</p>
+<p>通过上面的诞生环境我们知道，在刚开始时JavaScript只用来做一些简单的表单验证工作。但是随着浏览器份额的发展壮大，越来越多的人使用JavaScript来实现更多更复杂的功能。</p>
+<p>为了改善旧有的缺点，提高JavaScript的功能，ECMA提出了多个ECMAScript版本。</p>
+<p>目前为止更新到了第六版，也就是俗称的ES6。</p>
+<p>在ES6之后，并不会使用数字，而是年份进行命名。类似于HTML5与CSS3，实行更加灵活的更新机制。</p>
+<p>ECMAScript只规定了关于这门语言的基础，例如语法类型等，在浏览器环境中，一般我们提到的JavaScript还包括了DOM(文档对象模型)以及BOM(浏览器对象模型)。</p>
+<h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><p>作为一门为浏览器而诞生的语言，随着使用人群的增加，其宿主环境已经不仅仅为浏览器。Node.js使用了v8引擎来解析JavaScript并运行在服务端，来提供文件读写，网络连接等操作。通过Node.js，JavaScript的发展也随着围绕Node.js所建立的开源社区而快速发展，周边生态成长非常迅速，在现在的前端开发领域，使用社区的开源库或者框架进行开发已经成为一种不可避免的趋势。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/%E9%A5%A5%E4%BA%BA%E8%B0%B7/" rel="tag"># 饥人谷</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/09/02/Introduction-to-Node-js/" rel="prev" title="Introduction to Node.js">
+                  <i class="fa fa-chevron-left"></i> Introduction to Node.js
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/09/05/Responsive-Web-Typography-v2/" rel="next" title="Responsive Web Typography v2">
+                  Responsive Web Typography v2 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

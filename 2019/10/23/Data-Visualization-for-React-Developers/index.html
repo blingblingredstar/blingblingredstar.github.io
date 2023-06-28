@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Introduction slides  Workshop Goal  Use D3 to calculate data React to render visualizations   WHY?  D3’s learning curve enter - update - exit &#x3D;&#x3D; React virtual DOM(let React do the hard work!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Visualization for React Developers">
+<meta property="og:url" content="http://yoursite.com/2019/10/23/Data-Visualization-for-React-Developers/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introduction slides  Workshop Goal  Use D3 to calculate data React to render visualizations   WHY?  D3’s learning curve enter - update - exit &#x3D;&#x3D; React virtual DOM(let React do the hard work!">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-23T07:56:36.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.320Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="Data Visualization">
+<meta property="article:tag" content="D3.js">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/10/23/Data-Visualization-for-React-Developers/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/10/23/Data-Visualization-for-React-Developers/","path":"2019/10/23/Data-Visualization-for-React-Developers/","title":"Data Visualization for React Developers"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Data Visualization for React Developers | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Basic-Chart-Types"><span class="nav-number">2.</span> <span class="nav-text">The Basic Chart Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction-to-Different-Data-Types"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction to Different Data Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pie-Charts-Do%E2%80%99s-and-Do-not%E2%80%99s"><span class="nav-number">2.2.</span> <span class="nav-text">Pie Charts: Do’s and Do not’s</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Course-Demonstration-Review"><span class="nav-number">2.3.</span> <span class="nav-text">Course Demonstration Review</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Masking-of-a-Chart"><span class="nav-number">3.</span> <span class="nav-text">The Masking of a Chart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction-to-SVG"><span class="nav-number">3.1.</span> <span class="nav-text">Introduction to SVG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weather-Data-Chart-Examples"><span class="nav-number">3.2.</span> <span class="nav-text">Weather Data Chart Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Data-to-SVG-Shapes"><span class="nav-number">3.3.</span> <span class="nav-text">Exercise: Data to SVG Shapes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Going-from-Data-to-SVG-Shapes"><span class="nav-number">3.4.</span> <span class="nav-text">Going from Data to SVG Shapes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Going-from-Data-to-SVG"><span class="nav-number">3.5.</span> <span class="nav-text">Exercise: Going from Data to SVG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-Line-Chart"><span class="nav-number">3.6.</span> <span class="nav-text">Creating Line Chart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Creating-Line-Chart"><span class="nav-number">3.7.</span> <span class="nav-text">Exercise: Creating Line Chart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-Radial-Chart"><span class="nav-number">3.8.</span> <span class="nav-text">Creating a Radial Chart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Radial-Chart"><span class="nav-number">3.9.</span> <span class="nav-text">Exercise: Radial Chart</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rendering-with-React"><span class="nav-number">4.</span> <span class="nav-text">Rendering with React</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Breaking-Down-D3-API"><span class="nav-number">4.1.</span> <span class="nav-text">Breaking Down D3 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D3-Manipultations-and-Interactions"><span class="nav-number">4.2.</span> <span class="nav-text">D3 Manipultations and Interactions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-Renders"><span class="nav-number">4.3.</span> <span class="nav-text">React Renders</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-React-and-Bar-Chart"><span class="nav-number">4.4.</span> <span class="nav-text">Exercise: React and Bar Chart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-React-and-Radial-Chart"><span class="nav-number">4.5.</span> <span class="nav-text">Exercise: React and Radial Chart</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Finishing-Touches"><span class="nav-number">5.</span> <span class="nav-text">The Finishing Touches</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Three-Exceptions"><span class="nav-number">5.1.</span> <span class="nav-text">The Three Exceptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Axes-Legends-amp-Annotations"><span class="nav-number">5.2.</span> <span class="nav-text">Axes, Legends &amp; Annotations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Axes"><span class="nav-number">5.3.</span> <span class="nav-text">Exercise: Axes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transitions"><span class="nav-number">5.4.</span> <span class="nav-text">Transitions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Brush"><span class="nav-number">5.5.</span> <span class="nav-text">Brush</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Brush"><span class="nav-number">5.6.</span> <span class="nav-text">Exercise: Brush</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Additional-Resources"><span class="nav-number">5.7.</span> <span class="nav-text">Additional Resources</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Canvas"><span class="nav-number">5.8.</span> <span class="nav-text">Canvas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-Chart-in-Canvas"><span class="nav-number">5.9.</span> <span class="nav-text">Creating Chart in Canvas</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/23/Data-Visualization-for-React-Developers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Data Visualization for React Developers | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Data Visualization for React Developers
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-23 15:56:36" itemprop="dateCreated datePublished" datetime="2019-10-23T15:56:36+08:00">2019-10-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://slides.com/shirleywu/deck-11#/">slides</a></p>
+</li>
+<li><p>Workshop Goal</p>
+<ul>
+<li>Use D3 to calculate data</li>
+<li>React to render visualizations</li>
+</ul>
+</li>
+<li><p>WHY?</p>
+<ul>
+<li>D3’s learning curve</li>
+<li>enter - update - exit &#x3D;&#x3D; React virtual DOM(let React do the hard work!)</li>
+</ul>
+</li>
+<li><p>Agenda</p>
+<ul>
+<li>Basic chart types and when to use them</li>
+<li>The making of a chart with SVG</li>
+<li>Going from data to SVG shapes</li>
+<li>Using React to render SVG and Canvas</li>
+<li>Exceptions and finishing touches<span id="more"></span></li>
+</ul>
+</li>
+</ul>
+<h2 id="The-Basic-Chart-Types"><a href="#The-Basic-Chart-Types" class="headerlink" title="The Basic Chart Types"></a>The Basic Chart Types</h2><h3 id="Introduction-to-Different-Data-Types"><a href="#Introduction-to-Different-Data-Types" class="headerlink" title="Introduction to Different Data Types"></a>Introduction to Different Data Types</h3><ul>
+<li><p>Data types</p>
+<ul>
+<li>Categorical(genres)</li>
+<li>Ordinal(t-shirt sizes)</li>
+<li>Quantitative(temperatures)</li>
+<li>Temporal(dates)</li>
+<li>Spatial(cities)</li>
+</ul>
+</li>
+<li><p>Basic Charts and When to Use Them</p>
+<ul>
+<li>Bar chart<ul>
+<li>For categorical comparisons</li>
+<li>Domain: categorical</li>
+<li>Range: quantitative</li>
+</ul>
+</li>
+<li>Histogram<ul>
+<li>For categorical distributions</li>
+<li>Domain: quantitative bins</li>
+<li>Range: frequency of quantitative bin</li>
+</ul>
+</li>
+<li>Scatterplot<ul>
+<li>For correlation</li>
+<li>2 attributes and the relationship between their quantitative values</li>
+</ul>
+</li>
+<li>Line chart<ul>
+<li>For temporal trends</li>
+<li>Domain: temporal</li>
+<li>Range: quantitative</li>
+</ul>
+</li>
+<li>Tree<ul>
+<li>For hierarchy</li>
+<li>Parent-child relations</li>
+<li>Multiple tiers of category</li>
+</ul>
+</li>
+<li>Node-link diagram<ul>
+<li>For connection</li>
+<li>Relationship between entities</li>
+</ul>
+</li>
+<li>Chloropleth<ul>
+<li>For special trends</li>
+<li>Domain: spatial regions</li>
+<li>Range: quantitative<ul>
+<li>Best for:<ul>
+<li>Regional patterns</li>
+<li>Only one variable</li>
+<li>Relative data(normalize for population)</li>
+</ul>
+</li>
+<li>Not good for:<ul>
+<li>Subtle difference in data</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Pie-Charts-Do’s-and-Do-not’s"><a href="#Pie-Charts-Do’s-and-Do-not’s" class="headerlink" title="Pie Charts: Do’s and Do not’s"></a>Pie Charts: Do’s and Do not’s</h3><ul>
+<li>Basic Charts and When to Use Them<ul>
+<li>Pie chart<ul>
+<li>For hierarchical part-to-whole</li>
+<li>Best for:<ul>
+<li>When values are around 25%, 30%, or 75%</li>
+<li>3 or 4 values</li>
+</ul>
+</li>
+<li>Not good for:<ul>
+<li>Comparing fine differences</li>
+<li>Multiply totals</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Course-Demonstration-Review"><a href="#Course-Demonstration-Review" class="headerlink" title="Course Demonstration Review"></a>Course Demonstration Review</h3><ul>
+<li>What we’ll be building today<ul>
+<li><a target="_blank" rel="noopener" href="http://sxywu.com/react-d3-example/">Example</a></li>
+<li><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/sxywu/react-d3-example/master/public/sf.json">data</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="The-Masking-of-a-Chart"><a href="#The-Masking-of-a-Chart" class="headerlink" title="The Masking of a Chart"></a>The Masking of a Chart</h2><h3 id="Introduction-to-SVG"><a href="#Introduction-to-SVG" class="headerlink" title="Introduction to SVG"></a>Introduction to SVG</h3><ul>
+<li>SVG Elements</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>rect</th>
+<th>circle</th>
+<th>text</th>
+<th>path</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x: x-coordinate of top-left</td>
+<td>cx: x-coordinate of center</td>
+<td>x: x-coordinate</td>
+<td>d: path to follow</td>
+</tr>
+<tr>
+<td>y: y-coordinate of top-left</td>
+<td>cy: y-coordinate of center</td>
+<td>y: y-coordinate</td>
+<td>Moveto, Lineto, CurveTo, Arcto</td>
+</tr>
+<tr>
+<td>width</td>
+<td>r: radius</td>
+<td>dx: x-coordinate offset</td>
+<td></td>
+</tr>
+<tr>
+<td>height</td>
+<td></td>
+<td>dy: y-coordinate offset</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>text-anchor: horizontal text</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>alignment</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="Weather-Data-Chart-Examples"><a href="#Weather-Data-Chart-Examples" class="headerlink" title="Weather Data Chart Examples"></a>Weather Data Chart Examples</h3><ul>
+<li><p>Making of a bar chart</p>
+<ul>
+<li>365 <code>&lt;rect /&gt;</code>‘s</li>
+<li>x: date</li>
+<li>y: high temp</li>
+<li>height: low - high temp</li>
+<li>fill: average temp</li>
+</ul>
+</li>
+<li><p>Making of a line chart</p>
+<ul>
+<li>2 <code>&lt;path /&gt;</code>‘s</li>
+<li>d: line commands that connect points</li>
+<li>For each point<ul>
+<li>x: date</li>
+<li>y: temperature</li>
+<li>fill: red for high temp blue for low temp</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Making of a radial chart</p>
+<ul>
+<li>365 <code>&lt;path /&gt;</code>‘s</li>
+<li>d: line + curve commands to make slices</li>
+<li>for each slice<ul>
+<li>angle: day</li>
+<li>inner radius: low temp</li>
+<li>outer radius: high temp</li>
+<li>fill: average temp</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Data-to-SVG-Shapes"><a href="#Exercise-Data-to-SVG-Shapes" class="headerlink" title="Exercise: Data to SVG Shapes"></a>Exercise: Data to SVG Shapes</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://beta.observablehq.com/@sxywu/data-visualization-for-react-developers-starter">Observable book links</a></li>
+</ul>
+<h3 id="Going-from-Data-to-SVG-Shapes"><a href="#Going-from-Data-to-SVG-Shapes" class="headerlink" title="Going from Data to SVG Shapes"></a>Going from Data to SVG Shapes</h3><ul>
+<li><p>Going from data to SVG shapes</p>
+<ul>
+<li>One of the(many) things D3 is good for!</li>
+</ul>
+</li>
+<li><p>Data to SVG:</p>
+<ul>
+<li><p>scales</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d3.<span class="title function_">scaleLinear</span>()</span><br><span class="line">  .<span class="title function_">domain</span>([min, max]) <span class="comment">// input</span></span><br><span class="line">  .<span class="title function_">range</span>([min, max]) <span class="comment">// output</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>scale: mapping from data attributes(domain) to display(range)</p>
+<ul>
+<li>date -&gt; x-value</li>
+<li>value -&gt; y-value</li>
+<li>value -&gt; opacity</li>
+<li>etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Data to SVG:</p>
+<ul>
+<li><p>scales</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// get min/max</span></span><br><span class="line"><span class="keyword">const</span> width = <span class="number">800</span></span><br><span class="line"><span class="keyword">const</span> height = <span class="number">600</span></span><br><span class="line"><span class="keyword">const</span> data = [</span><br><span class="line">  &#123;<span class="attr">date</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&#x27;01-01-2015&#x27;</span>), <span class="attr">temp</span>: <span class="number">0</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">date</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&#x27;01-01-2017&#x27;</span>), <span class="attr">temp</span>: <span class="number">3</span>&#125;,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> min = d3.<span class="title function_">min</span>(data, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">date</span>)</span><br><span class="line"><span class="keyword">const</span> max = d3.<span class="title function_">max</span>(data, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">date</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// or use extent, which gives back [min, max]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> extent = d3.<span class="title function_">extent</span>(data, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">temp</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> xScale = d3.<span class="title function_">scaleTime</span>()</span><br><span class="line">  .<span class="title function_">domain</span>([min, max])</span><br><span class="line">  .<span class="title function_">range</span>([<span class="number">0</span>, width])</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> yScale = d3.<span class="title function_">scaleLinear</span>()</span><br><span class="line">  .<span class="title function_">domain</span>(extent)</span><br><span class="line">  .<span class="title function_">range</span>([height, <span class="number">0</span>])</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Data to SVG:</p>
+<ul>
+<li>Scales I use often</li>
+<li>Quantitative<ul>
+<li>Continuous domain Continuous range<ul>
+<li>scaleLinear</li>
+<li>scaleLog</li>
+<li>scaleTime</li>
+</ul>
+</li>
+<li>Continuous domain Discrete range<ul>
+<li>scaleQuantize</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Catetorical<ul>
+<li>Discrete domain Discrete range<ul>
+<li>scaleOrdinal</li>
+</ul>
+</li>
+<li>Discrete domain Continuous range<ul>
+<li>scaleBand</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Going-from-Data-to-SVG"><a href="#Exercise-Going-from-Data-to-SVG" class="headerlink" title="Exercise: Going from Data to SVG"></a>Exercise: Going from Data to SVG</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://beta.observablehq.com/@sxywu/data-visualization-for-react-developers-starter">Starter notebook</a></li>
+<li><a target="_blank" rel="noopener" href="https://beta.observablehq.com/@sxywu/data-visualization-for-react-developers-full">Full notebook</a><!-- markdownlint-disable md033 -->
+<details>
+<summary>solution</summary></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> extent = d3.<span class="title function_">extent</span>(data, <span class="function">(<span class="params">&#123;date&#125;</span>) =&gt;</span> date)</span><br><span class="line"><span class="keyword">const</span> xScale = d3.<span class="title function_">scaleTime</span>()</span><br><span class="line">  .<span class="title function_">domain</span>(extent)</span><br><span class="line">  .<span class="title function_">range</span>([<span class="number">0</span>, width])</span><br><span class="line"><span class="keyword">const</span> [min, max] = d3.<span class="title function_">extent</span>(data, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">high</span>)</span><br><span class="line"><span class="keyword">const</span> yScale = d3.<span class="title function_">scaleLinear</span>()</span><br><span class="line">  .<span class="title function_">domain</span>([<span class="title class_">Math</span>.<span class="title function_">min</span>(min, <span class="number">0</span>), max])</span><br><span class="line">  .<span class="title function_">range</span>([height, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">//  3. map avg temp to color</span></span><br><span class="line"><span class="keyword">const</span> colorExtent = d3.<span class="title function_">extent</span>(data, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">avg</span>).<span class="title function_">reverse</span>()</span><br><span class="line"><span class="keyword">const</span> colorScale = d3.<span class="title function_">scaleSequential</span>()</span><br><span class="line">  .<span class="title function_">domain</span>(colorExtent)</span><br><span class="line">  .<span class="title function_">interpolator</span>(d3.<span class="property">interpolateRdYlBu</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> data.<span class="title function_">map</span>(<span class="function"><span class="params">d</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">x</span>: <span class="title function_">xScale</span>(d.<span class="property">date</span>),</span><br><span class="line">    <span class="attr">y</span>: <span class="title function_">yScale</span>(d.<span class="property">high</span>),</span><br><span class="line">    <span class="attr">height</span>: <span class="title function_">yScale</span>(d.<span class="property">low</span>) - <span class="title function_">yScale</span>(d.<span class="property">high</span>),</span><br><span class="line">    <span class="attr">fill</span>: <span class="title function_">colorScale</span>(d.<span class="property">avg</span>),</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="Creating-Line-Chart"><a href="#Creating-Line-Chart" class="headerlink" title="Creating Line Chart"></a>Creating Line Chart</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://slides.com/shirleywu/deck-11#/27">current slide</a></p>
+</li>
+<li><p>Data to SVG:</p>
+<ul>
+<li>line chart<ul>
+<li>path</li>
+<li>d: path to follow</li>
+<li>MoveTO, LineTo, CurveTo, ArcTo</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Data to SVG:</p>
+<ul>
+<li><p>d3.line()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = [</span><br><span class="line">  &#123;<span class="attr">date</span>: <span class="string">&#x27;2007-3-24&#x27;</span>, <span class="attr">value</span>: <span class="number">93.24</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">date</span>: <span class="string">&#x27;2007-3-25&#x27;</span>, <span class="attr">value</span>: <span class="number">95.35</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">date</span>: <span class="string">&#x27;2007-3-26&#x27;</span>, <span class="attr">value</span>: <span class="number">98.84</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">date</span>: <span class="string">&#x27;2007-3-27&#x27;</span>, <span class="attr">value</span>: <span class="number">99.92</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">date</span>: <span class="string">&#x27;2007-3-28&#x27;</span>, <span class="attr">value</span>: <span class="number">99.80</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">date</span>: <span class="string">&#x27;2007-3-29&#x27;</span>, <span class="attr">value</span>: <span class="number">99.47</span>&#125;,</span><br><span class="line">  …</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> line = d3.<span class="title function_">line</span>()</span><br><span class="line">  .<span class="title function_">x</span>(<span class="function">(<span class="params">d</span>) =&gt;</span> &#123; <span class="keyword">return</span> <span class="title function_">xScale</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(d.<span class="property">date</span>)); &#125;)</span><br><span class="line">  .<span class="title function_">y</span>(<span class="function">(<span class="params">d</span>) =&gt;</span> &#123; <span class="keyword">return</span> <span class="title function_">yScale</span>(d.<span class="property">value</span>); &#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">line</span>(data)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Creating-Line-Chart"><a href="#Exercise-Creating-Line-Chart" class="headerlink" title="Exercise: Creating Line Chart"></a>Exercise: Creating Line Chart</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://observablehq.com/@sxywu/data-visualization-for-react-developers-starter">Starter Notebook</a></li>
+</ul>
+<details>
+<summary>solution</summary>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">lineChartData = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">const</span> xExtent = d3.<span class="title function_">extent</span>(data, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">date</span>)</span><br><span class="line">  <span class="keyword">const</span> xScale = d3.<span class="title function_">scaleTime</span>()</span><br><span class="line">    .<span class="title function_">domain</span>(xExtent)</span><br><span class="line">    .<span class="title function_">range</span>([<span class="number">0</span>, width])</span><br><span class="line">  <span class="comment">// min: low temp  max: high temp</span></span><br><span class="line">  <span class="keyword">const</span> highMax = d3.<span class="title function_">max</span>(data, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">high</span>)</span><br><span class="line">  <span class="keyword">const</span> lowMin = d3.<span class="title function_">min</span>(data, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">low</span>)</span><br><span class="line">  <span class="keyword">const</span> yScale = d3.<span class="title function_">scaleLinear</span>()</span><br><span class="line">    .<span class="title function_">domain</span>([lowMin, highMax])</span><br><span class="line">    .<span class="title function_">range</span>([height, <span class="number">0</span>])</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">const</span> line = d3.<span class="title function_">line</span>()</span><br><span class="line">    .<span class="title function_">x</span>(<span class="function"><span class="params">d</span> =&gt;</span> <span class="title function_">xScale</span>(d.<span class="property">date</span>))</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">path</span>: line.<span class="title function_">y</span>(<span class="function"><span class="params">d</span> =&gt;</span> <span class="title function_">yScale</span>(d.<span class="property">high</span>))(data),</span><br><span class="line">      <span class="attr">fill</span>: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      <span class="attr">path</span>: line.<span class="title function_">y</span>(<span class="function"><span class="params">d</span> =&gt;</span> <span class="title function_">yScale</span>(d.<span class="property">low</span>))(data),</span><br><span class="line">      <span class="attr">fill</span>: <span class="string">&#x27;blue&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="Creating-a-Radial-Chart"><a href="#Creating-a-Radial-Chart" class="headerlink" title="Creating a Radial Chart"></a>Creating a Radial Chart</h3><ul>
+<li><p>Data to SVG:</p>
+<ul>
+<li>Radial Chart<ul>
+<li>path</li>
+<li>d: path to follow</li>
+<li>MoveTo, LineTo, CurveTo, ArcTo</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Data to SVG:</p>
+<ul>
+<li>d3.arc()</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pie = &#123;</span><br><span class="line">  <span class="attr">data</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">value</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">startAngle</span>: <span class="number">6.050474740247008</span>,</span><br><span class="line">  <span class="attr">endAngle</span>: <span class="number">6.166830023713296</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arc = d3.<span class="title function_">arc</span>()</span><br><span class="line">  .<span class="title function_">innerRadius</span>(<span class="number">0</span>)</span><br><span class="line">  .<span class="title function_">outerRadisu</span>(<span class="number">100</span>)</span><br><span class="line">  .<span class="title function_">startAngle</span>(<span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">startAngle</span>)</span><br><span class="line">  .<span class="title function_">endAngle</span>(<span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">endAngle</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">arc</span>(pie)</span><br><span class="line"><span class="comment">// M-23.061587074244123,-97.30448705798236A100,100,0,0,1,-11.609291412523175,-99.32383577419428L0,0Z</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-Radial-Chart"><a href="#Exercise-Radial-Chart" class="headerlink" title="Exercise: Radial Chart"></a>Exercise: Radial Chart</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://beta.observablehq.com/@sxywu/data-visualization-for-react-developers-starter">Starter Notebook</a></li>
+</ul>
+<details>
+<summary>solution</summary>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">radialChartData = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">const</span> radiusScale = d3.<span class="title function_">scaleLinear</span>()</span><br><span class="line">    .<span class="title function_">domain</span>([</span><br><span class="line">      d3.<span class="title function_">min</span>(data, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">low</span>),</span><br><span class="line">      d3.<span class="title function_">max</span>(data, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">high</span>)</span><br><span class="line">    ])</span><br><span class="line">    .<span class="title function_">range</span>([<span class="number">0</span>, width / <span class="number">2</span>])</span><br><span class="line">  <span class="comment">// get the angle for each slice</span></span><br><span class="line">  <span class="comment">// 2PI / 365</span></span><br><span class="line">  <span class="keyword">const</span> perSliceAngle = (<span class="number">2</span> * <span class="title class_">Math</span>.<span class="property">PI</span>) / data.<span class="property">length</span></span><br><span class="line">  <span class="comment">// startAngle = index * perSliceAngle</span></span><br><span class="line">  <span class="comment">// endAngle = (index + 1) * perSliceAngle</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">const</span> arcGen = d3.<span class="title function_">arc</span>()</span><br><span class="line">  <span class="keyword">const</span> pathString = <span class="title function_">arcGen</span>(&#123;</span><br><span class="line">    <span class="attr">startAngle</span>: <span class="number">0</span> * perSliceAngle,</span><br><span class="line">    <span class="attr">endAngle</span>: <span class="number">1</span> * perSliceAngle,</span><br><span class="line">    <span class="attr">innerRadius</span>: <span class="title function_">radiusScale</span>(data[<span class="number">0</span>].<span class="property">low</span>),</span><br><span class="line">    <span class="attr">outerRadius</span>: <span class="title function_">radiusScale</span>(data[<span class="number">0</span>].<span class="property">high</span>),</span><br><span class="line">  &#125;)</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">const</span> colorScale = d3.<span class="title function_">scaleSequential</span>()</span><br><span class="line">    .<span class="title function_">domain</span>(d3.<span class="title function_">extent</span>(data, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">avg</span>).<span class="title function_">reverse</span>())</span><br><span class="line">    .<span class="title function_">interpolator</span>(d3.<span class="property">interpolateRdYlBu</span>)</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> data.<span class="title function_">map</span>(<span class="function">(<span class="params">d, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> path = <span class="title function_">arcGen</span>(&#123;</span><br><span class="line">      <span class="attr">startAngle</span>: i * perSliceAngle,</span><br><span class="line">      <span class="attr">endAngle</span>: (i + <span class="number">1</span>) * perSliceAngle,</span><br><span class="line">      <span class="attr">innerRadius</span>: <span class="title function_">radiusScale</span>(d.<span class="property">low</span>),</span><br><span class="line">      <span class="attr">outerRadius</span>: <span class="title function_">radiusScale</span>(d.<span class="property">high</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      path,</span><br><span class="line">      <span class="attr">fill</span>: <span class="title function_">colorScale</span>(d.<span class="property">avg</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h2 id="Rendering-with-React"><a href="#Rendering-with-React" class="headerlink" title="Rendering with React"></a>Rendering with React</h2><h3 id="Breaking-Down-D3-API"><a href="#Breaking-Down-D3-API" class="headerlink" title="Breaking Down D3 API"></a>Breaking Down D3 API</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://slides.com/shirleywu/deck-11#/33">current slide</a></p>
+</li>
+<li><p>Some functions are really helpful for getting data ready for D3’s scale&#x2F;shape&#x2F;layout functions</p>
+</li>
+</ul>
+<h3 id="D3-Manipultations-and-Interactions"><a href="#D3-Manipultations-and-Interactions" class="headerlink" title="D3 Manipultations and Interactions"></a>D3 Manipultations and Interactions</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://slides.com/shirleywu/deck-11#/37">current slide</a></li>
+</ul>
+<h3 id="React-Renders"><a href="#React-Renders" class="headerlink" title="React Renders"></a>React Renders</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://slides.com/shirleywu/deck-11#/39">current slide</a></p>
+</li>
+<li><p>React renders: Architecture</p>
+<ul>
+<li><p>Division of responsibilities:</p>
+<ul>
+<li>Chart component<ol>
+<li>Gets passed in raw data as prop</li>
+<li>Translates raw data to screen space</li>
+<li>Renders the calculated data</li>
+</ol>
+<ul>
+<li>Manages state for interactions that don’t require redrawing of the chart(hover, click)</li>
+</ul>
+</li>
+<li>Root component<ul>
+<li>Manages updates to raw data</li>
+<li>Manages state for interactions that require redrawing of charts(filter, aggregate, sort, etc.)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Where to calculate data:</p>
+<ul>
+<li>getDerivedStateFromPorps<ul>
+<li>Pro: simple and straightforward</li>
+<li>Con: asynchronous, race conditions if not careful</li>
+</ul>
+</li>
+<li>Render<ul>
+<li>Pro: very straightforward</li>
+<li>Con: will recalculate on every lifecycle</li>
+</ul>
+</li>
+<li>componentDidMount &amp; componentDidUpdate<ul>
+<li>Pro: no race condition</li>
+<li>Con: less straightforward</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Assumes:</p>
+<ul>
+<li>React manages state(no redux or similar)</li>
+<li>Multiple charts that all share some part of the data or state</li>
+</ul>
+</li>
+<li><p>Main takeaway:</p>
+<ul>
+<li>D3 calculations can go anywhere(that makes sense for your project) as long as React can access it in its render function</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">componentDidUpdate</span>(<span class="params">nextProps, nextState</span>) &#123;</span><br><span class="line">  <span class="comment">// prevents infinite loop</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">someId</span> !== nextProps.<span class="property">someId</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">calculateData</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">componentDidMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// Make sure component is rendered first</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">SVG</span>.<span class="property">current</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">calculateData</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">calculateData</span>(<span class="params"></span>) &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;data&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-React-and-Bar-Chart"><a href="#Exercise-React-and-Bar-Chart" class="headerlink" title="Exercise: React and Bar Chart"></a>Exercise: React and Bar Chart</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://codesandbox.io/s/kop49w9r2v?module=/src/visualizations/Chart.js">starter code</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://codesandbox.io/s/z3n69yrk2m">solution</a></p>
+</li>
+</ul>
+<h3 id="Exercise-React-and-Radial-Chart"><a href="#Exercise-React-and-Radial-Chart" class="headerlink" title="Exercise: React and Radial Chart"></a>Exercise: React and Radial Chart</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://codesandbox.io/s/l4p0k6m86q?module=/src/visualizations/Chart.js">starter code</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://codesandbox.io/s/ppllx51ozq">solution</a></p>
+</li>
+</ul>
+<h2 id="The-Finishing-Touches"><a href="#The-Finishing-Touches" class="headerlink" title="The Finishing Touches"></a>The Finishing Touches</h2><h3 id="The-Three-Exceptions"><a href="#The-Three-Exceptions" class="headerlink" title="The Three Exceptions"></a>The Three Exceptions</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://slides.com/shirleywu/deck-11#/45">current slide</a></p>
+</li>
+<li><p>Functions where D3 needs access to the DOM</p>
+<ul>
+<li>Axis</li>
+<li>Transitions</li>
+<li>Brush</li>
+<li>Zoom</li>
+</ul>
+</li>
+<li><p>D3 renders</p>
+<ol>
+<li>Instantiate D3 function in componentDidMount</li>
+<li>Create <code>&lt;g /&gt;</code> container in render</li>
+<li>Place D3 code in componentDidMount and&#x2F;or componentDidUpdate</li>
+</ol>
+<ul>
+<li>Never <em>ever</em> let D3 and React manage same parts of the DOM! OR BUGS!!</li>
+</ul>
+</li>
+</ul>
+<h3 id="Axes-Legends-amp-Annotations"><a href="#Axes-Legends-amp-Annotations" class="headerlink" title="Axes, Legends &amp; Annotations"></a>Axes, Legends &amp; Annotations</h3><ul>
+<li>D3 renders: axes<ul>
+<li>Axes are very important in making the data readable, and D3 makes it easy</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. create axisLeft or axisBottom at beginning of React lifecylcle and set corresponding scale</span></span><br><span class="line"><span class="keyword">const</span> yAxis = d3.<span class="title function_">axisLeft</span>()</span><br><span class="line">  .<span class="title function_">scale</span>(yScale)</span><br><span class="line"><span class="comment">// 2. create an SVG group element in render</span></span><br><span class="line">&lt;g ref=<span class="string">&#x27;group&#x27;</span> /&gt;</span><br><span class="line"><span class="comment">// 3. call axis on the group element in componentDidUpdate</span></span><br><span class="line">d3.<span class="title function_">select</span>(<span class="variable language_">this</span>.<span class="property">refs</span>.<span class="property">group</span>).<span class="title function_">call</span>(yAxis)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-Axes"><a href="#Exercise-Axes" class="headerlink" title="Exercise: Axes"></a>Exercise: Axes</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://codesandbox.io/s/kop49w9r2v?module=/src/visualizations/Chart.js">starter code</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://codesandbox.io/s/3w4p0px1q">solution</a></p>
+</li>
+</ul>
+<h3 id="Transitions"><a href="#Transitions" class="headerlink" title="Transitions"></a>Transitions</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://slides.com/shirleywu/deck-11#/50">current slide</a></p>
+</li>
+<li><p>D3 renders: transitions</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in componentDidUpdate</span></span><br><span class="line">d3.<span class="title function_">select</span>(<span class="variable language_">this</span>.<span class="property">refs</span>.<span class="property">bars</span>)</span><br><span class="line">  .<span class="title function_">selectAll</span>(<span class="string">&#x27;rect&#x27;</span>)                <span class="comment">// select elements to transition</span></span><br><span class="line">  .<span class="title function_">data</span>(<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">bars</span>)            <span class="comment">// bind data</span></span><br><span class="line">  .<span class="title function_">transition</span>()                     <span class="comment">// call transition</span></span><br><span class="line">  .<span class="title function_">attr</span>(<span class="string">&#x27;y&#x27;</span>, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">y</span>)              <span class="comment">// set the attributes to transition</span></span><br><span class="line">  .<span class="title function_">attr</span>(<span class="string">&#x27;height&#x27;</span>, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">height</span>)</span><br><span class="line">  .<span class="title function_">attr</span>(<span class="string">&#x27;fill&#x27;</span>, <span class="function"><span class="params">d</span> =&gt;</span> d.<span class="property">fill</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// in render</span></span><br><span class="line">&lt;g ref=<span class="string">&quot;bars&quot;</span>&gt;</span><br><span class="line">  &#123;<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">bars</span>.<span class="title function_">map</span>(<span class="function">(<span class="params">d, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// make sure React doesn&#x27;t manage the attributes D3 is transitioning!</span></span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">key</span>=<span class="string">&#123;i&#125;</span> <span class="attr">x</span>=<span class="string">&#123;d.x&#125;</span> <span class="attr">width</span>=<span class="string">&quot;2&quot;</span> /&gt;</span></span></span><br><span class="line">  &#125;)&#125;</span><br><span class="line">&lt;/g&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>It works, it’s performant, but the code is ugly. Don’t highly recommend it</p>
+</li>
+</ul>
+<h3 id="Brush"><a href="#Brush" class="headerlink" title="Brush"></a>Brush</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://slides.com/shirleywu/deck-11#/52">current slide</a></p>
+</li>
+<li><p>D3 renders: brush</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in componentDidMount</span></span><br><span class="line"><span class="comment">// create brush instance</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">brush</span> = d3.<span class="title function_">brush</span>()</span><br><span class="line">  <span class="comment">// define burshable area(extent)</span></span><br><span class="line">  .<span class="title function_">extent</span>([[<span class="number">0</span>, <span class="number">0</span>], [width, height]])</span><br><span class="line">  <span class="comment">// pass in a function to execute on every brush, or brush end</span></span><br><span class="line">  .<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;...&#125;)</span><br><span class="line"></span><br><span class="line">d3.<span class="title function_">select</span>(<span class="variable language_">this</span>.<span class="property">refs</span>.<span class="property">brush</span>).<span class="title function_">call</span>(<span class="variable language_">this</span>.<span class="property">brush</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// in render</span></span><br><span class="line">&lt;g ref=<span class="string">&quot;brush&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-Brush"><a href="#Exercise-Brush" class="headerlink" title="Exercise: Brush"></a>Exercise: Brush</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://codesandbox.io/s/k2z4w991l5?module=/src/visualizations/Chart.js">starter code</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://codesandbox.io/s/ovym37wm4y">solution</a></p>
+</li>
+</ul>
+<h3 id="Additional-Resources"><a href="#Additional-Resources" class="headerlink" title="Additional Resources"></a>Additional Resources</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://slides.com/shirleywu/deck-11#/55">current slide</a></p>
+</li>
+<li><p>Readability: legends</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://d3-legend.susielu.com/">d3 SVG Legend</a></li>
+</ul>
+</li>
+<li><p>Readability: annotations</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://react-annotation.susielu.com/">react-annotation</a></li>
+</ul>
+</li>
+<li><p>React Framework</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://vx-demo.now.sh/">REACT + D3 &#x3D; VX</a></li>
+<li><a target="_blank" rel="noopener" href="https://emeeks.github.io/semiotic/#/">Semiotic (v 1.18.0+) is a data visualization framework for React.</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Canvas"><a href="#Canvas" class="headerlink" title="Canvas"></a>Canvas</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://slides.com/shirleywu/deck-11#/57">current slide</a></p>
+</li>
+<li><p>Large datasets: canvas</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in render</span></span><br><span class="line">&lt;canvas ref=<span class="string">&quot;canvas&quot;</span></span><br><span class="line">  styel=&#123;&#123; <span class="attr">width</span>: <span class="string">`<span class="subst">$&#123;width&#125;</span>px`</span>, <span class="attr">height</span>: <span class="string">`<span class="subst">$&#123;height&#125;</span>px`</span> &#125;&#125;</span><br><span class="line">  <span class="comment">// retina screen friendly</span></span><br><span class="line">  width=&#123; <span class="number">2</span> * width &#125; height=&#123; <span class="number">2</span> * height &#125;</span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// in componentDidMount</span></span><br><span class="line">ctx = <span class="variable language_">this</span>.<span class="property">refs</span>.<span class="property">canvas</span>.<span class="title function_">getContext</span>(<span class="string">&#x27;2d&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Performance because only one DOM element that we’re “drawing” shapes on</p>
+</li>
+<li><p>Large datasets: canvas</p>
+<ul>
+<li>Rect<ul>
+<li>ctx.fillRect(x, y, width, height)<ul>
+<li>or ctx.strokeRect(x, y, width, height)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Circle<ul>
+<li>ctx.beginPath()</li>
+<li>ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise)</li>
+<li>ctx.fill()<ul>
+<li>or ctx.stroke()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Line<ul>
+<li>ctx.beginPath()<ul>
+<li>moveTo, lineTo, bezierCurveTo</li>
+</ul>
+</li>
+<li>ctx.fill()<ul>
+<li>or ctx.stroke()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Creating-Chart-in-Canvas"><a href="#Creating-Chart-in-Canvas" class="headerlink" title="Creating Chart in Canvas"></a>Creating Chart in Canvas</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://codesandbox.io/s/1vxpo07zvq?module=/src/visualizations/Chart.js">starter code</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://codesandbox.io/s/6oxovlmok">solution</a></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/Data-Visualization/" rel="tag"># Data Visualization</a>
+              <a href="/tags/D3-js/" rel="tag"># D3.js</a>
+              <a href="/tags/React/" rel="tag"># React</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/18/Advanced-Vue-js-Features-from-the-Ground-Up/" rel="prev" title="Advanced Vue.js Features from the Ground Up">
+                  <i class="fa fa-chevron-left"></i> Advanced Vue.js Features from the Ground Up
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/10/24/API-Design-in-Node-js-v3/" rel="next" title="API Design in Node.js v3">
+                  API Design in Node.js v3 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

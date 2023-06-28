@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Introductionslide  What is an algorithem?  Algorithm is just the steps that you take to solve a problem   Why should you care?    Engineer’s job is to solve problems   What will we cover today?  Estim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Practical Guide to Algorithms with JavaScript">
+<meta property="og:url" content="http://yoursite.com/2019/09/12/A-Practical-Guide-to-Algorithms-with-JavaScript/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introductionslide  What is an algorithem?  Algorithm is just the steps that you take to solve a problem   Why should you care?    Engineer’s job is to solve problems   What will we cover today?  Estim">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-09-12T05:10:30.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.317Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Data Structures">
+<meta property="article:tag" content="Algorithms">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/12/A-Practical-Guide-to-Algorithms-with-JavaScript/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/09/12/A-Practical-Guide-to-Algorithms-with-JavaScript/","path":"2019/09/12/A-Practical-Guide-to-Algorithms-with-JavaScript/","title":"A Practical Guide to Algorithms with JavaScript"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>A Practical Guide to Algorithms with JavaScript | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Space-amp-Time-Complexity"><span class="nav-number">2.</span> <span class="nav-text">Space &amp; Time Complexity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Space-amp-Time-Complexity"><span class="nav-number">2.1.</span> <span class="nav-text">Introducing Space &amp; Time Complexity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Native-Methods-amp-JS-Expressions"><span class="nav-number">2.2.</span> <span class="nav-text">Native Methods &amp; JS Expressions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Big-O-Notation"><span class="nav-number">2.3.</span> <span class="nav-text">Big O Notation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Space-Complexity-amp-Review"><span class="nav-number">2.4.</span> <span class="nav-text">Space Complexity &amp; Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Big-O-Loop"><span class="nav-number">2.5.</span> <span class="nav-text">Big O: Loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Big-O-Property-Lookup"><span class="nav-number">2.6.</span> <span class="nav-text">Big O: Property Lookup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bio-O-Push-Shift-amp-Unshift"><span class="nav-number">2.7.</span> <span class="nav-text">Bio O: Push, Shift &amp; Unshift</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization-with-Caching"><span class="nav-number">3.</span> <span class="nav-text">Optimization with Caching</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Faster-Algorithms"><span class="nav-number">3.1.</span> <span class="nav-text">Faster Algorithms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Unique-Sort"><span class="nav-number">3.2.</span> <span class="nav-text">Exercise: Unique Sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Caching-with-Memoization"><span class="nav-number">3.3.</span> <span class="nav-text">Caching with Memoization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Basic-Memoization"><span class="nav-number">3.4.</span> <span class="nav-text">Exercise: Basic Memoization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Memoization-with-Closure"><span class="nav-number">3.5.</span> <span class="nav-text">Exercise: Memoization with Closure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Generic-Memoize-Funciton"><span class="nav-number">3.6.</span> <span class="nav-text">Exercise: Generic Memoize Funciton</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recursion"><span class="nav-number">4.</span> <span class="nav-text">Recursion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Recursion"><span class="nav-number">4.1.</span> <span class="nav-text">Introducing Recursion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Call-Stack-Walkthrough"><span class="nav-number">4.2.</span> <span class="nav-text">Call Stack Walkthrough</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Looping-with-Recursion"><span class="nav-number">4.3.</span> <span class="nav-text">Looping with Recursion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Factorial-with-a-Loop"><span class="nav-number">4.4.</span> <span class="nav-text">Factorial with a Loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wrapper-Function"><span class="nav-number">4.5.</span> <span class="nav-text">Wrapper Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Accumulators"><span class="nav-number">4.6.</span> <span class="nav-text">Accumulators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Iterative-Loop-Exercise"><span class="nav-number">4.7.</span> <span class="nav-text">Exercise: Iterative Loop Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Recursive-Factorial-amp-Memoize"><span class="nav-number">4.8.</span> <span class="nav-text">Exercise: Recursive Factorial &amp; Memoize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Divide-amp-Conquer"><span class="nav-number">4.9.</span> <span class="nav-text">Divide &amp; Conquer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Linear-Search"><span class="nav-number">4.10.</span> <span class="nav-text">Exercise: Linear Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Search"><span class="nav-number">4.11.</span> <span class="nav-text">Binary Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Divide-amp-Conquer-Review"><span class="nav-number">4.12.</span> <span class="nav-text">Divide &amp; Conquer Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sorting-Types"><span class="nav-number">4.13.</span> <span class="nav-text">Sorting Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Merge-Sort"><span class="nav-number">4.14.</span> <span class="nav-text">Merge Sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Bubble-Sort"><span class="nav-number">4.15.</span> <span class="nav-text">Exercise: Bubble Sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Merge-Sort"><span class="nav-number">4.16.</span> <span class="nav-text">Exercise: Merge Sort</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Greedy-Algorithms"><span class="nav-number">5.</span> <span class="nav-text">Greedy Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Greedy"><span class="nav-number">5.1.</span> <span class="nav-text">Introducing Greedy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Greedy-Algorithms-Wlakthrough"><span class="nav-number">5.2.</span> <span class="nav-text">Greedy Algorithms Wlakthrough</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Brute-Force"><span class="nav-number">5.3.</span> <span class="nav-text">Brute Force</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-Algorithms"><span class="nav-number">6.</span> <span class="nav-text">Dynamic Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Intriducing-Dynamic-Programming"><span class="nav-number">6.1.</span> <span class="nav-text">Intriducing Dynamic Programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memoization-with-Recursion"><span class="nav-number">6.2.</span> <span class="nav-text">Memoization with Recursion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Landscape-of-Data-Structure-amp-Algorithms"><span class="nav-number">6.3.</span> <span class="nav-text">The Landscape of Data Structure &amp; Algorithms</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/12/A-Practical-Guide-to-Algorithms-with-JavaScript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="A Practical Guide to Algorithms with JavaScript | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          A Practical Guide to Algorithms with JavaScript
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-09-12 13:10:30" itemprop="dateCreated datePublished" datetime="2019-09-12T13:10:30+08:00">2019-09-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><a target="_blank" rel="noopener" href="https://slides.com/bgando/intro-to-algorithms/#/">slide</a></p>
+<ul>
+<li><p>What is an algorithem?</p>
+<ul>
+<li>Algorithm is just the steps that you take to solve a problem</li>
+</ul>
+</li>
+<li><p>Why should you care?  </p>
+<ul>
+<li>Engineer’s job is to solve problems</li>
+</ul>
+</li>
+<li><p>What will we cover today?</p>
+<ol>
+<li>Estimate generally how fast an algorithms is</li>
+<li>Use some techniques to optimize certain types of algorithms</li>
+<li>Get comfortable with recursion</li>
+<li>Implement a couple sorting and searching algorithms</li>
+<li>Understand the difference between Divide &amp; Conquer and Dynamic Programming</li>
+<li>Learn about the pros and cons of the Greedy technique</li>
+<li>Cover a recursive brute force algorithms<span id="more"></span></li>
+</ol>
+</li>
+</ul>
+<h2 id="Space-amp-Time-Complexity"><a href="#Space-amp-Time-Complexity" class="headerlink" title="Space &amp; Time Complexity"></a>Space &amp; Time Complexity</h2><h3 id="Introducing-Space-amp-Time-Complexity"><a href="#Introducing-Space-amp-Time-Complexity" class="headerlink" title="Introducing Space &amp; Time Complexity"></a>Introducing Space &amp; Time Complexity</h3><ul>
+<li>What make an algorithm fast<ul>
+<li><strong>Space</strong> complexity<ul>
+<li>How much <strong>memory</strong> is used</li>
+</ul>
+</li>
+<li><strong>Time</strong> complexity<ul>
+<li>How many primitive <strong>operations</strong> are executed</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>… with respect to input size<br>… and assuming worst case scenarios</p>
+<ul>
+<li><p>Problem:</p>
+<ul>
+<li>Given a list of hotels, return the price range of hotels in a given search result</li>
+<li>let’s write an algorithm to do the job</li>
+<li>We’d expect that the more data we have, the longer it will take to figure out the min and max required for the range</li>
+<li>However, as our dataset grows, the cost can grow really fast or slow</li>
+</ul>
+</li>
+<li><p>Approach #1: compare all numbers to one another</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hotels = [</span><br><span class="line">  &#123;<span class="attr">price</span>: <span class="number">200</span>, <span class="attr">brand</span>: <span class="string">&#x27;Estin&#x27;</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">price</span>: <span class="number">50</span>, <span class="attr">brand</span>: <span class="string">&#x27;Best Eastern&#x27;</span>&#125;,</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">  &#123;<span class="attr">price</span>: <span class="number">175</span>, <span class="attr">brand</span>: <span class="string">&#x27;Radishin&#x27;</span>&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>As our data grows, how much does our work increase?</p>
+<table>
+<thead>
+<tr>
+<th># of hotels(n)</th>
+<th>3</th>
+<th>5</th>
+<th>10</th>
+<th>100</th>
+</tr>
+</thead>
+<tbody><tr>
+<td># Ops</td>
+<td>9</td>
+<td>25</td>
+<td>100</td>
+<td>1000</td>
+</tr>
+</tbody></table>
+<p>We call this n^2, where n is the number of hotels. As n grows, the amount of work increase at that rate</p>
+<ul>
+<li>Appraoch #2: Track min &amp; max</li>
+</ul>
+<p>使用两个循环，第一个寻找最大值，第二个寻找最小值</p>
+<p>How many comparisons were made?</p>
+<table>
+<thead>
+<tr>
+<th>Price</th>
+<th>200</th>
+<th>50</th>
+<th>…</th>
+<th>175</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Max?</td>
+<td>200</td>
+<td>200</td>
+<td>…</td>
+<td>200</td>
+</tr>
+<tr>
+<td>Min?</td>
+<td>200</td>
+<td>50</td>
+<td>…</td>
+<td>50</td>
+</tr>
+</tbody></table>
+<p>We consider this 2n beaucase as the data grows, the amount of work increases by 2</p>
+<ul>
+<li>Approach #3: Sorted list</li>
+</ul>
+<p>如果已经是一个排序过的数组，那么明显只要查找两次即可。</p>
+<table>
+<thead>
+<tr>
+<th># of Operations</th>
+<th>Algorithm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>n^2</td>
+<td>compare all numbers</td>
+</tr>
+<tr>
+<td>2n</td>
+<td>Find min and max numbers</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sorted list, find first and last</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Big-O, name</th>
+<th># of Operations</th>
+<th>Algorithm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O(n^2), quadratic</td>
+<td>n^2</td>
+<td>compare all numbers</td>
+</tr>
+<tr>
+<td>O(n),linear</td>
+<td>2n</td>
+<td>Find min and max numbers</td>
+</tr>
+<tr>
+<td>O(1), constant</td>
+<td>2</td>
+<td>Sorted list, find first and last</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Super fast</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Super Slooooow</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>constant</td>
+<td>logarithmic</td>
+<td>linear</td>
+<td>quadratic</td>
+<td>exponential</td>
+</tr>
+<tr>
+<td><strong>Notation</strong></td>
+<td>O(1)</td>
+<td>O(logn)</td>
+<td>O(n)</td>
+<td>O(n^2)</td>
+<td>O(k^n)</td>
+</tr>
+</tbody></table>
+<h3 id="Native-Methods-amp-JS-Expressions"><a href="#Native-Methods-amp-JS-Expressions" class="headerlink" title="Native Methods &amp; JS Expressions"></a>Native Methods &amp; JS Expressions</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// What are some simple, native JS methods/expressions/operations?</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">arr.<span class="title function_">pop</span>() <span class="comment">// shift和unshift并不是常量级操作，以为要移动整个数组来在数组头部添加或删除项</span></span><br><span class="line">arr[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span> &#125;</span><br><span class="line">obj.<span class="property">a</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上时间复杂度都是常数级</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Big-O-Notation"><a href="#Big-O-Notation" class="headerlink" title="Big O Notation"></a>Big O Notation</h3><ul>
+<li>Calculating Time<ul>
+<li>What do we do if we have multiple expressions&#x2F;loops&#x2F;etc?</li>
+</ul>
+</li>
+</ul>
+<p>如果是常数操作，复杂度相加，例如三个加法，可视作O(3)，简化为O(1)</p>
+<p>如果套嵌循环，那么复杂度相乘，例如三重套嵌循环，复杂度O(n^3)</p>
+<p>也就是循环内的操作的时间复杂度要与循环相乘</p>
+<ul>
+<li>Complexity of Common Operations</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Complexity</strong></th>
+<th>Operation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O(1)</td>
+<td>Running a statement</td>
+</tr>
+<tr>
+<td>O(1)</td>
+<td>Value look-up on an array, object, variable</td>
+</tr>
+<tr>
+<td>O(logn)</td>
+<td>Loop that cuts problem in half every iteration</td>
+</tr>
+<tr>
+<td>O(n)</td>
+<td>Looping through the values of an array</td>
+</tr>
+<tr>
+<td>O(n^2)</td>
+<td>Double nested loops</td>
+</tr>
+<tr>
+<td>O(n^3)</td>
+<td>Tirple nested loops</td>
+</tr>
+</tbody></table>
+<h3 id="Space-Complexity-amp-Review"><a href="#Space-Complexity-amp-Review" class="headerlink" title="Space Complexity &amp; Review"></a>Space Complexity &amp; Review</h3><p>与时间复杂度类似，主要考虑每个操作是否创建了新的数据结构及数据结构的大小</p>
+<p>Time complexity of an algorithms signifies the total time required by the program to run to completion. The time complexity of algorithms is most commonly expressed using the <strong>Big O notation</strong></p>
+<p>Big O notation gives us an industry-standard language to discuss the performance of algorithms.Not knowing how to speak this language can make you stand out as an inexperienced programmer</p>
+<p>Did you know there are other notations that are typically used in academic settings? Learn more <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/analysis-of-algorithms-set-3asymptotic-notations/">here</a></p>
+<h3 id="Big-O-Loop"><a href="#Big-O-Loop" class="headerlink" title="Big O: Loop"></a>Big O: Loop</h3><p><a target="_blank" rel="noopener" href="https://www.bigocheatsheet.com/">Big-O Cheat Sheet</a></p>
+<ul>
+<li>What is the TC(time complexity)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> countChars = <span class="keyword">function</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> count = <span class="number">0</span> <span class="comment">// O(1)</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; str.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    count++ <span class="comment">// O(n)</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> count <span class="comment">// O(1)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">countChars</span>(<span class="string">&#x27;dance&#x27;</span>)</span><br><span class="line"><span class="title function_">countChars</span>(<span class="string">&#x27;walk&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>以上操作为线性(O(n))时间复杂度</p>
+<h3 id="Big-O-Property-Lookup"><a href="#Big-O-Property-Lookup" class="headerlink" title="Big O: Property Lookup"></a>Big O: Property Lookup</h3><ul>
+<li>What is the TC?</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> countChars = <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> str.<span class="property">length</span> <span class="comment">// js会自动追踪字符串或者数组长度，并作为属性添加在字符串和数组上，所以此操作为O(1)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">countChars</span>(<span class="string">&#x27;dance&#x27;</span>)</span><br><span class="line"><span class="title function_">countChars</span>(<span class="string">&#x27;walk&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// How much more work would it take to get the length of 1 million char string?</span></span><br></pre></td></tr></table></figure>
+
+<p>上述函数为属性查找操作，时间复杂度为常数级。</p>
+<h3 id="Bio-O-Push-Shift-amp-Unshift"><a href="#Bio-O-Push-Shift-amp-Unshift" class="headerlink" title="Bio O: Push, Shift &amp; Unshift"></a>Bio O: Push, Shift &amp; Unshift</h3><ul>
+<li>What is the TC?</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myList = [<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;hola&#x27;</span>]</span><br><span class="line"></span><br><span class="line">myList.<span class="title function_">push</span>(<span class="string">&#x27;bonjour&#x27;</span>)</span><br><span class="line">mylist.<span class="title function_">unshift</span>()</span><br><span class="line">myList.<span class="title function_">shift</span>()</span><br><span class="line"><span class="comment">// Calculate the time complexity for the native methods above(separately)</span></span><br></pre></td></tr></table></figure>
+
+<p>就像之前所说，删除或添加数组第一项，我们要将其他的项后移或者前移，时间复杂度O(n)</p>
+<h2 id="Optimization-with-Caching"><a href="#Optimization-with-Caching" class="headerlink" title="Optimization with Caching"></a>Optimization with Caching</h2><h3 id="Faster-Algorithms"><a href="#Faster-Algorithms" class="headerlink" title="Faster Algorithms"></a>Faster Algorithms</h3><ul>
+<li>Time Complexity?</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">isUnique</span> = (<span class="params">arr</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="literal">true</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`~~~~ OUTER LOOP ~~~~ i === <span class="subst">$&#123;i&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; arr.<span class="property">length</span>; j++) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`~~~~ INNER LOOP ~~~~ j === <span class="subst">$&#123;j&#125;</span>`</span>);</span><br><span class="line">      <span class="keyword">if</span> (i !== j &amp;&amp; arr[i] === arr[j]) &#123;</span><br><span class="line">        result = <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">isUnique</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) === <span class="literal">true</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">isUnique</span>([<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>]) === <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面我们循环中套嵌了循环，所以时间复杂度为平方级(O(n^2))</p>
+<ul>
+<li>We can do better</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">isUnique = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> breadcrumbs = &#123;&#125;;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="literal">true</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`~~~~ LOOP ~~~~ i === <span class="subst">$&#123;i&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">if</span> (breadcrumbs[arr[i]]) &#123;</span><br><span class="line">      result = <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      breadcrumbs[arr[i]] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">isUnique</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) === <span class="literal">true</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">isUnique</span>([<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>]) === <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在上面的方法中，我们使用一个新对象来保存已经循环过得数组的项，并不断查找数组项是否已经存在于对象中。用空间换取时间，时间复杂度为线性(O(n))，空间复杂度为(O(n))。</p>
+<h3 id="Exercise-Unique-Sort"><a href="#Exercise-Unique-Sort" class="headerlink" title="Exercise: Unique Sort"></a>Exercise: Unique Sort</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Task: Transform this simple sorting algorithm into a unique sort.</span></span><br><span class="line"><span class="comment">// It should not return any duplicate values in the sorted array.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//input: [1,5,2,1] =&gt; output: [1,2,5]</span></span><br><span class="line"><span class="comment">//input: [4,2,2,3,2,2,2] =&gt; output: [2,3,4]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> uniqSort = <span class="keyword">function</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> breadcrumbs = &#123;&#125;;</span><br><span class="line">    <span class="keyword">const</span> result = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">const</span> current = arr[i]</span><br><span class="line">      <span class="keyword">if</span>(!breadcrumbs[current]) &#123;</span><br><span class="line">        result.<span class="title function_">push</span>(current)</span><br><span class="line">        breadcrumbs[current] = <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">uniqSort</span>([<span class="number">4</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>]); <span class="comment">// =&gt; [2,3,4]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Caching-with-Memoization"><a href="#Caching-with-Memoization" class="headerlink" title="Caching with Memoization"></a>Caching with Memoization</h3><p>Memoization: caching the value that a function returns</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">factorial</span> = (<span class="params">n</span>) =&gt; &#123;</span><br><span class="line">    <span class="comment">// Calculations: n * (n-1) * (n-2) * ... (2) * (1)</span></span><br><span class="line">    <span class="keyword">return</span> factorial;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">factorial</span>(<span class="number">35</span>);</span><br><span class="line"><span class="title function_">factorial</span>(<span class="number">36</span>); <span class="comment">// factorial(36) = factorial(35) * 36</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-Basic-Memoization"><a href="#Exercise-Basic-Memoization" class="headerlink" title="Exercise: Basic Memoization"></a>Exercise: Basic Memoization</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Task 1: Write a function, times10, that takes an argument, n, and multiples n times 10</span></span><br><span class="line"><span class="comment">// a simple multiplication fn</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">times10</span> = (<span class="params">n</span>) =&gt; &#123; <span class="keyword">return</span> n * <span class="number">10</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;~~~~~~~~~~~~~~TASK 1~~~~~~~~~~~~~~&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;times10 returns:&#x27;</span>, <span class="title function_">times10</span>(<span class="number">9</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Task 2: Use an object to cache the results of your times10 function.</span></span><br><span class="line"><span class="comment">// protip 1: Create a function that checks if the value for n has been calculated before.</span></span><br><span class="line"><span class="comment">// protip 2: If the value for n has not been calculated, calculate and then save the result in the cache object.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cache = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">memoTimes10</span> = (<span class="params">n</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span>(!cache[n]) &#123;</span><br><span class="line">    cache[n] = <span class="title function_">times10</span>(n)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> chche[n]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;~~~~~~~~~~~~~~TASK 2~~~~~~~~~~~~~~&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Task 2 calculated value:&#x27;</span>, <span class="title function_">memoTimes10</span>(<span class="number">9</span>));  <span class="comment">// calculated</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Task 2 cached value:&#x27;</span>, <span class="title function_">memoTimes10</span>(<span class="number">9</span>));  <span class="comment">// cached</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-Memoization-with-Closure"><a href="#Exercise-Memoization-with-Closure" class="headerlink" title="Exercise: Memoization with Closure"></a>Exercise: Memoization with Closure</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Task 3: Clean up your global scope by moving your cache inside your function.</span></span><br><span class="line"><span class="comment">// protip: Use a closure to return a function that you can call later.</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">times10</span> = (<span class="params">n</span>) =&gt; (n * <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">memoizedClosureTimes10</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> cache = &#123;&#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">memoTimes10</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(!cache[n]) &#123;</span><br><span class="line">      cache[n] = <span class="title function_">times10</span>(n)</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;calculated&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> cache[n]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;cached&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> cache[n]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> memoClosureTimes10 = <span class="title function_">memoizedClosureTimes10</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;~~~~~~~~~~~~~~TASK 3~~~~~~~~~~~~~~&#x27;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Task 3 calculated value:&#x27;</span>, <span class="title function_">memoClosureTimes10</span>(<span class="number">9</span>));  <span class="comment">// calculated</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Task 3 cached value:&#x27;</span>, <span class="title function_">memoClosureTimes10</span>(<span class="number">9</span>));  <span class="comment">// cached</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Task 3:&#x27;</span>, e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-Generic-Memoize-Funciton"><a href="#Exercise-Generic-Memoize-Funciton" class="headerlink" title="Exercise: Generic Memoize Funciton"></a>Exercise: Generic Memoize Funciton</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">times10</span> = (<span class="params">n</span>) =&gt; (n * <span class="number">10</span>);</span><br><span class="line"><span class="comment">// Task 4: Make your memo function generic and accept the times10 function as a callback rather than defining the n * 10 logic inside the if/else or pulling it in from the global scope.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// protip: Take advantage of the fact that parameters are saved in the closure as well, just like the cache from the previous example.</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">memoize</span> = (<span class="params">cb</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> cache = &#123;&#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">memoizeCb</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(!cache[n]) &#123;</span><br><span class="line">      cache[n] = <span class="title function_">cb</span>(n)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cache[n]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// returned function from memoizedAdd</span></span><br><span class="line"><span class="keyword">const</span> memoizedTimes10 = <span class="title function_">memoize</span>(times10);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;~~~~~~~~~~~~~~TASK 4~~~~~~~~~~~~~~&#x27;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Task 4 calculated value:&#x27;</span>, <span class="title function_">memoizedTimes10</span>(<span class="number">9</span>));  <span class="comment">// calculated</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Task 4 cached value:&#x27;</span>, <span class="title function_">memoizedTimes10</span>(<span class="number">9</span>));  <span class="comment">// cached</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Task 4:&#x27;</span>, e)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h2><h3 id="Introducing-Recursion"><a href="#Introducing-Recursion" class="headerlink" title="Introducing Recursion"></a>Introducing Recursion</h3><ul>
+<li><p>Recursion is simply when a function calls itself; however it doesn’t stop there.</p>
+</li>
+<li><p>Why recursion?</p>
+<ul>
+<li>Elegant solution to keep your code D.R.Y.</li>
+<li>Expected CS knowledge</li>
+</ul>
+</li>
+</ul>
+<h3 id="Call-Stack-Walkthrough"><a href="#Call-Stack-Walkthrough" class="headerlink" title="Call Stack Walkthrough"></a>Call Stack Walkthrough</h3><ul>
+<li>Call Stack Game<ol>
+<li>Push <strong>called</strong> Fn on stack</li>
+<li>Execute Fn body</li>
+</ol>
+<ul>
+<li>until…</li>
+<li>…another fn is called:<ul>
+<li>Pause the current execution and start at step 1</li>
+</ul>
+</li>
+<li>…a return is hit:<ul>
+<li>Pop the current Fn off the stack</li>
+<li>Resume executing the previous Fn</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>递归可以看做是一种循环，为了不进入无限循环，首先要确定停止条件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tracker = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> callMe = <span class="keyword">function</span> (<span class="params">arg</span>)&#123;</span><br><span class="line">  tracker++</span><br><span class="line">  <span class="keyword">if</span>(tracker === <span class="number">3</span>)&#123;</span><br><span class="line">    tracker = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">`loops! <span class="subst">$&#123;arg&#125;</span>`</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">callMe</span>(<span class="string">&#x27;anytime&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">callMe</span>()</span><br></pre></td></tr></table></figure>
+
+<h3 id="Looping-with-Recursion"><a href="#Looping-with-Recursion" class="headerlink" title="Looping with Recursion"></a>Looping with Recursion</h3><ul>
+<li>Recursion in 4 steps<ol>
+<li>Identify base case(s)</li>
+<li>Identify recursive case(s)</li>
+<li>Return where appropriate</li>
+<li>Write procedures for each case that bring you closer to the base case(s)</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title function_">loopTimes</span> = n =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;n===&#x27;</span>, n)</span><br><span class="line">  <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;complete&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">loopTimes</span>(n - <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">loopTimes</span>(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Factorial-with-a-Loop"><a href="#Factorial-with-a-Loop" class="headerlink" title="Factorial with a Loop"></a>Factorial with a Loop</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">computeFactorial</span>(<span class="params">num</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> result = <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= num; i++) &#123;</span><br><span class="line">    result *= i</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">computeFactorial</span>(<span class="params">num, total = <span class="number">1</span></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span>(num === <span class="number">0</span>) <span class="keyword">return</span> total</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">computeFactorial</span>(num - <span class="number">1</span>, num * total)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">computeFactorial</span>(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Recursion can always be implemented as a loop, but in some situations, believe it or not, it is simpler to use recursion</p>
+</li>
+<li><p>Tail-Call Optimization</p>
+<ul>
+<li>ES6 offers TCO, which allows some functions to be called without growing the call stack</li>
+<li>Read more <a target="_blank" rel="noopener" href="http://www.2ality.com/2015/06/tail-call-optimization.html">here</a> and <a target="_blank" rel="noopener" href="http://www.integralist.co.uk/posts/js-recursion.html">here</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Wrapper-Function"><a href="#Wrapper-Function" class="headerlink" title="Wrapper Function"></a>Wrapper Function</h3><ul>
+<li>Common Patterns for Recursion<ul>
+<li>Wrapper Funcitons</li>
+<li>Accumulators</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">wrapperFnLoop</span>(<span class="params">start, end</span>) &#123; <span class="comment">// 使用闭包记录变量</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">recurse</span>(<span class="params">i</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`looping from <span class="subst">$&#123;start&#125;</span> until <span class="subst">$&#123;end&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(i &lt; end) &#123;</span><br><span class="line">      <span class="title function_">recurse</span>(i + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">recurse</span>(start)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">MemoFnLoop</span>(<span class="params">i, end</span>) &#123; <span class="comment">// 使用参数记录变量</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`looping from <span class="subst">$&#123;i&#125;</span> until <span class="subst">$&#123;end&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">if</span>(i &lt; end) &#123;</span><br><span class="line">    <span class="title class_">MemoFnLoop</span>(i + <span class="number">1</span>, end);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;~~~ wrapperFnLoop ~~~&#x27;</span>)</span><br><span class="line"><span class="title function_">wrapperFnLoop</span>(<span class="number">1</span>,<span class="number">5</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;~~~ MemoFnLoop ~~~&#x27;</span>)</span><br><span class="line"><span class="title class_">MemoFnLoop</span>(<span class="number">1</span>, <span class="number">6</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Accumulators"><a href="#Accumulators" class="headerlink" title="Accumulators"></a>Accumulators</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">joinElements</span>(<span class="params">array, joinString</span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">recurse</span>(<span class="params">index, resultSoFar</span>) &#123;</span><br><span class="line">    resultSoFar += array[index]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(index === array.<span class="property">length</span> - <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> resultSoFar</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">recurse</span>(index + <span class="number">1</span>, resultSoFar + joinString)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">recurse</span>(<span class="number">0</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">joinElements</span>([<span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;cr&#x27;</span>,<span class="string">&#x27;t cod&#x27;</span>, <span class="string">&#x27; :) :)&#x27;</span>], <span class="string">&#x27;e&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-Iterative-Loop-Exercise"><a href="#Exercise-Iterative-Loop-Exercise" class="headerlink" title="Exercise: Iterative Loop Exercise"></a>Exercise: Iterative Loop Exercise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Task: 将上面的代码使用循环重写</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">joinElements</span>(<span class="params">array, joinString</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.<span class="property">length</span> - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    result += array[i] + joinString</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result + array[array.<span class="property">length</span> - <span class="number">1</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">joinElements</span>([<span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;cr&#x27;</span>,<span class="string">&#x27;t cod&#x27;</span>, <span class="string">&#x27; :) :)&#x27;</span>], <span class="string">&#x27;e&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-Recursive-Factorial-amp-Memoize"><a href="#Exercise-Recursive-Factorial-amp-Memoize" class="headerlink" title="Exercise: Recursive Factorial &amp; Memoize"></a>Exercise: Recursive Factorial &amp; Memoize</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Task 1: Without peeking, write your own recursive factorial method</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">factorial</span>(<span class="params">num, total = <span class="number">1</span></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span>(num === <span class="number">0</span>) <span class="keyword">return</span> total</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">factorial</span>(num - <span class="number">1</span>, num * total)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">factorial</span>(<span class="number">5</span>)</span><br><span class="line"><span class="comment">// Task 2: Use your memo function from the previous exercise to memoize your factorial method</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">memo</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> cache = &#123;&#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">memoize</span>(<span class="params">...args</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> num = args[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span>(!cache[num]) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;cached&#x27;</span>)</span><br><span class="line">      cache[num] = <span class="title function_">fn</span>(num)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cache[num]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> memoFactorial = <span class="title function_">memo</span>(factorial)</span><br><span class="line"><span class="title function_">memoFactorial</span>(<span class="number">100</span>)</span><br><span class="line"><span class="title function_">memoFactorial</span>(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Divide-amp-Conquer"><a href="#Divide-amp-Conquer" class="headerlink" title="Divide &amp; Conquer"></a>Divide &amp; Conquer</h3><p>分治法通过递归将复杂问题拆解为小问题进行求解。比较经典的就是二分查找。</p>
+<ul>
+<li><p>Binary Search</p>
+<ul>
+<li>Search for a value in a <em>sorted</em> array by cutting the side of the search area in half</li>
+</ul>
+</li>
+<li><p>Linear Search</p>
+<ul>
+<li>Search for a value in an array by checking each value in order</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Linear-Search"><a href="#Exercise-Linear-Search" class="headerlink" title="Exercise: Linear Search"></a>Exercise: Linear Search</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TASK: Implement linear search.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">linearSearch</span>(<span class="params">list, item</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> index = -<span class="number">1</span></span><br><span class="line">  list.<span class="title function_">forEach</span>(<span class="function">(<span class="params">listItem, listIndex</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(listItem === item) &#123;</span><br><span class="line">      index = listIndex</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> index</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">linearSearch</span>([<span class="number">2</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">90</span>,<span class="number">103</span>], <span class="number">90</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Binary-Search"><a href="#Binary-Search" class="headerlink" title="Binary Search"></a>Binary Search</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">binarySearch</span>(<span class="params">list, item</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> min = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> max = list.<span class="property">length</span> - <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> guess</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(min &lt;= max) &#123;</span><br><span class="line">    guess = <span class="title class_">Math</span>.<span class="title function_">floor</span>((min + max) / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(list[guess] === item) &#123;</span><br><span class="line">      <span class="keyword">return</span> guess</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(list[guess] &lt; item) &#123;</span><br><span class="line">        min = guess + <span class="number">1</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        max = guess - <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">binarySearch</span>([<span class="number">2</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">90</span>, <span class="number">103</span>], <span class="number">90</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Divide-amp-Conquer-Review"><a href="#Divide-amp-Conquer-Review" class="headerlink" title="Divide &amp; Conquer Review"></a>Divide &amp; Conquer Review</h3><ul>
+<li>Recursive calls to a subset of the problem<ol start="0">
+<li>Recongnize base case</li>
+<li>Divide: Break problem down during each call</li>
+<li>Conquer: Do work on each subset</li>
+<li>Combine: Solutions</li>
+</ol>
+</li>
+</ul>
+<h3 id="Sorting-Types"><a href="#Sorting-Types" class="headerlink" title="Sorting Types"></a>Sorting Types</h3><ul>
+<li><p>Naive Sorts</p>
+<ul>
+<li>Keep looping and comparing values until the list is sorted<ul>
+<li>Bubble Sort</li>
+<li>Insertion Sort</li>
+<li>Selection Sort</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Divide &amp; Conquer Sorts</p>
+<ul>
+<li>Recursively divide lists and sort smaller parts of list until entire list is sorted<ul>
+<li>Mergesort</li>
+<li>Quiksort</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><em>Bubble Sort</em></p>
+<ul>
+<li>Loop through an array, comparing adjacent indices and swapping the greater value to the end</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://rebootjeff.github.io/comparisonsort/">动画演示</a></p>
+<ul>
+<li><em>Merge sort</em><ul>
+<li>Recursively merge sorted sub-list</li>
+</ul>
+</li>
+</ul>
+<h3 id="Merge-Sort"><a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a>Merge Sort</h3><ul>
+<li><p>Concept: Merging Lists</p>
+<ul>
+<li>The merge step takes two sorted lists and merges them into 1 sorted list</li>
+</ul>
+</li>
+<li><p>Pseudocode: Merge Routine</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">merge</span>(L, R)</span><br><span class="line"><span class="comment">// [3, 27] // [9, 10]</span></span><br><span class="line"><span class="comment">// initialize empty array</span></span><br><span class="line"><span class="comment">// compare the first index of the left array</span></span><br><span class="line"><span class="comment">// to the first index of the right array</span></span><br><span class="line"><span class="comment">// push the lower value to the empty array</span></span><br><span class="line"><span class="comment">// shift the array with the lower value</span></span><br><span class="line"><span class="comment">// repeat until both array are empty</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Concept: Merge Sort<ul>
+<li>Step 1:<ul>
+<li>Divide input array into ‘n’ single element subarrays</li>
+</ul>
+</li>
+<li>Step 2:<ul>
+<li>Repeatedly merge subarrays and sort on each merge</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=XaqR3G_NVoo">youtube 并归排序舞蹈</a></p>
+<ul>
+<li>Pseudocode: Merge Sort</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mergeSort(list)</span><br><span class="line">  base case: if list.length &lt; 2, return</span><br><span class="line">  break the list into halves L &amp; R</span><br><span class="line">  Lsroted = mergeSort(L)</span><br><span class="line">  Rsroted = mergeSort(R)</span><br><span class="line">  return merge(Lsorted, Rsorted)</span><br></pre></td></tr></table></figure>
+
+<p>mergeSort的时间复杂度为O(nlogn)，因为递归的将数组拆分为多个子数组，并用线性的方式对子数组进行排序。</p>
+<h3 id="Exercise-Bubble-Sort"><a href="#Exercise-Bubble-Sort" class="headerlink" title="Exercise: Bubble Sort"></a>Exercise: Bubble Sort</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">bubbleSort</span>(<span class="params">list</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> countOuter = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> countInner = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> countSwap = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; list.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    countOuter++</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">      countInner++</span><br><span class="line">      <span class="keyword">if</span>(list[j] &gt; list[i]) &#123;</span><br><span class="line">        countSwap++</span><br><span class="line">        ;[list[j], list[i]] = [list[i], list[j]]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;outer:&#x27;</span>, countOuter, <span class="string">&#x27;inner:&#x27;</span>, countInner, <span class="string">&#x27;swap:&#x27;</span>, countSwap);</span><br><span class="line">  <span class="keyword">return</span> list</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">bubbleSort</span>([<span class="number">9</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">8</span>])</span><br><span class="line"><span class="title function_">bubbleSort</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>])</span><br><span class="line"><span class="title function_">bubbleSort</span>([<span class="number">10</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">swap</span>(<span class="params">array, i, j</span>) &#123;</span><br><span class="line">  ;[array[i], array[j]] = [array[j], array[i]]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// optimized</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bubbleSort</span>(<span class="params">array</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> countOuter = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> countInner = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> countSwap = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> swapped</span><br><span class="line">  <span class="keyword">do</span> &#123;</span><br><span class="line">    countOuter++</span><br><span class="line">    swapped = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      countInner++</span><br><span class="line">      <span class="keyword">if</span>(array[i] &amp;&amp; array[i + <span class="number">1</span>] &amp;&amp; array[i] &gt; array[i + <span class="number">1</span>]) &#123;</span><br><span class="line">        countSwap++</span><br><span class="line">        <span class="title function_">swap</span>(array, i, i + <span class="number">1</span>)</span><br><span class="line">        swapped = <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">while</span> (swapped)</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;outer:&#x27;</span>, countOuter, <span class="string">&#x27;inner:&#x27;</span>, countInner, <span class="string">&#x27;swap:&#x27;</span>, countSwap);</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">bubbleSort</span>([<span class="number">9</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">8</span>])</span><br><span class="line"><span class="title function_">bubbleSort</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>])</span><br><span class="line"><span class="title function_">bubbleSort</span>([<span class="number">10</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-Merge-Sort"><a href="#Exercise-Merge-Sort" class="headerlink" title="Exercise: Merge Sort"></a>Exercise: Merge Sort</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">merge</span>(<span class="params">left, right</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> result = []</span><br><span class="line">  <span class="keyword">while</span>(left.<span class="property">length</span> &amp;&amp; right.<span class="property">length</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(left[<span class="number">0</span>] &lt; right[<span class="number">0</span>]) &#123;</span><br><span class="line">      result.<span class="title function_">push</span>(left.<span class="title function_">shift</span>())</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result.<span class="title function_">push</span>(right.<span class="title function_">shift</span>())</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result.<span class="title function_">concat</span>(left, right)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">mergeSort</span>(<span class="params">list</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span>(list.<span class="property">length</span> &lt; <span class="number">2</span>) <span class="keyword">return</span> list</span><br><span class="line">  <span class="keyword">const</span> length = list.<span class="property">length</span></span><br><span class="line">  <span class="keyword">const</span> middle = <span class="title class_">Math</span>.<span class="title function_">floor</span>(length / <span class="number">2</span>)</span><br><span class="line">  <span class="keyword">const</span> left = list.<span class="title function_">slice</span>(<span class="number">0</span>, middle)</span><br><span class="line">  <span class="keyword">const</span> right = list.<span class="title function_">slice</span>(middle)</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">merge</span>(<span class="title function_">mergeSort</span>(left), <span class="title function_">mergeSort</span>(right))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">mergeSort</span>([<span class="number">9</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">8</span>])</span><br><span class="line"><span class="title function_">mergeSort</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>])</span><br><span class="line"><span class="title function_">mergeSort</span>([<span class="number">10</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="Greedy-Algorithms"><a href="#Greedy-Algorithms" class="headerlink" title="Greedy Algorithms"></a>Greedy Algorithms</h2><h3 id="Introducing-Greedy"><a href="#Introducing-Greedy" class="headerlink" title="Introducing Greedy"></a>Introducing Greedy</h3><ul>
+<li>Greedy algorithms always make the locally optimal choice!</li>
+</ul>
+<p>例如寻找一个最短路径，使用贪算法，每次都会选择两点之间最短的路径，但实际上这距离可能不是最短的，所以使用贪心算法得出的往往不是最优解。在实际应用时，如果数据过于复杂庞大，那么使用贪心算法得出结果总比没有结果要好。</p>
+<h3 id="Greedy-Algorithms-Wlakthrough"><a href="#Greedy-Algorithms-Wlakthrough" class="headerlink" title="Greedy Algorithms Wlakthrough"></a>Greedy Algorithms Wlakthrough</h3><p>You are the banker in Monopoly with your family who has lost many of the game pieces so you only have bills in these denominations:</p>
+<p>$5 $10 $25</p>
+<p>You need only pay out your family in the least number of bills possible so you don’t run out before the game is over. Write a function that calculates the least number of bills required for any given dollar amount that is divisible by 5.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Write a function, makeChange, that returns an integer that represents the least number of coins that add up to an amount where the amount is always divisible by 5.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// coin values: 5, 10, 25</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">makeChange</span>(<span class="params">coins, amount</span>) &#123;</span><br><span class="line">  coins.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> b - a)</span><br><span class="line">  <span class="keyword">let</span> coinTotal = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span>(amount &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (coins[i] &lt;= amount) &#123;</span><br><span class="line">      amount -= coins[i]</span><br><span class="line">      coinTotal++</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      i++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> coinTotal</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">makeChange</span>([<span class="number">5</span>, <span class="number">10</span>, <span class="number">25</span>], <span class="number">50</span>);</span><br><span class="line"><span class="comment">// input amount: 40 , output # of coins: 3 (25, 10, 5)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// input amount: 35, output # of coins: 2 (25, 10)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Brute-Force"><a href="#Brute-Force" class="headerlink" title="Brute Force"></a>Brute Force</h3><ul>
+<li><p>Would these values work with your greedy solution?</p>
+<ul>
+<li>coin values: 1, 6, 10</li>
+<li>input: 12</li>
+</ul>
+</li>
+<li><p>Greedy Approach:</p>
+<ul>
+<li>Always subtract the largest coin possible from the current amount.</li>
+</ul>
+</li>
+<li><p>Algorithmic Correctness</p>
+<ul>
+<li>Does your algorithm correctly solve the problem?</li>
+</ul>
+</li>
+<li><p>Brute Force Approach:</p>
+<ul>
+<li>Calculate every single combination possible and keep track of the minimum.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> recursionCounter = <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> coins = [<span class="number">10</span>, <span class="number">6</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">makeChange</span>(<span class="params">value, i</span>) &#123;</span><br><span class="line">  recursionCounter++</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;recursionCounter&#125;</span>: calling <span class="subst">$&#123;value&#125;</span> at <span class="subst">$&#123;i&#125;</span>`</span>)</span><br><span class="line">  <span class="keyword">if</span>(value === <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> minCoins</span><br><span class="line">  coins.<span class="title function_">forEach</span>(<span class="function">(<span class="params">coin, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(value - coin &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> currMinCoins = <span class="title function_">makeChange</span>(value - coin, i)</span><br><span class="line">      <span class="keyword">if</span>(minCoins === <span class="literal">undefined</span> || currMinCoins &lt; minCoins) &#123;</span><br><span class="line">        minCoins = currMinCoins</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> minCoins + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">makeChange</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Dynamic-Algorithms"><a href="#Dynamic-Algorithms" class="headerlink" title="Dynamic Algorithms"></a>Dynamic Algorithms</h2><h3 id="Intriducing-Dynamic-Programming"><a href="#Intriducing-Dynamic-Programming" class="headerlink" title="Intriducing Dynamic Programming"></a>Intriducing Dynamic Programming</h3><ul>
+<li><p>Dynamic Approach:</p>
+<ul>
+<li>Cache values to avoid repeated calculations</li>
+</ul>
+</li>
+<li><p>DP Qualities:</p>
+<ul>
+<li>Optimal Substructure (tends to be recursive)</li>
+<li>Overlapping Subproblems</li>
+</ul>
+</li>
+<li><p>DP vs Divide &amp; Conquer</p>
+</li>
+<li><p>DP Approaches:</p>
+<ul>
+<li>Top Down (recursive) vs Bottom Up (iterative)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Memoization-with-Recursion"><a href="#Memoization-with-Recursion" class="headerlink" title="Memoization with Recursion"></a>Memoization with Recursion</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cache = &#123;&#125;</span><br><span class="line"><span class="keyword">const</span> coins = [<span class="number">10</span>, <span class="number">6</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">makeChange</span>(<span class="params">c</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span>(cache[c]) <span class="keyword">return</span> cache[c]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> minCoins = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">  coins.<span class="title function_">forEach</span>(<span class="function"><span class="params">coin</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(c - coin &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> currMinCoins = <span class="title function_">makeChange</span>(c - coin)</span><br><span class="line">      <span class="keyword">if</span>(minCoins === -<span class="number">1</span> || currMinCoins &lt; minCoins) &#123;</span><br><span class="line">        minCoins = currMinCoins</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  cache[c] = minCoins + <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> cache[c]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">makeChange</span>(<span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="The-Landscape-of-Data-Structure-amp-Algorithms"><a href="#The-Landscape-of-Data-Structure-amp-Algorithms" class="headerlink" title="The Landscape of Data Structure &amp; Algorithms"></a>The Landscape of Data Structure &amp; Algorithms</h3><p><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/">Geeks fro Geeks</a></p>
+<p><a target="_blank" rel="noopener" href="http://mooc.org/">mooc</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.coursera.org/princeton">coursera - princeton</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCcabW7890RKJzL968QWEykA">cs50</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/Data-Structures/" rel="tag"># Data Structures</a>
+              <a href="/tags/Algorithms/" rel="tag"># Algorithms</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/09/11/SVG-Essentials-Animation-v2/" rel="prev" title="SVG Essentials & Animation v2">
+                  <i class="fa fa-chevron-left"></i> SVG Essentials & Animation v2
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/09/16/Introduction-to-Data-Structures-for-Interviews/" rel="next" title="Introduction to Data Structures for Interviews">
+                  Introduction to Data Structures for Interviews <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

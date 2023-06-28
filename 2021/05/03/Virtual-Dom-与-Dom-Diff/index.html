@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="最近面试比较多，常见问题其实也就那么几个，Virtual DOM 与 DOM Diff 算是绕不开的一个，毕竟主流框架为了提高性能，常见策略就是引入 Virtual DOM 与 DOM Diff，二者往往共同存在，这里也写篇文章记录下我当前的理解。本文大部分内容来自于极客时间，李兵老师的《浏览器工作原理与实践》中 《虚拟 DOM：虚拟 DOM 和实际的 DOM 有何不同？》">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Virtual DOM 与 DOM Diff">
+<meta property="og:url" content="http://yoursite.com/2021/05/03/Virtual-Dom-%E4%B8%8E-Dom-Diff/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="最近面试比较多，常见问题其实也就那么几个，Virtual DOM 与 DOM Diff 算是绕不开的一个，毕竟主流框架为了提高性能，常见策略就是引入 Virtual DOM 与 DOM Diff，二者往往共同存在，这里也写篇文章记录下我当前的理解。本文大部分内容来自于极客时间，李兵老师的《浏览器工作原理与实践》中 《虚拟 DOM：虚拟 DOM 和实际的 DOM 有何不同？》">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-03T11:34:56.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.330Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="Virtual DOM">
+<meta property="article:tag" content="DOM Diff">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2021/05/03/Virtual-Dom-%E4%B8%8E-Dom-Diff/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2021/05/03/Virtual-Dom-%E4%B8%8E-Dom-Diff/","path":"2021/05/03/Virtual-Dom-与-Dom-Diff/","title":"Virtual DOM 与 DOM Diff"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Virtual DOM 与 DOM Diff | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Virtual-DOM"><span class="nav-number">1.</span> <span class="nav-text">什么是 Virtual DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-%E7%9A%84%E7%BC%BA%E9%99%B7"><span class="nav-number">1.1.</span> <span class="nav-text">DOM 的缺陷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5-Virtual-DOM-%E5%90%8E%E6%98%AF%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%BB%A5%E4%B8%8A%E9%97%AE%E9%A2%98%E7%9A%84%EF%BC%88feat%EF%BC%9AVirtual-DOM-%E7%9A%84%E4%BC%98%E7%82%B9%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">引入 Virtual DOM 后是如何解决以上问题的（feat：Virtual DOM 的优点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Virtual-DOM-%E6%89%80%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98-feat-Virtual-DOM-%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">1.3.</span> <span class="nav-text">Virtual DOM 所带来的问题(feat: Virtual DOM 的缺点)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-DOM-Diff"><span class="nav-number">2.</span> <span class="nav-text">什么是 DOM Diff</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-Diff-%E6%89%80%E5%AD%98%E5%9C%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98-DOM-Diff-%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">DOM Diff 所存在的一些问题(DOM Diff 的缺点)</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/03/Virtual-Dom-%E4%B8%8E-Dom-Diff/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Virtual DOM 与 DOM Diff | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Virtual DOM 与 DOM Diff
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-03 19:34:56" itemprop="dateCreated datePublished" datetime="2021-05-03T19:34:56+08:00">2021-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>最近面试比较多，常见问题其实也就那么几个，Virtual DOM 与 DOM Diff 算是绕不开的一个，毕竟主流框架为了提高性能，常见策略就是引入 Virtual DOM 与 DOM Diff，二者往往共同存在，这里也写篇文章记录下我当前的理解。<br>本文大部分内容来自于极客时间，李兵老师的《浏览器工作原理与实践》中 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/144569?utm_source=time_web&utm_medium=menu&utm_term=timewebmenu">《虚拟 DOM：虚拟 DOM 和实际的 DOM 有何不同？》</a></p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="什么是-Virtual-DOM"><a href="#什么是-Virtual-DOM" class="headerlink" title="什么是 Virtual DOM"></a>什么是 Virtual DOM</h2><blockquote>
+<p>tldr: 一个 JS 对象</p>
+</blockquote>
+<p>这样的解释显然不能让面试官满意，也对我们理解 Virtual DOM 产生不了太多帮助。不过，要回答什么是 Virtual DOM，我觉得首先还是要回答一个前置问题，既 DOM 的缺陷。</p>
+<h3 id="DOM-的缺陷"><a href="#DOM-的缺陷" class="headerlink" title="DOM 的缺陷"></a>DOM 的缺陷</h3><p>DOM(Document Object Modal)文档对象模型是浏览器暴露出来可供开发者调用的 API，用于操作页面文档内容，这点对于一个前端工程师来说，每天都要打交道，也不必多说。</p>
+<p>一般情况下，我们要对 DOM 进行操作，无外乎 appendChild、removeChild、innerHtml、getElementById 等增删改查。当我们操作一个 DOM 元素时，浏览器会在背后做一系列的事情，这部分工作对于前端日常开发来将，往往是透明的，但作为一名合格的前端工程师，必须对此有一定了解，否则一些问题的排查以及页面性能指标的优化也就无从谈起。</p>
+<p>例如当我们使用 document.body.appendChild 在 body 中添加一个子元素时，浏览器的渲染引擎会在添加节点时触发样式计算、布局、绘制、栅格化及合成等一系列任务，既<strong>重排</strong>。除此之外，更改样式或者其他属性有可能触发<strong>重绘</strong>或者<strong>合成</strong>操作。当我们操作不当时，也有可能<strong>触发强制同步布局</strong>与<strong>布局抖动</strong>(具体可见<a target="_blank" rel="noopener" href="https://developers.google.cn/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing?hl=zh-cn">这里</a>)。</p>
+<h3 id="引入-Virtual-DOM-后是如何解决以上问题的（feat：Virtual-DOM-的优点）"><a href="#引入-Virtual-DOM-后是如何解决以上问题的（feat：Virtual-DOM-的优点）" class="headerlink" title="引入 Virtual DOM 后是如何解决以上问题的（feat：Virtual DOM 的优点）"></a>引入 Virtual DOM 后是如何解决以上问题的（feat：Virtual DOM 的优点）</h3><p>通过引入 Virtual DOM，可以从以下三方面解决上述问题</p>
+<ol>
+<li>我们可以将改变的内容首先应用到 Virtual DOM 而不是真实 DOM 上</li>
+<li>当 Virtual DOM 变化时，并不立刻渲染页面，而是仅仅调整 Virtual DOM 的状态，由于 Virtual DOM 仅仅是普通 JS 对象，操作成本非常轻量。</li>
+<li>当收集到一定程度的改变时，将变化批量更新到真实 DOM 上。</li>
+</ol>
+<p>在<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1EW411u7th?from=search&seid=15491133433427730338">《计算机科学速成课》</a>(非常基础但很有意思的一门课程)中，一般我们为了解决计算机发展中的一些问题，就会提出一层新的抽象(New level of abstraction)，通过一层抽象，来将问题隔绝在此层，Virtual DOM 也是这样一层抽象。</p>
+<p>通过以上三个设计思路，我们就有了 Virtual DOM 这个 JS 对象作为一个中间层来进行一些 DOM 操作的收集及对比，最终将变化批量更新至真实 DOM 中，从而做到尽可能小的 DOM 变化，以及 DOM 的批量更新，普通方式操作 DOM 可能产生的问题。</p>
+<p>以上为纯技术视角，通过引入 Virtual DOM 这一层抽象，我们还可以从以下两种视角来分析下 Virtual DOM</p>
+<ol>
+<li><p>双缓存</p>
+<p>由于引入了 Virtual DOM，我们就可以不必在 DOM 变化时立刻操作 DOM，而是将变化收集起来，放在 Virtual DOM 中收集起来批量更新。这方面更多的是 DOM Diff 相关的一些问题，下面会更详细的分析。同时这里的思想，个人感觉也与李兵老师在《图解 Google V8》中[《20 | 垃圾回收（一）：V8 的两个垃圾回收器是如何工作的？》](20 | 垃圾回收（一）：V8 的两个垃圾回收器是如何工作的？)一文中介绍的 v8 的垃圾回收机制中针对新生代对象的副垃圾回收器中采用的 Scavenge 算法很类似。</p>
+</li>
+<li><p>MVC 模式</p>
+<p>通过引入 Virtual DOM，我们可以不必关心数据变更后视图如何进行更新，这部分的工作完全交于框架所提供的 Virtual DOM 以及 DOM Diff 即可，我们在开发时只需关心数据与 DOM 间的映射关系。从以前 JQuery 时代需要在数据变更后手动同步 DOM 状态变为只需关心数据是如何变化及流动的，相当大程度的减少了思维负担。</p>
+</li>
+</ol>
+<p>同时，也由于引入了 Virtual DOM 这一层新的抽象，我们可以不必关系底层 DOM 具体如何更新，在 React 中可以交由 ReactDOM 解决，React 本身只提供 Virtual DOM 即可。这也给框架提供了解决兼容性及跨平台问题提供了种种可能，我们可以通过各种其他类库，将 Virtual DOM 映射为 IE 版本的 DOM 或者小程序等其他平台的视图。</p>
+<h3 id="Virtual-DOM-所带来的问题-feat-Virtual-DOM-的缺点"><a href="#Virtual-DOM-所带来的问题-feat-Virtual-DOM-的缺点" class="headerlink" title="Virtual DOM 所带来的问题(feat: Virtual DOM 的缺点)"></a>Virtual DOM 所带来的问题(feat: Virtual DOM 的缺点)</h3><p>如同计算机的其他问题一样，Virtual DOM 也不是 silver bullet，本身也会带来一些问题。</p>
+<p>首先是书写问题。在 React 官方文档中，第一个示例为以下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> e = <span class="title class_">React</span>.<span class="property">createElement</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LikeButton</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123; <span class="attr">liked</span>: <span class="literal">false</span> &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">liked</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;You liked this.&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">e</span>(</span><br><span class="line">      <span class="string">&quot;button&quot;</span>,</span><br><span class="line">      &#123; <span class="attr">onClick</span>: <span class="function">() =&gt;</span> <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; <span class="attr">liked</span>: <span class="literal">true</span> &#125;) &#125;,</span><br><span class="line">      <span class="string">&quot;Like&quot;</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很明显，使用 createElement 生成 Virtual DOM 的语法很不直观。当然，我们一般开发时并不会如此书写，一般会使用 babel 所提供的 jsx 语法，通过 babel 转换为上述语法。</p>
+<p>另一个主要问题，是性能问题。</p>
+<p>是的，虽然 Virtual DOM 的引入解决了一部分操作 DOM 所带来的性能问题，但是引入 Virtual DOM 本身也不是没有任何性能代价的。</p>
+<p>而且 Virtual DOM 的 diff 算法也进行了取舍(trade off)，对常用场景进行了优化，其他场景则舍弃了性能。这方面会在下面更为详细的说明。</p>
+<p>对于一写高性能应用，往往采用人工操作 DOM 的方式更为高效，毕竟，人比算法聪明，可以针对不同场景采用不同手段进行性能优化。具体可见<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/318928283/answer/644372273">知乎-vscode 为什么选择直接使用 DOM API 而不借助现有的前端框架来进行开发？</a>。</p>
+<h2 id="什么是-DOM-Diff"><a href="#什么是-DOM-Diff" class="headerlink" title="什么是 DOM Diff"></a>什么是 DOM Diff</h2><p>上面讲完了 Virtual DOM，那么伴随着 Virtual DOM 的，往往是 DOM Diff。</p>
+<p>在 Virtual DOM 变化后，我们要获取到变化的部分，并将变化部分映射到真实 DOM 上，其中获取 Virtual DOM 变化部分这一过程就是 DOM Diff。</p>
+<p>说道 Diff，除了 DOM Diff，在我们日常使用 git 开发时，git 就是通过 diff 这一操作来获取新旧文件间的变化。</p>
+<p>传统的 diff 算法，为了更细粒度的获取到变化，时间复杂度往往达到了 O(n3)的级别(左右子树同时深度遍历，同时为操作节点增删移动，还要进行一次遍历)，这就意味着对 1000 个节点的 diff 要进行 10 亿此比较，而一个页面往往几千至几万个节点，这个性能对于日常开发可以说是不可接受的。</p>
+<p>React 中的 DOM Diff 为优化此问题，对 Diff 操作进行了取舍，忽略跨层级移动复用同一 DOM 这个场景，将 Diff 操作大致分为三个操作</p>
+<ol>
+<li>tree diff</li>
+<li>component diff</li>
+<li>element Diff</li>
+</ol>
+<p>首先对两个 Virtual DOM tree 进行同层比较，只比较新老 DOM 树的用一层级节点是否变化，节点内容时 component 就进行 component diff，是 element 就进行 element diff。</p>
+<p>在 component diff 中，首先比较组件类型，如果类型不同直接替换，类型相同则比较属性进行更新，并对组件 children 进行 tree diff</p>
+<p>在 element diff 中，还是首先比较标签类型，不同则直接替换，相同则比较属性进行更新，最后也是对标签的 children 进行 tree diff</p>
+<p>这样，react 可以在 O(n)的时间复杂度，既一次遍历即可完成整个 diff 操作。</p>
+<h3 id="DOM-Diff-所存在的一些问题-DOM-Diff-的缺点"><a href="#DOM-Diff-所存在的一些问题-DOM-Diff-的缺点" class="headerlink" title="DOM Diff 所存在的一些问题(DOM Diff 的缺点)"></a>DOM Diff 所存在的一些问题(DOM Diff 的缺点)</h3><p>首先不得不将的，也可能是面试官想要听到的，就是为什么在遍历数组时要增加 key 属性的问题。</p>
+<p>对于静态内容来说，由于叶子节点的数量和位置是固定的，所以在 diff 操作时，可以放心大胆的进行比较。但当节点的 children 为数组动态渲染出来时，由于节点的数量和位置不固定，在进行删除和移动时由于时间复杂度过高，无法进行深度比较，所以此时需要开发者手动添加一个 key 属性，帮助 diff 算法识别节点是否变化，这样当 diff 比较数组中各个节点时，可以直接比较新旧 key 属性是否相同。</p>
+<p>其次是 diff 操作本身带来的性能问题。</p>
+<p>不论是 react 和 vue，每次渲染之前都需要调用 diff 算法遍历新老 Virtual DOM tree。这样相对于直接操作 DOM，每次 diff 操作所消耗的时间就无法避免，即使我们只操作简单的 DOM 变化，也要完整执行 diff 算法。</p>
+<p>对此，Vue 和 react 也走向了两种不同的优化路径。</p>
+<p>React 提出了异步渲染，也就是最新的 fiber 架构及 concurrent mode，既放弃以前的同步的、递归式的 diff 及渲染过程，改为异步、可中断的 fiber 架构，通过 diff 及渲染的可中断，保持对用户交互等高优先任务的响应。</p>
+<p>Vue 则采用了更细粒度的依赖收集策略，通过 compile time 时对 template 中静态内容与动态内容的分析，来最小化的生成需要 Virtual DOM 与 DOM diff 的内容，从而达到最小化判断及更新的目标，以此优化性能。</p>
+<p>以上，便是我对于 Virtual DOM 以及 DOM diff 的一点认知，不对之处还望批评指正。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/tags/React/" rel="tag"># React</a>
+              <a href="/tags/Virtual-DOM/" rel="tag"># Virtual DOM</a>
+              <a href="/tags/DOM-Diff/" rel="tag"># DOM Diff</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/04/28/Hardcore-Functional-Programming-in-JavaScript-v2/" rel="prev" title="Hardcore Functional Programming in JavaScript v2">
+                  <i class="fa fa-chevron-left"></i> Hardcore Functional Programming in JavaScript v2
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/11/12/Developer-Productivity/" rel="next" title="Developer Productivity">
+                  Developer Productivity <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

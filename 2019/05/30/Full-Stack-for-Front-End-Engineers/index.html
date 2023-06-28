@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="IntroductionFull Stack For Frontend Things you’ll learn Level up your command line skills How the internet works How to create and manage a web server Create a deploy system for a Node app Build a bas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Full Stack for Front End Engineers">
+<meta property="og:url" content="http://yoursite.com/2019/05/30/Full-Stack-for-Front-End-Engineers/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="IntroductionFull Stack For Frontend Things you’ll learn Level up your command line skills How the internet works How to create and manage a web server Create a deploy system for a Node app Build a bas">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-30T02:34:15.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.321Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="fullstack">
+<meta property="article:tag" content="nodejs">
+<meta property="article:tag" content="DNS">
+<meta property="article:tag" content="server">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/05/30/Full-Stack-for-Front-End-Engineers/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/05/30/Full-Stack-for-Front-End-Engineers/","path":"2019/05/30/Full-Stack-for-Front-End-Engineers/","title":"Full Stack for Front End Engineers"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Full Stack for Front End Engineers | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Things-you%E2%80%99ll-learn"><span class="nav-number">1.1.</span> <span class="nav-text">Things you’ll learn</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Domains"><span class="nav-number">2.</span> <span class="nav-text">Domains</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction-Domains"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction Domains</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-number">2.2.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-1-Ping"><span class="nav-number">2.3.</span> <span class="nav-text">Exercise 1: Ping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-Caches"><span class="nav-number">2.4.</span> <span class="nav-text">DNS Caches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Security"><span class="nav-number">2.5.</span> <span class="nav-text">Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Poisoning"><span class="nav-number">2.6.</span> <span class="nav-text">Cache Poisoning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-2-Traceroute"><span class="nav-number">2.7.</span> <span class="nav-text">Exercise 2: Traceroute</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vim"><span class="nav-number">3.</span> <span class="nav-text">Vim</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-3-Introducing-VIM"><span class="nav-number">3.1.</span> <span class="nav-text">Exercise 3: Introducing VIM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-4-Vim-modes"><span class="nav-number">3.2.</span> <span class="nav-text">Exercise 4: Vim modes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VIM-insert-mode"><span class="nav-number">3.2.1.</span> <span class="nav-text">VIM - insert mode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VIM-Command-Mode"><span class="nav-number">3.3.</span> <span class="nav-text">VIM Command Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-5-Vim-command-mode"><span class="nav-number">3.4.</span> <span class="nav-text">Exercise 5: Vim command mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Editing-and-Saving-in-Vim"><span class="nav-number">3.5.</span> <span class="nav-text">Editing and Saving in Vim</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VIM-last-line-mode"><span class="nav-number">3.5.1.</span> <span class="nav-text">VIM - last-line mode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-6-Editing-amp-Saving-in-Vim"><span class="nav-number">3.6.</span> <span class="nav-text">Exercise 6: Editing &amp; Saving in Vim</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servers"><span class="nav-number">4.</span> <span class="nav-text">Servers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-7-Introducing-Servers"><span class="nav-number">4.1.</span> <span class="nav-text">Exercise 7: Introducing Servers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logging-into-a-server"><span class="nav-number">4.1.1.</span> <span class="nav-text">Logging into a server</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH"><span class="nav-number">4.2.</span> <span class="nav-text">SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Public-Key-Authentication"><span class="nav-number">4.2.1.</span> <span class="nav-text">Public Key Authentication</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-8-Creating-an-SSH-Key"><span class="nav-number">4.3.</span> <span class="nav-text">Exercise 8: Creating an SSH Key</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setting-up-a-VPS"><span class="nav-number">5.</span> <span class="nav-text">Setting up a VPS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VPS-amp-Cloud-Computing"><span class="nav-number">5.1.</span> <span class="nav-text">VPS &amp; Cloud Computing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#servers"><span class="nav-number">5.1.1.</span> <span class="nav-text">servers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-9-Buy-a-VPS"><span class="nav-number">5.2.</span> <span class="nav-text">Exercise 9: Buy a VPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-10-Log-onto-your-own-server"><span class="nav-number">5.3.</span> <span class="nav-text">Exercise 10: Log onto your own server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-11-top"><span class="nav-number">5.4.</span> <span class="nav-text">Exercise 11: top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-12-Setting-up-your-server"><span class="nav-number">5.5.</span> <span class="nav-text">Exercise 12: Setting up your server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#update-software"><span class="nav-number">5.5.1.</span> <span class="nav-text">update software</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#create-a-new-user"><span class="nav-number">5.5.2.</span> <span class="nav-text">create a new user</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#add-user-to-sudo-super-user-do-group"><span class="nav-number">5.5.3.</span> <span class="nav-text">add user to sudo(super user do) group</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switch-user"><span class="nav-number">5.5.4.</span> <span class="nav-text">switch user</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#make-sure-user-has-sudo-access"><span class="nav-number">5.5.5.</span> <span class="nav-text">make sure user has sudo access</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exit"><span class="nav-number">5.5.6.</span> <span class="nav-text">exit</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logging-In-with-SSH"><span class="nav-number">5.6.</span> <span class="nav-text">Logging In with SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#print-the-contents-of-my-key-pub-and-pipe-the-output-to-the-next-command"><span class="nav-number">5.6.1.</span> <span class="nav-text">print the contents of my_key.pub and pipe the output to the next command</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ssh-into-your-server"><span class="nav-number">5.6.2.</span> <span class="nav-text">ssh into your server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#make-a-ssh-folder-in-your-home-directory-if-it-doesn%E2%80%99t-already-exit"><span class="nav-number">5.6.3.</span> <span class="nav-text">make a .ssh folder in your home directory if it doesn’t already exit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#write-the-contents-of-the-output-to-the-file-authorized-keys"><span class="nav-number">5.6.4.</span> <span class="nav-text">write the contents of the output to the file authorized_keys</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#log-in"><span class="nav-number">5.6.5.</span> <span class="nav-text">log in</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Disable-Root-Access"><span class="nav-number">5.7.</span> <span class="nav-text">Disable Root Access</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-a-Domain-Name"><span class="nav-number">6.</span> <span class="nav-text">Getting a Domain Name</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Buying-a-Domain"><span class="nav-number">6.1.</span> <span class="nav-text">Buying a Domain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Associating-the-DNS"><span class="nav-number">6.2.</span> <span class="nav-text">Associating the DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-a-CNAMEs"><span class="nav-number">6.3.</span> <span class="nav-text">Using a CNAMEs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setting-Up-the-Server"><span class="nav-number">7.</span> <span class="nav-text">Setting Up the Server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Unix-Operating-Systems"><span class="nav-number">7.1.</span> <span class="nav-text">Introducing Unix Operating Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Nginx"><span class="nav-number">7.2.</span> <span class="nav-text">Introducing Nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-13-Nginx"><span class="nav-number">7.3.</span> <span class="nav-text">Exercise 13: Nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-14-Nginx-configuration"><span class="nav-number">7.4.</span> <span class="nav-text">Exercise 14: Nginx configuration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installing-Git-Node-js-and-NPM"><span class="nav-number">7.5.</span> <span class="nav-text">Installing Git, Node.js, and NPM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Making-a-Symbolic-Link"><span class="nav-number">7.6.</span> <span class="nav-text">Making a Symbolic Link</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-Web-Directory"><span class="nav-number">7.7.</span> <span class="nav-text">Creating a Web Directory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Changing-Permisssions"><span class="nav-number">7.8.</span> <span class="nav-text">Changing Permisssions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cloning-a-Git-Repository"><span class="nav-number">7.9.</span> <span class="nav-text">Cloning a Git Repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rename-directory-and-installing-npm"><span class="nav-number">7.10.</span> <span class="nav-text">Rename directory and installing npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Starting-the-Server"><span class="nav-number">7.11.</span> <span class="nav-text">Starting the Server</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modifying-the-Server"><span class="nav-number">8.</span> <span class="nav-text">Modifying the Server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Changing-the-Server-Ports"><span class="nav-number">8.1.</span> <span class="nav-text">Changing the Server Ports</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#html"><span class="nav-number">8.1.1.</span> <span class="nav-text">html</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deploying-Code"><span class="nav-number">9.</span> <span class="nav-text">Deploying Code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploying-Code-amp-Introduction-Gulp"><span class="nav-number">9.1.</span> <span class="nav-text">Deploying Code &amp; Introduction Gulp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-15-Creating-Gulp-Tasks"><span class="nav-number">9.2.</span> <span class="nav-text">Exercise 15: Creating Gulp Tasks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installing-Gulp"><span class="nav-number">9.3.</span> <span class="nav-text">Installing Gulp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Keeping-an-app-running"><span class="nav-number">9.4.</span> <span class="nav-text">Keeping an app running</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#install-forever-globally"><span class="nav-number">9.4.1.</span> <span class="nav-text">install forever globally</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#start-forever"><span class="nav-number">9.4.1.1.</span> <span class="nav-text">start forever</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#stop-forever"><span class="nav-number">9.4.1.2.</span> <span class="nav-text">stop forever</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log-files"><span class="nav-number">10.</span> <span class="nav-text">Log files</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Logging-files"><span class="nav-number">10.1.</span> <span class="nav-text">Logging files</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#create-a-log-file-for-the-forever-process"><span class="nav-number">10.1.1.</span> <span class="nav-text">create a log file for the forever process</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#change-owner-to-current-user"><span class="nav-number">10.1.2.</span> <span class="nav-text">change owner to current user</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#start-forever-and-log-the-output"><span class="nav-number">10.1.3.</span> <span class="nav-text">start forever and log the output</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-16-Tailing-a-log-file"><span class="nav-number">10.2.</span> <span class="nav-text">Exercise 16: Tailing a log file</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Putting-it-all-together"><span class="nav-number">11.</span> <span class="nav-text">Putting it all together</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-17-Putting-it-all-together"><span class="nav-number">11.1.</span> <span class="nav-text">Exercise 17: Putting it all together</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/Full-Stack-for-Front-End-Engineers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Full Stack for Front End Engineers | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Full Stack for Front End Engineers
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-30 10:34:15" itemprop="dateCreated datePublished" datetime="2019-05-30T10:34:15+08:00">2019-05-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1FPpbZ919vt8e1k2EGPd7BKhDlHao79ykvYLfDcMOsMo/edit#slide=id.p">Full Stack For Frontend</a></p>
+<h3 id="Things-you’ll-learn"><a href="#Things-you’ll-learn" class="headerlink" title="Things you’ll learn"></a>Things you’ll learn</h3><ul>
+<li>Level up your command line skills</li>
+<li>How the internet works</li>
+<li>How to create and manage a web server</li>
+<li>Create a deploy system for a Node app</li>
+<li>Build a basic web page</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="Domains"><a href="#Domains" class="headerlink" title="Domains"></a>Domains</h2><h3 id="Introduction-Domains"><a href="#Introduction-Domains" class="headerlink" title="Introduction Domains"></a>Introduction Domains</h3><p>frontendmasters.com is a domain</p>
+<p>tech.frontendmasters.com is a sub domain</p>
+<p>domains are just a high level wrapper on an IP address</p>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><ul>
+<li>IP(Internet Protocol) Address - 127.0.0.1</li>
+<li>DNS(Domain Name System - “The internet phonebook”) - Maps IP addresses to domains</li>
+</ul>
+<p>通常我们用tcp(transmission control protocol)&#x2F;ip协议进行网络连接</p>
+<p><a target="_blank" rel="noopener" href="http://www.jemyoung.com/">www.jemyoung.com</a> &#x3D;&#x3D;&#x3D; 23.23.185.61</p>
+<h3 id="Exercise-1-Ping"><a href="#Exercise-1-Ping" class="headerlink" title="Exercise 1: Ping"></a>Exercise 1: Ping</h3><p><code>ping google.com</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PING baidu.com (123.125.114.144): 56 data bytes</span><br><span class="line">64 bytes from 123.125.114.144: icmp_seq=0 ttl=44 time=56.939 ms</span><br><span class="line">64 bytes from 123.125.114.144: icmp_seq=1 ttl=44 time=58.034 ms</span><br><span class="line">64 bytes from 123.125.114.144: icmp_seq=2 ttl=44 time=58.050 ms</span><br><span class="line">64 bytes from 123.125.114.144: icmp_seq=3 ttl=44 time=57.737 ms</span><br><span class="line">64 bytes from 123.125.114.144: icmp_seq=4 ttl=44 time=57.893 ms</span><br><span class="line">^C</span><br><span class="line">--- baidu.com ping statistics ---</span><br><span class="line">5 packets transmitted, 5 packets received, 0.0% packet loss</span><br><span class="line">round-trip min/avg/max/stddev = 56.939/57.731/58.050/0.412 ms</span><br></pre></td></tr></table></figure>
+
+<h3 id="DNS-Caches"><a href="#DNS-Caches" class="headerlink" title="DNS Caches"></a>DNS Caches</h3><ul>
+<li>Local cache</li>
+<li>LAN(Local Area Network) DNS server</li>
+<li>ISP(Internet Service Provider) DNS server</li>
+</ul>
+<h3 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h3><p>DDoS(distributed denial of service)</p>
+<h3 id="Cache-Poisoning"><a href="#Cache-Poisoning" class="headerlink" title="Cache Poisoning"></a>Cache Poisoning</h3><p>通过伪造dns指向的ip地址来使用户访问伪造的网站（用户访问jemyoung.com，本来应该指23.23.185.61，通过伪造dns信息来指向例如104.24.122.137来获取用户信息）</p>
+<p>可以通过使用https来避免此类事情发生</p>
+<h3 id="Exercise-2-Traceroute"><a href="#Exercise-2-Traceroute" class="headerlink" title="Exercise 2: Traceroute"></a>Exercise 2: Traceroute</h3><p>ping tells us is the server alive</p>
+<p>traceroute tell us these are all the hops that your request took to get to a server.</p>
+<p>Windows: <code>tracert netflix.com</code><br>OSX: <code>traceroute netflix.com</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">traceroute: Warning: baidu.com has multiple addresses; using 220.181.57.216</span><br><span class="line">traceroute to baidu.com (220.181.57.216), 64 hops max, 52 byte packets</span><br><span class="line"> 1  domynet (192.168.10.1)  1.709 ms  1.000 ms  1.154 ms</span><br><span class="line"> 2  113.46.0.1 (113.46.0.1)  3.656 ms  3.410 ms  4.001 ms</span><br><span class="line"> 3  124.205.97.44 (124.205.97.44)  3.257 ms  5.572 ms  3.433 ms</span><br><span class="line"> 4  218.241.240.137 (218.241.240.137)  3.943 ms  3.075 ms  3.975 ms</span><br><span class="line"> 5  218.241.240.157 (218.241.240.157)  15.840 ms  4.387 ms  4.171 ms</span><br><span class="line"> 6  218.241.245.57 (218.241.245.57)  4.249 ms</span><br><span class="line">    218.241.255.142 (218.241.255.142)  4.519 ms</span><br><span class="line">    218.241.245.57 (218.241.245.57)  3.941 ms</span><br><span class="line"> 7  218.241.244.133 (218.241.244.133)  42.577 ms * *</span><br><span class="line"> 8  10.15.88.53 (10.15.88.53)  5.957 ms  5.507 ms *</span><br><span class="line"> 9  10.15.88.49 (10.15.88.49)  26.937 ms  26.990 ms  27.763 ms</span><br><span class="line">10  * * *</span><br><span class="line">11  10.0.36.1 (10.0.36.1)  29.355 ms  28.806 ms  30.571 ms</span><br><span class="line">12  10.23.60.1 (10.23.60.1)  33.227 ms  35.562 ms *</span><br><span class="line">13  10.143.142.5 (10.143.142.5)  35.238 ms</span><br><span class="line">    10.143.142.1 (10.143.142.1)  33.953 ms  34.652 ms</span><br><span class="line">14  172.16.10.13 (172.16.10.13)  33.798 ms</span><br><span class="line">    172.16.11.25 (172.16.11.25)  32.811 ms</span><br><span class="line">    172.16.11.17 (172.16.11.17)  33.849 ms</span><br><span class="line">15  61.177.240.69 (61.177.240.69)  34.029 ms  34.730 ms</span><br><span class="line">    61.177.248.129 (61.177.248.129)  32.671 ms</span><br><span class="line">16  61.177.249.217 (61.177.249.217)  40.711 ms</span><br><span class="line">    61.177.249.193 (61.177.249.193)  39.546 ms  40.457 ms</span><br><span class="line">17  202.97.85.9 (202.97.85.9)  57.730 ms</span><br><span class="line">    202.97.85.1 (202.97.85.1)  62.182 ms</span><br><span class="line">    202.97.85.5 (202.97.85.5)  63.798 ms</span><br><span class="line">18  220.181.177.230 (220.181.177.230)  58.605 ms  58.312 ms</span><br><span class="line">    36.110.244.18 (36.110.244.18)  56.067 ms</span><br><span class="line">19  * 36.110.246.201 (36.110.246.201)  66.259 ms  60.270 ms</span><br></pre></td></tr></table></figure>
+
+<p>ICMP - Internet Control Message Packet</p>
+<h2 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h2><h3 id="Exercise-3-Introducing-VIM"><a href="#Exercise-3-Introducing-VIM" class="headerlink" title="Exercise 3: Introducing VIM"></a>Exercise 3: Introducing VIM</h3><p><em>What is VIM(VI Improved)?</em></p>
+<p>A ubiquitous text editor</p>
+<p><em>Why should I care?</em></p>
+<p>Because servers don’t have GUI’s</p>
+<p><a target="_blank" rel="noopener" href="http://www.vim.org/about.php">Vim isn’t an editor designed to hold its users’ hands. It is a tool, the use of which must be learned.”</a></p>
+<p>command line: <code>vi</code></p>
+<h3 id="Exercise-4-Vim-modes"><a href="#Exercise-4-Vim-modes" class="headerlink" title="Exercise 4: Vim modes"></a>Exercise 4: Vim modes</h3><p>VIM has three modes</p>
+<ul>
+<li>command mode</li>
+<li>insert mode</li>
+<li>last-line mode</li>
+</ul>
+<h4 id="VIM-insert-mode"><a href="#VIM-insert-mode" class="headerlink" title="VIM - insert mode"></a>VIM - insert mode</h4><ol>
+<li>press i</li>
+<li>type “Haha VIM is easy”</li>
+</ol>
+<h3 id="VIM-Command-Mode"><a href="#VIM-Command-Mode" class="headerlink" title="VIM Command Mode"></a>VIM Command Mode</h3><p><code>u</code> undo</p>
+<p><code>control + r</code> redo</p>
+<p><code>dd</code> delete the line</p>
+<h3 id="Exercise-5-Vim-command-mode"><a href="#Exercise-5-Vim-command-mode" class="headerlink" title="Exercise 5: Vim command mode"></a>Exercise 5: Vim command mode</h3><ol>
+<li>type “Hello, world!”</li>
+<li>press enter</li>
+<li>type “Hello, class!”</li>
+<li>press esc</li>
+<li>type &#x2F;Hello</li>
+<li>press enter</li>
+<li>press n to search forward</li>
+<li>press N to search backward</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://linuxmoz.com/vi-commands-cheat-sheet/">Vi Commands Cheat Sheet</a></p>
+<ul>
+<li><p>Vi Page Down<br><code>ctrl + f</code> Vi page down - Moves forward a page <code>ctrl + d</code> - Moves forward half a page</p>
+</li>
+<li><p>Vi Page Up<br><code>ctrl + b</code> Vi page up - Moves back a page <code>ctrl + u</code> - Moves backward a half-page</p>
+</li>
+<li><p>Vi Delete Line<br><code>dd</code> Vi delete line, regradless of the cursors position on the line</p>
+</li>
+<li><p>Vi Save &amp; Exit<br><code>:q</code> - Vi exit - this will close Vi<br><code>:wq</code> - Vi save &amp; exit<br><code>:!q</code> - Exits vi and discards and changes you mode</p>
+</li>
+</ul>
+<h3 id="Editing-and-Saving-in-Vim"><a href="#Editing-and-Saving-in-Vim" class="headerlink" title="Editing and Saving in Vim"></a>Editing and Saving in Vim</h3><h4 id="VIM-last-line-mode"><a href="#VIM-last-line-mode" class="headerlink" title="VIM - last-line mode"></a>VIM - last-line mode</h4><p>Quit without saving</p>
+<ol>
+<li>press esc</li>
+<li>press :</li>
+<li>type q</li>
+<li>:q!</li>
+</ol>
+<p>Save and quit</p>
+<ol>
+<li>press esc</li>
+<li>press :</li>
+<li>type wq</li>
+</ol>
+<h3 id="Exercise-6-Editing-amp-Saving-in-Vim"><a href="#Exercise-6-Editing-amp-Saving-in-Vim" class="headerlink" title="Exercise 6: Editing &amp; Saving in Vim"></a>Exercise 6: Editing &amp; Saving in Vim</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;h1&gt;VIM Commands&lt;/h1&gt;</span><br><span class="line">  &lt;p&gt;^F (CTRL F) Forward screenful&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;^B Backward screenful&lt;/P&gt;</span><br><span class="line">  &lt;p&gt;^f one page forward&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;^b One page backward&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;u Undo&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;^R Redo&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;$ Move cursor to the end of current line&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;0 (zero) Move cursor to the beginning of line&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;w Forward one word&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;b Backward one word&lt;/p&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Servers"><a href="#Servers" class="headerlink" title="Servers"></a>Servers</h2><h3 id="Exercise-7-Introducing-Servers"><a href="#Exercise-7-Introducing-Servers" class="headerlink" title="Exercise 7: Introducing Servers"></a>Exercise 7: Introducing Servers</h3><h4 id="Logging-into-a-server"><a href="#Logging-into-a-server" class="headerlink" title="Logging into a server"></a>Logging into a server</h4><p><code>$ ssh student@138.197.253.87</code></p>
+<h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>SSH(Secure Socket Shell)</p>
+<p>It’s a way of connecting to remote devices and there is two basic ways of doing that.</p>
+<p>there is username&#x2F;password which we just did, so student was the username, and there is also ssh key.</p>
+<p><em>What’s wrong with logging in with a password?</em></p>
+<p>easy passwords:</p>
+<ul>
+<li>12345</li>
+<li>password</li>
+<li>qwerty</li>
+<li>qazwsx</li>
+<li>12345678</li>
+</ul>
+<p>A day in the life of a server</p>
+<p>会看到一直会有用户试图破解登录</p>
+<h4 id="Public-Key-Authentication"><a href="#Public-Key-Authentication" class="headerlink" title="Public Key Authentication"></a>Public Key Authentication</h4><p>We’re gonna use something called Public Key Authentication(公共密钥身份验证), instead of user name, password. Beaucase passwords are easily guessable even if you have a 21 character password, that’s not that secure.</p>
+<p>your computer                           server</p>
+<p>private key     &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;      public key<br>(secret)        encrypted messages<br>                &lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<h3 id="Exercise-8-Creating-an-SSH-Key"><a href="#Exercise-8-Creating-an-SSH-Key" class="headerlink" title="Exercise 8: Creating an SSH Key"></a>Exercise 8: Creating an SSH Key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh/</span><br><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+
+<p>-t为指定加密类型，rsa为具体的加密类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/liuyong/.ssh/id_rsa): test_key</span><br><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br><span class="line">Your identification has been saved <span class="keyword">in</span> test_key.</span><br><span class="line">Your public key has been saved <span class="keyword">in</span> test_key.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:R0qkBRqM0wK7dranNSqamcAru0sEqXEC5FwcaFxvIYg liuyong@liuyongs-MBP.lan</span><br><span class="line">The key<span class="string">&#x27;s randomart image is:</span></span><br><span class="line"><span class="string">+---[RSA 2048]----+</span></span><br><span class="line"><span class="string">|*o=Oo...o        |</span></span><br><span class="line"><span class="string">|EB=.=o.+         |</span></span><br><span class="line"><span class="string">|Bo.o.o. . .      |</span></span><br><span class="line"><span class="string">|o=  .  . o       |</span></span><br><span class="line"><span class="string">|oo o    S .      |</span></span><br><span class="line"><span class="string">|+ o .    .       |</span></span><br><span class="line"><span class="string">|.o . +           |</span></span><br><span class="line"><span class="string">|+=. = .          |</span></span><br><span class="line"><span class="string">|@=.o             |</span></span><br><span class="line"><span class="string">+----[SHA256]-----+</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">less test_key.pub</span><br><span class="line"></span><br><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8NJ5OyLNsVzCZ44Yg0wTAETrdH4yZzITYPIHizh0OBbVp9xnsLdAQNNv4xlrB6Qe+IJ5/AGi268A+qlc6GCdxrePQOET3VGbV+szjko/1HhKbMRxXDFi3HwMudTibdlZkxRuSl8Zg7WJCTfHlmSBgrOHzJDtrM1Qj3mHd9ed7Sgt1pRezsyU7HLtXl4PMUBLJiU6Ndu+vGp5rUkbTTb4NmRqqBHQ0k+jHP2sasijGMvucD+x3oCAt7mKdY3fiiBL5n7z8p57t94SderdL0wzqmkftTGsObt/CecH6T1nDeGJW6BWXB+2Kdr64nSH25zi71/AzDZWH0Rx1W9g2vOB7 liuyong@liuyongs-MBP.lan</span><br><span class="line"></span><br><span class="line">test_key.pub (END)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">less test_key</span><br><span class="line"></span><br><span class="line">-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn</span><br><span class="line">NhAAAAAwEAAQAAAQEAvDSeTsizbFcwmeOGINMEwBE63R+MmcyE2DyB4s4dDgW1afcZ7C3Q</span><br><span class="line">EDTb+MZawekHviCefwBotuvAPqpXOhgnca3j0DhE91Rm1frM45KP9R4SmzEcVwxYtx8DLn</span><br><span class="line">U4m3ZWZMUbkpfGYO1iQk3x5ZkgYKzh8yQ7azNUI95h3fXne0oLdaUXs7MlOxy7V5eDzFAS</span><br><span class="line">yYlOjXbvrxqea1JG002+DZkaqgR0NJPoxz9rGrIoxjL7nA/sd6AgLe5inWN34ogS+Z+8/K</span><br><span class="line">**********************************************************************</span><br><span class="line">**********************************************************************</span><br><span class="line">**********************************************************************</span><br><span class="line">**********************************************************************</span><br><span class="line">**********************************************************************</span><br><span class="line">WXB+2Kdr64nSH25zi71/AzDZWH0Rx1W9g2vOB7AAAAAwEAAQAAAQAIGee6km8Ouc4Qwbdz</span><br><span class="line">UEIDFnrHK+V8dU4+lJQutBqSEPLXJdjKzsoG+I+DbN5ZPHOl3neUFetr/EfhKqnoiUOhZA</span><br><span class="line">/LVbC6SLrIeSw6m4Nw1KOOZJXItXJYJ5CWfls6beSYH9fo/nl+kJlLK1m/PVEkeCydr7CT</span><br><span class="line">E7mKdbcWu9AEAX/0O7JtseUhqy1LzYChRSVjJLgjmrxh8VTD59rS6Z4P8i3rdX4oaR2t7M</span><br><span class="line">FplbDnUL1QMDFF+v5DQGO3qKaJTjeFm9FVv3jjro7P3bt/4r5nuwCah6q8gewNRMkuPJq3</span><br><span class="line">ZF75sM7QNeGOEYTqExspeJtggJgdTxwlUP/gVdE9q4EhAAAAgCgqM1IvhiPPDyHd/jeWfu</span><br><span class="line">/a0n1bGzCEX4JdM/r9g+Gc3st+COWnFnkoj1qiVFQqhm2aLzF8lw6wQ//+xb9kp4+tzJM+</span><br><span class="line">+a4BpJG6i8no8lwGstQd22NleSc7mY0Q908UPV02216ysOw6Lz2khOjnfbbfqbl5Pb/VXd</span><br><span class="line">FX9hlHz2f4AAAAgQDw50EzpvP48vXAgyi1eN6Neql3A0TTr2fdX71dZlt9Gy5myMYLvqqR</span><br><span class="line">N0lofGSZbgaqXwpUc3KcDAKNU59WauApLHeqBrrLGs0mUWGtsWD2zrhOYkOE/1gcqsWNPM</span><br><span class="line">ouJxCfgzSYpRKXB3pJuYPJNwca9xK2aLZfWIFNKCBGqd7gywAAAIEAx//yk8sEEQGc9JHu</span><br><span class="line">test_key</span><br></pre></td></tr></table></figure>
+
+<p><em>Don’t lose your private key!</em></p>
+<h2 id="Setting-up-a-VPS"><a href="#Setting-up-a-VPS" class="headerlink" title="Setting up a VPS"></a>Setting up a VPS</h2><h3 id="VPS-amp-Cloud-Computing"><a href="#VPS-amp-Cloud-Computing" class="headerlink" title="VPS &amp; Cloud Computing"></a>VPS &amp; Cloud Computing</h3><h4 id="servers"><a href="#servers" class="headerlink" title="servers"></a>servers</h4><ul>
+<li><p>Web server</p>
+</li>
+<li><p>Database server</p>
+</li>
+<li><p>Storage server</p>
+</li>
+<li><p>Dedicated server</p>
+</li>
+<li><p>VPS(Virtual Private Server)</p>
+</li>
+</ul>
+<p>Advantages of the cloud</p>
+<ul>
+<li>flexible</li>
+<li>scalable</li>
+<li>on demand</li>
+</ul>
+<p>Providers</p>
+<ul>
+<li>AWS</li>
+<li>Rackspace</li>
+<li>Digital Ocean</li>
+</ul>
+<h3 id="Exercise-9-Buy-a-VPS"><a href="#Exercise-9-Buy-a-VPS" class="headerlink" title="Exercise 9: Buy a VPS"></a>Exercise 9: Buy a VPS</h3><p><a href="www.digitalocean.com">www.digitalocean.com</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.ssh/my_key.pub</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-10-Log-onto-your-own-server"><a href="#Exercise-10-Log-onto-your-own-server" class="headerlink" title="Exercise 10: Log onto your own server"></a>Exercise 10: Log onto your own server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i ~/.ssh/my_key root@<span class="variable">$YOUR_SERVER_IP</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-11-top"><a href="#Exercise-11-top" class="headerlink" title="Exercise 11: top"></a>Exercise 11: top</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">top - 01:35:00 up 12 min,  1 user,  load average: 0.00, 0.00, 0.00</span><br><span class="line">Tasks:  80 total,   1 running,  44 sleeping,   0 stopped,   0 zombie</span><br><span class="line">%Cpu(s):  0.0 us,  0.3 sy,  0.0 ni, 99.7 <span class="built_in">id</span>,  0.0 wa,  0.0 hi,  0.0 si,  0.0</span><br><span class="line">KiB Mem :  1009128 total,   720024 free,    75444 used,   213660 buff/cache</span><br><span class="line">KiB Swap:        0 total,        0 free,        0 used.   793064 avail Mem</span><br><span class="line"></span><br><span class="line">  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND  </span><br><span class="line">    8 root      20   0       0      0      0 I  0.3  0.0   0:00.07 rcu_sched</span><br><span class="line"> 1249 root      20   0   44400   3796   3256 R  0.3  0.4   0:00.04 top</span><br><span class="line">    1 root      20   0   77640   8692   6604 S  0.0  0.9   0:02.26 systemd  </span><br><span class="line">    2 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kthreadd</span><br><span class="line">    3 root      20   0       0      0      0 I  0.0  0.0   0:00.00 kworker/+</span><br><span class="line">    4 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kworker/+</span><br><span class="line">    5 root      20   0       0      0      0 I  0.0  0.0   0:00.02 kworker/+</span><br><span class="line">    6 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 mm_percp+</span><br><span class="line">    7 root      20   0       0      0      0 S  0.0  0.0   0:00.06 ksoftirq+</span><br><span class="line">    9 root      20   0       0      0      0 I  0.0  0.0   0:00.00 rcu_bh</span><br><span class="line">   10 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 migratio+</span><br><span class="line">   11 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 watchdog+</span><br><span class="line">   12 root      20   0       0      0      0 S  0.0  0.0   0:00.00 cpuhp/0  </span><br><span class="line">   13 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kdevtmpfs</span><br><span class="line">   14 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 netns</span><br><span class="line">   15 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcu_task+</span><br><span class="line">   16 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kauditd  </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">htop</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">CPU[                        0.0%]   Tasks: 26, 12 thr; 1 running</span><br><span class="line">  Mem[||||||||||        74.5M/985M]   Load average: 0.00 0.00 0.00</span><br><span class="line">  Swp[                       0K/0K]   Uptime: 00:15:48</span><br><span class="line"></span><br><span class="line">  PID USER      PRI  NI  VIRT   RES   SHR S CPU% MEM%   TIME+  Command</span><br><span class="line"> 1252 root       20   0 32064  4096  3516 R  0.0  0.4  0:00.04 htop</span><br><span class="line">    1 root       20   0 77640  8692  6604 S  0.0  0.9  0:02.27 /sbin/init</span><br><span class="line">  389 root       19  -1 78464  7048  6368 S  0.0  0.7  0:00.52 /lib/systemd/s</span><br><span class="line">  391 root       20   0 97708  1876  1700 S  0.0  0.2  0:00.00 /sbin/lvmetad</span><br><span class="line">  516 systemd-t  20   0  138M  3376  2852 S  0.0  0.3  0:00.00 /lib/systemd/s</span><br><span class="line">  500 systemd-t  20   0  138M  3376  2852 S  0.0  0.3  0:00.03 /lib/systemd/s</span><br><span class="line">  594 systemd-n  20   0 71972  5812  5084 S  0.0  0.6  0:00.01 /lib/systemd/s</span><br><span class="line">  612 systemd-r  20   0 70624  5224  4660 S  0.0  0.5  0:00.02 /lib/systemd/s</span><br><span class="line">  680 root       20   0 42876  4008  3296 S  0.0  0.4  0:00.13 /lib/systemd/s</span><br><span class="line">  829 daemon     20   0 28332  2400  2192 S  0.0  0.2  0:00.00 /usr/sbin/atd</span><br><span class="line">  844 root       20   0 95540  1552  1416 S  0.0  0.2  0:00.00 /usr/bin/lxcfs</span><br><span class="line">  845 root       20   0 95540  1552  1416 S  0.0  0.2  0:00.00 /usr/bin/lxcfs</span><br><span class="line">  832 root       20   0 95540  1552  1416 S  0.0  0.2  0:00.00 /usr/bin/lxcfs</span><br><span class="line">  848 syslog     20   0  256M  4512  3628 S  0.0  0.4  0:00.00 /usr/sbin/rsys</span><br><span class="line">  849 syslog     20   0  256M  4512  3628 S  0.0  0.4  0:00.00 /usr/sbin/rsys</span><br><span class="line">  850 syslog     20   0  256M  4512  3628 S  0.0  0.4  0:00.00 /usr/sbin/rsys</span><br><span class="line">  839 syslog     20   0  256M  4512  3628 S  0.0  0.4  0:00.00 /usr/sbin/rsys</span><br><span class="line">F1Help  F2Setup F3SearchF4FilterF5Tree  F6SortByF7Nice -F8Nice +F9Kill  F10Qu</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-12-Setting-up-your-server"><a href="#Exercise-12-Setting-up-your-server" class="headerlink" title="Exercise 12: Setting up your server"></a>Exercise 12: Setting up your server</h3><h4 id="update-software"><a href="#update-software" class="headerlink" title="update software"></a>update software</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+
+<h4 id="create-a-new-user"><a href="#create-a-new-user" class="headerlink" title="create a new user"></a>create a new user</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser <span class="variable">$USERNAME</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="add-user-to-sudo-super-user-do-group"><a href="#add-user-to-sudo-super-user-do-group" class="headerlink" title="add user to sudo(super user do) group"></a>add user to sudo(super user do) group</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -aG sudo <span class="variable">$USERNAME</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="switch-user"><a href="#switch-user" class="headerlink" title="switch user"></a>switch user</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su <span class="variable">$USERNAME</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="make-sure-user-has-sudo-access"><a href="#make-sure-user-has-sudo-access" class="headerlink" title="make sure user has sudo access"></a>make sure user has sudo access</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cat</span> /var/log/auth.log</span><br></pre></td></tr></table></figure>
+
+<h4 id="exit"><a href="#exit" class="headerlink" title="exit"></a>exit</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Logging-In-with-SSH"><a href="#Logging-In-with-SSH" class="headerlink" title="Logging In with SSH"></a>Logging In with SSH</h3><p>In case of secure, we wanna use an SSH key instead of a password.</p>
+<p>We can do it through SSH commands.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.ssh/my_key.pub | ssh <span class="variable">$USERNAME</span>@<span class="variable">$SERVER_IP</span> <span class="string">&quot;mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="print-the-contents-of-my-key-pub-and-pipe-the-output-to-the-next-command"><a href="#print-the-contents-of-my-key-pub-and-pipe-the-output-to-the-next-command" class="headerlink" title="print the contents of my_key.pub and pipe the output to the next command"></a>print the contents of <em>my_key.pub</em> and pipe the output to the next command</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.ssh/my_key.pub |</span><br></pre></td></tr></table></figure>
+
+<h4 id="ssh-into-your-server"><a href="#ssh-into-your-server" class="headerlink" title="ssh into your server"></a>ssh into your server</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="variable">$USERNAME</span>@<span class="variable">$SERVER_IP</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="make-a-ssh-folder-in-your-home-directory-if-it-doesn’t-already-exit"><a href="#make-a-ssh-folder-in-your-home-directory-if-it-doesn’t-already-exit" class="headerlink" title="make a .ssh folder in your home directory if it doesn’t already exit"></a>make a <em>.ssh</em> folder in your home directory if it doesn’t already exit</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p ~/.ssh</span><br></pre></td></tr></table></figure>
+
+<h4 id="write-the-contents-of-the-output-to-the-file-authorized-keys"><a href="#write-the-contents-of-the-output-to-the-file-authorized-keys" class="headerlink" title="write the contents of the output to the file authorized_keys"></a>write the contents of the output to the file <em>authorized_keys</em></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt;&gt; ~/.ssh/authorized_keys<span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="log-in"><a href="#log-in" class="headerlink" title="log in"></a>log in</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i ~/.ssh/my_key.pub <span class="variable">$USERNAME</span>@<span class="variable">$SERVER_IP</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Disable-Root-Access"><a href="#Disable-Root-Access" class="headerlink" title="Disable Root Access"></a>Disable Root Access</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PermitRootLogin no</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service ssh restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="Getting-a-Domain-Name"><a href="#Getting-a-Domain-Name" class="headerlink" title="Getting a Domain Name"></a>Getting a Domain Name</h2><h3 id="Buying-a-Domain"><a href="#Buying-a-Domain" class="headerlink" title="Buying a Domain"></a>Buying a Domain</h3><p><a target="_blank" rel="noopener" href="https://www.namecheap.com/">www.namecheap.com</a></p>
+<h3 id="Associating-the-DNS"><a href="#Associating-the-DNS" class="headerlink" title="Associating the DNS"></a>Associating the DNS</h3><ol>
+<li>Get the IP address of your VPS</li>
+<li>Add 2 A Records with your IP address<ul>
+<li>@</li>
+<li>www</li>
+</ul>
+</li>
+</ol>
+<h3 id="Using-a-CNAMEs"><a href="#Using-a-CNAMEs" class="headerlink" title="Using a CNAMEs"></a>Using a CNAMEs</h3><p>“The A record maps a name to one or more IP addresses, when the IP are known and stable.”</p>
+<p>“The CNAME record maps a name to another name.”</p>
+<p><a target="_blank" rel="noopener" href="https://support.dnsimple.com/articles/differences-between-a-cname-alias-url/">link</a></p>
+<h2 id="Setting-Up-the-Server"><a href="#Setting-Up-the-Server" class="headerlink" title="Setting Up the Server"></a>Setting Up the Server</h2><h3 id="Introducing-Unix-Operating-Systems"><a href="#Introducing-Unix-Operating-Systems" class="headerlink" title="Introducing Unix Operating Systems"></a>Introducing Unix Operating Systems</h3><p>Two main types of server operating systems</p>
+<ol>
+<li>windows</li>
+<li>unix</li>
+</ol>
+<p>Why Unix?</p>
+<ul>
+<li>ubiquity</li>
+<li>open-source</li>
+<li>(mostly) free</li>
+</ul>
+<p>Common unix commands</p>
+<ul>
+<li>cd</li>
+<li>crontab</li>
+<li>ls</li>
+<li>mkdir</li>
+<li>pwd</li>
+<li>rm</li>
+</ul>
+<h3 id="Introducing-Nginx"><a href="#Introducing-Nginx" class="headerlink" title="Introducing Nginx"></a>Introducing Nginx</h3><p>Nginx(engine X)</p>
+<p>“A HTTP and reverse proxy server, a mail proxy server, and a generic TCP&#x2F;UDP proxy server”<br>“一个HTTP和反向代理服务器，一个电子邮件代理服务器，和一个通用TCP&#x2F;UDP代理服务器。”</p>
+<ul>
+<li>reverse proxy</li>
+<li>http server</li>
+</ul>
+<h3 id="Exercise-13-Nginx"><a href="#Exercise-13-Nginx" class="headerlink" title="Exercise 13: Nginx"></a>Exercise 13: Nginx</h3><p>install nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+
+<p>start nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx start</span><br></pre></td></tr></table></figure>
+
+<p>type your server’s IP address into a browser</p>
+<h3 id="Exercise-14-Nginx-configuration"><a href="#Exercise-14-Nginx-configuration" class="headerlink" title="Exercise 14: Nginx configuration"></a>Exercise 14: Nginx configuration</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cat</span> /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+
+<p>作者更推荐使用less</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo less /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+
+<p>cat dumps everything, less gives you more page by page.</p>
+<p>jemyoung.com &#x3D;&gt; 23.23.185.61 &#x3D;&gt; Nginx&#x2F;Apache</p>
+<h3 id="Installing-Git-Node-js-and-NPM"><a href="#Installing-Git-Node-js-and-NPM" class="headerlink" title="Installing Git, Node.js, and NPM"></a>Installing Git, Node.js, and NPM</h3><p>install git</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
+
+<p>install node and npm</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs npm</span><br></pre></td></tr></table></figure>
+
+<h3 id="Making-a-Symbolic-Link"><a href="#Making-a-Symbolic-Link" class="headerlink" title="Making a Symbolic Link"></a>Making a Symbolic Link</h3><p>symlink nodejs to node</p>
+<p>新版本node似乎并不需要</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">ln</span> -s /usr/bin/nodejs /usr/bin/node</span><br></pre></td></tr></table></figure>
+
+<h3 id="Creating-a-Web-Directory"><a href="#Creating-a-Web-Directory" class="headerlink" title="Creating a Web Directory"></a>Creating a Web Directory</h3><p>make a web directory(if it doesn’t already exit)</p>
+<p>似乎也不需要</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /var/www</span><br></pre></td></tr></table></figure>
+
+<h3 id="Changing-Permisssions"><a href="#Changing-Permisssions" class="headerlink" title="Changing Permisssions"></a>Changing Permisssions</h3><p>change ownership of the web directory to the current user</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chown</span> -R <span class="variable">$USER</span>:<span class="variable">$USER</span> /var/www</span><br></pre></td></tr></table></figure>
+
+<p>move into web directory</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www</span><br></pre></td></tr></table></figure>
+
+<h3 id="Cloning-a-Git-Repository"><a href="#Cloning-a-Git-Repository" class="headerlink" title="Cloning a Git Repository"></a>Cloning a Git Repository</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/young/Dev-Ops-for-Frontend.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="Rename-directory-and-installing-npm"><a href="#Rename-directory-and-installing-npm" class="headerlink" title="Rename directory and installing npm"></a>Rename directory and installing npm</h3><p>remove directory to app&#x2F;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> Dev-Ops-for-Frontend/ app/</span><br></pre></td></tr></table></figure>
+
+<p>move into to app directory</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> app/</span><br></pre></td></tr></table></figure>
+
+<p>install npm packages</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
+
+<h3 id="Starting-the-Server"><a href="#Starting-the-Server" class="headerlink" title="Starting the Server"></a>Starting the Server</h3><p>start server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node app.js</span><br></pre></td></tr></table></figure>
+
+<p>type in your server’s IP address in a browser, port 3001.</p>
+<h2 id="Modifying-the-Server"><a href="#Modifying-the-Server" class="headerlink" title="Modifying the Server"></a>Modifying the Server</h2><h3 id="Changing-the-Server-Ports"><a href="#Changing-the-Server-Ports" class="headerlink" title="Changing the Server Ports"></a>Changing the Server Ports</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">  proxy_pass http://127.0.0.1:3001/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>restart nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
+
+<p>start server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node app.js</span><br></pre></td></tr></table></figure>
+
+<h4 id="html"><a href="#html" class="headerlink" title="html"></a>html</h4><p>move into a app directory</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/app/</span><br></pre></td></tr></table></figure>
+
+<p>make a new branch</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b some_branch_name</span><br></pre></td></tr></table></figure>
+
+<p>modify the html to you hearts content</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi index.html</span><br></pre></td></tr></table></figure>
+
+<h2 id="Deploying-Code"><a href="#Deploying-Code" class="headerlink" title="Deploying Code"></a>Deploying Code</h2><h3 id="Deploying-Code-amp-Introduction-Gulp"><a href="#Deploying-Code-amp-Introduction-Gulp" class="headerlink" title="Deploying Code &amp; Introduction Gulp"></a>Deploying Code &amp; Introduction Gulp</h3><p>How do we build and deploy our app?</p>
+<p>Gulp: a Javascript task runner</p>
+<p>Similar:</p>
+<ul>
+<li>Grunt</li>
+<li>Broccoli</li>
+<li>Brunch</li>
+<li>Jake</li>
+</ul>
+<h3 id="Exercise-15-Creating-Gulp-Tasks"><a href="#Exercise-15-Creating-Gulp-Tasks" class="headerlink" title="Exercise 15: Creating Gulp Tasks"></a>Exercise 15: Creating Gulp Tasks</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;default&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.<span class="title function_">src</span>(<span class="string">&#x27;sass/*.scss&#x27;</span>)</span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">watch</span>(<span class="string">&#x27;sass/*.scss&#x27;</span>))</span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">sass</span>())</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;dist&#x27;</span>))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Open gulpfile.js in VI. It’s in the root directory of the demo project.</li>
+<li>Fill in the gulp task clean-css so that any css files in the dist folder are removed.</li>
+<li>Add your new task to build task.</li>
+</ol>
+<p>Create gulp tasks</p>
+<ol>
+<li>Create a gulp task to compile and concat your less files. The css should be placed in the dist folder.</li>
+<li>Add your new task to build task.</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// compile and concat less files to dist folder.</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;less&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  gulp.<span class="title function_">src</span>([<span class="string">&#x27;./less/base.less&#x27;</span>])</span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">less</span>())</span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">concat</span>(<span class="variable constant_">CSS_DIST</span>))</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="variable constant_">DIST_FOLDER</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;bulid&#x27;</span>, [<span class="string">&#x27;clean-js&#x27;</span>, <span class="string">&#x27;clean-css&#x27;</span>, <span class="string">&#x27;scripts&#x27;</span>, <span class="string">&#x27;less&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="Installing-Gulp"><a href="#Installing-Gulp" class="headerlink" title="Installing Gulp"></a>Installing Gulp</h3><p>install gulp</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g gulp</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally">Resolving EACCES permissions errors when installing packages globally</a></p>
+<h3 id="Keeping-an-app-running"><a href="#Keeping-an-app-running" class="headerlink" title="Keeping an app running"></a>Keeping an app running</h3><p>How do we keep our app up and running?</p>
+<p>Forever- a process manager that keeps a process running indefinitely</p>
+<p>Similar:</p>
+<ul>
+<li>Strong Loop Process Manager</li>
+<li>PM2</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br><span class="line">/var/www/app</span><br></pre></td></tr></table></figure>
+
+<h4 id="install-forever-globally"><a href="#install-forever-globally" class="headerlink" title="install forever globally"></a>install forever globally</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g forever</span><br></pre></td></tr></table></figure>
+
+<h5 id="start-forever"><a href="#start-forever" class="headerlink" title="start forever"></a>start forever</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forever start app.js</span><br></pre></td></tr></table></figure>
+
+<h5 id="stop-forever"><a href="#stop-forever" class="headerlink" title="stop forever"></a>stop forever</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forever stopall</span><br></pre></td></tr></table></figure>
+
+<h2 id="Log-files"><a href="#Log-files" class="headerlink" title="Log files"></a>Log files</h2><h3 id="Logging-files"><a href="#Logging-files" class="headerlink" title="Logging files"></a>Logging files</h3><h4 id="create-a-log-file-for-the-forever-process"><a href="#create-a-log-file-for-the-forever-process" class="headerlink" title="create a log file for the forever process"></a>create a log file for the forever process</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> /var/log/forever</span><br></pre></td></tr></table></figure>
+
+<h4 id="change-owner-to-current-user"><a href="#change-owner-to-current-user" class="headerlink" title="change owner to current user"></a>change owner to current user</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chown</span> -R <span class="variable">$USER</span> /var/log/forever</span><br></pre></td></tr></table></figure>
+
+<h4 id="start-forever-and-log-the-output"><a href="#start-forever-and-log-the-output" class="headerlink" title="start forever and log the output"></a>start forever and log the output</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forever start app.js &gt;&gt; /var/log/forever/forever.log</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-16-Tailing-a-log-file"><a href="#Exercise-16-Tailing-a-log-file" class="headerlink" title="Exercise 16: Tailing a log file"></a>Exercise 16: Tailing a log file</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">tail</span> -f /var/log/auth.log</span><br></pre></td></tr></table></figure>
+
+<h2 id="Putting-it-all-together"><a href="#Putting-it-all-together" class="headerlink" title="Putting it all together"></a>Putting it all together</h2><h3 id="Exercise-17-Putting-it-all-together"><a href="#Exercise-17-Putting-it-all-together" class="headerlink" title="Exercise 17: Putting it all together"></a>Exercise 17: Putting it all together</h3><p>package.json</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;deploy&quot;</span>: <span class="string">&quot;gulp deploy &amp;&amp; forever stopall &amp;&amp; forever start app.js &gt;&gt; /var/log/forever/forever.log&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/fullstack/" rel="tag"># fullstack</a>
+              <a href="/tags/nodejs/" rel="tag"># nodejs</a>
+              <a href="/tags/DNS/" rel="tag"># DNS</a>
+              <a href="/tags/server/" rel="tag"># server</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/05/23/CSS-In-Depth-v2/" rel="prev" title="CSS In Depth v2">
+                  <i class="fa fa-chevron-left"></i> CSS In Depth v2
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/06/06/Visual-Studio-Code/" rel="next" title="Visual-Studio-Code">
+                  Visual-Studio-Code <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

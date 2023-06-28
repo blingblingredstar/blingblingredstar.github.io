@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Computedcomputed在Vue中文文档中称为计算属性，这里我总结了一下中文文档中关于这部分的内容。 computed的作用顾名思义，计算属性一般依赖于其他属性，根据其他属性的值计算出结果作为属性值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue的computed与watch">
+<meta property="og:url" content="http://yoursite.com/2019/12/19/Vue%E7%9A%84computed%E4%B8%8Ewatch/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Computedcomputed在Vue中文文档中称为计算属性，这里我总结了一下中文文档中关于这部分的内容。 computed的作用顾名思义，计算属性一般依赖于其他属性，根据其他属性的值计算出结果作为属性值。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-19T11:17:39.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.330Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="饥人谷">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/12/19/Vue%E7%9A%84computed%E4%B8%8Ewatch/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/12/19/Vue%E7%9A%84computed%E4%B8%8Ewatch/","path":"2019/12/19/Vue的computed与watch/","title":"Vue的computed与watch"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Vue的computed与watch | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Computed"><span class="nav-number">1.</span> <span class="nav-text">Computed</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#computed%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">computed的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed%E7%9A%84getter%E4%B8%8Esetter"><span class="nav-number">1.2.</span> <span class="nav-text">computed的getter与setter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed%E4%B8%8Emethod"><span class="nav-number">1.3.</span> <span class="nav-text">computed与method</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watch"><span class="nav-number">2.</span> <span class="nav-text">watch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#watch%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">watch的使用</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/19/Vue%E7%9A%84computed%E4%B8%8Ewatch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Vue的computed与watch | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue的computed与watch
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-19 19:17:39" itemprop="dateCreated datePublished" datetime="2019-12-19T19:17:39+08:00">2019-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Computed"><a href="#Computed" class="headerlink" title="Computed"></a>Computed</h2><p>computed在Vue中文文档中称为计算属性，这里我总结了一下<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/computed.html">中文文档中关于这部分</a>的内容。</p>
+<h3 id="computed的作用"><a href="#computed的作用" class="headerlink" title="computed的作用"></a>computed的作用</h3><p>顾名思义，计算属性一般依赖于其他属性，根据其他属性的值计算出结果作为属性值。</p>
+<span id="more"></span>
+<p>这里举一个简单的例子，假设后端同学返回给我们一个用户订单列表数组，我们希望在页面上为用户展示总金额，那么我们就可以书写如下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    <span class="attr">el</span>: <span class="string">&quot;#app&quot;</span>,</span><br><span class="line">  <span class="attr">template</span>: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      total: &#123;&#123; total &#125;&#125;</span></span><br><span class="line"><span class="string">      &lt;hr/&gt;</span></span><br><span class="line"><span class="string">      &lt;button @click=&quot;addGood&quot;&gt;add good&lt;/button&gt;</span></span><br><span class="line"><span class="string">      &lt;ul&gt;</span></span><br><span class="line"><span class="string">        &lt;li v-for=&quot;good in goods&quot; key=&quot;good.id&quot;&gt;</span></span><br><span class="line"><span class="string">          name: &#123;&#123; good.name &#125;&#125;&lt;br/&gt;</span></span><br><span class="line"><span class="string">          price: &#123;&#123; good.price &#125;&#125;</span></span><br><span class="line"><span class="string">        &lt;/li&gt;</span></span><br><span class="line"><span class="string">      &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">goods</span>: [</span><br><span class="line">      <span class="title function_">genGood</span>(<span class="string">&quot;bike&quot;</span>, <span class="number">100</span>),</span><br><span class="line">      <span class="title function_">genGood</span>(<span class="string">&quot;basketball&quot;</span>, <span class="number">50</span>),</span><br><span class="line">      <span class="title function_">genGood</span>(<span class="string">&quot;drink&quot;</span>, <span class="number">10</span>)</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">computed</span>: &#123;</span><br><span class="line">    <span class="title function_">total</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">goods</span>.<span class="title function_">reduce</span>(<span class="function">(<span class="params">total, good</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (total += good.<span class="property">price</span>);</span><br><span class="line">      &#125;, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="title function_">addGood</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">goods</span>.<span class="title function_">push</span>(<span class="title function_">genGood</span>(<span class="string">&quot;shirt&quot;</span>, <span class="number">30</span>));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>运行后可以看到，当我们点击按钮增加商品数量时，计算属性total的值也会随之增加。</p>
+<p>这里注意，在这里我们根据goods属性计算出total属性的值，在上述代码中，我们在data对象注册了goods数组，使得数组变为响应式属性，所以computed会在goods变化时重新进行计算。但如果我们所依赖的属性是非响应式的，Vue无法感知变化，就不会重新计算。</p>
+<h3 id="computed的getter与setter"><a href="#computed的getter与setter" class="headerlink" title="computed的getter与setter"></a>computed的getter与setter</h3><p>在上述代码中，我们使用computed时直接使用了一个函数来作为属性值，这里的函数会作为属性的getter使用。我们也可以将一个对象作为计算属性的属性值，分别指定属性的getter和setter。</p>
+<h3 id="computed与method"><a href="#computed与method" class="headerlink" title="computed与method"></a>computed与method</h3><p>但是其实我们也可以使用method来动态获取商品总价，代码类似如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&quot;#app&quot;</span>,</span><br><span class="line">  <span class="attr">template</span>: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      total: &#123;&#123; updateTotal() &#125;&#125;</span></span><br><span class="line"><span class="string">      &lt;hr/&gt;</span></span><br><span class="line"><span class="string">      &lt;button @click=&quot;addGood&quot;&gt;add good&lt;/button&gt;</span></span><br><span class="line"><span class="string">      &lt;ul&gt;</span></span><br><span class="line"><span class="string">        &lt;li v-for=&quot;good in goods&quot; key=&quot;good.id&quot;&gt;</span></span><br><span class="line"><span class="string">          name: &#123;&#123; good.name &#125;&#125;&lt;br/&gt;</span></span><br><span class="line"><span class="string">          price: &#123;&#123; good.price &#125;&#125;</span></span><br><span class="line"><span class="string">        &lt;/li&gt;</span></span><br><span class="line"><span class="string">      &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">goods</span>: [</span><br><span class="line">      <span class="title function_">genGood</span>(<span class="string">&quot;bike&quot;</span>, <span class="number">100</span>),</span><br><span class="line">      <span class="title function_">genGood</span>(<span class="string">&quot;basketball&quot;</span>, <span class="number">50</span>),</span><br><span class="line">      <span class="title function_">genGood</span>(<span class="string">&quot;drink&quot;</span>, <span class="number">10</span>)</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="title function_">addGood</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">goods</span>.<span class="title function_">push</span>(<span class="title function_">genGood</span>(<span class="string">&quot;shirt&quot;</span>, <span class="number">30</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">updateTotal</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">goods</span>.<span class="title function_">reduce</span>(<span class="function">(<span class="params">total, good</span>) =&gt;</span> (total += good.<span class="property">price</span>), <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这里的区别官方文档也给了我们答案，使用computed时，属性值会根据响应式依赖进行缓存，也就是说如果商品列表里的值没有改变，那么就不会重新计算。但是如果我们使用方法，那么显然每调用一次就需要重新计算一次。</p>
+<h2 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h2><p>watch在中文文档中成为侦听器，也叫侦听属性。与computed不同的是，computed会在Vue实例对象上添加一个属性，而watch一般用来给已有的响应式属性已定义响应方法。</p>
+<p>当我们在Vue注册data对象时，Vue会将data对象的属性转换为响应式的。在数据变化时会自动调用注册在属性上的依赖进行更新视图或其他操作。而watch就是当我们不满足于Vue的默认响应式系统，而需要在数据变化时进行一些自定义操作时使用的。</p>
+<p>这里简单举个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&quot;#app&quot;</span>,</span><br><span class="line">  <span class="attr">template</span>: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      &#123;&#123; number &#125;&#125;</span></span><br><span class="line"><span class="string">      &lt;button @click=&quot;add1&quot;&gt;+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">number</span>: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="title function_">add1</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">number</span>++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">watch</span>: &#123;</span><br><span class="line">    <span class="title function_">number</span>(<span class="params">newVal, oldVal</span>) &#123;</span><br><span class="line">      <span class="comment">// 在点击按钮时，data上的number属性会改变</span></span><br><span class="line">      <span class="comment">// 此时Vue会侦听到变化，控制台会打印出number之前的值和现在的值</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`old value: <span class="subst">$&#123;oldVal&#125;</span>, new value: <span class="subst">$&#123;newVal&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="watch的使用"><a href="#watch的使用" class="headerlink" title="watch的使用"></a>watch的使用</h3><p>watch的使用有多种方法，具体可见<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#watch">官方文档</a>，简单来说，watch接收一个对象，键名是需要观察的表达式，值可以使处理函数或者包含选项的对象。</p>
+<p>在处理函数中，接收两个参数，分别为所监听的属性状态变化之前的值和变化之后的值。</p>
+<p>选项对象可以指定是否在Vue实例初始化之后立即调用处理函数还是状态变更后调用；以及与computed不同的是，watch可以监听数据对象，并可以设置选项来监听数据对象内部属性变化，无论套嵌多深。</p>
+<p>通过API的设计也可以看出，计算属性一般用于添加依赖于现有响应式属性的值而计算出的属性值。而watch则可以更细粒度的对现有响应式属性进行侦听，以便在属性变化时进行一些自定义操作。</p>
+<p>这里官方文档也提示我们，在一些数据依赖其他数据而变动时，不要滥用watch，在watch内进行一些命令式的回调，而是使用更加声明式的computed。</p>
+<p>以上便是我对于computed与watch的一些理解。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/tags/%E9%A5%A5%E4%BA%BA%E8%B0%B7/" rel="tag"># 饥人谷</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/12/19/Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/" rel="prev" title="Vue的数据响应式">
+                  <i class="fa fa-chevron-left"></i> Vue的数据响应式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/12/29/Vue%E4%B8%AD%E7%9A%84sync%E4%BF%AE%E9%A5%B0%E7%AC%A6/" rel="next" title="Vue中的sync修饰符">
+                  Vue中的sync修饰符 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

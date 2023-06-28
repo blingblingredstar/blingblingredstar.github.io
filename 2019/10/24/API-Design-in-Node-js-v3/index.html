@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Introduction GitHub Repo  Slides   API What is an API  tldr; a server that creates an HTTP interface for interacting with some data Applicaction programming interface The name is used EVERYTHERE Usual">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API Design in Node.js v3">
+<meta property="og:url" content="http://yoursite.com/2019/10/24/API-Design-in-Node-js-v3/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introduction GitHub Repo  Slides   API What is an API  tldr; a server that creates an HTTP interface for interacting with some data Applicaction programming interface The name is used EVERYTHERE Usual">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-24T02:43:22.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.317Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="Express">
+<meta property="article:tag" content="JWT">
+<meta property="article:tag" content="MongoDB">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/10/24/API-Design-in-Node-js-v3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/10/24/API-Design-in-Node-js-v3/","path":"2019/10/24/API-Design-in-Node-js-v3/","title":"API Design in Node.js v3"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>API Design in Node.js v3 | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API"><span class="nav-number">1.1.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js-for-APIs"><span class="nav-number">1.2.</span> <span class="nav-text">Node.js for APIs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Express"><span class="nav-number">1.3.</span> <span class="nav-text">Express</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB"><span class="nav-number">1.4.</span> <span class="nav-text">MongoDB</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Express-1"><span class="nav-number">2.</span> <span class="nav-text">Express</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Setup-Code-amp-Express"><span class="nav-number">2.1.</span> <span class="nav-text">Setup Code &amp; Express</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Routing-amp-Middleware"><span class="nav-number">2.2.</span> <span class="nav-text">Routing &amp; Middleware</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Middleware"><span class="nav-number">2.3.</span> <span class="nav-text">Custom Middleware</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#REST-Routes-with-Express"><span class="nav-number">2.4.</span> <span class="nav-text">REST Routes with Express</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Route-Order"><span class="nav-number">2.5.</span> <span class="nav-text">Route Order</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-amp-Sub-Routes"><span class="nav-number">2.6.</span> <span class="nav-text">Router &amp; Sub Routes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-Verb-Methods"><span class="nav-number">2.7.</span> <span class="nav-text">Router Verb Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Router-amp-Sub-Routes"><span class="nav-number">2.8.</span> <span class="nav-text">Exercise: Router &amp; Sub Routes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Modeling"><span class="nav-number">2.9.</span> <span class="nav-text">Data Modeling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Modeling-with-MongoDB"><span class="nav-number">2.10.</span> <span class="nav-text">Data Modeling with MongoDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transitioning-from-Schemas-to-Models"><span class="nav-number">2.11.</span> <span class="nav-text">Transitioning from Schemas to Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Mongoose-Schema"><span class="nav-number">2.12.</span> <span class="nav-text">Exercise: Mongoose Schema</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controllers-amp-Models"><span class="nav-number">3.</span> <span class="nav-text">Controllers &amp; Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Controllers-amp-Models-Overview"><span class="nav-number">3.1.</span> <span class="nav-text">Controllers &amp; Models Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Express-Response-Object"><span class="nav-number">3.2.</span> <span class="nav-text">Express Response Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactoring-CRUD-Routes-with-Models"><span class="nav-number">3.3.</span> <span class="nav-text">Refactoring CRUD Routes with Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-Read-Update-amp-Delete-a-Document"><span class="nav-number">3.4.</span> <span class="nav-text">Creating, Read, Update &amp; Delete a Document</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CRUD-Controller-Design-Overview"><span class="nav-number">3.5.</span> <span class="nav-text">CRUD Controller Design Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-CRUD-Controller"><span class="nav-number">3.6.</span> <span class="nav-text">Exercise: CRUD Controller</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Auth"><span class="nav-number">4.</span> <span class="nav-text">Auth</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Authentication-in-APIs-Overview"><span class="nav-number">4.1.</span> <span class="nav-text">Authentication in APIs Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON-Web-Token-Authentication"><span class="nav-number">4.2.</span> <span class="nav-text">JSON Web Token Authentication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Secure-An-API-with-JWTs"><span class="nav-number">4.3.</span> <span class="nav-text">Exercise: Secure An API with JWTs</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/24/API-Design-in-Node-js-v3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="API Design in Node.js v3 | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          API Design in Node.js v3
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-24 10:43:22" itemprop="dateCreated datePublished" datetime="2019-10-24T10:43:22+08:00">2019-10-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/FrontendMasters/api-design-node-v3">GitHub Repo</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://slides.com/scotups/api-design-in-node-with-express-v3/#/">Slides</a></p>
+</li>
+</ul>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><ul>
+<li><p>What is an API</p>
+<ul>
+<li>tldr; a server that creates an HTTP interface for interacting with some data</li>
+<li>Applicaction programming interface</li>
+<li>The name is used EVERYTHERE</li>
+<li>Usually a server on some remote machine that dictates how another application can interact with some data</li>
+<li>Basic data operations like, Create, Read, Update, Destory(CRUD)</li>
+</ul>
+</li>
+<li><p>What about REST?</p>
+<ul>
+<li>tldr; most popular API design pattern, but is not the silver bullet. Very blurry</li>
+<li>An API design that combines DB resources, route paths, and HTTP verbs to allow application describe what action they are trying to perform</li>
+<li>Popularized when SaaS products starting offering APIs for integrations</li>
+<li>Works with basic data models</li>
+<li>Hard to scale with complex data models and client requirements<span id="more"></span></li>
+</ul>
+</li>
+</ul>
+<h3 id="Node-js-for-APIs"><a href="#Node-js-for-APIs" class="headerlink" title="Node.js for APIs"></a>Node.js for APIs</h3><ul>
+<li>Node.js and APIs<ul>
+<li>tldr; build for high concurrent APIs that are not CPU intensive</li>
+<li>Node.js is JavaScript, it’s async and event driven</li>
+<li>Single threaded(can optimize)</li>
+<li>When kept async, Node can handle a high amount of concurrent request</li>
+<li>Not great for CPU intensive work(data crunching, ML, big maths)</li>
+<li>So many open source tools to help build APIs</li>
+</ul>
+</li>
+</ul>
+<h3 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h3><ul>
+<li>Express<ul>
+<li>tldr; the standard API framework for Node.js</li>
+<li>Handles all the tedious tasks like managing sockets, route matching, error handling, and more</li>
+<li>Open source</li>
+<li>Has a huge community and support from anything that has to do with APIs in Node.js</li>
+<li>Not going anywhere anytime soon</li>
+</ul>
+</li>
+</ul>
+<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><ul>
+<li>MongoDB<ul>
+<li>tldr; the go-to non-relational DB, works like a dream in Node.js</li>
+<li>Non-relational document store that is easy to get started and scales well</li>
+<li>Open source and backed by a big company</li>
+<li>Tons of hosting solutions</li>
+<li>ORM&#x2F;ODM and other libs are some of the best for many DB<!-- markdownlint-disable md024 --></li>
+</ul>
+</li>
+</ul>
+<h2 id="Express-1"><a href="#Express-1" class="headerlink" title="Express"></a>Express</h2><h3 id="Setup-Code-amp-Express"><a href="#Setup-Code-amp-Express" class="headerlink" title="Setup Code &amp; Express"></a>Setup Code &amp; Express</h3><h3 id="Routing-amp-Middleware"><a href="#Routing-amp-Middleware" class="headerlink" title="Routing &amp; Middleware"></a>Routing &amp; Middleware</h3><ul>
+<li>What is Middleware<ul>
+<li>tldr; list of functions that execute, in order, before your controllers</li>
+<li>Allow you to execute functions on an incoming request with guaranteed order</li>
+<li>Great for anthentication, transforming the request, tracking, error handling</li>
+<li>Middleware can also respond to request like a controller would, but that is not their intent</li>
+</ul>
+</li>
+</ul>
+<h3 id="Custom-Middleware"><a href="#Custom-Middleware" class="headerlink" title="Custom Middleware"></a>Custom Middleware</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">log</span> = (<span class="params">req, res, next</span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 自定义中间件</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;logging&#x27;</span>)</span><br><span class="line">  <span class="title function_">next</span>() <span class="comment">// 隐式参数，或者传入错误处理函数，自动执行任务队列的下一个任务</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(log) <span class="comment">// 全局使用自定义中间件</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="REST-Routes-with-Express"><a href="#REST-Routes-with-Express" class="headerlink" title="REST Routes with Express"></a>REST Routes with Express</h3><ul>
+<li>REST routes with Express<ul>
+<li>tldr; Express was designed with REST in mind and has all you need</li>
+<li>Express has a robust route matching system that allows for exact, regex, glob, and parameter matching</li>
+<li>It also supports HTTP verbs on a route based level. Together with the routing, you can create REST APIs<ul>
+<li>app.get()</li>
+<li>app.post()</li>
+<li>app.put()</li>
+<li>app.delete()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Route-Order"><a href="#Route-Order" class="headerlink" title="Route Order"></a>Route Order</h3><ul>
+<li>REST routes with Express<ul>
+<li>Routes match in the order that they were defined(top to bottom)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/data&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(&#123; <span class="attr">message</span>: <span class="string">&#x27;hello&#x27;</span> &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/data&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(&#123; <span class="attr">message</span>: <span class="string">&#x27;world&#x27;</span> &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>客户端的收到的请求体中message为’hello’，所以同样的路由只会匹配第一个。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/data&#x27;</span>, <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// res.send(&#123; message: &#x27;hello&#x27; &#125;)</span></span><br><span class="line">  <span class="title function_">next</span>()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/data&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(&#123; <span class="attr">message</span>: <span class="string">&#x27;world&#x27;</span> &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>更改为如上代码后，message为’world‘，但不建议这么做，应该使用中间件实现类似需求，以增加可读性。</li>
+</ul>
+<h3 id="Router-amp-Sub-Routes"><a href="#Router-amp-Sub-Routes" class="headerlink" title="Router &amp; Sub Routes"></a>Router &amp; Sub Routes</h3><ul>
+<li>REST routes with Express<ul>
+<li>For abstraction, Express allows you to create sub routers that combine to make a full router</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = express.<span class="title class_">Router</span>()</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/me&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 定义路由规则，但并没有注册</span></span><br><span class="line">  res.<span class="title function_">send</span>(&#123; <span class="attr">me</span>: <span class="string">&#x27;hello&#x27;</span> &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/api&#x27;</span>, router) <span class="comment">// 以中间件的形式将router挂载到全局路由中</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Router-Verb-Methods"><a href="#Router-Verb-Methods" class="headerlink" title="Router Verb Methods"></a>Router Verb Methods</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 同一请求路径可以根据不同动词进行处理</span></span><br><span class="line">router.<span class="title function_">route</span>(<span class="string">&#x27;/cat&#x27;</span>)</span><br><span class="line">  .<span class="title function_">get</span>()</span><br><span class="line">  .<span class="title function_">post</span>()</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">route</span>(<span class="string">&#x27;/cat/:id&#x27;</span>)</span><br><span class="line">  .<span class="title function_">get</span>()</span><br><span class="line">  .<span class="title function_">put</span>()</span><br><span class="line">  .<span class="title function_">delete</span>()</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-Router-amp-Sub-Routes"><a href="#Exercise-Router-amp-Sub-Routes" class="headerlink" title="Exercise: Router &amp; Sub Routes"></a>Exercise: Router &amp; Sub Routes</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// server.js</span></span><br><span class="line"><span class="keyword">import</span> itemRouter <span class="keyword">from</span> <span class="string">&#x27;./resources/item/item.router&#x27;</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/api/item&#x27;</span>, itemRouter)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// item.router.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Router</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;express&#x27;</span></span><br><span class="line"><span class="keyword">import</span> controllers <span class="keyword">from</span> <span class="string">&#x27;./item.controllers&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="title class_">Router</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// /api/item</span></span><br><span class="line">router</span><br><span class="line">  .<span class="title function_">route</span>(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">  .<span class="title function_">get</span>(controllers.<span class="property">getOne</span>)</span><br><span class="line">  .<span class="title function_">post</span>(controllers.<span class="property">createOne</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// /api/item/:id</span></span><br><span class="line">router</span><br><span class="line">  .<span class="title function_">route</span>(<span class="string">&#x27;/:id&#x27;</span>)</span><br><span class="line">  .<span class="title function_">get</span>(controllers.<span class="property">getOne</span>)</span><br><span class="line">  .<span class="title function_">put</span>(controllers.<span class="property">updateOne</span>)</span><br><span class="line">  .<span class="title function_">delete</span>(controllers.<span class="property">removeOne</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+
+<h3 id="Data-Modeling"><a href="#Data-Modeling" class="headerlink" title="Data Modeling"></a>Data Modeling</h3><h3 id="Data-Modeling-with-MongoDB"><a href="#Data-Modeling-with-MongoDB" class="headerlink" title="Data Modeling with MongoDB"></a>Data Modeling with MongoDB</h3><ul>
+<li>Schemas for a schemaless DB?<ul>
+<li>tldr; You should always use a Schema for models, and mongoose makes it easy</li>
+<li>MongoDB is a Schemaless document store, but you should always use schemas if you don’t want to go crazy</li>
+<li>MongoDB has added support for creating schemas, but Mongoose is much better</li>
+<li>We can create models for each REST resource we want to expose via the API</li>
+</ul>
+</li>
+</ul>
+<h3 id="Transitioning-from-Schemas-to-Models"><a href="#Transitioning-from-Schemas-to-Models" class="headerlink" title="Transitioning from Schemas to Models"></a>Transitioning from Schemas to Models</h3><ul>
+<li>Schemas to models<ul>
+<li>tldr; Schemas are the instructions for the model</li>
+<li>Schemas hold the instructions for models. Things like validations, names, indexes, and hooks</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Mongoose-Schema"><a href="#Exercise-Mongoose-Schema" class="headerlink" title="Exercise: Mongoose Schema"></a>Exercise: Mongoose Schema</h3><!-- markdownlint-disable md033 -->
+<details>
+<summary>solution</summary>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mongoose <span class="keyword">from</span> <span class="string">&#x27;mongoose&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> itemSchema = <span class="keyword">new</span> mongoose.<span class="title class_">Schema</span>(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="title class_">String</span>,</span><br><span class="line">      <span class="attr">required</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">trim</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">maxlength</span>: <span class="number">50</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">status</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="title class_">String</span>,</span><br><span class="line">      <span class="attr">required</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">enum</span>: [<span class="string">&#x27;active&#x27;</span>, <span class="string">&#x27;complete&#x27;</span>, <span class="string">&#x27;pastdue&#x27;</span>],</span><br><span class="line">      <span class="attr">default</span>: <span class="string">&#x27;active&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">notes</span>: <span class="title class_">String</span>,</span><br><span class="line">    <span class="attr">due</span>: <span class="title class_">Date</span>,</span><br><span class="line">    <span class="attr">createdBy</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: mongoose.<span class="property">SchemaTypes</span>.<span class="property">ObjectId</span>,</span><br><span class="line">      <span class="attr">ref</span>: <span class="string">&#x27;user&#x27;</span>,</span><br><span class="line">      <span class="attr">required</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">list</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: mongoose.<span class="property">SchemaTypes</span>.<span class="property">ObjectId</span>,</span><br><span class="line">      <span class="attr">ref</span>: <span class="string">&#x27;list&#x27;</span>,</span><br><span class="line">      <span class="attr">required</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; <span class="attr">timestamps</span>: <span class="literal">true</span> &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">itemSchema.<span class="title function_">index</span>(&#123; <span class="attr">list</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="number">1</span> &#125;, &#123; <span class="attr">unique</span>: <span class="literal">true</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title class_">Item</span> = mongoose.<span class="title function_">model</span>(<span class="string">&#x27;item&#x27;</span>, itemSchema)</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h2 id="Controllers-amp-Models"><a href="#Controllers-amp-Models" class="headerlink" title="Controllers &amp; Models"></a>Controllers &amp; Models</h2><h3 id="Controllers-amp-Models-Overview"><a href="#Controllers-amp-Models-Overview" class="headerlink" title="Controllers &amp; Models Overview"></a>Controllers &amp; Models Overview</h3><ul>
+<li>Routes and Controllers<ul>
+<li>tldr; controllers are just middleware but with the intent on returning some data</li>
+<li>Controllers handle what a Route + Verb combo can access from the DB</li>
+<li>Think of them as the final middleware in the stack for a request. Their is no intent to proceed to another middleware function after a controller</li>
+<li>Controllers implement the logic that interacts with our DB models</li>
+<li>Can generalize controllers to work for many models because we’re going with a REST approach which requires CRUD actions on resources</li>
+</ul>
+</li>
+</ul>
+<h3 id="Express-Response-Object"><a href="#Express-Response-Object" class="headerlink" title="Express Response Object"></a>Express Response Object</h3><ul>
+<li>res对象可以链式调用</li>
+</ul>
+<h3 id="Refactoring-CRUD-Routes-with-Models"><a href="#Refactoring-CRUD-Routes-with-Models" class="headerlink" title="Refactoring CRUD Routes with Models"></a>Refactoring CRUD Routes with Models</h3><h3 id="Creating-Read-Update-amp-Delete-a-Document"><a href="#Creating-Read-Update-amp-Delete-a-Document" class="headerlink" title="Creating, Read, Update &amp; Delete a Document"></a>Creating, Read, Update &amp; Delete a Document</h3><ul>
+<li>Using models<ul>
+<li>tldr; Mongoose models work very nicely with CRUD</li>
+<li>C - <code>model.create()</code>, <code>new model()</code></li>
+<li>R - <code>model.find()</code>, <code>model.findOne()</code>, <code>model.findById()</code></li>
+<li>U - <code>model.update()</code>, <code>model.findByIdAndUpdate()</code>, <code>model.findOneAndUpdate()</code></li>
+<li>D - <code>model.remove()</code>, <code>model.findByIdAndUpdate()</code>, <code>model.findOndeAndRemove()</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="CRUD-Controller-Design-Overview"><a href="#CRUD-Controller-Design-Overview" class="headerlink" title="CRUD Controller Design Overview"></a>CRUD Controller Design Overview</h3><ul>
+<li>GET &#x2F; Read many</li>
+<li>GET &#x2F;:id Read one</li>
+<li>POST &#x2F; Create one</li>
+<li>PUT &#x2F;:id Update one</li>
+<li>DELETE &#x2F;:id Delete one</li>
+</ul>
+<h3 id="Exercise-CRUD-Controller"><a href="#Exercise-CRUD-Controller" class="headerlink" title="Exercise: CRUD Controller"></a>Exercise: CRUD Controller</h3><details>
+<summary>crud.js</summary>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">getOne</span> = model =&gt; <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> doc = <span class="keyword">await</span> model</span><br><span class="line">      .<span class="title function_">findOne</span>(&#123; <span class="attr">createdBy</span>: req.<span class="property">user</span>.<span class="property">_id</span>, <span class="attr">_id</span>: req.<span class="property">params</span>.<span class="property">id</span> &#125;)</span><br><span class="line">      .<span class="title function_">lean</span>()</span><br><span class="line">      .<span class="title function_">exec</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!doc) &#123;</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">end</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">200</span>).<span class="title function_">json</span>(&#123; <span class="attr">data</span>: doc &#125;)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(e)</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">end</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">getMany</span> = model =&gt; <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> docs = <span class="keyword">await</span> model</span><br><span class="line">      .<span class="title function_">find</span>(&#123; <span class="attr">createdBy</span>: req.<span class="property">user</span>.<span class="property">_id</span> &#125;)</span><br><span class="line">      .<span class="title function_">lean</span>()</span><br><span class="line">      .<span class="title function_">exec</span>()</span><br><span class="line"></span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">200</span>).<span class="title function_">json</span>(&#123; <span class="attr">data</span>: docs &#125;)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(e)</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">end</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">createOne</span> = model =&gt; <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> createdBy = req.<span class="property">user</span>.<span class="property">_id</span></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> doc = <span class="keyword">await</span> model.<span class="title function_">create</span>(&#123; ...req.<span class="property">body</span>, createdBy &#125;)</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">201</span>).<span class="title function_">json</span>(&#123; <span class="attr">data</span>: doc &#125;)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(e)</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">end</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">updateOne</span> = model =&gt; <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> updatedDoc = <span class="keyword">await</span> model</span><br><span class="line">      .<span class="title function_">findOneAndUpdate</span>(</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">createdBy</span>: req.<span class="property">user</span>.<span class="property">_id</span>,</span><br><span class="line">          <span class="attr">_id</span>: req.<span class="property">params</span>.<span class="property">id</span></span><br><span class="line">        &#125;,</span><br><span class="line">        req.<span class="property">body</span>,</span><br><span class="line">        &#123; <span class="attr">new</span>: <span class="literal">true</span> &#125;</span><br><span class="line">      )</span><br><span class="line">      .<span class="title function_">lean</span>()</span><br><span class="line">      .<span class="title function_">exec</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!updatedDoc) &#123;</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">end</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">200</span>).<span class="title function_">json</span>(&#123; <span class="attr">data</span>: updatedDoc &#125;)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(e)</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">end</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">removeOne</span> = model =&gt; <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> removed = <span class="keyword">await</span> model.<span class="title function_">findOneAndRemove</span>(&#123;</span><br><span class="line">      <span class="attr">createdBy</span>: req.<span class="property">user</span>.<span class="property">_id</span>,</span><br><span class="line">      <span class="attr">_id</span>: req.<span class="property">params</span>.<span class="property">id</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!removed) &#123;</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">end</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">200</span>).<span class="title function_">json</span>(&#123; <span class="attr">data</span>: removed &#125;)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(e)</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">end</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">crudControllers</span> = model =&gt; (&#123;</span><br><span class="line">  <span class="attr">removeOne</span>: <span class="title function_">removeOne</span>(model),</span><br><span class="line">  <span class="attr">updateOne</span>: <span class="title function_">updateOne</span>(model),</span><br><span class="line">  <span class="attr">getMany</span>: <span class="title function_">getMany</span>(model),</span><br><span class="line">  <span class="attr">getOne</span>: <span class="title function_">getOne</span>(model),</span><br><span class="line">  <span class="attr">createOne</span>: <span class="title function_">createOne</span>(model)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h2 id="Auth"><a href="#Auth" class="headerlink" title="Auth"></a>Auth</h2><h3 id="Authentication-in-APIs-Overview"><a href="#Authentication-in-APIs-Overview" class="headerlink" title="Authentication in APIs Overview"></a>Authentication in APIs Overview</h3><ul>
+<li><p>Authentication with JWT(JSON Web Token)s</p>
+</li>
+<li><p>Auth basics</p>
+<ul>
+<li>tldr; You can never truly protect an API, but requiring authentication makes it a bit safer</li>
+<li>Authentication is controlling if an incoming request can proceed or not</li>
+<li>Authorization is controlling if an authenticated request has the correct permissions to access a resource</li>
+<li>Identification is determining who the requester is</li>
+</ul>
+</li>
+</ul>
+<h3 id="JSON-Web-Token-Authentication"><a href="#JSON-Web-Token-Authentication" class="headerlink" title="JSON Web Token Authentication"></a>JSON Web Token Authentication</h3><ul>
+<li>JWT authentication<ul>
+<li>tldr; tokens passed every request to check auth on the server</li>
+<li>A bearer token strategy that allows the API to be stateless with user auth</li>
+<li>Created by a combination of secrets on the API and a payload like a user object</li>
+<li>Must be sent with every request where the API will then try to verify the token was created with the expected secrets</li>
+<li>After sucessful verification, JWT payload is accessible to the server. Can be used to authorization and identification</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Secure-An-API-with-JWTs"><a href="#Exercise-Secure-An-API-with-JWTs" class="headerlink" title="Exercise: Secure An API with JWTs"></a>Exercise: Secure An API with JWTs</h3><details>
+<summary>auth.js</summary>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> config <span class="keyword">from</span> <span class="string">&#x27;../config&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">User</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;../resources/user/user.model&#x27;</span></span><br><span class="line"><span class="keyword">import</span> jwt <span class="keyword">from</span> <span class="string">&#x27;jsonwebtoken&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">newToken</span> = user =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> jwt.<span class="title function_">sign</span>(&#123; <span class="attr">id</span>: user.<span class="property">id</span> &#125;, config.<span class="property">secrets</span>.<span class="property">jwt</span>, &#123;</span><br><span class="line">    <span class="attr">expiresIn</span>: config.<span class="property">secrets</span>.<span class="property">jwtExp</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">verifyToken</span> = token =&gt;</span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    jwt.<span class="title function_">verify</span>(token, config.<span class="property">secrets</span>.<span class="property">jwt</span>, <span class="function">(<span class="params">err, payload</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) <span class="keyword">return</span> <span class="title function_">reject</span>(err)</span><br><span class="line">      <span class="title function_">resolve</span>(payload)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">signup</span> = <span class="keyword">async</span> (<span class="params">req, res</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (!req.<span class="property">body</span>.<span class="property">email</span> || !req.<span class="property">body</span>.<span class="property">password</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">send</span>(&#123; <span class="attr">message</span>: <span class="string">&#x27;Email and password required&#x27;</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> user = <span class="keyword">await</span> <span class="title class_">User</span>.<span class="title function_">create</span>(req.<span class="property">body</span>)</span><br><span class="line">    <span class="keyword">const</span> token = <span class="title function_">newToken</span>(user)</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">201</span>).<span class="title function_">send</span>(&#123; token &#125;)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(error)</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">end</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">signin</span> = <span class="keyword">async</span> (<span class="params">req, res</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (!req.<span class="property">body</span>.<span class="property">email</span> || !req.<span class="property">body</span>.<span class="property">password</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">send</span>(&#123; <span class="attr">message</span>: <span class="string">&#x27;Email and password required&#x27;</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> user = <span class="keyword">await</span> <span class="title class_">User</span>.<span class="title function_">findOne</span>(&#123; <span class="attr">email</span>: req.<span class="property">body</span>.<span class="property">email</span> &#125;).<span class="title function_">exec</span>()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!user) &#123;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">401</span>).<span class="title function_">send</span>(&#123; <span class="attr">message</span>: <span class="string">&#x27;Not auth&#x27;</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> match = <span class="keyword">await</span> user.<span class="title function_">checkPassword</span>(req.<span class="property">body</span>.<span class="property">password</span>)</span><br><span class="line">    <span class="keyword">if</span> (!match) &#123;</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">401</span>).<span class="title function_">send</span>(&#123; <span class="attr">message</span>: <span class="string">&#x27;Not auth&#x27;</span> &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> token = <span class="title function_">newToken</span>(user)</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">200</span>).<span class="title function_">send</span>(&#123; token &#125;)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(error)</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">401</span>).<span class="title function_">send</span>(&#123; <span class="attr">message</span>: <span class="string">&#x27;Not auth&#x27;</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">protect</span> = <span class="keyword">async</span> (<span class="params">req, res, next</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (!req.<span class="property">headers</span>.<span class="property">authorization</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">401</span>).<span class="title function_">end</span>()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> token = req.<span class="property">headers</span>.<span class="property">authorization</span>.<span class="title function_">split</span>(<span class="string">&#x27;Bearer &#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">  <span class="keyword">if</span> (!token) &#123;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">401</span>).<span class="title function_">end</span>()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> payload = <span class="keyword">await</span> <span class="title function_">verifyToken</span>(token)</span><br><span class="line">    <span class="keyword">const</span> user = <span class="keyword">await</span> <span class="title class_">User</span>.<span class="title function_">findById</span>(payload.<span class="property">id</span>)</span><br><span class="line">      .<span class="title function_">select</span>(<span class="string">&#x27;-password&#x27;</span>)</span><br><span class="line">      .<span class="title function_">lean</span>()</span><br><span class="line">      .<span class="title function_">exec</span>()</span><br><span class="line">    req.<span class="property">user</span> = user</span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(error)</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">401</span>).<span class="title function_">end</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<details>
+<summary>server.js</summary>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/signup&#x27;</span>, signup)</span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/signin&#x27;</span>, signin)</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/api&#x27;</span>, protect)</span><br></pre></td></tr></table></figure>
+
+</details>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+              <a href="/tags/Express/" rel="tag"># Express</a>
+              <a href="/tags/JWT/" rel="tag"># JWT</a>
+              <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/23/Data-Visualization-for-React-Developers/" rel="prev" title="Data Visualization for React Developers">
+                  <i class="fa fa-chevron-left"></i> Data Visualization for React Developers
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/10/28/%E5%AD%A6%E4%B9%A0jQuery/" rel="next" title="学习jQuery">
+                  学习jQuery <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

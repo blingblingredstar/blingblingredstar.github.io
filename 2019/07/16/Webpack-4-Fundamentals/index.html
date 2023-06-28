@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Why Webpackslides Problems with Script LoadingThere is only two ways that you can actually make JS to work in borwser.  Adding a script tag for passing a source. Write your job description to HTML.  P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack 4 Fundamentals">
+<meta property="og:url" content="http://yoursite.com/2019/07/16/Webpack-4-Fundamentals/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Why Webpackslides Problems with Script LoadingThere is only two ways that you can actually make JS to work in borwser.  Adding a script tag for passing a source. Write your job description to HTML.  P">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-16T02:18:18.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.331Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="commonJS">
+<meta property="article:tag" content="Webpack">
+<meta property="article:tag" content="ESM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/07/16/Webpack-4-Fundamentals/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/07/16/Webpack-4-Fundamentals/","path":"2019/07/16/Webpack-4-Fundamentals/","title":"Webpack 4 Fundamentals"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Webpack 4 Fundamentals | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Webpack"><span class="nav-number">1.</span> <span class="nav-text">Why Webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems-with-Script-Loading"><span class="nav-number">1.1.</span> <span class="nav-text">Problems with Script Loading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#History-of-Modules"><span class="nav-number">1.2.</span> <span class="nav-text">History of Modules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EcmaScript-Modules-ESM"><span class="nav-number">1.3.</span> <span class="nav-text">EcmaScript Modules(ESM)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Webpack"><span class="nav-number">1.4.</span> <span class="nav-text">Introducing Webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configuring-Webpack"><span class="nav-number">1.5.</span> <span class="nav-text">Configuring Webpack</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Webpack-from-Scratch"><span class="nav-number">2.</span> <span class="nav-text">Webpack from Scratch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Webpack-for-the-First-Time"><span class="nav-number">2.1.</span> <span class="nav-text">Using Webpack for the First Time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adding-npm-Scripts-for-Environment-Builds"><span class="nav-number">2.2.</span> <span class="nav-text">Adding npm Scripts for Environment Builds</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setting-Up-Debugging"><span class="nav-number">2.3.</span> <span class="nav-text">Setting Up Debugging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Coding-Your-First-Module"><span class="nav-number">2.4.</span> <span class="nav-text">Coding Your First Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adding-Watch-Mode"><span class="nav-number">2.5.</span> <span class="nav-text">Adding Watch Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES-Module-Syntax"><span class="nav-number">2.6.</span> <span class="nav-text">ES Module Syntax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS-Export"><span class="nav-number">2.7.</span> <span class="nav-text">CommonJS Export</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS-Named-Exports"><span class="nav-number">2.8.</span> <span class="nav-text">CommonJS Named Exports</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tree-Shaking"><span class="nav-number">2.9.</span> <span class="nav-text">Tree Shaking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack-Bundle-Walkthrough"><span class="nav-number">2.10.</span> <span class="nav-text">Webpack Bundle Walkthrough</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Webpack-Core-Concepts"><span class="nav-number">3.</span> <span class="nav-text">Webpack Core Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack-Entry"><span class="nav-number">3.1.</span> <span class="nav-text">Webpack Entry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-amp-Loaders"><span class="nav-number">3.2.</span> <span class="nav-text">Output &amp; Loaders</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Output"><span class="nav-number">3.2.1.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Loaders-Rules"><span class="nav-number">3.2.2.</span> <span class="nav-text">Loaders + Rules</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chainning-Loaders"><span class="nav-number">3.3.</span> <span class="nav-text">Chainning Loaders</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Loaders"><span class="nav-number">3.3.1.</span> <span class="nav-text">Loaders</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack-Plugins"><span class="nav-number">3.4.</span> <span class="nav-text">Webpack Plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Plugins"><span class="nav-number">3.4.1.</span> <span class="nav-text">Plugins</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack-Config"><span class="nav-number">3.5.</span> <span class="nav-text">Webpack Config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Passing-Varible-to-Webpack-Config"><span class="nav-number">3.6.</span> <span class="nav-text">Passing Varible to Webpack Config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adding-Webpack-Plugins"><span class="nav-number">3.7.</span> <span class="nav-text">Adding Webpack Plugins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setting-Up-a-Local-Development-Server"><span class="nav-number">3.8.</span> <span class="nav-text">Setting Up a Local Development Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Starting-to-Code-with-Webpack"><span class="nav-number">3.9.</span> <span class="nav-text">Starting to Code with Webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Splitting-Environment-Config-Files"><span class="nav-number">3.10.</span> <span class="nav-text">Splitting Environment Config Files</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Plugins"><span class="nav-number">4.</span> <span class="nav-text">Using Plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-CSS-with-Webpack"><span class="nav-number">4.1.</span> <span class="nav-text">Using CSS with Webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hot-Module-Replacement-with-CSS"><span class="nav-number">4.2.</span> <span class="nav-text">Hot Module Replacement with CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File-Loader-amp-Url-Loader"><span class="nav-number">4.3.</span> <span class="nav-text">File Loader &amp; Url Loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loading-Images-with-JavaScript"><span class="nav-number">4.4.</span> <span class="nav-text">Loading Images with JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Limit-Filesize-Option-in-URL-Loader"><span class="nav-number">4.5.</span> <span class="nav-text">Limit Filesize Option in URL Loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementing-Presets"><span class="nav-number">4.6.</span> <span class="nav-text">Implementing Presets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bundle-Analyzer-Preset"><span class="nav-number">4.7.</span> <span class="nav-text">Bundle Analyzer Preset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compression-Plugin"><span class="nav-number">4.8.</span> <span class="nav-text">Compression Plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-Map"><span class="nav-number">4.9.</span> <span class="nav-text">Source Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lazy-Loading"><span class="nav-number">4.10.</span> <span class="nav-text">Lazy Loading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resources"><span class="nav-number">4.11.</span> <span class="nav-text">Resources</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/16/Webpack-4-Fundamentals/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Webpack 4 Fundamentals | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Webpack 4 Fundamentals
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-07-16 10:18:18" itemprop="dateCreated datePublished" datetime="2019-07-16T10:18:18+08:00">2019-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Why-Webpack"><a href="#Why-Webpack" class="headerlink" title="Why Webpack"></a>Why Webpack</h2><p><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1hFtMCMo62DgOIc-9OwgaVwPZHwv1cgMELArHcMbXlSI/edit">slides</a></p>
+<h3 id="Problems-with-Script-Loading"><a href="#Problems-with-Script-Loading" class="headerlink" title="Problems with Script Loading"></a>Problems with Script Loading</h3><p>There is only two ways that you can actually make JS to work in borwser.</p>
+<ol>
+<li>Adding a script tag for passing a source.</li>
+<li>Write your job description to HTML.</li>
+</ol>
+<p>Problems:</p>
+<ul>
+<li>Doesn’t scale</li>
+<li>Too many scripts<br>每个浏览器都有不同的同时请求数量的限制（针对HTTP1.1，HTTP2等协议除外）。</li>
+<li>Unmaintainable scripts</li>
+<li>Scope</li>
+<li>Size</li>
+<li>Readability</li>
+<li>Fragility</li>
+<li>Monolith files</li>
+</ul>
+<p>Solution:</p>
+<ul>
+<li><p>IIFE(Immediately-Invoked-Function-Expression 立即执行函数)</p>
+</li>
+<li><p>Module(Treat Each File as IIFE)</p>
+<ul>
+<li>We can “safely” combine files without concern of scope collision!*</li>
+<li>Make, Grunt, Gulp, Broccoli, Brunch, StealJS<span id="more"></span>
+Problem:</li>
+</ul>
+</li>
+<li><p>Full rebuilds everywhere</p>
+</li>
+<li><p>Dead code - Concat doesn’t help tie usages across files</p>
+</li>
+<li><p>Lots of IIFE’s are slow</p>
+</li>
+<li><p>Can’t dynamic loading</p>
+</li>
+</ul>
+<h3 id="History-of-Modules"><a href="#History-of-Modules" class="headerlink" title="History of Modules"></a>History of Modules</h3><p>The birth of JavaScript module happened kind of around this early period thanks to <strong>Node.js</strong>.</p>
+<ul>
+<li>common.js(Modules 1.0)<ul>
+<li>Use syntax called <code>require</code>, which allows you to inject other pieces of module into the current module.</li>
+<li>Static analysis</li>
+<li>NPM + Node + Modules</li>
+</ul>
+</li>
+</ul>
+<p>Problems:</p>
+<ul>
+<li><strong>No browser support</strong> for common.js</li>
+<li>No live bindings - Problems with circular references</li>
+<li>Synchronous module resolution, loader(Slow)</li>
+</ul>
+<p>Solution:</p>
+<ul>
+<li>Bundlers &#x2F; Linkers<ul>
+<li>browserify(static)</li>
+<li>requireJS(loader)</li>
+<li>systemJS(loader)</li>
+</ul>
+</li>
+</ul>
+<p>Problems:</p>
+<p>commonJS syntax:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// loading module</span></span><br><span class="line"><span class="keyword">const</span> _ = <span class="built_in">require</span>(<span class="string">&#x27;lodash&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// declaring module</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">export</span> = someValue</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>No static async &#x2F; lazy loading(all bundles up front)</li>
+<li>commonJS bloat too dynamic</li>
+<li>Not everyone was shipping commonJS</li>
+</ul>
+<p>AMD syntax:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">define</span>(<span class="string">&#x27;myAwesomeLib&#x27;</span>,[<span class="string">&#x27;ladash&#x27;</span>, <span class="string">&#x27;someDep&#x27;</span>], <span class="keyword">function</span>(<span class="params">_, someDep</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;...&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>AMD + commonJS:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">define</span>(<span class="keyword">function</span>(<span class="params"><span class="built_in">require</span>, <span class="built_in">exports</span>, <span class="variable language_">module</span></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> _ = <span class="built_in">require</span>(<span class="string">&#x27;lodash&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// do things...</span></span><br><span class="line">  <span class="variable language_">module</span>.<span class="property">exports</span> = someLib</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Problems:</p>
+<ul>
+<li>Too dynamic of lazy loading(momentJS)</li>
+<li>Awkward now standard syntax(No real module system)</li>
+</ul>
+<h3 id="EcmaScript-Modules-ESM"><a href="#EcmaScript-Modules-ESM" class="headerlink" title="EcmaScript Modules(ESM)"></a>EcmaScript Modules(ESM)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;uniq, forOf, bar&#125; <span class="keyword">from</span> <span class="string">&#x27;lodash-es&#x27;</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> utils <span class="keyword">from</span> <span class="string">&#x27;utils&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> uniqConst = <span class="title function_">uniq</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+
+<p>Benefit:</p>
+<ul>
+<li>Reusable</li>
+<li>Encapsulated</li>
+<li>Organized</li>
+<li>Convenient</li>
+</ul>
+<p>Problems:</p>
+<ul>
+<li>ESM for node?</li>
+<li>How does they work in the browser?(Incredibly slow)</li>
+</ul>
+<h3 id="Introducing-Webpack"><a href="#Introducing-Webpack" class="headerlink" title="Introducing Webpack"></a>Introducing Webpack</h3><p>Every library is different… Library authors use the module types that they like and choose.</p>
+<p>And this is just for JavaScript… Each and every other filetype until now has had to  have specific ways to process it.</p>
+<p>Wouldn’t it be nice…</p>
+<p>Webpack is a module bundler</p>
+<ul>
+<li>Lets you write <strong>any</strong> module format(<strong>mixed</strong>!), compiles then for <em>the borwser</em>.</li>
+<li>Supports static async bundling</li>
+<li>Rich, vast, ecosystem</li>
+<li>The most performant way to ship JavaScript today</li>
+</ul>
+<h3 id="Configuring-Webpack"><a href="#Configuring-Webpack" class="headerlink" title="Configuring Webpack"></a>Configuring Webpack</h3><p>Webpack - How to use it?</p>
+<ol>
+<li><p>Config - (webpack.config.js) Yes, it’s a module too!</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">entry</span>: &#123;</span><br><span class="line">    <span class="attr">vendor</span>: <span class="string">&#x27;./src/vendor.ts&#x27;</span>,</span><br><span class="line">    <span class="attr">main</span>: <span class="string">&#x27;./src/main.browser.ts&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;dist/&#x27;</span>,</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;[name].bundle.js&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Webpack CLI</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">webpack &lt;entry,js&gt; &lt;results.js&gt; --colors --progress</span><br><span class="line"></span><br><span class="line">webpack-dev-server --port=9000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Node API</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// returns a conpiler instance</span></span><br><span class="line"><span class="title function_">webpack</span>(&#123;</span><br><span class="line">  <span class="comment">// configuration object here!</span></span><br><span class="line">&#125;, <span class="keyword">function</span>(<span class="params">err, stats</span>) &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  <span class="comment">// compilerCallback</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Webpack-from-Scratch"><a href="#Webpack-from-Scratch" class="headerlink" title="Webpack from Scratch"></a>Webpack from Scratch</h2><h3 id="Using-Webpack-for-the-First-Time"><a href="#Using-Webpack-for-the-First-Time" class="headerlink" title="Using Webpack for the First Time"></a>Using Webpack for the First Time</h3><p><a target="_blank" rel="noopener" href="https://github.com/thelarkinn/webpack-workshop-2018">Webpack Academy Courses for Frontend Masters</a></p>
+<p><code>git checkout feature/01-fem-first-script</code></p>
+<p><code>npm i</code></p>
+<p><code>npm run webpack</code></p>
+<h3 id="Adding-npm-Scripts-for-Environment-Builds"><a href="#Adding-npm-Scripts-for-Environment-Builds" class="headerlink" title="Adding npm Scripts for Environment Builds"></a>Adding npm Scripts for Environment Builds</h3><p>Webpack by default, before Webpack 4, you really were only required to specify two properties, your input and your output.</p>
+<p>Webpack look for entry property, we default to <code>./src/index.js</code>.</p>
+<p>直接使用默认的设置<code>npm run webpack</code>会提示设置模式，</p>
+<p>下面在<code>package.json</code>中<code>scripts</code>中添加命令</p>
+<!-- markdownlint-disable md033 -->
+<details>
+<summary>package.json</summary>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;webpack&quot;</span>: <span class="string">&quot;webpack&quot;</span>,</span><br><span class="line">    <span class="string">&quot;dev&quot;</span>: <span class="string">&quot;npm run webpack -- --mode development&quot;</span>,</span><br><span class="line">    <span class="string">&quot;prod&quot;</span>: <span class="string">&quot;npm run webpack -- --mode production&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<p>开发模式<code>npm run dev</code></p>
+<p>生产模式<code>npm run prod</code></p>
+<p>在node中进行debug：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature/03-fem-debug-script --force</span><br></pre></td></tr></table></figure>
+
+<h3 id="Setting-Up-Debugging"><a href="#Setting-Up-Debugging" class="headerlink" title="Setting Up Debugging"></a>Setting Up Debugging</h3><p>可以在<code>package.json</code>中的<code>scripts</code>字段添加以下命令</p>
+<p><code>&quot;debugthis&quot;: &quot;node --inspect --inspect-brk ./src/index.js&quot;</code></p>
+<h3 id="Coding-Your-First-Module"><a href="#Coding-Your-First-Module" class="headerlink" title="Coding Your First Module"></a>Coding Your First Module</h3><p><code>touch ./src/nav.js</code></p>
+<p>在nav.js导出模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">&#x27;nav&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>在index.js引入模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nav <span class="keyword">from</span> <span class="string">&#x27;./nav&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(nav)</span><br></pre></td></tr></table></figure>
+
+<p><code>npm run prod</code></p>
+<p><code>node ./dist/main.js</code></p>
+<p>可以看到控制台输出<code>nav</code></p>
+<h3 id="Adding-Watch-Mode"><a href="#Adding-Watch-Mode" class="headerlink" title="Adding Watch Mode"></a>Adding Watch Mode</h3><p>在package.json中的scripts中添加</p>
+<p><code>&quot;dev&quot;: &quot;npm run webpack -- --mode development --watch&quot;,</code></p>
+<p><code>npm run dev</code></p>
+<p>修改nav.js如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; <span class="string">&#x27;nav&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nav <span class="keyword">from</span> <span class="string">&#x27;./nav&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">nav</span>())</span><br></pre></td></tr></table></figure>
+
+<p>可以看到控制台显示了webpack进行了重新编译</p>
+<h3 id="ES-Module-Syntax"><a href="#ES-Module-Syntax" class="headerlink" title="ES Module Syntax"></a>ES Module Syntax</h3><p><code>touch ./src/footer.js</code></p>
+<p>footer.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> top = <span class="string">&#x27;top&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> bottom = <span class="string">&#x27;bottom&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>index.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nav <span class="keyword">from</span> <span class="string">&#x27;./nav&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; top, bottom &#125; <span class="keyword">from</span> <span class="string">&#x27;./footer&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">nav</span>(), top, bottom)</span><br></pre></td></tr></table></figure>
+
+<p><code>npm run prod</code></p>
+<p><code>node ./dist/main.js</code>可以看到输出<code>nav top bottom</code></p>
+<h3 id="CommonJS-Export"><a href="#CommonJS-Export" class="headerlink" title="CommonJS Export"></a>CommonJS Export</h3><p><code>touch ./src/button.js</code></p>
+<p>button.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// take a str, the button label and return a element</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function"><span class="params">buttonName</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`Button: <span class="subst">$&#123;buttonName&#125;</span>`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>index.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nav <span class="keyword">from</span> <span class="string">&#x27;./nav&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; top, bottom &#125; <span class="keyword">from</span> <span class="string">&#x27;./footer&#x27;</span></span><br><span class="line"><span class="keyword">import</span> makeButton <span class="keyword">from</span> <span class="string">&#x27;./button&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">nav</span>(), top, bottom, <span class="title function_">makeButton</span>(<span class="string">&#x27;My first button!&#x27;</span>))</span><br><span class="line"><span class="comment">// nav top bottom Button: My first button!</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="CommonJS-Named-Exports"><a href="#CommonJS-Named-Exports" class="headerlink" title="CommonJS Named Exports"></a>CommonJS Named Exports</h3><p><code>touch ./src/button-style.js</code></p>
+<p>可以修改footer.js模块导出语法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> top = <span class="string">&#x27;top&#x27;</span></span><br><span class="line"><span class="keyword">const</span> bottom = <span class="string">&#x27;bottom&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; top, bottom &#125; <span class="comment">// ESM语法</span></span><br></pre></td></tr></table></figure>
+
+<p>button-style.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> red = <span class="string">&#x27;color: red&#x27;</span>,</span><br><span class="line">  blue = <span class="string">&#x27;color: bule&#x27;</span>,</span><br><span class="line">  makeColorSytle = <span class="function"><span class="params">color</span> =&gt;</span> <span class="string">`Color: <span class="subst">$&#123;color&#125;</span>`</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">red</span> = red</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">blue</span> = blue</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">makeColorSytle</span> = makeColorSytle <span class="comment">// commonJS语法</span></span><br></pre></td></tr></table></figure>
+
+<p>button.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加JSDoc文档</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @输入字符串返回dom元素</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">buttonName</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span> &#123;<span class="type">Element</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// take a str, the button label and return a element</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">makeButton</span> = buttonName =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`Button: <span class="subst">$&#123;buttonName&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = makeButton</span><br></pre></td></tr></table></figure>
+
+<p>index.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nav <span class="keyword">from</span> <span class="string">&#x27;./nav&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; top, bottom &#125; <span class="keyword">from</span> <span class="string">&#x27;./footer&#x27;</span></span><br><span class="line"><span class="keyword">import</span> makeButton <span class="keyword">from</span> <span class="string">&#x27;./button&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; makeColorSytle &#125; <span class="keyword">from</span> <span class="string">&#x27;./button-style&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">  <span class="title function_">nav</span>(),</span><br><span class="line">  top,</span><br><span class="line">  bottom,</span><br><span class="line">  <span class="title function_">makeButton</span>(<span class="string">&#x27;My first button!&#x27;</span>),</span><br><span class="line">  <span class="title function_">makeColorSytle</span>(<span class="string">&#x27;cyan&#x27;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tree-Shaking"><a href="#Tree-Shaking" class="headerlink" title="Tree Shaking"></a>Tree Shaking</h3><p><code>npm run prod</code></p>
+<p>在导出的main.js中，可以发现并没有red或者blue字符串。</p>
+<p>这叫做dead code elimination或者tree shaking.</p>
+<p>webpack只会在最终打包使用的模块。</p>
+<p><code>touch ./webpack.config.js</code></p>
+<h3 id="Webpack-Bundle-Walkthrough"><a href="#Webpack-Bundle-Walkthrough" class="headerlink" title="Webpack Bundle Walkthrough"></a>Webpack Bundle Walkthrough</h3><p>通过观察导出的main.js我们可以看到最终生成了一个IIFEs，其中IIFE的参数为一个数组，参数数组的每一个元素都是一个函数，</p>
+<h2 id="Webpack-Core-Concepts"><a href="#Webpack-Core-Concepts" class="headerlink" title="Webpack Core Concepts"></a>Webpack Core Concepts</h2><h3 id="Webpack-Entry"><a href="#Webpack-Entry" class="headerlink" title="Webpack Entry"></a>Webpack Entry</h3><p>The first JavaScript file to load to “Kick-off” your app.</p>
+<p>Webpack uses this as the starting point.</p>
+<p>Entry tells webpack what(files) to load for the browser; Compliments the output property.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">entry</span>: ‘./browser.<span class="property">main</span>.<span class="property">ts</span>’,</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//browser.main.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">Component</span>&#125; <span class="keyword">from</span> ‘@angular/core’;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">App</span>&#125; <span class="keyword">from</span> ‘./app.<span class="property">component</span>’;</span><br><span class="line"></span><br><span class="line"><span class="title function_">bootstrap</span>(<span class="title class_">App</span>,[]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//app.component.ts</span></span><br><span class="line">@<span class="title class_">Component</span>(&#123;...&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">App</span> &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Output-amp-Loaders"><a href="#Output-amp-Loaders" class="headerlink" title="Output &amp; Loaders"></a>Output &amp; Loaders</h3><h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>Tells webpack where and how to discribute bundles(compilations). Work with Entry.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">entry</span>: ‘./browser.<span class="property">main</span>.<span class="property">ts</span>’,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">path</span>: ‘./dist’,</span><br><span class="line">    <span class="attr">filename</span>: ‘./bundle.<span class="property">js</span>’,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Generates bundle.js</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Loaders-Rules"><a href="#Loaders-Rules" class="headerlink" title="Loaders + Rules"></a>Loaders + Rules</h4><p>Loaders tells webpack how to modify files before its added to dependency graph</p>
+<p>Loaders are also JavaScript modules(functions) that takes the source file, and returns it in a [modified] state.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">module</span>: &#123;</span><br><span class="line">  <span class="attr">rules</span>: [</span><br><span class="line">    &#123;<span class="attr">test</span>: <span class="regexp">/\.ts$/</span>, <span class="attr">use</span>: ‘ts-loader’&#125;,</span><br><span class="line">    &#123;<span class="attr">test</span>: <span class="regexp">/\.js$/</span>, <span class="attr">use</span>: ‘babel-loader’&#125;,</span><br><span class="line">    &#123;<span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="attr">use</span>: ‘css-loader’&#125;</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">module</span>: &#123;</span><br><span class="line">  <span class="attr">rules</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">test</span>: regex,</span><br><span class="line">      <span class="attr">use</span>: (<span class="title class_">Array</span>|<span class="title class_">String</span>|<span class="title class_">Function</span>)</span><br><span class="line">      <span class="attr">include</span>: <span class="title class_">RegExp</span>[],</span><br><span class="line">      <span class="attr">exclude</span>: <span class="title class_">RegExp</span>[],</span><br><span class="line">      <span class="attr">issuer</span>: (<span class="title class_">RegExp</span>|<span class="title class_">String</span>)[],</span><br><span class="line">      <span class="attr">enforce</span>: “pre”|”post”</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>test<ul>
+<li>A regular expression that instructs the compiler which files to run the loader against.</li>
+</ul>
+</li>
+<li>use<ul>
+<li>An array&#x2F;string&#x2F;function that returns loader objects.</li>
+</ul>
+</li>
+<li>enforce<ul>
+<li>Can be “pre” or “post”, tells webpack to run this rule before or after all other rules.</li>
+</ul>
+</li>
+<li>include<ul>
+<li>An array of regular expression that instruct the compiler which folders&#x2F;files to include. Will only search paths provided with the include.</li>
+</ul>
+</li>
+<li>exclude<ul>
+<li>An array of regular expression that instructs the compiler which folders&#x2F;files to ignore.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">module</span>: &#123;</span><br><span class="line">  <span class="attr">rules</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">test</span>: <span class="regexp">/\.ts$/</span>,</span><br><span class="line">      <span class="attr">use</span>: [</span><br><span class="line">        ‘awesome-typescript-loader’,</span><br><span class="line">        ‘ng2-asset-loader<span class="string">`</span></span><br><span class="line"><span class="string">      ],</span></span><br><span class="line"><span class="string">      include: /some_dir_name/,</span></span><br><span class="line"><span class="string">      exclude: [/\.(spec|e2e)\.ts$/],</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  ]</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Chainning-Loaders"><a href="#Chainning-Loaders" class="headerlink" title="Chainning Loaders"></a>Chainning Loaders</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rules</span>: [</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="attr">test</span>: <span class="regexp">/\.less$/</span>,</span><br><span class="line">  <span class="attr">use</span>:[’style’,’css’,’less’]</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>这里参数数组传入的顺序为从右到左，可以理解为<code>style(css(less()))</code>，既函数从内至外执行。</p>
+<h4 id="Loaders"><a href="#Loaders" class="headerlink" title="Loaders"></a>Loaders</h4><p>Tells webpack how to interpret and translate files. Transformed on a per-file basis before adding to the dependency graph</p>
+<h3 id="Webpack-Plugins"><a href="#Webpack-Plugins" class="headerlink" title="Webpack Plugins"></a>Webpack Plugins</h3><ul>
+<li>Objects(with an ‘apply’ property)</li>
+<li>Allow you to hook into the entire compilation lifecycle</li>
+<li>webpack has a variety of built in plugins</li>
+</ul>
+<p>Basic plugin example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">BellOnBundlerErrorPlugin</span> () &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">BellOnBundlerErrorPlugin</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">apply</span> = <span class="keyword">function</span>(<span class="params">compiler</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">typeof</span>(process) !== <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Compiler events that are emitted and handled</span></span><br><span class="line">    compiler.<span class="title function_">plugin</span>(<span class="string">&#x27;done&#x27;</span>, <span class="keyword">function</span>(<span class="params">stats</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (stats.<span class="title function_">hasErrors</span>()) &#123;</span><br><span class="line">        process.<span class="property">stderr</span>.<span class="title function_">write</span>(<span class="string">&#x27;\x07&#x27;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    compiler.<span class="title function_">plugin</span>(<span class="string">&#x27;failed&#x27;</span>, <span class="keyword">function</span>(<span class="params">err</span>) &#123;</span><br><span class="line">      process.<span class="property">stderr</span>.<span class="title function_">write</span>(<span class="string">&#x27;\x07&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title class_">BellOnBundlerErrorPlugin</span>;</span><br></pre></td></tr></table></figure>
+
+<p>A plugin is an ES5 ‘class’ which implements an apply function.</p>
+<p>The compiler uses it to emit events.</p>
+<p>How to use Plugins</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// require() from node_modules or webpack or local file</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">BellOnBundlerErrorPlugin</span> = <span class="built_in">require</span>(‘bell-on-error’);</span><br><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(‘webpack’);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">BellOnBundlerErrorPlugin</span>(),</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// Just a few of the built in plugins</span></span><br><span class="line">  <span class="keyword">new</span> webpack.<span class="property">optimize</span>.<span class="title class_">CommonsChunkPlugin</span>(‘vendors’),</span><br><span class="line">  <span class="keyword">new</span> webpack.<span class="property">optimize</span>.<span class="title class_">UglifyJsPlugin</span>()</span><br><span class="line">  ]</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>require() plugin from node_modules into config.</p>
+<p>add new instance of plugin to plugins key in config object.</p>
+<p>provide additional info for arguments</p>
+<h4 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h4><p>Adds additional functionality to Compilations(optimaized bundled modules).</p>
+<p>More powerful w&#x2F; more access to CompilerAPI. Does everything else you’d ever want to in webpack.</p>
+<h3 id="Webpack-Config"><a href="#Webpack-Config" class="headerlink" title="Webpack Config"></a>Webpack Config</h3><p><code>git checkout feature/0310-add-first-config-mode-none -f</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Passing-Varible-to-Webpack-Config"><a href="#Passing-Varible-to-Webpack-Config" class="headerlink" title="Passing Varible to Webpack Config"></a>Passing Varible to Webpack Config</h3><p>修改package.json中scripts，在mode前加<code>env.</code>：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">   <span class="attr">&quot;webpack&quot;</span><span class="punctuation">:</span> <span class="string">&quot;webpack&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;debug&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node --inspect --inspect-brk ./node_modules/webpack/bin/webpack.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;prod&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npm run webpack -- --env.mode production&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npm run webpack -- --env.mode development --watch&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;prod:debug&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npm run debug -- --env.mode production&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;dev:debug&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npm run debug -- --env.mode development&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<p>修改webpack.config.js，添加env参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function"><span class="params">env</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(env) <span class="comment">// &#123; mode: &#x27;production&#x27; &#125;</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function"><span class="params">env</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">mode</span>: env.<span class="property">mode</span>,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用对象解构赋值写为如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">(<span class="params">&#123; mode &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(env)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    mode,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Adding-Webpack-Plugins"><a href="#Adding-Webpack-Plugins" class="headerlink" title="Adding Webpack Plugins"></a>Adding Webpack Plugins</h3><p><code>npm i html-webpack-plugin -D</code></p>
+<p><code>mkdir ./build-utils</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">(<span class="params">&#123; mode &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    mode,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(), <span class="keyword">new</span> webpack.<span class="title class_">ProgressPlugin</span>()]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>npm run prod</code></p>
+<p>可以看到生成了index.html</p>
+<h3 id="Setting-Up-a-Local-Development-Server"><a href="#Setting-Up-a-Local-Development-Server" class="headerlink" title="Setting Up a Local Development Server"></a>Setting Up a Local Development Server</h3><p><code>git checkout feature/0311-add-first-plugins -f</code></p>
+<p><code>npm i webpack-dev-server -D</code></p>
+<p>在package.json的scripts中添加</p>
+<p><code>&quot;webpack-dev-server&quot;: &quot;webpack-dev-server&quot;,</code></p>
+<p>修改</p>
+<p><code>&quot;dev&quot;: &quot;npm run webpack-dev-server -- --env.mode development&quot;,</code></p>
+<p>修改button.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// take a str, the button label and return a element</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">buttonName</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span> &#123;<span class="type">Element</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">makeButton</span> = buttonName =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> buttonLabel = <span class="string">`Button: <span class="subst">$&#123;buttonName&#125;</span>`</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> button = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;button&#x27;</span>)</span><br><span class="line">  button.<span class="property">innerText</span> = buttonLabel</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> button</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = makeButton</span><br></pre></td></tr></table></figure>
+
+<p>修改index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nav <span class="keyword">from</span> <span class="string">&#x27;./nav&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; top, bottom &#125; <span class="keyword">from</span> <span class="string">&#x27;./footer&#x27;</span></span><br><span class="line"><span class="keyword">import</span> makeButton <span class="keyword">from</span> <span class="string">&#x27;./button&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; makeColorStyle &#125; <span class="keyword">from</span> <span class="string">&#x27;./button-styles&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> button = <span class="title function_">makeButton</span>(<span class="string">&#x27;Yay, a button&#x27;</span>)</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(button)</span><br></pre></td></tr></table></figure>
+
+<p>可以看到页面上热更新了按钮。</p>
+<h3 id="Starting-to-Code-with-Webpack"><a href="#Starting-to-Code-with-Webpack" class="headerlink" title="Starting to Code with Webpack"></a>Starting to Code with Webpack</h3><p><code>git checkout feature/0312-webpack-dev-server -f</code></p>
+<p><code>npm run dev</code></p>
+<p>index.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nav <span class="keyword">from</span> <span class="string">&#x27;./nav&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; top, bottom &#125; <span class="keyword">from</span> <span class="string">&#x27;./footer&#x27;</span></span><br><span class="line"><span class="keyword">import</span> makeButton <span class="keyword">from</span> <span class="string">&#x27;./button&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; makeColorStyle &#125; <span class="keyword">from</span> <span class="string">&#x27;./button-styles&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> button = <span class="title function_">makeButton</span>(<span class="string">&#x27;Yay a button!!!!&#x27;</span>)</span><br><span class="line">button.<span class="property">style</span> = <span class="title function_">makeColorStyle</span>(<span class="string">&#x27;blue&#x27;</span>) <span class="comment">// 添加后可看到页面按钮字体颜色更改为蓝色</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(button)</span><br></pre></td></tr></table></figure>
+
+<p>footer.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; red, blue &#125; <span class="keyword">from</span> <span class="string">&#x27;./button-styles&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> top = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>),</span><br><span class="line">  bottom = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>),</span><br><span class="line">  footer = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;footer&#x27;</span>)</span><br><span class="line"></span><br><span class="line">top.<span class="property">innerText</span> = <span class="string">&#x27;Top of footer&#x27;</span></span><br><span class="line">top.<span class="property">style</span> = red</span><br><span class="line">bottom.<span class="property">innerText</span> = <span class="string">&#x27;Bottom of footer&#x27;</span></span><br><span class="line">bottom.<span class="property">style</span> = blue</span><br><span class="line"></span><br><span class="line">footer.<span class="title function_">appendChild</span>(top)</span><br><span class="line">footer.<span class="title function_">appendChild</span>(bottom)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; top, bottom, footer &#125;</span><br></pre></td></tr></table></figure>
+
+<p>index.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nav <span class="keyword">from</span> <span class="string">&#x27;./nav&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; footer &#125; <span class="keyword">from</span> <span class="string">&#x27;./footer&#x27;</span></span><br><span class="line"><span class="keyword">import</span> makeButton <span class="keyword">from</span> <span class="string">&#x27;./button&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; makeColorStyle &#125; <span class="keyword">from</span> <span class="string">&#x27;./button-styles&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> button = <span class="title function_">makeButton</span>(<span class="string">&#x27;Yay a button!!!!&#x27;</span>)</span><br><span class="line">button.<span class="property">style</span> = <span class="title function_">makeColorStyle</span>(<span class="string">&#x27;blue&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(button)</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(footer)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Splitting-Environment-Config-Files"><a href="#Splitting-Environment-Config-Files" class="headerlink" title="Splitting Environment Config Files"></a>Splitting Environment Config Files</h3><p>修改webpack.config.js, 添加modeConfig模块，给module.exports设置默认参数（es6新语法）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">modeConfig</span> = env =&gt; <span class="built_in">require</span>(<span class="string">`./build-utils/webpack.<span class="subst">$&#123;env&#125;</span>`</span>)(env)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">(<span class="params">&#123; mode, presets &#125; = &#123; mode: <span class="string">&#x27;production&#x27;</span>, presets: [] &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(mode)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    mode,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(), <span class="keyword">new</span> webpack.<span class="title class_">ProgressPlugin</span>()]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>npm i webpack-merge -D</code></p>
+<p><code>touch ./build-utils/webpack.production.js</code><br><code>touch ./build-utils/webpack.development.js</code></p>
+<p>.&#x2F;build-utils&#x2F;webpack.production.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;[chunkhash].js&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>.&#x2F;build-utils&#x2F;webpack.development.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">() =&gt;</span> (&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>webpack.config.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> webpackMerge = <span class="built_in">require</span>(<span class="string">&#x27;webpack-merge&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">modeConfig</span> = env =&gt; <span class="built_in">require</span>(<span class="string">`./build-utils/webpack.<span class="subst">$&#123;env&#125;</span>`</span>)(env)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">(<span class="params">&#123; mode, presets &#125; = &#123; mode: <span class="string">&#x27;production&#x27;</span>, presets: [] &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">webpackMerge</span>(</span><br><span class="line">    &#123;</span><br><span class="line">      mode,</span><br><span class="line">      <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(), <span class="keyword">new</span> webpack.<span class="title class_">ProgressPlugin</span>()]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">modeConfig</span>(mode)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>npm run prod</code></p>
+<p>之后可以看到在production模式生成了一个hash值为名的js文件。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zorigitano/multipage-webpack-plugin">multipage-webpack-plugin</a></p>
+<h2 id="Using-Plugins"><a href="#Using-Plugins" class="headerlink" title="Using Plugins"></a>Using Plugins</h2><h3 id="Using-CSS-with-Webpack"><a href="#Using-CSS-with-Webpack" class="headerlink" title="Using CSS with Webpack"></a>Using CSS with Webpack</h3><p><code>git checkout feature/04010-composing-configs-webpack-merge -f</code></p>
+<p><code>touch ./src/footer.css</code></p>
+<p>footer.css:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">footer</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#333</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>footer.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./footer.css&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>webpack.development.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        <span class="attr">use</span>: [<span class="string">&#x27;style-loader&#x27;</span>, <span class="string">&#x27;css-loader&#x27;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>添加style-loader和css-loader后可以看到导入的css文件已经作用在开发模式下。</p>
+<h3 id="Hot-Module-Replacement-with-CSS"><a href="#Hot-Module-Replacement-with-CSS" class="headerlink" title="Hot Module Replacement with CSS"></a>Hot Module Replacement with CSS</h3><p><code>git checkout feature/040101-add-style-loader -f</code></p>
+<p>修改package.json中scripts:</p>
+<p><code>&quot;dev&quot;: &quot;npm run webpack-dev-server -- --env.mode development --hot&quot;,</code></p>
+<p>可以看到浏览器无需刷新即可更新最新的状态。</p>
+<p><code>npm i mini-css-extract-plugin -D</code></p>
+<p>更改webpack.production.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">MiniCssExtractPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;mini-css-extract-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        <span class="attr">use</span>: [<span class="title class_">MiniCssExtractPlugin</span>.<span class="property">loader</span>, <span class="string">&#x27;css-loader&#x27;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">MiniCssExtractPlugin</span>()]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>npm run prod</code> 可以看到导出了<code>main.css</code></p>
+<p>可以看到，引入的其他css文件最终也会被打包到main.css中。</p>
+<h3 id="File-Loader-amp-Url-Loader"><a href="#File-Loader-amp-Url-Loader" class="headerlink" title="File Loader &amp; Url Loader"></a>File Loader &amp; Url Loader</h3><p><code>git checkout feature/04011-adding-styles-css -f</code></p>
+<p><code>npm i file-loader url-loader -D</code></p>
+<p>webpack.config.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> webpackMerge = <span class="built_in">require</span>(<span class="string">&#x27;webpack-merge&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">modeConfig</span> = env =&gt; <span class="built_in">require</span>(<span class="string">`./build-utils/webpack.<span class="subst">$&#123;env&#125;</span>`</span>)(env)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">(<span class="params">&#123; mode, presets &#125; = &#123; mode: <span class="string">&#x27;production&#x27;</span>, presets: [] &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">webpackMerge</span>(</span><br><span class="line">    &#123;</span><br><span class="line">      mode,</span><br><span class="line">      <span class="attr">module</span>: &#123;</span><br><span class="line">        <span class="attr">rules</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">test</span>: <span class="regexp">/\.jpe?g$/</span>,</span><br><span class="line">            <span class="attr">use</span>: [<span class="string">&#x27;url-loader&#x27;</span>]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(), <span class="keyword">new</span> webpack.<span class="title class_">ProgressPlugin</span>()]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">modeConfig</span>(mode)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Loading-Images-with-JavaScript"><a href="#Loading-Images-with-JavaScript" class="headerlink" title="Loading Images with JavaScript"></a>Loading Images with JavaScript</h3><p>在index.js中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> image <span class="keyword">from</span> <span class="string">&#x27;./someImage.jpg&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(image)</span><br></pre></td></tr></table></figure>
+
+<p>可以看到控制台输出了base 64格式的图片代码。</p>
+<h3 id="Limit-Filesize-Option-in-URL-Loader"><a href="#Limit-Filesize-Option-in-URL-Loader" class="headerlink" title="Limit Filesize Option in URL Loader"></a>Limit Filesize Option in URL Loader</h3><p>webpack.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> webpackMerge = <span class="built_in">require</span>(<span class="string">&#x27;webpack-merge&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">modeConfig</span> = env =&gt; <span class="built_in">require</span>(<span class="string">`./build-utils/webpack.<span class="subst">$&#123;env&#125;</span>`</span>)(env)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">(<span class="params">&#123; mode, presets &#125; = &#123; mode: <span class="string">&#x27;production&#x27;</span>, presets: [] &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">webpackMerge</span>(</span><br><span class="line">    &#123;</span><br><span class="line">      mode,</span><br><span class="line">      <span class="attr">module</span>: &#123;</span><br><span class="line">        <span class="attr">rules</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">test</span>: <span class="regexp">/\.jpe?g$/</span>,</span><br><span class="line">            <span class="attr">use</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="attr">loader</span>: <span class="string">&#x27;url-loader&#x27;</span>,</span><br><span class="line">                <span class="attr">options</span>: &#123;</span><br><span class="line">                  <span class="attr">limit</span>: <span class="number">5000</span></span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(), <span class="keyword">new</span> webpack.<span class="title class_">ProgressPlugin</span>()]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">modeConfig</span>(mode)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>git checkout feature/04012-adding-images -f</code></p>
+<p><code>npm run dev</code></p>
+<h3 id="Implementing-Presets"><a href="#Implementing-Presets" class="headerlink" title="Implementing Presets"></a>Implementing Presets</h3><p><code>touch ./build-utils/presets/loadPresets.js</code></p>
+<p>loadPresets.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpackMerge = <span class="built_in">require</span>(<span class="string">&#x27;webpack-merge&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function"><span class="params">env</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; presets &#125; = env</span><br><span class="line">  <span class="keyword">const</span> mergedPresets = [].<span class="title function_">concat</span>(...[presets])</span><br><span class="line">  <span class="keyword">const</span> mergedConfigs = mergedPresets.<span class="title function_">map</span>(</span><br><span class="line">    <span class="function"><span class="params">presetName</span> =&gt;</span> <span class="built_in">require</span>(<span class="string">`./presets/webpack.<span class="subst">$&#123;presetName&#125;</span>`</span>)(env) <span class="comment">// call the preset and pass env also</span></span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">webpackMerge</span>(&#123;&#125;, ...mergedConfigs)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>webpack.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> webpackMerge = <span class="built_in">require</span>(<span class="string">&#x27;webpack-merge&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">modeConfig</span> = env =&gt; <span class="built_in">require</span>(<span class="string">`./build-utils/webpack.<span class="subst">$&#123;env&#125;</span>`</span>)(env)</span><br><span class="line"><span class="keyword">const</span> presetConfig = <span class="built_in">require</span>(<span class="string">&#x27;./build-utils/presets/loadPresets&#x27;</span>) <span class="comment">// add this</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">(<span class="params">&#123; mode, presets &#125; = &#123; mode: <span class="string">&#x27;production&#x27;</span>, presets: [] &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">webpackMerge</span>(</span><br><span class="line">    &#123;</span><br><span class="line">      mode,</span><br><span class="line">      <span class="attr">module</span>: &#123;</span><br><span class="line">        <span class="attr">rules</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">test</span>: <span class="regexp">/\.jpe?g$/</span>,</span><br><span class="line">            <span class="attr">use</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="attr">loader</span>: <span class="string">&#x27;url-loader&#x27;</span>,</span><br><span class="line">                <span class="attr">options</span>: &#123;</span><br><span class="line">                  <span class="attr">limit</span>: <span class="number">5000</span></span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(), <span class="keyword">new</span> webpack.<span class="title class_">ProgressPlugin</span>()]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">modeConfig</span>(mode),</span><br><span class="line">    <span class="title function_">presetConfig</span>(&#123; mode, presets &#125;) <span class="comment">// add this</span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>git checkout feature/04013-adding-presets -f</code></p>
+<p><code>touch ./build-utils/webpack.typescript.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.ts$/</span>,</span><br><span class="line">        <span class="attr">use</span>: <span class="string">&#x27;ts-loader&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>npm i ts-loader typescript@next -D</code></p>
+<p>package.json</p>
+<p><code>&quot;prod:typescript&quot;: &quot;npm run prod -- --env.presets typescript&quot;,</code></p>
+<p><code>git checkout feature/04014-typescript-preset -f</code></p>
+<p><code>npm run prod:typescript</code></p>
+<h3 id="Bundle-Analyzer-Preset"><a href="#Bundle-Analyzer-Preset" class="headerlink" title="Bundle Analyzer Preset"></a>Bundle Analyzer Preset</h3><p><code>git checkout feature/04013-adding-presets -f</code></p>
+<p><code>npm i webpack-bundle-analyzer -D</code></p>
+<p>package.json:</p>
+<p><code>&quot;prod:analyze&quot;: &quot;npm run prod -- --env.presets analyze&quot;,</code></p>
+<p><code>touch ./build-utils/presets/webpack.analyze.js</code></p>
+<p>webpack.analyze.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">WebpackBundleAnalyzer</span> = <span class="built_in">require</span>(<span class="string">&#x27;webpack-bundle-analyzer&#x27;</span>)</span><br><span class="line">  .<span class="property">BundleAnalyzerPlugin</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">WebpackBundleAnalyzer</span>()]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>npm run prod:analyze</code></p>
+<p>可以看到打开了一个新的网页，显示了各个依赖模块及其大小</p>
+<h3 id="Compression-Plugin"><a href="#Compression-Plugin" class="headerlink" title="Compression Plugin"></a>Compression Plugin</h3><p><code>git checkout feature/040131-bundle-analyze -f</code></p>
+<p><code>npm i compression-webpack-plugin -D</code></p>
+<p><code>touch ./build-utils/presets/webpack.compress.js</code></p>
+<p>webpack.compress.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">CompressionWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;compression-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">CompressionWebpackPlugin</span>()]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>package.json:</p>
+<p><code>&quot;prod:compress&quot;: &quot;npm run prod -- --env.presets compress&quot;,</code></p>
+<p><code>npm run prod:compress</code></p>
+<p><code>npm run prod:compress -- --env.presets analyze</code></p>
+<h3 id="Source-Map"><a href="#Source-Map" class="headerlink" title="Source Map"></a>Source Map</h3><p>webpack.production.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">MiniCssExtractPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;mini-css-extract-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">devtool</span>: <span class="string">&#x27;source-map&#x27;</span>,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        <span class="attr">use</span>: [<span class="title class_">MiniCssExtractPlugin</span>.<span class="property">loader</span>, <span class="string">&#x27;css-loader&#x27;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">MiniCssExtractPlugin</span>()]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>npm run prod -- --env.presets compress</code></p>
+<p>webpack.production.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">devtool</span>: <span class="string">&#x27;source-map&#x27;</span>,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        <span class="attr">use</span>: [<span class="string">&#x27;style-loader&#x27;</span>, <span class="string">&#x27;css-loader&#x27;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>npm run dev -- --env.presets compress</code></p>
+<h3 id="Lazy-Loading"><a href="#Lazy-Loading" class="headerlink" title="Lazy Loading"></a>Lazy Loading</h3><p>index.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import footer from &#x27;./footer&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">loadFooter</span> = (<span class="params"></span>) =&gt; <span class="keyword">import</span>(<span class="string">&#x27;./footer&#x27;</span>) <span class="comment">// 通过回调加载模块</span></span><br><span class="line"></span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> &#123; <span class="comment">// 在点击事件回调中异步加载模块</span></span><br><span class="line">  <span class="title function_">loadFooter</span>().<span class="title function_">then</span>(<span class="function"><span class="params">m</span> =&gt;</span> &#123; <span class="comment">// 返回一个promise，在回调中加载模块</span></span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(m.<span class="property">footer</span>) <span class="comment">// 模块懒加载</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h3><p><a target="_blank" rel="noopener" href="https://github.com/webpack-contrib">webpack-contrib</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/commonJS/" rel="tag"># commonJS</a>
+              <a href="/tags/Webpack/" rel="tag"># Webpack</a>
+              <a href="/tags/ESM/" rel="tag"># ESM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/07/12/Hardcore-Functional-Programming-in-JavaScript/" rel="prev" title="Hardcore Functional Programming in JavaScript">
+                  <i class="fa fa-chevron-left"></i> Hardcore Functional Programming in JavaScript
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/07/20/Git-In-depth/" rel="next" title="Git In-depth">
+                  Git In-depth <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

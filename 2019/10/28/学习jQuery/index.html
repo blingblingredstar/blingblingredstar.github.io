@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="为什么学习jQuery在三大框架(Vue, React, Angular)日益盛行的今天，jQuery的热度似乎已经逐渐消减。但违反直觉的是，根据Built width的统计，jQuery的使用数量仍在逐年上涨。仔细想想，作为前端开发者，难免要与DOM操作打交道，而因为历史原因，原生DOM的API既不好用，兼容性问题又多，如果把《JavaScript高级程序设计》中讲浏览器兼容问题的部分删掉，可能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习jQuery">
+<meta property="og:url" content="http://yoursite.com/2019/10/28/%E5%AD%A6%E4%B9%A0jQuery/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="为什么学习jQuery在三大框架(Vue, React, Angular)日益盛行的今天，jQuery的热度似乎已经逐渐消减。但违反直觉的是，根据Built width的统计，jQuery的使用数量仍在逐年上涨。仔细想想，作为前端开发者，难免要与DOM操作打交道，而因为历史原因，原生DOM的API既不好用，兼容性问题又多，如果把《JavaScript高级程序设计》中讲浏览器兼容问题的部分删掉，可能">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-28T02:42:40.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.332Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="饥人谷">
+<meta property="article:tag" content="jQuery">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/10/28/%E5%AD%A6%E4%B9%A0jQuery/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/10/28/%E5%AD%A6%E4%B9%A0jQuery/","path":"2019/10/28/学习jQuery/","title":"学习jQuery"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>学习jQuery | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%A6%E4%B9%A0jQuery"><span class="nav-number">1.</span> <span class="nav-text">为什么学习jQuery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">jQuery的使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8jQuery%E9%80%89%E6%8B%A9DOM%E5%85%83%E7%B4%A0"><span class="nav-number">2.1.</span> <span class="nav-text">使用jQuery选择DOM元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9CDOM%E5%85%83%E7%B4%A0"><span class="nav-number">2.2.</span> <span class="nav-text">操作DOM元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.1.</span> <span class="nav-text">链式操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getter-x2F-setter"><span class="nav-number">2.2.2.</span> <span class="nav-text">getter&#x2F;setter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%85%83%E7%B4%A0"><span class="nav-number">2.2.3.</span> <span class="nav-text">创建元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E5%85%83%E7%B4%A0"><span class="nav-number">2.2.4.</span> <span class="nav-text">移动元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9DOM%E5%B1%9E%E6%80%A7"><span class="nav-number">2.2.5.</span> <span class="nav-text">修改DOM属性</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/28/%E5%AD%A6%E4%B9%A0jQuery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="学习jQuery | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习jQuery
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-28 10:42:40" itemprop="dateCreated datePublished" datetime="2019-10-28T10:42:40+08:00">2019-10-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="为什么学习jQuery"><a href="#为什么学习jQuery" class="headerlink" title="为什么学习jQuery"></a>为什么学习jQuery</h2><p>在三大框架(Vue, React, Angular)日益盛行的今天，jQuery的热度似乎已经逐渐消减。但违反直觉的是，根据<a target="_blank" rel="noopener" href="https://trends.builtwith.com/javascript/jQuery">Built width</a>的统计，jQuery的使用数量仍在逐年上涨。仔细想想，作为前端开发者，难免要与DOM操作打交道，而因为历史原因，原生DOM的API既不好用，兼容性问题又多，如果把《JavaScript高级程序设计》中讲浏览器兼容问题的部分删掉，可能看起来也就没有那么厚，那么让人望而却步了。jQuery作为一个封装良好的DOM库，jQuery能够如此流行还要归功于其良好的设计模式，使用起来相当便利，虽然也及其容易写出一些<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%9D%A2%E6%9D%A1%E5%BC%8F%E4%BB%A3%E7%A0%81">意大利面条似的代码</a>，但作为前端新人，通过学习jQuery，了解一些jQuery的设计思想，无论是对于今后学习其他框架，还是打牢js基础，都是很有必要的。</p>
+<span id="more"></span>
+<h2 id="jQuery的使用方法"><a href="#jQuery的使用方法" class="headerlink" title="jQuery的使用方法"></a>jQuery的使用方法</h2><h3 id="使用jQuery选择DOM元素"><a href="#使用jQuery选择DOM元素" class="headerlink" title="使用jQuery选择DOM元素"></a>使用jQuery选择DOM元素</h3><p>作为一个封装良好的DOM库，使用jQuery往往从选择一个DOM元素开始，然后对其进行某种操作。</p>
+<p>我们可以通过使用<code>jQuery()</code>或者更加简洁的<code>$()</code>来获取一个DOM元素。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;div&#x27;</span>) <span class="comment">// 获取页面所有div元素</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;.red&#x27;</span>) <span class="comment">// 获取所有class包含red的元素</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;#red&#x27;</span>) <span class="comment">// 获取id为red的元素</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;input[name=firstname]&#x27;</span>) <span class="comment">// 获取name属性为firstname的input元素</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;a:first&#x27;</span>) <span class="comment">// 获取页面中第一个a元素</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;li:odd&#x27;</span>) <span class="comment">// 获取奇数li</span></span><br></pre></td></tr></table></figure>
+
+<p>其他选择方式，参见<a target="_blank" rel="noopener" href="https://www.jquery123.com/category/selectors/">选择器</a></p>
+<h3 id="操作DOM元素"><a href="#操作DOM元素" class="headerlink" title="操作DOM元素"></a>操作DOM元素</h3><p>jQuery的设计思想在于选择DOM元素，并对其进行操作，但由于DOM API的复杂性，使用jQuery选择DOM元素后并不会返回DOM对象，而是一个jQuery对象，通过操作jQuery对象，即可操作使用jQuery选中的DOM对象，这极大的方便了DOM元素的可操作性，也由于jQuery出色的封装，使得常用属性操作也非常方便。</p>
+<h4 id="链式操作"><a href="#链式操作" class="headerlink" title="链式操作"></a>链式操作</h4><p>正因为使用jQuery选择DOM后返回一个jQuery对象，所以我们可以使用链式操作，类似如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;.red&#x27;</span>) <span class="comment">// 找到指定元素集合</span></span><br><span class="line">  .<span class="title function_">find</span>(<span class="string">&#x27;li&#x27;</span>) <span class="comment">// 找到集合中特定部分</span></span><br><span class="line">  .<span class="title function_">eq</span>(<span class="number">2</span>) <span class="comment">// 选择指定元素</span></span><br><span class="line">  .<span class="title function_">text</span>(<span class="string">&#x27;Hello&#x27;</span>) <span class="comment">// 对其进行操作</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="getter-x2F-setter"><a href="#getter-x2F-setter" class="headerlink" title="getter&#x2F;setter"></a>getter&#x2F;setter</h4><p>在jQuery中，部分API会根据参数不同来改变API的行为，其中，比较方便的一项就是如果指定参数，就将API作为一个setter使用，将属性设置为指定的值；如果不传入参数，那就作为getter使用，返回元素指定属性的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;h1&#x27;</span>).<span class="title function_">text</span>() <span class="comment">// 返回h1的文本内容</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;h1&#x27;</span>).<span class="title function_">text</span>(<span class="string">&#x27;hello&#x27;</span>) <span class="comment">// 设置h1的文本内容为hello</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="创建元素"><a href="#创建元素" class="headerlink" title="创建元素"></a>创建元素</h4><p>使用jQuery，我们可以方便的创建元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;&lt;div&gt;Hello world&lt;/div&gt;&#x27;</span>) <span class="comment">// 创建一个div元素</span></span><br><span class="line">  .<span class="title function_">append</span>($(<span class="string">&#x27;.red&#x27;</span>)) <span class="comment">// 插入指定元素集之后</span></span><br></pre></td></tr></table></figure>
+
+<p>关于使用jQuery创建DOM元素，更多信息可以查看<a target="_blank" rel="noopener" href="https://www.jquery123.com/jQuery/">这里</a></p>
+<p>其他DOM操作，可以查看<a target="_blank" rel="noopener" href="https://www.jquery123.com/category/manipulation/">这里</a></p>
+<h4 id="移动元素"><a href="#移动元素" class="headerlink" title="移动元素"></a>移动元素</h4><p>通过jQuery提供的API的组合，我们可以移动一个DOM元素到指定的位置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;.red&#x27;</span>).<span class="title function_">insertAfter</span>($(<span class="string">&#x27;.green&#x27;</span>)) <span class="comment">// 将class包含red的元素插入class包含green的元素之后</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;.green&#x27;</span>).<span class="title function_">after</span>($(<span class="string">&#x27;.red&#x27;</span>)) <span class="comment">// 将class包含red的元素放在class包含green的后面</span></span><br></pre></td></tr></table></figure>
+
+<p>类似还有<code>.insertBefore()</code>，<code>.before()</code>，<code>.appendTo()</code>，<code>.append()</code>，<code>.prependTo()</code>和<code>.prepend()</code></p>
+<h4 id="修改DOM属性"><a href="#修改DOM属性" class="headerlink" title="修改DOM属性"></a>修改DOM属性</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;div&#x27;</span>).<span class="title function_">addClass</span>(<span class="string">&#x27;.red&#x27;</span>) <span class="comment">// 给所有div添加样式类red</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;div&#x27;</span>).<span class="title function_">css</span>(&#123;<span class="attr">width</span>: <span class="string">&#x27;200px&#x27;</span>&#125;) <span class="comment">// 将所有div宽度设置为200px</span></span><br></pre></td></tr></table></figure>
+
+<p>更多请查看<a target="_blank" rel="noopener" href="https://www.jquery123.com/category/manipulation/general-attributes/">通用属性操作</a>，<a target="_blank" rel="noopener" href="https://www.jquery123.com/category/manipulation/class-attribute/">class 属性</a>，<a target="_blank" rel="noopener" href="https://www.jquery123.com/category/manipulation/style-properties/">CSS 属性</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A5%A5%E4%BA%BA%E8%B0%B7/" rel="tag"># 饥人谷</a>
+              <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/24/API-Design-in-Node-js-v3/" rel="prev" title="API Design in Node.js v3">
+                  <i class="fa fa-chevron-left"></i> API Design in Node.js v3
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/11/27/%E3%80%8A%E6%B5%85%E6%9E%90MVC%E3%80%8B/" rel="next" title="《浅析MVC》">
+                  《浅析MVC》 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

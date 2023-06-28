@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Introducing DevOps for DevelopersIntroductionAn introduction to DevOps for developers and it’s purpose in software development.  给开发人员介绍 DevOps 及其在软件开发中的作用。  To enter a career in DevOps, it is helpful">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introducing DevOps for Developers">
+<meta property="og:url" content="http://yoursite.com/2023/05/17/Introducing-DevOps-for-Developers/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introducing DevOps for DevelopersIntroductionAn introduction to DevOps for developers and it’s purpose in software development.  给开发人员介绍 DevOps 及其在软件开发中的作用。  To enter a career in DevOps, it is helpful">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-17T14:16:16.000Z">
+<meta property="article:modified_time" content="2023-06-28T16:18:31.720Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="DevOps">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2023/05/17/Introducing-DevOps-for-Developers/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2023/05/17/Introducing-DevOps-for-Developers/","path":"2023/05/17/Introducing-DevOps-for-Developers/","title":"Introducing DevOps for Developers"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Introducing DevOps for Developers | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introducing-DevOps-for-Developers"><span class="nav-number">1.</span> <span class="nav-text">Introducing DevOps for Developers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-Exists-Today"><span class="nav-number">1.1.1.</span> <span class="nav-text">What Exists Today</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-DevOps"><span class="nav-number">1.1.2.</span> <span class="nav-text">What is DevOps?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DevOps-is-a-Philosophy"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">DevOps is a Philosophy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Define-your-DevOps"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Define your DevOps</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Three-W%E2%80%99s-of-Strategy"><span class="nav-number">1.1.3.</span> <span class="nav-text">Three W’s of Strategy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Why-What-amp-Who"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">The Why, What &amp; Who</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-do-we-need-DevOps"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">Why do we need DevOps?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Who-do-we-help-with-DevOps"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">Who do we help with DevOps?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setting-Dev-Standards"><span class="nav-number">1.1.4.</span> <span class="nav-text">Setting Dev Standards</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Technical-Design-Documents"><span class="nav-number">1.2.</span> <span class="nav-text">Technical Design Documents</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Writing-a-Technical-Design-Document"><span class="nav-number">1.2.1.</span> <span class="nav-text">Writing a Technical Design Document</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem-Fragmented-Documentation"><span class="nav-number">1.2.2.</span> <span class="nav-text">Problem: Fragmented Documentation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Managing-Infrastructure-with-Pulumi"><span class="nav-number">1.3.</span> <span class="nav-text">Managing Infrastructure with Pulumi</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Infrastructure-Standardization"><span class="nav-number">1.3.1.</span> <span class="nav-text">Infrastructure Standardization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Identifying-Problems"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Identifying Problems</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Managing-CI-x2F-CD"><span class="nav-number">1.4.</span> <span class="nav-text">Managing CI&#x2F;CD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Templates"><span class="nav-number">1.4.1.</span> <span class="nav-text">Service Templates</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Identifying-Problems-1"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">Identifying Problems</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#What-we-use-for-CI-x2F-CD"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">What we use for CI&#x2F;CD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#What-do-we-need"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">What do we need?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/05/17/Introducing-DevOps-for-Developers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Introducing DevOps for Developers | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introducing DevOps for Developers
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-05-17 22:16:16" itemprop="dateCreated datePublished" datetime="2023-05-17T22:16:16+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-06-29 00:18:31" itemprop="dateModified" datetime="2023-06-29T00:18:31+08:00">2023-06-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Introducing-DevOps-for-Developers"><a href="#Introducing-DevOps-for-Developers" class="headerlink" title="Introducing DevOps for Developers"></a>Introducing DevOps for Developers</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>An introduction to DevOps for developers and it’s purpose in software development.</p>
+<blockquote>
+<p>给开发人员介绍 DevOps 及其在软件开发中的作用。</p>
+</blockquote>
+<p>To enter a career in DevOps, it is helpful to have experience in both software development and IT operations. This may include experience with coding and scripting languages, as well as experience with system administration and infrastructure management.</p>
+<blockquote>
+<p>要将 DevOps 作为职业，有软件开发和 IT 运营方面的经验是有帮助的。这可能包括对编码和脚本语言的经验，以及对系统管理和基础架构管理的经验。</p>
+</blockquote>
+<p>Having a strong understanding of collaboration and communication tools and methodologies, such as Agile and lean principles, can be beneficial. It is also important to have a passion for continuous learning and staying up-to-date with the latest technologies and best practices in the field.</p>
+<blockquote>
+<p>具有对协作和沟通工具和方法论的深刻理解，例如敏捷和精益原则，可能是有益的。重要的是要对持续学习和了解该领域的最新技术和最佳实践保持热情。</p>
+</blockquote>
+<p><strong>Understanding FIRST, tools SECOND. DevOps is a philosophy, not a technology.</strong></p>
+<span id="more"></span>
+
+<h3 id="What-Exists-Today"><a href="#What-Exists-Today" class="headerlink" title="What Exists Today"></a>What Exists Today</h3><ul>
+<li><p>Poorly Defined</p>
+<ul>
+<li>Because DevOps is a broad and somewhat abstract concept, it can be difficult for companies to define and implement in a concrete and consistent way.<blockquote>
+<p>由于 DevOps 是一个广泛且有些抽象的概念，因此公司很难以具体和一致的方式定义和实施它。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Cuture Challenges</p>
+<ul>
+<li>Additionally, because DevOps involves cultural shifts within an organization, it can be challenging for companies to adopt and integrate into their existing processes and ways of working.<blockquote>
+<p>此外，由于 DevOps 涉及组织内部的文化转变，因此公司很难采用并将其整合到现有的流程和工作方式中。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Missing Communication</p>
+<ul>
+<li>A lack of clear communication and collaboration between teams can lead to errors and other problems that can compromise the quality of the solutions being produced.<blockquote>
+<p>团队之间缺乏明确的沟通和协作可能会导致错误和其他问题，从而危及正在生产的解决方案的质量。****</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Suboptimal Solutions</p>
+<ul>
+<li>Developers and IT professionals may not be working together as efficiently and effectively as possible, which can result in suboptimal solutions that do not meet the needs of the business or the end users.<blockquote>
+<p>开发人员和 IT 专业人员可能没有尽可能有效地合作，这可能会导致不符合业务或最终用户需求的次优解决方案。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Start from Scratch</p>
+<ul>
+<li>Forget what you’ve <code>seen</code> about DevOps.</li>
+<li>Forget what you’ve <code>heard</code> about DevOps.</li>
+<li>Forget what you’ve <code>done</code> about DevOps.</li>
+</ul>
+</li>
+</ul>
+<h3 id="What-is-DevOps"><a href="#What-is-DevOps" class="headerlink" title="What is DevOps?"></a>What is DevOps?</h3><p>The goal of DevOps is to improve the speed and reliability of software releases by automating parts fo the software development and deployment process, and by <strong>fostering a culture of collaboration and experimentation among teams</strong>.</p>
+<blockquote>
+<p>DevOps 的目标是通过自动化软件开发和部署过程的一部分，并通过在团队之间建立协作和实验文化来提高软件发布的速度和可靠性。</p>
+</blockquote>
+<p>What DevOps is NOT</p>
+<p><strong>DevOps is not a specific tool or technology</strong>. It is not a job title or a job description, and it is not a standalone practice that can be implement in isolation.</p>
+<blockquote>
+<p>DevOps 不是一个特定的工具或技术。它不是一个职位或职位描述，也不是一个可以独立实施的独立实践。</p>
+</blockquote>
+<p>What DevOps IS NEVER</p>
+<p>Tools or Technologies!</p>
+<h4 id="DevOps-is-a-Philosophy"><a href="#DevOps-is-a-Philosophy" class="headerlink" title="DevOps is a Philosophy"></a>DevOps is a Philosophy</h4><p>DevOps is a philosophy or mindset that emphasizes collaboration, communication, and integration between software developers and IT operations teams.</p>
+<blockquote>
+<p>DevOps 是一种强调软件开发人员和 IT 运营团队之间协作、沟通和集成的哲学或思维方式。</p>
+</blockquote>
+<h4 id="Define-your-DevOps"><a href="#Define-your-DevOps" class="headerlink" title="Define your DevOps"></a>Define your DevOps</h4><p>We need to define what DevOps means uniquely to us before we can properly harness its power for an organization.</p>
+<blockquote>
+<p>在我们能够为组织正确利用其力量之前，我们需要定义 DevOps 对我们来说意味着什么。</p>
+</blockquote>
+<h3 id="Three-W’s-of-Strategy"><a href="#Three-W’s-of-Strategy" class="headerlink" title="Three W’s of Strategy"></a>Three W’s of Strategy</h3><ul>
+<li><p>The three W’s of strategy are:</p>
+<ul>
+<li>Why - reasons and motivations behind the strategy.<blockquote>
+<p>为什么 - 策略背后的原因和动机。</p>
+</blockquote>
+</li>
+<li>What - goals and objectives that the strategy is intended to achieve.<blockquote>
+<p>什么 - 策略旨在实现的目标和目标。</p>
+</blockquote>
+</li>
+<li>Who - people who are benefiting from this.<blockquote>
+<p>谁 - 正受益于此的人。</p>
+</blockquote>
+</li>
+</ul>
+<p>Together, there three W’s help to provide a clear understanding of the strategy and what it aims to accomplish.</p>
+<blockquote>
+<p>这三个 W 有助于清楚地了解策略及其旨在实现的目标。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="The-Why-What-amp-Who"><a href="#The-Why-What-amp-Who" class="headerlink" title="The Why, What &amp; Who"></a>The Why, What &amp; Who</h4><ul>
+<li>Why do we need DevOps?</li>
+<li>What do we accomplish with DevOps?</li>
+<li>Who do we help with DevOps?</li>
+</ul>
+<h4 id="Why-do-we-need-DevOps"><a href="#Why-do-we-need-DevOps" class="headerlink" title="Why do we need DevOps?"></a>Why do we need DevOps?</h4><p>DevOps aims to help organizations rapidly and reliably build and deploy software by automating and monitoring the process from end to end.</p>
+<blockquote>
+<p>DevOps 旨在通过自动化和端到端的过程监控，帮助组织快速可靠地构建和部署软件。</p>
+</blockquote>
+<h4 id="Who-do-we-help-with-DevOps"><a href="#Who-do-we-help-with-DevOps" class="headerlink" title="Who do we help with DevOps?"></a>Who do we help with DevOps?</h4><p>DevOps helps organizations and teams improve their ability to deliver value to their customers and users.</p>
+<blockquote>
+<p>DevOps 帮助组织和团队提高了向客户和用户提供价值的能力。</p>
+</blockquote>
+<h3 id="Setting-Dev-Standards"><a href="#Setting-Dev-Standards" class="headerlink" title="Setting Dev Standards"></a>Setting Dev Standards</h3><ul>
+<li><p>Standards vs. Rules</p>
+<ul>
+<li>Developers don’t like rules but will adhere to standards for the greater good of the product.<blockquote>
+<p>开发人员不喜欢规则，但会遵守标准，以便更好地为产品服务。</p>
+</blockquote>
+</li>
+<li>DevOps standards are guidelines or best practice that organizations can follow to implement standards successfully. These standards typically cover areas such as communication, collaboration, and automation, and can help organizations to improve their software development process and deliver better products to their customers.<blockquote>
+<p>DevOps 标准是组织可以遵循以成功实施标准的准则或最佳实践。这些标准通常涵盖沟通、协作和自动化等领域，可以帮助组织改进其软件开发流程，并向客户交付更好的产品。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Automation Standards</p>
+<ul>
+<li>Automating the software development and deployment process, using tools such as continuous integration and delivery(CI&#x2F;CD).<blockquote>
+<p>使用诸如持续集成和交付（CI&#x2F;CD）之类的工具自动化软件开发和部署过程。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Planing Standards</p>
+<ul>
+<li>Using agile software development methodologies, such as Scrum or Kanban, to increase collaboration and flexibility.<blockquote>
+<p>使用敏捷软件开发方法，例如 Scrum 或 Kanban，以增加协作和灵活性。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Quality Standards</p>
+<ul>
+<li>Implementing strict version control and configuration management processes to ensure that software is properly tested and deployed.<blockquote>
+<p>实施严格的版本控制和配置管理流程，以确保软件经过适当的测试和部署。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Communication Standards</p>
+<ul>
+<li>Encouraging open communication and collaboration among all members of the development team, including developers, IT operations professionals, and business stakeholders.<blockquote>
+<p>鼓励开放的沟通和协作，包括开发人员、 IT 运营专业人员和业务利益相关者在内的开发团队的所有成员。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Improving Standards</p>
+<ul>
+<li>Using metrics and data to track and improve the performance of the software development process.<blockquote>
+<p>使用指标和数据来跟踪和改进软件开发流程的性能。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Technical-Design-Documents"><a href="#Technical-Design-Documents" class="headerlink" title="Technical Design Documents"></a>Technical Design Documents</h2><ul>
+<li><p>The Power of TDDs</p>
+</li>
+<li><p>Technical Design Document</p>
+<ul>
+<li>A technical design document(TDD) is a document that describes how a piece of software will be implemented and how it will work. It typically includes detailed information about the system’s architecture, modules, interfaces, and data structures, as well as information about any external dependencies or required resources.<blockquote>
+<p>技术设计文档（TDD）是一种描述软件将如何实现以及它将如何工作的文档。它通常包括有关系统架构、模块、接口和数据结构的详细信息，以及有关任何外部依赖项或所需资源的信息。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Your Fist TDD</p>
+<ul>
+<li><p>There is no standardized way to writing documentation. The best advice I’ve ever been given was focus only on the specific issue or problem.</p>
+<blockquote>
+<p>没有标准化的撰写文档的方法。我得到的最好的建议是只关注特定的问题或问题。</p>
+</blockquote>
+</li>
+<li><p>Ask yourself what the problem IS and tell the story around that. Set proper boundaries if you need to and include an “out-of-scope” section when you discover items outside of the current issue problem resolution path.</p>
+<blockquote>
+<p>问问自己问题是什么，并围绕这个问题讲述故事。如果需要，请设置适当的边界，并在发现当前问题解决路径之外的项目时包含“范围外”部分。</p>
+</blockquote>
+</li>
+<li><p>Apply existing common practices to problem solving that the organization has agreed upon. In this case, we can use the “Three W’s of Strategy” to help solve our problem.</p>
+<blockquote>
+<p>解决问题时使用组织已经达成一致的现有常见做法。在这种情况下，我们可以使用“三个 W 的策略”来帮助解决问题。</p>
+</blockquote>
+</li>
+<li><p>Ask yourself:</p>
+<ul>
+<li>What problem are we trying to solve?(you should always have this)</li>
+<li>What is the current process?(optional, though normally helpful)</li>
+<li>What are the requirements?(optional, can help with scope)</li>
+<li>How do we solve this problem?(you should always have this)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Writing-a-Technical-Design-Document"><a href="#Writing-a-Technical-Design-Document" class="headerlink" title="Writing a Technical Design Document"></a>Writing a Technical Design Document</h3><ul>
+<li><p>Problem</p>
+<ul>
+<li>We currently have no way to monitor steam output logs from services and other things running in our Kubernetes cluster.<blockquote>
+<p>我们目前没有办法监视在 Kubernetes 集群中运行的服务和其他内容的流输出日志。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Requirements</p>
+<ul>
+<li>We only care about <code>studio</code> - no use for fields advanced indexing, etc.<blockquote>
+<p>我们只关心“studio” - 没有用于字段高级索引等的用途。</p>
+</blockquote>
+</li>
+<li>We don’t want to have to manage infrastructure.<blockquote>
+<p>我们不想管理基础架构。</p>
+</blockquote>
+</li>
+<li>We only want to solve simple logging for all of our services in Kubernetes to unblock when we have errors and need to find them, history, etc.<blockquote>
+<p>我们只想解决 Kubernetes 中所有服务的简单日志记录，以便在出现错误并需要找到它们、历史记录等时解除阻塞。</p>
+</blockquote>
+</li>
+<li>We don’t want to deal with metrics right now.<blockquote>
+<p>我们现在不想处理监控。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Self Hosted</p>
+<ul>
+<li>Loki(with Grafana)<ul>
+<li>Free and includes most features.<ul>
+<li>The query language is very adoptable and simple.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Elastic with Kibana(ELK)<ul>
+<li>Free but limited with features(licensed)<ul>
+<li>Provides a lot of extensibility with searching logs.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Cloud Hosted</p>
+<ul>
+<li>Grafana Cloud [Loki w&#x2F;Grafana] (base free - 50GB)</li>
+<li>Solarwinds Papertrail (base $7 - 1GB)</li>
+<li>Elastic Cloud (base $95)</li>
+<li>Solarwinds Loggly (base $79)</li>
+<li>AWS OpenSearch (base $80 - 50GB + cluster instances)</li>
+<li>New Relic (base free - 100GB)</li>
+</ul>
+</li>
+<li><p>Proposed Solution</p>
+<ul>
+<li>Looking at the list above there is only one solution that really stands out to solving our problem the quickest with best accuracy:<ul>
+<li>Grafana Cloud</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Problem-Fragmented-Documentation"><a href="#Problem-Fragmented-Documentation" class="headerlink" title="Problem: Fragmented Documentation"></a>Problem: Fragmented Documentation</h3><details>
+<summary>Fragmented Documentation</summary>
+
+<p>Title: Fragmented Documentation with Perpetuating Tribal Knowledge</p>
+<blockquote>
+<p>标题：永久部落知识的碎片化文档</p>
+</blockquote>
+<p>What problem are we trying to solve?</p>
+<p>Engineering teams are frustrated because they are unable to find information regarding their day to day work.</p>
+<blockquote>
+<p>工程团队感到沮丧，因为他们无法找到有关他们日常工作的信息。</p>
+</blockquote>
+<p>How do we share information?</p>
+<ul>
+<li>Wiki’s<ul>
+<li>Contains best practice for using shared.</li>
+</ul>
+</li>
+<li>Blog’s<ul>
+<li>Communicate releases or new features being introduced.</li>
+<li>Generally serves engineering teams(internal).</li>
+</ul>
+</li>
+<li>Email Blasts<ul>
+<li>Usually an announcement or call to action for awareness of possible upcoming changes that will impact.</li>
+</ul>
+</li>
+<li>Messaging Software<ul>
+<li>Individual troubleshooting threads that become very difficult to parse and traverse.</li>
+<li>Mostly focus on-off solutions that never get documented.</li>
+</ul>
+</li>
+</ul>
+<p>Which of these benefits us the most?</p>
+<p>We have no real ability to track usages around where content lives and what the best place is to put it.</p>
+<p>What do we prefer?</p>
+<ul>
+<li>Messaging Software for realtime communication to solve new issues or untracked problems.<ul>
+<li>When a new problem is raised - we create a ticket for it and include Slack thread.</li>
+<li>All critical information must be in the issue or ticket NOT in Slack(culture).</li>
+<li>When new information is shared - we need a article or document for that(culture).<ul>
+<li>Developers must prompt each other to write documentation.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Centralized Documentation Platform<ul>
+<li>Simplicity, removes checking anywhere else.</li>
+<li>Simplicity around organization in the documentation.<ul>
+<li>Each team get their own section or “area” that can be managed on their own.</li>
+</ul>
+</li>
+<li>Remove the need of managing more things.</li>
+</ul>
+</li>
+</ul>
+<p>What are the pain-points we’ve dealt with?</p>
+<ul>
+<li>Some developers may not like writing documentation and is generally taking away time.</li>
+<li>Hate duplication of documentation that says the same thing.<ul>
+<li>Prefer to have “links” to contextual thoughts around problems.<ul>
+<li>DevOps section(infrastructure).</li>
+<li>Frontend section(logical changes pertaining to the developers).</li>
+<li>Keeping information as close to implementation as possible.</li>
+<li>Do not keep the same information in multiple places.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Centralized documentation can be a mess and lost.<ul>
+<li>No planing, no standards, no maintenance.</li>
+</ul>
+</li>
+<li>Terrible searching and filtering.</li>
+<li>Not a realtime and requires more investment.</li>
+</ul>
+<p>Proposed Solution</p>
+<ul>
+<li>Culture around these issues<ul>
+<li>Documentation</li>
+</ul>
+</li>
+<li>Improve standards for messaging<ul>
+<li>Messaging</li>
+</ul>
+</li>
+<li>Improve standards around linking information<ul>
+<li>Emails</li>
+</ul>
+</li>
+<li>We are open to fragmentation of documentation but want to provide the best tools(Backstage) to be the GLUE of this information.</li>
+</ul>
+</details>
+
+<h2 id="Managing-Infrastructure-with-Pulumi"><a href="#Managing-Infrastructure-with-Pulumi" class="headerlink" title="Managing Infrastructure with Pulumi"></a>Managing Infrastructure with Pulumi</h2><h3 id="Infrastructure-Standardization"><a href="#Infrastructure-Standardization" class="headerlink" title="Infrastructure Standardization"></a>Infrastructure Standardization</h3><h4 id="Identifying-Problems"><a href="#Identifying-Problems" class="headerlink" title="Identifying Problems"></a>Identifying Problems</h4><ul>
+<li><p>Existing Accounts</p>
+<ul>
+<li>AWS Account(infrastructure)</li>
+<li>GitHub(infrastructure as code)</li>
+<li>CircleCI(CI&#x2F;CD)</li>
+</ul>
+</li>
+<li><p>Existing Tools</p>
+<ul>
+<li>NodeJS(language)</li>
+<li>Pulumi(automation)</li>
+<li>CircleCI(CI&#x2F;CD)</li>
+</ul>
+</li>
+<li><p>Technical Documents</p>
+<ul>
+<li>Standardize Infrastructure</li>
+<li>Standardize CI&#x2F;CD</li>
+</ul>
+</li>
+</ul>
+<details>
+<summary>Standardize Infrastructure</summary>
+
+<ul>
+<li>Problem<ul>
+<li>We have no defined patterns or choices around how we describe services in our infrastructure.<blockquote>
+<p>我们没有定义如何描述基础架构中的服务的模式或选择。</p>
+</blockquote>
+</li>
+<li>What are these services?<ul>
+<li>Frontend</li>
+<li>Backends</li>
+</ul>
+</li>
+<li>What do they need?<ul>
+<li>Frontend<ul>
+<li>Store our static files</li>
+<li>Ingress of some type</li>
+</ul>
+</li>
+<li>Backends<ul>
+<li>Container(s)</li>
+<li>Ingress of some type</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What do we need?<ul>
+<li>Simple interfaces that allow us to pull off the shelf deployments for specific service types.</li>
+<li>Simple way of managing these resources and updating them when changed.</li>
+<li>Way for DEVELOPERS not DevOps to create cloud resources.<ul>
+<li>No more asking for buckets in slack.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</details>
+
+<h2 id="Managing-CI-x2F-CD"><a href="#Managing-CI-x2F-CD" class="headerlink" title="Managing CI&#x2F;CD"></a>Managing CI&#x2F;CD</h2><h3 id="Service-Templates"><a href="#Service-Templates" class="headerlink" title="Service Templates"></a>Service Templates</h3><details>
+<summary>Service Templates</summary>
+
+<h4 id="Identifying-Problems-1"><a href="#Identifying-Problems-1" class="headerlink" title="Identifying Problems"></a>Identifying Problems</h4><p>We have services that all use similar ways to build, test and deploy. However we have to copy and paste these configuration files every time.</p>
+<h4 id="What-we-use-for-CI-x2F-CD"><a href="#What-we-use-for-CI-x2F-CD" class="headerlink" title="What we use for CI&#x2F;CD"></a>What we use for CI&#x2F;CD</h4><ul>
+<li>Docker(image)</li>
+<li>CircleCI(build&#x2F;testing)</li>
+</ul>
+<h4 id="What-do-we-need"><a href="#What-do-we-need" class="headerlink" title="What do we need?"></a>What do we need?</h4><ul>
+<li>DSL(domain-specific language) that allows us to configure templates for services</li>
+<li>CLI to generate templates from our DSL</li>
+</ul>
+<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h4><p>We want to build a CLI tool that has templates in it which we can configure with external JSON files to generate build configuration, etc.</p>
+</details>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/DevOps/" rel="tag"># DevOps</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/05/17/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

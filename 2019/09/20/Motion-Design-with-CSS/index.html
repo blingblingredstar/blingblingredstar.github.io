@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="CSS TransitionsIntroductionweb animation weekly  Overview CSS Transitions &amp; Animations How to use animation in product design How to create stateful animations with JavaScript How to use developer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Motion Design with CSS">
+<meta property="og:url" content="http://yoursite.com/2019/09/20/Motion-Design-with-CSS/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="CSS TransitionsIntroductionweb animation weekly  Overview CSS Transitions &amp; Animations How to use animation in product design How to create stateful animations with JavaScript How to use developer">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-09-20T05:28:30.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.328Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Transitions">
+<meta property="article:tag" content="Animations">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/20/Motion-Design-with-CSS/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/09/20/Motion-Design-with-CSS/","path":"2019/09/20/Motion-Design-with-CSS/","title":"Motion Design with CSS"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Motion Design with CSS | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-Transitions"><span class="nav-number">1.</span> <span class="nav-text">CSS Transitions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-Transitions-1"><span class="nav-number">1.2.</span> <span class="nav-text">CSS Transitions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Rolling-a-Ball"><span class="nav-number">1.3.</span> <span class="nav-text">Exercise: Rolling a Ball</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transitioning-Multiple-Properties"><span class="nav-number">1.4.</span> <span class="nav-text">Transitioning Multiple Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demonstration-Changing-the-Ball%E2%80%99s-Color"><span class="nav-number">1.5.</span> <span class="nav-text">Demonstration: Changing the Ball’s Color</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Duration"><span class="nav-number">1.6.</span> <span class="nav-text">Duration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Browser-Developer-Tools"><span class="nav-number">1.7.</span> <span class="nav-text">Browser Developer Tools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timing-Functions"><span class="nav-number">1.8.</span> <span class="nav-text">Timing Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Applying-Physics-to-the-Ball"><span class="nav-number">1.9.</span> <span class="nav-text">Exercise: Applying Physics to the Ball</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-Transitions-Summary"><span class="nav-number">1.10.</span> <span class="nav-text">CSS Transitions Summary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-Animations"><span class="nav-number">2.</span> <span class="nav-text">CSS Animations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sprite-Animation-with-CSS"><span class="nav-number">2.1.</span> <span class="nav-text">Sprite Animation with CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Making-a-Walking-Cycle"><span class="nav-number">2.2.</span> <span class="nav-text">Exercise: Making a Walking-Cycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-Animation-Properties"><span class="nav-number">2.3.</span> <span class="nav-text">Advanced Animation Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Wag-the-Cat"><span class="nav-number">2.4.</span> <span class="nav-text">Exercise: Wag the Cat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-Animations-Summary"><span class="nav-number">2.5.</span> <span class="nav-text">CSS Animations Summary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Animation-in-Design"><span class="nav-number">3.</span> <span class="nav-text">Animation in Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Stateful-Transitions-amp-Supplemental-Animations"><span class="nav-number">3.1.</span> <span class="nav-text">Stateful Transitions &amp; Supplemental Animations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Causal-Effects-and-Decorative-Animations"><span class="nav-number">3.2.</span> <span class="nav-text">Causal Effects and Decorative Animations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jump-Cuts-and-in-Betweening"><span class="nav-number">3.3.</span> <span class="nav-text">Jump Cuts and in-Betweening</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Drawing-Attention"><span class="nav-number">3.4.</span> <span class="nav-text">Drawing Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Animation-Design-Summary"><span class="nav-number">3.5.</span> <span class="nav-text">Animation Design Summary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stateful-Animations"><span class="nav-number">4.</span> <span class="nav-text">Stateful Animations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Static-vs-Dynamic-Animations"><span class="nav-number">4.1.</span> <span class="nav-text">Static vs. Dynamic Animations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Sensing-Visual-Play-Readiness"><span class="nav-number">4.2.</span> <span class="nav-text">Exercise: Sensing Visual Play Readiness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parallex-Libraries"><span class="nav-number">4.3.</span> <span class="nav-text">Parallex Libraries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Falling-up-the-Hole"><span class="nav-number">4.4.</span> <span class="nav-text">Exercise: Falling up the Hole</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managing-State"><span class="nav-number">4.5.</span> <span class="nav-text">Managing State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sequencing"><span class="nav-number">4.6.</span> <span class="nav-text">Sequencing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-7-Sitting-Tuna-Down"><span class="nav-number">4.7.</span> <span class="nav-text">Exercise 7: Sitting Tuna Down</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chaining-Animations-with-Event-Listeners"><span class="nav-number">4.8.</span> <span class="nav-text">Chaining Animations with Event Listeners</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Sitting-Tuna-Down-with-Event-Listeners"><span class="nav-number">4.9.</span> <span class="nav-text">Exercise: Sitting Tuna Down with Event Listeners</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stateful-Animations-Summary"><span class="nav-number">4.10.</span> <span class="nav-text">Stateful Animations Summary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Performance"><span class="nav-number">5.</span> <span class="nav-text">Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-Triggers"><span class="nav-number">5.1.</span> <span class="nav-text">CSS Triggers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-Walk-the-Cat%E2%80%A6-Again"><span class="nav-number">5.2.</span> <span class="nav-text">Exercise: Walk the Cat… Again</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#will-change-Property"><span class="nav-number">5.3.</span> <span class="nav-text">will-change Property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Frames-Per-Second"><span class="nav-number">5.4.</span> <span class="nav-text">Frames Per Second</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paint-Flasing-and-the-Timeline"><span class="nav-number">5.5.</span> <span class="nav-text">Paint Flasing and the Timeline</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/20/Motion-Design-with-CSS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Motion Design with CSS | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Motion Design with CSS
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-09-20 13:28:30" itemprop="dateCreated datePublished" datetime="2019-09-20T13:28:30+08:00">2019-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="CSS-Transitions"><a href="#CSS-Transitions" class="headerlink" title="CSS Transitions"></a>CSS Transitions</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p><a href="webanimationweekly.com">web animation weekly</a></p>
+<ul>
+<li>Overview<ul>
+<li>CSS Transitions &amp; Animations</li>
+<li>How to use animation in product design</li>
+<li>How to create stateful animations with JavaScript</li>
+<li>How to use developer tools to manipulate animations</li>
+<li>How to design performent animations<!-- markdownlint-disable md024 -->
+<span id="more"></span></li>
+</ul>
+</li>
+</ul>
+<h3 id="CSS-Transitions-1"><a href="#CSS-Transitions-1" class="headerlink" title="CSS Transitions"></a>CSS Transitions</h3><ul>
+<li><p>A transition describes how a property should display change when given a different value</p>
+<ul>
+<li><code>transition: color 2s;</code></li>
+<li>以上两个为必要参数，还有其他若干可选参数</li>
+<li><a target="_blank" rel="noopener" href="http://cdpn.io/oXgqWy">demo</a></li>
+<li>也可以分开写<ul>
+<li><code>transition-property: color;</code></li>
+<li><code>transition-duration: 2s;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Anatomy of a transition</p>
+<ul>
+<li><code>transition-property</code> the property you want to transition.(<em>Only some property</em> are transitionable, see <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-transitions-1/#animatable-properties-">goo.gl&#x2F;Ttk1S2</a>)</li>
+<li><code>transition-duration</code> in seconds or milliseconds: 4s or 4000ms(更推荐毫秒值)</li>
+<li><code>transition-timing-function</code> “cushioning” for the transition, <strong>optional</strong>: defaults to ease</li>
+<li><code>transition-delay</code> the number of milli&#x2F;seconds to delay the transition before firing it, <strong>optional</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Rolling-a-Ball"><a href="#Exercise-Rolling-a-Ball" class="headerlink" title="Exercise: Rolling a Ball"></a>Exercise: Rolling a Ball</h3><p><a target="_blank" rel="noopener" href="https://codepen.io/blingblingredstar/pen/WNeKgKO">exercise link</a></p>
+<h3 id="Transitioning-Multiple-Properties"><a href="#Transitioning-Multiple-Properties" class="headerlink" title="Transitioning Multiple Properties"></a>Transitioning Multiple Properties</h3><ul>
+<li>不推荐使用<code>transition-property: all</code></li>
+<li>使用<code>transition-property: color, transform;</code></li>
+<li>并且可以使用逗号来分别给<code>transition-duration</code>和<code>transition-delay</code>来给每个动画元素指定持续时间和延迟时间</li>
+<li>推荐使用<code>transition: color 2s, transform 300ms 1s;</code>来合并书写</li>
+</ul>
+<h3 id="Demonstration-Changing-the-Ball’s-Color"><a href="#Demonstration-Changing-the-Ball’s-Color" class="headerlink" title="Demonstration: Changing the Ball’s Color"></a>Demonstration: Changing the Ball’s Color</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.ball</span> &#123;</span><br><span class="line">  <span class="attribute">transition</span>:</span><br><span class="line">    transform <span class="number">1s</span> .<span class="number">25s</span> ease-in-out,</span><br><span class="line">    background-color <span class="number">1s</span> .<span class="number">25s</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Duration"><a href="#Duration" class="headerlink" title="Duration"></a>Duration</h3><ul>
+<li>Three timeframes for user attention<ol>
+<li>100ms, instantaneous</li>
+<li>1 second, still connected</li>
+<li>10 seconds. disconnected</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>“However long your pre-production animation, halve its duration… then halve it again.” - Studio animation rule of thumb</p>
+</blockquote>
+<ul>
+<li><p>250 ~ 300ms: sweet spot for many animations</p>
+</li>
+<li><p>faster !&#x3D;&#x3D; better</p>
+</li>
+</ul>
+<h3 id="Browser-Developer-Tools"><a href="#Browser-Developer-Tools" class="headerlink" title="Browser Developer Tools"></a>Browser Developer Tools</h3><ul>
+<li>You can slow down transitions with Dev Tools to get a good look at them<ul>
+<li>chrome在开发者工具中elements按下<code>esc</code>来调出console面板，在tab栏中添加animation面板即可</li>
+</ul>
+</li>
+</ul>
+<h3 id="Timing-Functions"><a href="#Timing-Functions" class="headerlink" title="Timing Functions"></a>Timing Functions</h3><ul>
+<li><p>Easing</p>
+<ul>
+<li>Easing, also known as “cushioning” in studio animation, describes an animation’s rate of change over time</li>
+</ul>
+</li>
+<li><p>Timing Function Values</p>
+<ul>
+<li>linear</li>
+<li>ease-in</li>
+<li>ease-out</li>
+<li>ease-in-out</li>
+<li>steps(more on this later)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Repalce “ease” with “slow” to better remember the different timing effects.</p>
+</blockquote>
+<ul>
+<li>What you really want: cubic-bezier<ul>
+<li>Make your own at <a target="_blank" rel="noopener" href="https://cubic-bezier.com/">cubic-bezier.com</a> or edit with the Chorme&#x2F;Firefox Dev Tools!</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Applying-Physics-to-the-Ball"><a href="#Exercise-Applying-Physics-to-the-Ball" class="headerlink" title="Exercise: Applying Physics to the Ball"></a>Exercise: Applying Physics to the Ball</h3><h3 id="CSS-Transitions-Summary"><a href="#CSS-Transitions-Summary" class="headerlink" title="CSS Transitions Summary"></a>CSS Transitions Summary</h3><ul>
+<li>CSS Transitions rock beaucase…<ul>
+<li><strong>Single fire</strong> If you only want something to happen once</li>
+<li><strong>Granularity</strong> If you would only animate one or two properties in a given state</li>
+<li><strong>Bulletproof</strong> If transitions aren’t supported, the change happens anyway</li>
+</ul>
+</li>
+</ul>
+<h2 id="CSS-Animations"><a href="#CSS-Animations" class="headerlink" title="CSS Animations"></a>CSS Animations</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.animated-thing</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: black-to-white <span class="number">1s</span> linear <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> black-to-white &#123;</span><br><span class="line">  <span class="number">0%</span> &#123; <span class="attribute">background</span>: <span class="number">#000</span>; &#125;</span><br><span class="line">  <span class="number">100%</span> &#123; <span class="attribute">background</span>: <span class="number">#fff</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.animated-thing</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>:</span><br><span class="line">    $name</span><br><span class="line">    $duration</span><br><span class="line">    $<span class="built_in">timing-function</span>(optional)</span><br><span class="line">    $<span class="built_in">animation-delay</span>(optional)</span><br><span class="line">    $<span class="built_in">iteration-count</span>(optional);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Long form animation properties</p>
+<ul>
+<li>animation-name: The name of the keyframe block you want to ues</li>
+<li>animation-duration: How long the animation takes to go from 0% to 100%</li>
+<li>animation-iteration-count: The number of times you want to go from 0% to 100%; use <strong>infinite</strong> to never stop. Defaults to 1</li>
+<li>animation-timing-function: Like transition-timing-function</li>
+<li>animation-delay: Like transition-delay</li>
+</ul>
+</li>
+<li><p>The @keyframes block</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> black-to-white &#123;</span><br><span class="line">  <span class="number">0%</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#000</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> black-to-white &#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#000</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">to</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> black-to-white &#123;</span><br><span class="line">  <span class="number">0%</span>, <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#000</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">50%</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.animated-thing</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>:</span><br><span class="line">    black-to-white <span class="number">1s</span> linear <span class="number">1</span>,</span><br><span class="line">    black-to-white <span class="number">2s</span> ease-out infinite <span class="number">2s</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sprite-Animation-with-CSS"><a href="#Sprite-Animation-with-CSS" class="headerlink" title="Sprite Animation with CSS"></a>Sprite Animation with CSS</h3><ul>
+<li>Meet steps()<ul>
+<li>steps(x) is a timing function…</li>
+<li>…splits a block of keyframes into x equal steps, then hops between them</li>
+<li>How it works, plus gotchas: <a target="_blank" rel="noopener" href="https://codepen.io/rachelnabors/full/zeFqy">cdpn.io&#x2F;zeFqy</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Making-a-Walking-Cycle"><a href="#Exercise-Making-a-Walking-Cycle" class="headerlink" title="Exercise: Making a Walking-Cycle"></a>Exercise: Making a Walking-Cycle</h3><p><a target="_blank" rel="noopener" href="https://codepen.io/blingblingredstar/pen/dybgGYK">exercise link</a></p>
+<h3 id="Advanced-Animation-Properties"><a href="#Advanced-Animation-Properties" class="headerlink" title="Advanced Animation Properties"></a>Advanced Animation Properties</h3><ul>
+<li>Long form advanced animation properties<ul>
+<li>animation-fill-mode: can be <strong>backwards</strong>(the element displays 0% values before the animation starts). Can be set to <strong>forwards</strong>(retains 100% values after animation finishes), <strong>both</strong>, or <strong>none</strong>(default)</li>
+<li>animation-play-state: defaults to <strong>running</strong> but can be set to <strong>paused</strong></li>
+<li>animation-direction: defaults to normal but can be set to <strong>alternate</strong>, <strong>reverse</strong>, <strong>alternate-reverse</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Wag-the-Cat"><a href="#Exercise-Wag-the-Cat" class="headerlink" title="Exercise: Wag the Cat"></a>Exercise: Wag the Cat</h3><p><a target="_blank" rel="noopener" href="https://codepen.io/blingblingredstar/pen/RwberMm?editors=0100">exercise link</a></p>
+<h3 id="CSS-Animations-Summary"><a href="#CSS-Animations-Summary" class="headerlink" title="CSS Animations Summary"></a>CSS Animations Summary</h3><ul>
+<li>CSS Animations rock beaucase…<ul>
+<li><strong>Looping</strong> Can loop infinitely</li>
+<li><strong>Self starting</strong> Doesn’t require trigger like transition</li>
+<li><strong>Repeating</strong> You can set how many time it repeats</li>
+<li><strong>Alternating</strong> Can alternate between the end state and start state</li>
+<li><strong>Grouping</strong> Each animation can change a number of properties</li>
+</ul>
+</li>
+</ul>
+<h2 id="Animation-in-Design"><a href="#Animation-in-Design" class="headerlink" title="Animation in Design"></a>Animation in Design</h2><h3 id="Stateful-Transitions-amp-Supplemental-Animations"><a href="#Stateful-Transitions-amp-Supplemental-Animations" class="headerlink" title="Stateful Transitions &amp; Supplemental Animations"></a>Stateful Transitions &amp; Supplemental Animations</h3><ul>
+<li><p>Stateful Transitions are useful for indicating…</p>
+<ul>
+<li>Change in task flow location</li>
+<li>Where you’ve been</li>
+</ul>
+</li>
+<li><p>Supplemental Animations are useful for indicating…</p>
+<ul>
+<li>Change in information</li>
+<li>What is possible for users</li>
+<li>Important details that shouldn’t be overlooked</li>
+</ul>
+</li>
+</ul>
+<h3 id="Causal-Effects-and-Decorative-Animations"><a href="#Causal-Effects-and-Decorative-Animations" class="headerlink" title="Causal Effects and Decorative Animations"></a>Causal Effects and Decorative Animations</h3><h3 id="Jump-Cuts-and-in-Betweening"><a href="#Jump-Cuts-and-in-Betweening" class="headerlink" title="Jump Cuts and in-Betweening"></a>Jump Cuts and in-Betweening</h3><ul>
+<li><p>Jump Cut</p>
+<ul>
+<li>From film, when the camera cuts directly to a different perspective</li>
+</ul>
+</li>
+<li><p>In-Betweening</p>
+<ul>
+<li>From animation, drawing all the poses “in between” two important poses</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>“…Aniamtin allows the user to continue thinking about the task domain, with no need to shift contexts to the interface domain. By eliminating sudden visual changes, animation lessens the chance that the user is suiprised.” - Scott E.Hudson and John T.Stasko(1993)</p>
+</blockquote>
+<ul>
+<li>Jank destroys the precious illusion of life</li>
+</ul>
+<h3 id="Drawing-Attention"><a href="#Drawing-Attention" class="headerlink" title="Drawing Attention"></a>Drawing Attention</h3><blockquote>
+<p>“These speeded responses appeared to be due to the perceived animacy of the objects… We conclude that animate motion does indeed capture visual attention.” - It’s Alive! Animation Motion Captures Attention(2010)</p>
+</blockquote>
+<ul>
+<li><p>Animacy</p>
+<ul>
+<li>How “alive” something appears to be</li>
+</ul>
+</li>
+<li><p>If you want someone to notice something, make it bright and jiggly</p>
+</li>
+<li><p>When everything vies for our attention, we don’t know what to focus on</p>
+</li>
+</ul>
+<h3 id="Animation-Design-Summary"><a href="#Animation-Design-Summary" class="headerlink" title="Animation Design Summary"></a>Animation Design Summary</h3><h2 id="Stateful-Animations"><a href="#Stateful-Animations" class="headerlink" title="Stateful Animations"></a>Stateful Animations</h2><h3 id="Static-vs-Dynamic-Animations"><a href="#Static-vs-Dynamic-Animations" class="headerlink" title="Static vs. Dynamic Animations"></a>Static vs. Dynamic Animations</h3><ul>
+<li><p>Static Animations</p>
+<ul>
+<li>Start &#x3D;&gt; Finish</li>
+</ul>
+</li>
+<li><p>Stateful Animations</p>
+<ul>
+<li>Default State &#x3D;&gt; Event &#x3D;&gt; Predefined State</li>
+</ul>
+</li>
+<li><p>Dynamic Animations</p>
+<ul>
+<li>Current State &#x3D;&gt; Event + Factors &#x3D;&gt; New State</li>
+</ul>
+</li>
+<li><p>Ways of triggering states</p>
+<ul>
+<li>Browser events<ul>
+<li>Loading</li>
+<li>Scrolling</li>
+</ul>
+</li>
+<li>Human events<ul>
+<li>Hovering</li>
+<li>Clicking</li>
+</ul>
+</li>
+<li>Timed events<ul>
+<li>Timeouts</li>
+<li>Choreography</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Sensing-Visual-Play-Readiness"><a href="#Exercise-Sensing-Visual-Play-Readiness" class="headerlink" title="Exercise: Sensing Visual Play Readiness"></a>Exercise: Sensing Visual Play Readiness</h3><p><a target="_blank" rel="noopener" href="https://codepen.io/blingblingredstar/pen/eYOPaWK">exercise link</a></p>
+<h3 id="Parallex-Libraries"><a href="#Parallex-Libraries" class="headerlink" title="Parallex Libraries"></a>Parallex Libraries</h3><ul>
+<li><strong>Skrollr</strong> creates dynamic animations by interpolating property values based on scroll position</li>
+<li><strong>Waypoints</strong> triggers events based on where the person has scrolled to</li>
+</ul>
+<h3 id="Exercise-Falling-up-the-Hole"><a href="#Exercise-Falling-up-the-Hole" class="headerlink" title="Exercise: Falling up the Hole"></a>Exercise: Falling up the Hole</h3><p><a target="_blank" rel="noopener" href="https://codepen.io/blingblingredstar/pen/GRKYbJE">exercise link</a></p>
+<h3 id="Managing-State"><a href="#Managing-State" class="headerlink" title="Managing State"></a>Managing State</h3><ul>
+<li><p>What’s good for the Declarative CSS Goose is not so great for the Functional JS Gander</p>
+</li>
+<li><p>Libraries for managing state</p>
+<ul>
+<li>JavaScript Finite State Machine<ul>
+<li>linear state transitions easily</li>
+<li>many-to-many states gets complicated</li>
+</ul>
+</li>
+<li>jStorage<ul>
+<li>stashes values in localStorage</li>
+<li>great for storing state</li>
+<li>library agnostic</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Sequencing"><a href="#Sequencing" class="headerlink" title="Sequencing"></a>Sequencing</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.sequenced-thing</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>:</span><br><span class="line">    sequence1 <span class="number">1s</span> <span class="number">2</span>,</span><br><span class="line">    sequence2 <span class="number">3s</span> <span class="number">2s</span> infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-7-Sitting-Tuna-Down"><a href="#Exercise-7-Sitting-Tuna-Down" class="headerlink" title="Exercise 7: Sitting Tuna Down"></a>Exercise 7: Sitting Tuna Down</h3><p><a target="_blank" rel="noopener" href="https://codepen.io/blingblingredstar/pen/bGbQNMN">exercise link</a></p>
+<h3 id="Chaining-Animations-with-Event-Listeners"><a href="#Chaining-Animations-with-Event-Listeners" class="headerlink" title="Chaining Animations with Event Listeners"></a>Chaining Animations with Event Listeners</h3><ul>
+<li><p>But stacking isn’t the only way, nor the most reliable</p>
+</li>
+<li><p>CSS animations and transitions run on the system’s clock</p>
+</li>
+<li><p>Downsides…</p>
+<ul>
+<li><strong>No looping</strong> segments</li>
+<li><strong>Only one</strong> timing function at a time for all animating properties</li>
+<li><strong>Mathy</strong> you have to do a bit of math to get the timing right</li>
+</ul>
+</li>
+<li><p>We’re gonna need a more robust technique</p>
+<ul>
+<li>Chaining Animations with Event Listeners</li>
+</ul>
+</li>
+<li><p>Four must-have JavaScript event listeners</p>
+<ol>
+<li>animationstart</li>
+<li>animationend</li>
+<li>animationiteration</li>
+<li>transitionend</li>
+</ol>
+</li>
+</ul>
+<h3 id="Exercise-Sitting-Tuna-Down-with-Event-Listeners"><a href="#Exercise-Sitting-Tuna-Down-with-Event-Listeners" class="headerlink" title="Exercise: Sitting Tuna Down with Event Listeners"></a>Exercise: Sitting Tuna Down with Event Listeners</h3><p><a target="_blank" rel="noopener" href="https://codepen.io/blingblingredstar/pen/xxKQbvJ">exercise link</a></p>
+<h3 id="Stateful-Animations-Summary"><a href="#Stateful-Animations-Summary" class="headerlink" title="Stateful Animations Summary"></a>Stateful Animations Summary</h3><h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><h3 id="CSS-Triggers"><a href="#CSS-Triggers" class="headerlink" title="CSS Triggers"></a>CSS Triggers</h3><p><a target="_blank" rel="noopener" href="https://csstriggers.com/">CSS Triggers</a></p>
+<ul>
+<li><p>The two CSS properties considered most performant:</p>
+<ul>
+<li>opacity</li>
+<li>transform</li>
+</ul>
+</li>
+<li><p>Handy alternatives</p>
+<ul>
+<li><strong>transform</strong>: <strong>scale()</strong> instead of <strong>width</strong> or <strong>height</strong></li>
+<li><strong>transform</strong>: <strong>translate()</strong> instead of <strong>position</strong></li>
+<li><strong>opacity</strong>: instead of <strong>z-index</strong> or <strong>visiblility: hidden</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-Walk-the-Cat…-Again"><a href="#Exercise-Walk-the-Cat…-Again" class="headerlink" title="Exercise: Walk the Cat… Again"></a>Exercise: Walk the Cat… Again</h3><ul>
+<li>Find a way to walk the cat without using expensive background positioning</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/blingblingredstar/pen/ZEzmvEG">exercise link</a></p>
+<h3 id="will-change-Property"><a href="#will-change-Property" class="headerlink" title="will-change Property"></a>will-change Property</h3><ul>
+<li>Hardware acceleration<ul>
+<li>AKA “kicking it to the GPU”</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.resource-sink</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateZ</span>(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Please don’t do this</p>
+</li>
+<li><p>Hacks are not future-friendly</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.in-view</span> <span class="selector-class">.animated-thing</span> &#123;</span><br><span class="line">  <span class="attribute">will-change</span>: transform;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.in-view</span> <span class="selector-class">.animated-thing</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateY</span>(<span class="number">5%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Don’t slap <code>will-change</code> on everything<ul>
+<li>When we <code>will-change</code> everything, we optimize nothing</li>
+</ul>
+</li>
+</ul>
+<h3 id="Frames-Per-Second"><a href="#Frames-Per-Second" class="headerlink" title="Frames Per Second"></a>Frames Per Second</h3><ul>
+<li><p>Frames Per Second(FPS)</p>
+<ul>
+<li>Frame Rate on the computer is not the same as it is in the movie theatre</li>
+<li>Optimal frame rates to maintain the “illusion of life”:<ul>
+<li>Movies: 24FPS</li>
+<li>Computer screens: 60FPS</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Consistency is more important than FPS</p>
+</li>
+<li><p>Chrome’s FPS Meter</p>
+<ul>
+<li>Open your Dev Tools</li>
+<li>Press the Escape Key to bring up the console window</li>
+<li>Choose the Rendering tab</li>
+<li>Check the Show FPS Meter option</li>
+</ul>
+</li>
+</ul>
+<h3 id="Paint-Flasing-and-the-Timeline"><a href="#Paint-Flasing-and-the-Timeline" class="headerlink" title="Paint Flasing and the Timeline"></a>Paint Flasing and the Timeline</h3><ul>
+<li>Paint Flasing<ul>
+<li>To enable Chrome’s paint rectangles:</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Open your Dev Tools</li>
+<li>Press the Escape Key to bring up a console window</li>
+<li>Choose the Rendering tab</li>
+<li>Check Enable Paint Flasing</li>
+</ol>
+<ul>
+<li>The Timeline Tool<ul>
+<li>To use Chome’s timeline tool:</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Open your Dev Tools</li>
+<li>Go to the Timeline tab</li>
+<li>Press the “record circle”</li>
+<li>Do stuff</li>
+<li>Press the “record circle” again to stop</li>
+<li>Inspect</li>
+</ol>
+<ul>
+<li>Best perf tip ever: Don’t animate it if it ins’t visible</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/Transitions/" rel="tag"># Transitions</a>
+              <a href="/tags/Animations/" rel="tag"># Animations</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/09/18/JS%E5%85%A8%E8%A7%A3-JS%E5%AF%B9%E8%B1%A1/" rel="prev" title="[JS全解]JS对象">
+                  <i class="fa fa-chevron-left"></i> [JS全解]JS对象
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/09/25/JS%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E7%9A%84%E6%97%B6%E6%9C%BA/" rel="next" title="JS函数执行的时机">
+                  JS函数执行的时机 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

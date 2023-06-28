@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="文件的查看操作   英文 缩写命令 英文 缩写命令    file  link ln   make mk find find   move mv echo echo   remove rm touch touch   copy cp change cd - c   list ls directory cd - d   recursive  force    增删改查 程序员的宿命 首先学习文件增删">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Git入门]命令行入门">
+<meta property="og:url" content="http://yoursite.com/2019/08/25/Git%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="文件的查看操作   英文 缩写命令 英文 缩写命令    file  link ln   make mk find find   move mv echo echo   remove rm touch touch   copy cp change cd - c   list ls directory cd - d   recursive  force    增删改查 程序员的宿命 首先学习文件增删">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-25T02:25:30.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.322Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="饥人谷">
+<meta property="article:tag" content="命令行">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/08/25/Git%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%85%A5%E9%97%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/08/25/Git%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%85%A5%E9%97%A8/","path":"2019/08/25/Git入门-命令行入门/","title":"[Git入门]命令行入门"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Git入门]命令行入门 | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%9F%A5%E7%9C%8B%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">文件的查看操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="nav-number">1.1.</span> <span class="nav-text">增删改查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%EF%BC%9A%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">查：查看文件或目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%A2%9E%E5%8A%A0%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">文件的增加操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%EF%BC%9A%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">增：创建文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">文件的其他操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%EF%BC%9A%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">删：删除文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E6%88%96mul"><span class="nav-number">3.2.</span> <span class="nav-text">改：修改文件或mul</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%8B%E5%86%8C"><span class="nav-number">3.3.</span> <span class="nav-text">查看手册</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">脚本文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E7%BB%84%E5%90%88"><span class="nav-number">4.1.</span> <span class="nav-text">命令组合</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/25/Git%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Git入门]命令行入门 | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Git入门]命令行入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-25 10:25:30" itemprop="dateCreated datePublished" datetime="2019-08-25T10:25:30+08:00">2019-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="文件的查看操作"><a href="#文件的查看操作" class="headerlink" title="文件的查看操作"></a>文件的查看操作</h2><table>
+<thead>
+<tr>
+<th>英文</th>
+<th>缩写命令</th>
+<th>英文</th>
+<th>缩写命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>file</td>
+<td></td>
+<td>link</td>
+<td>ln</td>
+</tr>
+<tr>
+<td>make</td>
+<td>mk</td>
+<td>find</td>
+<td>find</td>
+</tr>
+<tr>
+<td>move</td>
+<td>mv</td>
+<td>echo</td>
+<td>echo</td>
+</tr>
+<tr>
+<td>remove</td>
+<td>rm</td>
+<td>touch</td>
+<td>touch</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>cp</td>
+<td>change</td>
+<td>cd - c</td>
+</tr>
+<tr>
+<td>list</td>
+<td>ls</td>
+<td>directory</td>
+<td>cd - d</td>
+</tr>
+<tr>
+<td>recursive</td>
+<td></td>
+<td>force</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h3><ul>
+<li>程序员的宿命<ul>
+<li>首先学习文件增删改查</li>
+<li>学习DOM增删改查</li>
+<li>学习HTTP增删改查<span id="more"></span></li>
+</ul>
+</li>
+</ul>
+<h3 id="查：查看文件或目录"><a href="#查：查看文件或目录" class="headerlink" title="查：查看文件或目录"></a>查：查看文件或目录</h3><ul>
+<li>查看文件绝对路径<ul>
+<li><code>pwd</code></li>
+</ul>
+</li>
+<li>查看当前目录内容<ul>
+<li><code>ls</code></li>
+</ul>
+</li>
+<li>查看指定目录内容<ul>
+<li><code>ls $PATH</code></li>
+</ul>
+</li>
+<li>查看文件内容<ul>
+<li><code>cat $FILE_PATH</code> 文件内容全部输出到bash</li>
+<li><code>head $FILE_PATH</code> 文件内容部分输出到bash（默认前十行）可以加 <code>-n NUMBER</code>指定行数，<code>tail</code>也一样</li>
+<li><code>tail $FILE_PATH</code> 文件内容部分输出到bash（默认后十行）</li>
+<li><code>less $FILE_PATH</code> 进入类似vim的编辑模式，从头查看文件内容</li>
+</ul>
+</li>
+</ul>
+<h2 id="文件的增加操作"><a href="#文件的增加操作" class="headerlink" title="文件的增加操作"></a>文件的增加操作</h2><h3 id="增：创建文件"><a href="#增：创建文件" class="headerlink" title="增：创建文件"></a>增：创建文件</h3><ul>
+<li>创建1.txt<ul>
+<li><code>touch 1.txt</code></li>
+<li><code>echo hi &gt; 1.txt</code> 用<code>hi</code>覆盖文件内容</li>
+<li><code>echo hi again &gt;&gt; 1.txt</code> 在文件后追加<code>hi again</code></li>
+<li><code>echo -e &quot;1\n2&quot; &gt; 1.txt</code> 用<code>1</code>换行<code>2</code>替换文件内容</li>
+</ul>
+</li>
+<li>创建目录<ul>
+<li><code>mkdir $DIR_NAME</code></li>
+<li><code>mkdir -p $DIR_NAME</code> 可以创建套嵌目录文件夹</li>
+</ul>
+</li>
+<li>同时创建多个文件<ul>
+<li><code>touch 1.txt 2.txt</code></li>
+</ul>
+</li>
+<li>同时创建多个目录<ul>
+<li><code>mkdir -p ./a/b/c ./a/d/c</code></li>
+</ul>
+</li>
+<li>复制文件<ul>
+<li><code>cp 1.txt 2.txt</code></li>
+</ul>
+</li>
+<li>复制目录<ul>
+<li><code>cp -r ./a ./b</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="文件的其他操作"><a href="#文件的其他操作" class="headerlink" title="文件的其他操作"></a>文件的其他操作</h2><h3 id="删：删除文件"><a href="#删：删除文件" class="headerlink" title="删：删除文件"></a>删：删除文件</h3><ul>
+<li>删除1.txt<ul>
+<li><code>rm 1.txt</code></li>
+</ul>
+</li>
+<li>删除目录.&#x2F;a<ul>
+<li><code>rm -r ./a</code></li>
+</ul>
+</li>
+<li>删除有内容的目录.&#x2F;a<ul>
+<li>同上，或加<code>-f</code>强制删除</li>
+</ul>
+</li>
+</ul>
+<h3 id="改：修改文件或mul"><a href="#改：修改文件或mul" class="headerlink" title="改：修改文件或mul"></a>改：修改文件或mul</h3><ul>
+<li>修改文件内容<ul>
+<li><code>code $FILE_PATH</code> code可替换为vim，open</li>
+</ul>
+</li>
+<li>追加文件内容<ul>
+<li><code>echo &#39;111&#39; &gt;&gt; 1.txt</code></li>
+</ul>
+</li>
+<li>清空文件<ul>
+<li><code>echo &#39;&#39; &gt; 1.txt</code> 使用空字符串替换文件内容</li>
+</ul>
+</li>
+<li>移动文件&#x2F;目录<ul>
+<li><code>mv 1.txt ./a</code> 使用mv命令可以移动文件</li>
+</ul>
+</li>
+<li>重命名文件&#x2F;目录<ul>
+<li><code>mv 1.txt 2.txt</code> 使用mv命令可以移动文件，后接文件名可以重命名文件或者替换文件</li>
+</ul>
+</li>
+<li>修改文件最后更新时间<ul>
+<li>使用<code>ls -l</code>查看更新时间，使用<code>touch $FILE_NAME</code>来更新文件更新时间</li>
+</ul>
+</li>
+</ul>
+<h3 id="查看手册"><a href="#查看手册" class="headerlink" title="查看手册"></a>查看手册</h3><ul>
+<li>使用<code>man $OPREATION</code>来查看操作命令的手册（man: menu）</li>
+<li>使用<code>$OPREATION --help</code>来查看帮助</li>
+<li><code>yarn global add tldr</code> 全局安装tldr(too long didn’t read) 使用<code>tldr $OPREATION</code> 来获取帮助信息</li>
+</ul>
+<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><h3 id="命令组合"><a href="#命令组合" class="headerlink" title="命令组合"></a>命令组合</h3><ul>
+<li>命令执行状态<ul>
+<li>命令执行完毕后会返回一个返回值，0代表成功，1或者其他数字代表失败，在命令结束后使用<code>echo $?</code>来获取返回值</li>
+</ul>
+</li>
+<li><code>&amp;&amp;</code> 命令<ul>
+<li>一条命令执行完毕后接另一条命令</li>
+</ul>
+</li>
+<li><code>;</code> 操作<ul>
+<li>不论上个命令是否成功，都执行下一个命令</li>
+</ul>
+</li>
+<li>把命令编辑为文件<ul>
+<li>创建一个文件，后缀名任意</li>
+<li>添加执行权限<ul>
+<li><code>chmod +x $FILE_PATH</code></li>
+</ul>
+</li>
+<li>将命令添加到文件中</li>
+<li><code>sh $FILE_PATH</code>执行</li>
+<li>在文件头添加shebang，直接使用文件路径执行</li>
+<li>将文件添加到PATH，直接使用文件名执行<ul>
+<li><a target="_blank" rel="noopener" href="https://xiedaimala.com/tasks/bdeeede8-0b3c-4915-9d9a-4fe039dead37/text_tutorials/9d173da0-b87a-463f-bd43-7837ebedbd3f">mac添加PATH方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A5%A5%E4%BA%BA%E8%B0%B7/" rel="tag"># 饥人谷</a>
+              <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="tag"># 命令行</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/08/15/The-Hard-Parts-of-Servers-Node-js/" rel="prev" title="The Hard Parts of Servers & Node.js">
+                  <i class="fa fa-chevron-left"></i> The Hard Parts of Servers & Node.js
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/08/25/Git%E5%85%A5%E9%97%A8-%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/" rel="next" title="[Git入门]本地仓库">
+                  [Git入门]本地仓库 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

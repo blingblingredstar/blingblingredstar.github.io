@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="为什么要使用GitHub Pages预览HTML当我们做出一个HTML页面后，如果不止想要在本地进行展示，而是展示在网络上，而又不想自己购买设置服务器，那么我们可以使用GitHub的Pages功能，将页面部署在GitHub Pages上进行展示。 GitHub Pages可以让你的GitHub远程仓库展示在互联网上，并且不需要任何服务器和数据库设置。 这样，就可已将我们的HTML页面通过互联网进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用GitHub Pages预览HTML">
+<meta property="og:url" content="http://yoursite.com/2019/08/26/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages%E9%A2%84%E8%A7%88HTML/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="为什么要使用GitHub Pages预览HTML当我们做出一个HTML页面后，如果不止想要在本地进行展示，而是展示在网络上，而又不想自己购买设置服务器，那么我们可以使用GitHub的Pages功能，将页面部署在GitHub Pages上进行展示。 GitHub Pages可以让你的GitHub远程仓库展示在互联网上，并且不需要任何服务器和数据库设置。 这样，就可已将我们的HTML页面通过互联网进行">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-26T02:01:43.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.332Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="GitHub Pages">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/08/26/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages%E9%A2%84%E8%A7%88HTML/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/08/26/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages%E9%A2%84%E8%A7%88HTML/","path":"2019/08/26/如何使用GitHub-Pages预览HTML/","title":"如何使用GitHub Pages预览HTML"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>如何使用GitHub Pages预览HTML | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8GitHub-Pages%E9%A2%84%E8%A7%88HTML"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用GitHub Pages预览HTML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%83%A8%E7%BD%B2"><span class="nav-number">2.</span> <span class="nav-text">如何进行部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E7%A9%BA%E4%BB%93%E5%BA%93%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">新建空仓库方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E6%9C%89%E7%9A%84%E4%BB%93%E5%BA%93"><span class="nav-number">2.2.</span> <span class="nav-text">已有的仓库</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/26/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages%E9%A2%84%E8%A7%88HTML/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="如何使用GitHub Pages预览HTML | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何使用GitHub Pages预览HTML
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-26 10:01:43" itemprop="dateCreated datePublished" datetime="2019-08-26T10:01:43+08:00">2019-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%BF%83%E5%BE%97/" itemprop="url" rel="index"><span itemprop="name">经验心得</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="为什么要使用GitHub-Pages预览HTML"><a href="#为什么要使用GitHub-Pages预览HTML" class="headerlink" title="为什么要使用GitHub Pages预览HTML"></a>为什么要使用GitHub Pages预览HTML</h2><p>当我们做出一个HTML页面后，如果不止想要在本地进行展示，而是展示在网络上，而又不想自己购买设置服务器，那么我们可以使用GitHub的Pages功能，将页面部署在GitHub Pages上进行展示。</p>
+<p>GitHub Pages可以让你的GitHub远程仓库展示在互联网上，并且不需要任何服务器和数据库设置。</p>
+<p>这样，就可已将我们的HTML页面通过互联网进行展示了。</p>
+<span id="more"></span>
+<h2 id="如何进行部署"><a href="#如何进行部署" class="headerlink" title="如何进行部署"></a>如何进行部署</h2><h3 id="新建空仓库方式"><a href="#新建空仓库方式" class="headerlink" title="新建空仓库方式"></a>新建空仓库方式</h3><p>部署说明主要参考官方说明<a target="_blank" rel="noopener" href="https://pages.github.com/">https://pages.github.com/</a></p>
+<ol>
+<li>创建一个远程仓库<ul>
+<li>首先要在GitHub上创建一个仓库，命名为<code>&lt;GitHub用户名&gt;.github.io</code>。</li>
+<li>注意这里的用户名必须与GitHub的用户名一致，否则不会生效。</li>
+</ul>
+</li>
+<li>使用命令行或者其他方式本地克隆远程仓库<ul>
+<li>如果使用命令行，直接在本地项目目录下输入下方命令即可<ul>
+<li><code>git clone https://github.com/&lt;GitHub用户名&gt;/&lt;GitHub用户名&gt;.github.io</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在本地目录编辑HTML、css等文件，并使用git进行管理<ul>
+<li>关于本地git，可以参考我的<a target="_blank" rel="noopener" href="https://blingblingredstar.github.io/2019/08/25/Git%E5%85%A5%E9%97%A8-%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/">这篇笔记</a></li>
+</ul>
+</li>
+<li>将本地项目推送到远程仓库之后，可以直接访问<code>https://&lt;GitHub用户名&gt;.github.io</code>来预览文件效果。</li>
+</ol>
+<h3 id="已有的仓库"><a href="#已有的仓库" class="headerlink" title="已有的仓库"></a>已有的仓库</h3><p>如果想要展示已有的远程仓库上的HTML，可以通过以下方式</p>
+<ol>
+<li>切换到仓库页面，点击<code>Settings</code>标签，或者浏览器地址栏直接输入<code>https://github.com/&lt;GitHub用户名&gt;/&lt;仓库名&gt;/settings</code></li>
+<li>下拉页面，找到GItHub Pages部分</li>
+<li>在<code>Source</code>选项选择<code>master branch</code>，此时输入<code>https://&lt;GItHub用户名&gt;.github.io/&lt;仓库名&gt;/</code>即可访问主分支下的<code>index.html</code>文件。</li>
+</ol>
+<p>遇到的一些问题：</p>
+<ul>
+<li>首先要注意资源的引入路径，使用GItHub Pages功能，根据上面的设置，在浏览器输入<code>https://&lt;GItHub用户名&gt;.github.io/&lt;仓库名&gt;/</code>会访问主分支下根目录的<code>index.html</code>，如果文件不存在，会显示根目录下的Markdown文件。</li>
+<li>此时要注意HTML中引入的css及js文件路经。</li>
+<li>如果使用了打包工具，且输出目录为<code>./dist</code>，那么直接访问<code>https://&lt;GItHub用户名&gt;.github.io/&lt;仓库名&gt;/dist/index.html</code>即可，此时注意打包工具所输出的依赖文件路径，例如使用parcel进行打包，需要在打包时添加命令参数，例如<code>parcel build index.html --public-url /&lt;远程仓库名&gt;/dist/</code>，否则打包输出的<code>index.html</code>文件的依赖路径会有问题，造成资源访问不到，无法加载。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GitHub/" rel="tag"># GitHub</a>
+              <a href="/tags/GitHub-Pages/" rel="tag"># GitHub Pages</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/08/25/Git%E5%85%A5%E9%97%A8-%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/" rel="prev" title="[Git入门]本地仓库">
+                  <i class="fa fa-chevron-left"></i> [Git入门]本地仓库
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/08/26/HTML%E5%85%A8%E8%A7%A3-HTML%E6%A6%82%E8%A7%88/" rel="next" title="[HTML全解]HTML概览">
+                  [HTML全解]HTML概览 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

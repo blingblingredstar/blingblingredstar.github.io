@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Sass FundamentalsIntroductionGitHub Repo CSS Pitfalls No encapsulation No variables Not composable Bad modularity primitives Globals Beating-into-submission-driven-development">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sass Fundamentals">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/Sass-Fundamentals/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Sass FundamentalsIntroductionGitHub Repo CSS Pitfalls No encapsulation No variables Not composable Bad modularity primitives Globals Beating-into-submission-driven-development">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-04T07:44:35.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.329Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Sass">
+<meta property="article:tag" content="BEM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/10/04/Sass-Fundamentals/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/10/04/Sass-Fundamentals/","path":"2019/10/04/Sass-Fundamentals/","title":"Sass Fundamentals"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Sass Fundamentals | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sass-Fundamentals"><span class="nav-number">1.</span> <span class="nav-text">Sass Fundamentals</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-Pitfalls"><span class="nav-number">1.2.</span> <span class="nav-text">CSS Pitfalls</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Preprocesser-Benefits"><span class="nav-number">1.3.</span> <span class="nav-text">Preprocesser Benefits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Course-Agenda"><span class="nav-number">1.4.</span> <span class="nav-text">Course Agenda</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sass-Basics"><span class="nav-number">2.</span> <span class="nav-text">Sass Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Syntax-Nesting-amp-Selectors"><span class="nav-number">2.1.</span> <span class="nav-text">Syntax, Nesting &amp; Selectors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-Nesting"><span class="nav-number">2.2.</span> <span class="nav-text">Challenge: Nesting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-Parent"><span class="nav-number">2.3.</span> <span class="nav-text">Challenge: Parent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sass-Variables"><span class="nav-number">3.</span> <span class="nav-text">Sass Variables</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sass-import-and-Variables"><span class="nav-number">3.1.</span> <span class="nav-text">Sass @import and Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-Imports-and-Variables"><span class="nav-number">3.2.</span> <span class="nav-text">Challenge: Imports and Variables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sass-Mixins"><span class="nav-number">4.</span> <span class="nav-text">Sass Mixins</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sass-Mixins-amp-Arguments"><span class="nav-number">4.1.</span> <span class="nav-text">Sass Mixins &amp; Arguments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-Mixins"><span class="nav-number">4.2.</span> <span class="nav-text">Challenge: Mixins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Default-Argrment-Values"><span class="nav-number">4.3.</span> <span class="nav-text">Default Argrment Values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-range"><span class="nav-number">4.4.</span> <span class="nav-text">Challenge: range</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sass-Functions"><span class="nav-number">5.</span> <span class="nav-text">Sass Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Sass-Functions"><span class="nav-number">5.1.</span> <span class="nav-text">Introducing Sass Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-Functions"><span class="nav-number">5.2.</span> <span class="nav-text">Challenge: Functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Control-Flow"><span class="nav-number">6.</span> <span class="nav-text">Control Flow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if-Sass-Directive"><span class="nav-number">6.1.</span> <span class="nav-text">@if Sass Directive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-Control-Flow"><span class="nav-number">6.2.</span> <span class="nav-text">Challenge: Control Flow</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Structures"><span class="nav-number">7.</span> <span class="nav-text">Data Structures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-Nudging-Classes"><span class="nav-number">7.1.</span> <span class="nav-text">Challenge: Nudging Classes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-Architecture"><span class="nav-number">8.</span> <span class="nav-text">CSS Architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BEM-Introduction"><span class="nav-number">8.1.</span> <span class="nav-text">BEM Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-BEM-Buttons"><span class="nav-number">8.2.</span> <span class="nav-text">Exercise: BEM Buttons</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reusing-Style-with-Mixins"><span class="nav-number">8.3.</span> <span class="nav-text">Reusing Style with Mixins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-extend"><span class="nav-number">8.4.</span> <span class="nav-text">Challenge: @extend</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Working-with-Sass-Functions"><span class="nav-number">9.</span> <span class="nav-text">Working with Sass Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Writing-Sass-Functions"><span class="nav-number">9.1.</span> <span class="nav-text">Writing Sass Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-Relative-Luminance-in-Sass"><span class="nav-number">9.2.</span> <span class="nav-text">Challenge: Relative Luminance in Sass</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/04/Sass-Fundamentals/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Sass Fundamentals | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Sass Fundamentals
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-04 15:44:35" itemprop="dateCreated datePublished" datetime="2019-10-04T15:44:35+08:00">2019-10-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Sass-Fundamentals"><a href="#Sass-Fundamentals" class="headerlink" title="Sass Fundamentals"></a>Sass Fundamentals</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p><a target="_blank" rel="noopener" href="https://github.com/mike-works/sass-fundamentals">GitHub Repo</a></p>
+<h3 id="CSS-Pitfalls"><a href="#CSS-Pitfalls" class="headerlink" title="CSS Pitfalls"></a>CSS Pitfalls</h3><ul>
+<li>No encapsulation</li>
+<li>No variables</li>
+<li>Not composable</li>
+<li>Bad modularity primitives</li>
+<li>Globals</li>
+<li>Beating-into-submission-driven-development<span id="more"></span></li>
+</ul>
+<h3 id="Preprocesser-Benefits"><a href="#Preprocesser-Benefits" class="headerlink" title="Preprocesser Benefits"></a>Preprocesser Benefits</h3><ul>
+<li><p>Rise of the preprocessors</p>
+<ul>
+<li>Compile to CSS</li>
+<li>Parameterized(variables)</li>
+<li>Composable</li>
+<li>Modular</li>
+<li>Plug in to your existing tools</li>
+</ul>
+</li>
+<li><p>Preprocessors: Why use one?</p>
+<ul>
+<li>Add stuff that should have been there</li>
+<li>Style is faster to build &amp; easier to maintain</li>
+<li>D.R.Y</li>
+<li>It’s easier to keep your styles organized</li>
+<li>Easy to set up</li>
+<li>Toolkits on top of preprocessors</li>
+</ul>
+</li>
+</ul>
+<h3 id="Course-Agenda"><a href="#Course-Agenda" class="headerlink" title="Course Agenda"></a>Course Agenda</h3><ul>
+<li>Sass Origins &amp; Basics</li>
+<li>Variables &amp; Mixins</li>
+<li>Control flow</li>
+<li>CSS Architecture</li>
+<li>Defining your own Sass functions</li>
+</ul>
+<h2 id="Sass-Basics"><a href="#Sass-Basics" class="headerlink" title="Sass Basics"></a>Sass Basics</h2><h3 id="Syntax-Nesting-amp-Selectors"><a href="#Syntax-Nesting-amp-Selectors" class="headerlink" title="Syntax, Nesting &amp; Selectors"></a>Syntax, Nesting &amp; Selectors</h3><ul>
+<li><p>Syntax</p>
+</li>
+<li><p>style.css</p>
+</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.3rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>style.sass</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.foo</span><br><span class="line">  color: green</span><br><span class="line">  font-size: 1.3rem</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Terminology</p>
+<ul>
+<li>selector<ul>
+<li><code>.foo</code></li>
+</ul>
+</li>
+<li>declaration block<ul>
+<li><code>&#123;&#125;</code></li>
+</ul>
+</li>
+<li>declaration<ul>
+<li><code>color: green;</code></li>
+</ul>
+</li>
+<li>property<ul>
+<li><code>color</code></li>
+</ul>
+</li>
+<li>value<ul>
+<li><code>green</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Nesting &amp; Scoping</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;sidebar&quot;</span>&gt;</span>Sidebar<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>Main Content<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.sidebar</span>,</span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">220px</span>;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">border-left</span>: <span class="number">2px</span> solid <span class="number">#333</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Nesting &amp; Scoping</p>
+<ul>
+<li>Styles can be placed in the declaraton block of a parent element</li>
+<li>Everything is expanded as you would expect during the Sass compilation process</li>
+<li>This is already D.R.Y.’ed up quite a bit!</li>
+</ul>
+</li>
+<li><p>style.scss</p>
+</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#eee</span>;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.sidebar</span>,</span><br><span class="line">  <span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">220px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">border-left</span>: <span class="number">2px</span> solid <span class="number">#333</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Descentant</p>
+</li>
+<li><p>html</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left-area&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;other-thing&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left-area&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Sass</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="selector-class">.left-area</span> &#123;</span><br><span class="line">    <span class="comment">/*...*/</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CSS</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.left-area</span> &#123;</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Direct Descentant(&gt;)</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  &gt; <span class="selector-class">.left-area</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &gt; <span class="selector-class">.left-area</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Parent Selector(&amp;)<ul>
+<li>The parent selector is ofen useful in situations where adding a secondary class changes styles</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container right-nav&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  &amp;<span class="selector-class">.right-nav</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span><span class="selector-class">.right-nav</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Challenge-Nesting"><a href="#Challenge-Nesting" class="headerlink" title="Challenge: Nesting"></a>Challenge: Nesting</h3><p><code>git clone git@github.com:mike-works/sass-fundamentals.git</code></p>
+<p><code>cd sass-fundamentals</code></p>
+<p><code>npm i</code></p>
+<p><code>./run -e nesting</code></p>
+<ul>
+<li>All buttons must have 10px padding on left and right, 2px on top and bottom</li>
+<li>All buttons should have a 1px #c46 solid border, with a 2px radius</li>
+<li>Adding the .btn-primary class to a button should turn its text white and background #c46</li>
+<li>Adding the .btn-secondary to a button should turn its background #edbcc8 and text black</li>
+<li>Disabling a button should cause its opacity to be set to 0.5</li>
+</ul>
+<h3 id="Challenge-Parent"><a href="#Challenge-Parent" class="headerlink" title="Challenge: Parent"></a>Challenge: Parent</h3><ul>
+<li>Expand upon our sidebar example, so that adding the .right-nav class to the .container div can be used to toggle between left and right sidenav alignment</li>
+<li>Ensure that your code passes the tests that are in place</li>
+</ul>
+<p><code>./run -e parent</code></p>
+<h2 id="Sass-Variables"><a href="#Sass-Variables" class="headerlink" title="Sass Variables"></a>Sass Variables</h2><h3 id="Sass-import-and-Variables"><a href="#Sass-import-and-Variables" class="headerlink" title="Sass @import and Variables"></a>Sass @import and Variables</h3><ul>
+<li><p>Importing</p>
+<ul>
+<li>Using an <code>@import</code> in CSS results in a new round-trip HTTP Request, this is a pref concern</li>
+<li>The files our users download vs. files we use to manage source code are different concerns</li>
+<li>JS Modules have taught us that modularity is a wonderful tool</li>
+<li><code>@import</code> in Sass does something else(something more useful)</li>
+</ul>
+</li>
+<li><p>Variables</p>
+</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$error_color</span>: <span class="number">#f00</span> !default;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.alert-error</span> &#123;</span><br><span class="line">  <span class="variable">$text_color</span>: <span class="number">#ddd</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$error_color</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$text_color</span>;</span><br><span class="line">  <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">2px</span> <span class="built_in">darken</span>(<span class="variable">$text_color</span>, <span class="number">40%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Global variable declaration</p>
+<ul>
+<li><code>$error_color</code></li>
+</ul>
+</li>
+<li><p>Value</p>
+<ul>
+<li><code>#f00</code></li>
+</ul>
+</li>
+<li><p>Unless set else where</p>
+<ul>
+<li><code>!default</code></li>
+</ul>
+</li>
+<li><p>Local variable declaration</p>
+<ul>
+<li><code>$text_color</code></li>
+</ul>
+</li>
+<li><p>Variables</p>
+<ul>
+<li>Simple arithmetic for values is ok</li>
+<li>Sass can convert units, as long as dimension is the same</li>
+<li>Any CSS value should be OK</li>
+</ul>
+</li>
+<li><p>Comments</p>
+</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* will remain</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red; <span class="comment">// will be removed</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* will remain</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>String Interpolation</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Hue is #&#123;hue(green)&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Hue is 120deg</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Challenge-Imports-and-Variables"><a href="#Challenge-Imports-and-Variables" class="headerlink" title="Challenge: Imports and Variables"></a>Challenge: Imports and Variables</h3><ul>
+<li>This looks like our first exercise</li>
+<li>Except, there’s a _variables.scss</li>
+<li>Primary button should have a $hopbush background and $venus border</li>
+<li>Secondary button should have a $nebula background and $patina border</li>
+</ul>
+<p><code>./run -e variables</code></p>
+<h2 id="Sass-Mixins"><a href="#Sass-Mixins" class="headerlink" title="Sass Mixins"></a>Sass Mixins</h2><h3 id="Sass-Mixins-amp-Arguments"><a href="#Sass-Mixins-amp-Arguments" class="headerlink" title="Sass Mixins &amp; Arguments"></a>Sass Mixins &amp; Arguments</h3><ul>
+<li>Mixins<ul>
+<li>Allow for re-use of style</li>
+<li>Mental model: declaration block is merged, by way of @include</li>
+<li>Best practice: separate from styles, like variables</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> alert-text &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f00</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">font-variant</span>: small-caps;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.error-text</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> alert-text;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.has-error</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> alert-text;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">content</span>: <span class="built_in">attr</span>(data-error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Mixins: Arguments<ul>
+<li>Variables allow for parameterization</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> alert-text(<span class="variable">$color</span>) &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$color</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">font-variant</span>: small-caps;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.error-text</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> alert-text(blue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.has-error</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> alert-text(red);</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">content</span>: <span class="built_in">attr</span>(data-error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Challenge-Mixins"><a href="#Challenge-Mixins" class="headerlink" title="Challenge: Mixins"></a>Challenge: Mixins</h3><ul>
+<li>In your app.scss file, we’re making use of a new (currently empty) mixin</li>
+<li>The goal is to define a means of defining the style of a button, given a color</li>
+<li>Implement the mixin, such that all failing tests pass</li>
+</ul>
+<p><code>./run -e mixins</code></p>
+<h3 id="Default-Argrment-Values"><a href="#Default-Argrment-Values" class="headerlink" title="Default Argrment Values"></a>Default Argrment Values</h3><ul>
+<li>Mixin - Default Argument Values<ul>
+<li>We can define default values for arguments</li>
+<li>Arguments can be provided in order, or by name</li>
+<li>When “keyword args” used, order is ignored</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> alert-text(<span class="variable">$color</span>: <span class="number">#333</span>) &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$color</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">font-variant</span>: small-caps;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> alert-text(blue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> alert-text(<span class="variable">$color</span>: green);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Maxins - Null Values</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> foo(<span class="variable">$opacity</span>: null) &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="variable">$opacity</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> foo();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.other-btn</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> foo(<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>compile to css</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.other-btn</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Mixins - Passing a Declaration Block</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> foo(<span class="variable">$color</span>) &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$color</span>;</span><br><span class="line">  <span class="selector-class">.inner</span> &#123;</span><br><span class="line">    <span class="keyword">@content</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.btn &#123;</span><br><span class="line">  <span class="keyword">@include</span> foo(<span class="number">#c69</span>) &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#f00</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>compile to css</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#c69</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.btn</span> <span class="selector-class">.inner</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#f00</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Challenge-range"><a href="#Challenge-range" class="headerlink" title="Challenge: range"></a>Challenge: range</h3><ul>
+<li>The range input can be styled, but it involves lots of ugly vendor-prefixing</li>
+<li>This excellent tutorial from CSS tricks describes what needs to be done in CSS. Do it the Sass way!</li>
+</ul>
+<p><code>./run -e range</code></p>
+<h2 id="Sass-Functions"><a href="#Sass-Functions" class="headerlink" title="Sass Functions"></a>Sass Functions</h2><h3 id="Introducing-Sass-Functions"><a href="#Introducing-Sass-Functions" class="headerlink" title="Introducing Sass Functions"></a>Introducing Sass Functions</h3><p><a target="_blank" rel="noopener" href="https://sass-lang.com/documentation/functions">Built-In Functions</a></p>
+<ul>
+<li>Color Functions<ul>
+<li><a target="_blank" rel="noopener" href="https://sass-lang.com/documentation/functions/color">document</a></li>
+<li><code>adjust-hue($color, $degrees);</code></li>
+<li>Rotates the hue of a color by a certain number of degrees</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">adjust-hue</span>(<span class="number">#63f</span>, <span class="number">60deg</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Color Functions<ul>
+<li><code>darken($color, $percent);</code></li>
+<li><code>lighten($color, $percent);</code></li>
+<li>Change the brightness of a color by a certain amount</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">darken</span>(<span class="number">#63f</span>, <span class="number">20%</span>); <span class="comment">// #30c</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Color Functions<ul>
+<li><code>desaturate($color, $percent);</code></li>
+<li><code>saturate($color, $percent);</code></li>
+<li>Change the saturation of a color by a specified amount</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">desaturate</span>(<span class="number">#f00</span>, <span class="number">75%</span>); <span class="comment">// #9f6060</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Challenge-Functions"><a href="#Challenge-Functions" class="headerlink" title="Challenge: Functions"></a>Challenge: Functions</h3><ul>
+<li>We wish to apply some basic “theming” to a set of buttons</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;theme-1&quot;</span>&gt;</span>&quot;&quot;&quot;&lt; Will be themed &quot;&quot;-!<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Theme mixin should take a $color as first argument, $huerot as second, and a $darkenpct as third<ul>
+<li>all buttons<ul>
+<li>border 20% darker color than background</li>
+<li>hover background: 20% more saturated then 10% lightened</li>
+</ul>
+</li>
+<li>non-primary buttons<ul>
+<li>darkened by $darkenpct</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>./run -e functions</code></p>
+<h2 id="Control-Flow"><a href="#Control-Flow" class="headerlink" title="Control Flow"></a>Control Flow</h2><h3 id="if-Sass-Directive"><a href="#if-Sass-Directive" class="headerlink" title="@if Sass Directive"></a>@if Sass Directive</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> foo(<span class="variable">$size</span>) &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="keyword">@if</span> <span class="variable">$size</span> &gt; <span class="number">20</span> &#123;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="variable">$size</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.small</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> foo(<span class="number">14px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.large</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> foo(<span class="number">24px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>compile to css</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.small</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.large</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">24px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">24px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Challenge-Control-Flow"><a href="#Challenge-Control-Flow" class="headerlink" title="Challenge: Control Flow"></a>Challenge: Control Flow</h3><ul>
+<li>Only use white button text if the brightness value of a button background color is less than 70%</li>
+</ul>
+<p><code>./run -e if</code></p>
+<h2 id="Data-Structures"><a href="#Data-Structures" class="headerlink" title="Data Structures"></a>Data Structures</h2><ul>
+<li>Control Flow - @for</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@for</span> <span class="variable">$i</span> from <span class="number">1</span> through <span class="number">5</span> &#123;</span><br><span class="line">  h#&#123;<span class="variable">$i</span>&#125; &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">5rem</span> - <span class="variable">$i</span> * <span class="number">0.75rem</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>compile to css</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123; <span class="attribute">font-size</span>: <span class="number">4.25rem</span>; &#125;</span><br><span class="line"><span class="selector-tag">h2</span> &#123; <span class="attribute">font-size</span>: <span class="number">3.5rem</span>; &#125;</span><br><span class="line"><span class="selector-tag">h3</span> &#123; <span class="attribute">font-size</span>: <span class="number">2.75rem</span>; &#125;</span><br><span class="line"><span class="selector-tag">h4</span> &#123; <span class="attribute">font-size</span>: <span class="number">2rem</span>; &#125;</span><br><span class="line"><span class="selector-tag">h5</span> &#123; <span class="attribute">font-size</span>: <span class="number">1.25rem</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Data Structures - Lists</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mylist</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">2px</span> <span class="number">#000</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  shadow blur radius:</span></span><br><span class="line"><span class="comment">  #&#123;nth($mylist, 3)&#125;</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="variable">$mylist</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  shadow blur radius:</span></span><br><span class="line"><span class="comment">  2px</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">2px</span> <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Data Structures - Lists and @each</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mylist</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">2px</span> <span class="number">#000</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  <span class="keyword">@each</span> <span class="variable">$i</span> in <span class="variable">$mylist</span> &#123;</span><br><span class="line">    <span class="comment">/* #&#123;$i&#125; */</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  <span class="comment">/* 0 */</span></span><br><span class="line">  <span class="comment">/* 0 */</span></span><br><span class="line">  <span class="comment">/* 2px */</span></span><br><span class="line">  <span class="comment">/* #000 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Data Structures - nth</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$gradients</span>:</span><br><span class="line">  (to left top, blue, red),</span><br><span class="line">  (to left top, blue, yellow);</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.foo</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(<span class="built_in">nth</span>(<span class="variable">$gradients</span>, <span class="number">2</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Data Structures - Maps</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mymap</span>: (</span><br><span class="line">  dark: <span class="number">#009</span>,</span><br><span class="line">  light: <span class="number">#66f</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">@mixin</span> theme-button(<span class="variable">$key</span>) &#123;</span><br><span class="line">  <span class="comment">/* Theme: #&#123;$key&#125; */</span></span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">map-get</span>(<span class="variable">$mymap</span>, <span class="variable">$key</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.btn-dark</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> theme-button(<span class="string">&#x27;dark&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.btn-light</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> theme-button(<span class="string">&#x27;light&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn-dark</span> &#123;</span><br><span class="line">  <span class="comment">/* Theme: dark */</span></span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#009</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.btn-light</span> &#123;</span><br><span class="line">  <span class="comment">/* Theme: light */</span></span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#66f</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Challenge-Nudging-Classes"><a href="#Challenge-Nudging-Classes" class="headerlink" title="Challenge: Nudging Classes"></a>Challenge: Nudging Classes</h3><ul>
+<li>We’re going to build a bunch of tiny css rules, each with exactly one style declaration</li>
+<li>Using @for, @each and Sass data structures, build a set of styles in 5px increments, for both margin and padding, in each of the four directions(top, bottom, left and right)</li>
+<li>BONUS: Try to use 15 lines of Sass or less!</li>
+</ul>
+<p><code>./run -e tiny</code></p>
+<h2 id="CSS-Architecture"><a href="#CSS-Architecture" class="headerlink" title="CSS Architecture"></a>CSS Architecture</h2><h3 id="BEM-Introduction"><a href="#BEM-Introduction" class="headerlink" title="BEM Introduction"></a>BEM Introduction</h3><ul>
+<li><p>Block -  standalone entity, meaningful on its own</p>
+<ul>
+<li>header, container, menu, checkbox, input, button</li>
+</ul>
+</li>
+<li><p>Elements - A part of a block that has no standalone meaning, and is semantically tied to its block</p>
+<ul>
+<li>menu-item, list-item, checkbox-caption, header-title</li>
+</ul>
+</li>
+<li><p>Modifier - A flag on a block or element, used to change appearance and&#x2F;or behavior</p>
+<ul>
+<li>disabled, highlighted, checked, size-big, color-yellow</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;textfield&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;first-name&quot;</span> <span class="attr">class</span>=<span class="string">&quot;textfield__label&quot;</span>&gt;</span></span><br><span class="line">    First Name</span><br><span class="line">  <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;first-name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;email&quot;</span> <span class="attr">class</span>=<span class="string">&quot;textfield__input&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;textfield__validation-error&quot;</span>&gt;</span></span><br><span class="line">    Must be two characters or longer</span><br><span class="line">  <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.textfield</span> &#123;</span><br><span class="line">  &amp;__input &#123;&#125;</span><br><span class="line">  &amp;__label &#123;&#125;</span><br><span class="line">  &amp;__validation-error &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;textfield textfield-state-validated&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.textfield</span> &#123;</span><br><span class="line">  &amp;<span class="selector-class">.textfield-state-validated</span> &#123;&#125;</span><br><span class="line">  &amp;<span class="selector-class">.textfield-state-error</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-BEM-Buttons"><a href="#Exercise-BEM-Buttons" class="headerlink" title="Exercise: BEM Buttons"></a>Exercise: BEM Buttons</h3><ul>
+<li>Build a “one-click checkout” button using BEM</li>
+<li>Basic color requirements for buttons, same as exercise 1</li>
+<li>Price should have bg of #080, but #aaa when button is disabled</li>
+</ul>
+<p><code>./run -e bem</code></p>
+<h3 id="Reusing-Style-with-Mixins"><a href="#Reusing-Style-with-Mixins" class="headerlink" title="Reusing Style with Mixins"></a>Reusing Style with Mixins</h3><ul>
+<li>Style reuse via Mixins</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> danger &#123;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.btn-danger</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> danger();</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.alert-danger</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> danger();</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn-danger</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.alert-danger</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>@extend</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.danger</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.btn-danger</span> &#123;</span><br><span class="line">  <span class="keyword">@extend</span> .danger;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.alert-danger</span> &#123;</span><br><span class="line">  <span class="keyword">@extend</span> .danger;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.danger</span>,</span><br><span class="line"><span class="selector-class">.btn-danger</span>,</span><br><span class="line"><span class="selector-class">.alert-danger</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.btn-danger</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.alert-danger</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>@extend - Placeholders</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">%danger &#123;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.btn-danger</span> &#123;</span><br><span class="line">  <span class="keyword">@extend</span> %danger;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.alert-danger</span> &#123;</span><br><span class="line">  <span class="keyword">@extend</span> %danger;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.danger</span>,</span><br><span class="line"><span class="selector-class">.alert-danger</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.btn-danger</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.alert-danger</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Challenge-extend"><a href="#Challenge-extend" class="headerlink" title="Challenge: @extend"></a>Challenge: @extend</h3><ul>
+<li>Achieve the same outcome as exercise 1, except…</li>
+<li>Do not change the appearance of the buttons at the bottom</li>
+<li>Use @extend and a %placeholder</li>
+</ul>
+<p><code>./run -e extend</code></p>
+<h2 id="Working-with-Sass-Functions"><a href="#Working-with-Sass-Functions" class="headerlink" title="Working with Sass Functions"></a>Working with Sass Functions</h2><h3 id="Writing-Sass-Functions"><a href="#Writing-Sass-Functions" class="headerlink" title="Writing Sass Functions"></a>Writing Sass Functions</h3><ul>
+<li>Defining your own functions</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$w</span>: <span class="number">2px</span>;</span><br><span class="line"><span class="keyword">@function</span> double(<span class="variable">$x</span>) &#123;</span><br><span class="line">  <span class="keyword">@return</span> <span class="number">2</span> * <span class="variable">$x</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.thin-border</span> &#123;</span><br><span class="line">  <span class="attribute">border-width</span>: <span class="variable">$w</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.thick-border</span> &#123;</span><br><span class="line">  <span class="attribute">border-width</span>: <span class="built_in">double</span>(<span class="variable">$w</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.thin-border</span> &#123;</span><br><span class="line">  <span class="attribute">border-width</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.thick-border</span> &#123;</span><br><span class="line">  <span class="attribute">border-width</span>: <span class="number">4px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@function</span> biggest_channel_<span class="keyword">only</span>(<span class="variable">$color</span>) &#123;</span><br><span class="line">  <span class="variable">$r</span>: <span class="built_in">red</span>(<span class="variable">$color</span>);</span><br><span class="line">  <span class="variable">$g</span>: <span class="built_in">green</span>(<span class="variable">$color</span>);</span><br><span class="line">  <span class="variable">$b</span>: <span class="built_in">blue</span>(<span class="variable">$color</span>);</span><br><span class="line">  <span class="keyword">@if</span> <span class="variable">$r</span> &gt; <span class="variable">$g</span> <span class="keyword">and</span> <span class="variable">$r</span> &gt; <span class="variable">$b</span> &#123;</span><br><span class="line">    <span class="keyword">@return</span> rgb(<span class="variable">$r</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">@else</span> if <span class="variable">$g</span> &gt; <span class="variable">$r</span> <span class="keyword">and</span> <span class="variable">$g</span> &gt; <span class="variable">$r</span> &#123;</span><br><span class="line">    <span class="keyword">@return</span> rgb(<span class="number">0</span>, <span class="variable">$g</span>, <span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">@else</span> &#123;</span><br><span class="line">    <span class="keyword">@return</span> rgb(<span class="number">0</span>, <span class="number">0</span>, <span class="variable">$b</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Challenge-Relative-Luminance-in-Sass"><a href="#Challenge-Relative-Luminance-in-Sass" class="headerlink" title="Challenge: Relative Luminance in Sass"></a>Challenge: Relative Luminance in Sass</h3><ul>
+<li>Exercise 6 involved using @if to ensure that the text&#x2F;background color combination on a button was readable</li>
+<li>This quite the right concept. What we really want is to base the label text color on a difference in “relative luminance” between the label and background colors</li>
+<li>First, we’ll need to convert our RGB values from their current form (a gamma-compressed color space) to a linear color space.</li>
+<li>A pow($base, $exp) function has been provided</li>
+<li>Next, we’ll want to weigh these linear RGB values as follows<ul>
+<li>Y &#x3D; 0.2126R + 0.7152G + 0.0722B</li>
+</ul>
+</li>
+<li>Finally, we’ll want to change the @if involved with determining button text color, so that instead of the existing comparison, it sets a white text color when the background color and the color white differ in luminance by more than 0.7</li>
+</ul>
+<p><code>./run -e luminance</code></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/Sass/" rel="tag"># Sass</a>
+              <a href="/tags/BEM/" rel="tag"># BEM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/03/Introduction-to-Bash-VIM-Regex/" rel="prev" title="Introduction to Bash, VIM & Regex">
+                  <i class="fa fa-chevron-left"></i> Introduction to Bash, VIM & Regex
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/10/08/Hard-Parts-Functional-JS-Foundations/" rel="next" title="Hard Parts: Functional JS Foundations">
+                  Hard Parts: Functional JS Foundations <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="BashIntroducing UNIX UNIX  UNIX was an operating system developed at AT&amp;T Bell Labs in the 1960s through the 1980s GUN&#x2F;Linux, MacOSX, and Android are all based on ideas and specifications cre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to Bash, VIM &amp; Regex">
+<meta property="og:url" content="http://yoursite.com/2019/10/03/Introduction-to-Bash-VIM-Regex/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="BashIntroducing UNIX UNIX  UNIX was an operating system developed at AT&amp;T Bell Labs in the 1960s through the 1980s GUN&#x2F;Linux, MacOSX, and Android are all based on ideas and specifications cre">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-03T04:22:59.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.324Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="bash">
+<meta property="article:tag" content="vim">
+<meta property="article:tag" content="regular expressions">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/10/03/Introduction-to-Bash-VIM-Regex/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/10/03/Introduction-to-Bash-VIM-Regex/","path":"2019/10/03/Introduction-to-Bash-VIM-Regex/","title":"Introduction to Bash, VIM & Regex"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Introduction to Bash, VIM & Regex | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash"><span class="nav-number">1.</span> <span class="nav-text">Bash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-UNIX"><span class="nav-number">1.1.</span> <span class="nav-text">Introducing UNIX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-the-UNIX-Shell"><span class="nav-number">1.2.</span> <span class="nav-text">Introducing the UNIX Shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Shell"><span class="nav-number">1.3.</span> <span class="nav-text">Using Shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Aliases"><span class="nav-number">1.4.</span> <span class="nav-text">Introducing Aliases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Special-Directories"><span class="nav-number">1.5.</span> <span class="nav-text">Special Directories</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-Management"><span class="nav-number">2.</span> <span class="nav-text">File Management</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Combining-and-Copying-Files"><span class="nav-number">2.1.</span> <span class="nav-text">Combining and Copying Files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Moving-Files-and-Creating-Directories"><span class="nav-number">2.2.</span> <span class="nav-text">Moving Files and Creating Directories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Commands-to-Help-Reduce-Repeetitive-Typing"><span class="nav-number">2.3.</span> <span class="nav-text">Commands to Help Reduce Repeetitive Typing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deleting-Files-and-Counting-Words"><span class="nav-number">2.4.</span> <span class="nav-text">Deleting Files and Counting Words</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Documentation-and-Options"><span class="nav-number">2.5.</span> <span class="nav-text">Documentation and Options</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paths"><span class="nav-number">2.6.</span> <span class="nav-text">Paths</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Writing-and-Reading-Files"><span class="nav-number">2.7.</span> <span class="nav-text">Writing and Reading Files</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipes"><span class="nav-number">3.</span> <span class="nav-text">Pipes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Curl-Grep-and-Pipeline"><span class="nav-number">3.1.</span> <span class="nav-text">Curl, Grep and Pipeline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head-and-tail-Commands"><span class="nav-number">3.2.</span> <span class="nav-text">head and tail Commands</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calendar-and-Dates"><span class="nav-number">3.3.</span> <span class="nav-text">Calendar and Dates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shorten-Lines"><span class="nav-number">3.4.</span> <span class="nav-text">Shorten Lines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#More-Curl-and-Grep"><span class="nav-number">3.5.</span> <span class="nav-text">More Curl and Grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backticks-and-Arithmetic"><span class="nav-number">3.6.</span> <span class="nav-text">Backticks and Arithmetic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Environment-Variables"><span class="nav-number">3.7.</span> <span class="nav-text">Environment Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quotes"><span class="nav-number">3.8.</span> <span class="nav-text">Quotes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash-Shell-Scripts"><span class="nav-number">4.</span> <span class="nav-text">Bash Shell Scripts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Scripts"><span class="nav-number">4.1.</span> <span class="nav-text">Introducing Scripts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Loops-and-While"><span class="nav-number">4.2.</span> <span class="nav-text">Read, Loops and While</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PATH"><span class="nav-number">4.3.</span> <span class="nav-text">#PATH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Permissions"><span class="nav-number">4.4.</span> <span class="nav-text">Permissions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exit-Codes-Operators-and-Subshells"><span class="nav-number">4.5.</span> <span class="nav-text">Exit Codes, Operators and Subshells</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Job-Control"><span class="nav-number">4.6.</span> <span class="nav-text">Job Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Screen"><span class="nav-number">4.7.</span> <span class="nav-text">Screen</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regular-Expressions"><span class="nav-number">5.</span> <span class="nav-text">Regular Expressions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Regular-Expressions"><span class="nav-number">5.1.</span> <span class="nav-text">Introducing Regular Expressions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regular-Expressions-in-JavaScript"><span class="nav-number">5.2.</span> <span class="nav-text">Regular Expressions in JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flags-Metacharacters-and-Quantifiers"><span class="nav-number">5.3.</span> <span class="nav-text">Flags, Metacharacters and Quantifiers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Character-Class-Ranges"><span class="nav-number">5.4.</span> <span class="nav-text">Character Class Ranges</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anchors-Groups-and-sed"><span class="nav-number">5.5.</span> <span class="nav-text">Anchors, Groups and sed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vim"><span class="nav-number">6.</span> <span class="nav-text">Vim</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Vim"><span class="nav-number">6.1.</span> <span class="nav-text">Introducing Vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Vim"><span class="nav-number">6.2.</span> <span class="nav-text">Using Vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modes-and-Moving-Around"><span class="nav-number">6.3.</span> <span class="nav-text">Modes and Moving Around</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deleting-and-Searching"><span class="nav-number">6.4.</span> <span class="nav-text">Deleting and Searching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Search-and-Replace"><span class="nav-number">6.5.</span> <span class="nav-text">Search and Replace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Visual-Select"><span class="nav-number">6.6.</span> <span class="nav-text">Visual Select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paste-Buffer-and-Insert-Modes"><span class="nav-number">6.7.</span> <span class="nav-text">Paste Buffer and Insert Modes</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/03/Introduction-to-Bash-VIM-Regex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Introduction to Bash, VIM & Regex | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introduction to Bash, VIM & Regex
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-03 12:22:59" itemprop="dateCreated datePublished" datetime="2019-10-03T12:22:59+08:00">2019-10-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Bash"><a href="#Bash" class="headerlink" title="Bash"></a>Bash</h2><h3 id="Introducing-UNIX"><a href="#Introducing-UNIX" class="headerlink" title="Introducing UNIX"></a>Introducing UNIX</h3><ul>
+<li><p>UNIX</p>
+<ul>
+<li>UNIX was an operating system developed at AT&amp;T Bell Labs in the 1960s through the 1980s</li>
+<li>GUN&#x2F;Linux, MacOSX, and Android are all based on ideas and specifications created by UNIX</li>
+</ul>
+</li>
+<li><p>time-sharing</p>
+<ul>
+<li>UNIX was orininally built for large mainframe computers that many people would use at the same time</li>
+</ul>
+</li>
+<li><p>terminals and teleprinters</p>
+<ul>
+<li>teleprinters printed program output on paper</li>
+<li>terminals displayed output on a CRT monitor</li>
+<li>neither device had processing power of their own</li>
+<li>connected to the mainframe over cables or by telephone<span id="more"></span></li>
+</ul>
+</li>
+<li><p>teletype legacy: standard input and output</p>
+<ul>
+<li>Every program on a UNIX system can read input from the standard input device(stdin) and write to standard output(stdout)</li>
+<li>By default, stdin comes from the keyboard and stdout gets “printed” to the graphical display</li>
+</ul>
+</li>
+<li><p>organization</p>
+<ul>
+<li>The UNIX operating system is a collection of programs, each with a special role:<ul>
+<li>kernel</li>
+<li>shell</li>
+<li>utilities</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>kernel</p>
+<ul>
+<li>mediate access between user programs and system resources<ul>
+<li>CPU scheduling</li>
+<li>I&#x2F;O to computer hardware</li>
+<li>memory</li>
+</ul>
+</li>
+<li>programs request resources by making a syscall</li>
+</ul>
+</li>
+</ul>
+<h3 id="Introducing-the-UNIX-Shell"><a href="#Introducing-the-UNIX-Shell" class="headerlink" title="Introducing the UNIX Shell"></a>Introducing the UNIX Shell</h3><ul>
+<li><p>shell</p>
+<ul>
+<li>A shell is a computer program that can execute other programs from a text-based interface</li>
+<li>In a text-based interface, you interact with a program completely from the command-line with text commands and text output</li>
+<li>Most modern shells are strongly influenced by the first UNIX shells</li>
+</ul>
+</li>
+<li><p>shells through the ages</p>
+<ul>
+<li>thompson shell - Ken Thompson 1971</li>
+<li>pwb(mashey) shell - John Mashey 1975</li>
+<li>bourne shell - Stephen Bourne 1977</li>
+<li>c shell(csh) - Bill Joy 1978</li>
+<li>tcsh - Ken Greer and Mike Ellis 1983</li>
+<li>korn shell - David Korn 1983</li>
+<li>bourne again shell (bash) - Brian Fox 1987</li>
+<li>almquist shell(ash) - Kenneth Almquist 1989</li>
+<li>debian almquist shell(dash) - Herbert Xu 1997</li>
+<li>in complete list of popular or influential shells</li>
+</ul>
+</li>
+<li><p>utilities</p>
+<ul>
+<li>Any distribution of UNIX will come with dozens of other programs that perform narrow single-purpose tasks</li>
+<li>The available utilities on a given system vary widely but some utilities are very common</li>
+<li>For example, there is a command to make new directories and another to move files</li>
+</ul>
+</li>
+<li><p>Why UNIX still matters</p>
+<ul>
+<li>portable to many kinds of hardware</li>
+<li>consistent conventions</li>
+<li>vast softwarwe ecosystem</li>
+<li>text!</li>
+</ul>
+</li>
+<li><p>Place you can find a unix command-line</p>
+<ul>
+<li>wifi routers</li>
+<li>dsl and cable modems</li>
+<li>raspberry pi, beaglebone, nvidia jetson</li>
+<li>android phones</li>
+<li>linux laptop or desktop</li>
+<li>Mac OSX computer</li>
+<li>web server</li>
+</ul>
+</li>
+<li><p>you can take your command-line skills with you to all of these platforms and more</p>
+</li>
+<li><p>text interface</p>
+<ul>
+<li>To remotely access a UNIX system, you can use the same command-line tools and interface that you use locally. You can remotely access devices with out a display</li>
+<li>Text is easy to read so you can poke around more easily to figure out what’s going on. Many aspects of computer programming involve shuffling text around. UNIX excels at these kinds of tasks</li>
+</ul>
+</li>
+<li><p>UNIX philosophy</p>
+<ul>
+<li>The UNIX philosophy is a set of design principles for how programs relate to each other<ul>
+<li>each program should do one thing well</li>
+<li>the output of a program can become the input of another</li>
+</ul>
+</li>
+<li>UNIX Programming Environment 1984 - Brian Kernighan and Rob Pike</li>
+</ul>
+</li>
+</ul>
+<h3 id="Using-Shell"><a href="#Using-Shell" class="headerlink" title="Using Shell"></a>Using Shell</h3><ul>
+<li><p>Let’s learn the command line</p>
+<ul>
+<li>bash is a popular shell for UNXI-like systems.</li>
+<li>Open up a bash shell for the next sections to follow along</li>
+<li>If you’re not sure which shell you’re in, type:<ul>
+<li><code>echo $SHELL</code></li>
+</ul>
+</li>
+<li>If you’re in bash, you should see something like:<ul>
+<li><code>/bin/bash</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>list files</p>
+<ul>
+<li>You can use the <code>ls</code> command to show all the files in the current directory</li>
+</ul>
+</li>
+<li><p>print the current directory</p>
+<ul>
+<li>To display the current directory, you can use the <code>pwd</code> command<ul>
+<li><code>pwd</code> stands for print working directory</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>change directory</p>
+<ul>
+<li>To change the current working directory, use the <code>cd</code> command. The <code>cd</code> command takes a single argument: the directory to move to.</li>
+<li>After changing the current directory, list the files again with <code>ls</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Introducing-Aliases"><a href="#Introducing-Aliases" class="headerlink" title="Introducing Aliases"></a>Introducing Aliases</h3><p>直接在shell中输入<code>alias</code>，会看到所有依赖设置。</p>
+<h3 id="Special-Directories"><a href="#Special-Directories" class="headerlink" title="Special Directories"></a>Special Directories</h3><ul>
+<li>There are some special directories:<ul>
+<li><code>..</code> - the parent directory</li>
+<li><code>.</code> - the current directory</li>
+<li><code>~</code> - your home directory</li>
+</ul>
+</li>
+<li>To navigate back up to the parent directory, do <code>cd ..</code></li>
+</ul>
+<h2 id="File-Management"><a href="#File-Management" class="headerlink" title="File Management"></a>File Management</h2><h3 id="Combining-and-Copying-Files"><a href="#Combining-and-Copying-Files" class="headerlink" title="Combining and Copying Files"></a>Combining and Copying Files</h3><ul>
+<li><p><code>cat</code></p>
+<ul>
+<li>cat was originally written to concatenate all the files from its arguments</li>
+<li>but it also a handy way to display single text files on the command-line</li>
+</ul>
+</li>
+<li><p><code>cp</code></p>
+<ul>
+<li>Copy a file to another directory or file name. You can copy a single file to make a new duplicate file</li>
+</ul>
+</li>
+<li><p><code>cp -r</code></p>
+<ul>
+<li>If you have a directory full of files and directories you want to copy to a new place, you can use <code>cp -r</code> to resursively copy a directory and all its subdirectories to a new location</li>
+</ul>
+</li>
+</ul>
+<h3 id="Moving-Files-and-Creating-Directories"><a href="#Moving-Files-and-Creating-Directories" class="headerlink" title="Moving Files and Creating Directories"></a>Moving Files and Creating Directories</h3><ul>
+<li><p><code>mv</code></p>
+<ul>
+<li>The <code>mv</code> command is used to rename and overwrite files and directories</li>
+<li>To rename a file, set the first argument to the original file name and the second argument to the new file name or destination directory</li>
+</ul>
+</li>
+<li><p><code>mkdir</code></p>
+<ul>
+<li>To make a new directory. just execute the <code>mkdir</code> command with a list of new directory names to make as arguments</li>
+</ul>
+</li>
+</ul>
+<h3 id="Commands-to-Help-Reduce-Repeetitive-Typing"><a href="#Commands-to-Help-Reduce-Repeetitive-Typing" class="headerlink" title="Commands to Help Reduce Repeetitive Typing"></a>Commands to Help Reduce Repeetitive Typing</h3><ul>
+<li><p><code>&#123;&#125;</code></p>
+<ul>
+<li><code>echo &#123;a,b&#125;&#123;c,d&#125;</code> ac ad bc bd</li>
+<li><code>echo cat b&#123;oo,ee&#125;p.txt</code> cat boop.txt beep.txt</li>
+</ul>
+</li>
+<li><p>brace expansion sequences</p>
+<ul>
+<li>It can be tedious to type out numerical lists by hand</li>
+<li>Brace expansions can help with that</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> wow&#123;1..10&#125;</span><br><span class="line">wow1 wow2 wow3 wow4 wow5 wow6 wow7 wow8 wow9 wow10</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>and you can even specify an amount to skip:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> wow&#123;0..100..10&#125;</span><br><span class="line">wow0 wow10 wow20 wow30 wow40 wow50 wow60 wow70 wow80 wow90 wow100</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>*</code><ul>
+<li><code>echo cat b*p.txt</code> cat beep.txt boop.txt</li>
+<li><code>echo cat *.txt</code> cat beep.txt boop.txt</li>
+</ul>
+</li>
+</ul>
+<h3 id="Deleting-Files-and-Counting-Words"><a href="#Deleting-Files-and-Counting-Words" class="headerlink" title="Deleting Files and Counting Words"></a>Deleting Files and Counting Words</h3><ul>
+<li><p><code>rm</code></p>
+<ul>
+<li>To remove a file, just do<ul>
+<li><code>rm path/to/file</code></li>
+</ul>
+</li>
+<li>You can remove multiple files at once<ul>
+<li><code>rm path/to/file path/to/another/file</code></li>
+</ul>
+</li>
+<li>and you can remove entire directories inculding subdirectories with<ul>
+<li><code>rm -r path/to/directory</code></li>
+</ul>
+</li>
+<li>Be vary careful with <code>-r</code>. You might accidentally delete much more than you meant to delete</li>
+</ul>
+</li>
+<li><p><code>wc</code></p>
+<ul>
+<li>The <code>wc</code> command computes the number of lines, words and bytes in a file</li>
+<li>To see each field independently, you can use different options: arguments that start with a <code>-</code> or <code>--</code> followed by a letter or word</li>
+</ul>
+</li>
+</ul>
+<h3 id="Documentation-and-Options"><a href="#Documentation-and-Options" class="headerlink" title="Documentation and Options"></a>Documentation and Options</h3><ul>
+<li><p><code>man</code></p>
+<ul>
+<li>All of these command options are a lot to remember!</li>
+<li>You can pull up documentation at any time in your shell by typing <code>man foo</code> for any command <code>foo</code></li>
+<li>For example to read up on all the options you can give to the <code>wc</code> command, do:<ul>
+<li><code>man wc</code></li>
+</ul>
+</li>
+<li>The help page will open up in your <code>$PAGER</code>. Type <code>q</code> to exit back to your shell.</li>
+</ul>
+</li>
+<li><p>more on options</p>
+<ul>
+<li>Options(also called flags or switches) are special arguments that start with a <code>-</code> or <code>--</code> followed by a letter or word</li>
+<li>generally speaking, they are distinct from other auguments in that their order usually doesn’t matter.For example:<ul>
+<li><code>grep -i wow</code></li>
+</ul>
+</li>
+<li>is the same as<ul>
+<li><code>grep wow -i</code></li>
+</ul>
+</li>
+<li>where <code>-i</code> just informs the <code>grep</code> command to perform a case-insensitive search</li>
+</ul>
+</li>
+</ul>
+<h3 id="Paths"><a href="#Paths" class="headerlink" title="Paths"></a>Paths</h3><ul>
+<li>absolute and relative paths<ul>
+<li>paths that start with <code>.</code> or <code>..</code> are relative paths</li>
+<li>paths that start with <code>/</code> are absolute paths</li>
+</ul>
+</li>
+</ul>
+<h3 id="Writing-and-Reading-Files"><a href="#Writing-and-Reading-Files" class="headerlink" title="Writing and Reading Files"></a>Writing and Reading Files</h3><ul>
+<li><p><code>echo</code></p>
+<ul>
+<li>The echo command just prints text from its arguments</li>
+<li>This is not very useful by itself, but becomes useful when combined with redirects and pipes</li>
+</ul>
+</li>
+<li><p>write to a file</p>
+<ul>
+<li>Using the <code>&gt;</code> character, you can write the output of a command to a file</li>
+<li>For example, to make a new file <code>greetings.txt</code> with the contents “ahoy thar”, we can do<ul>
+<li><code>echo ahoy thar &gt; greeting.txt</code></li>
+</ul>
+</li>
+<li>and to print the contents of greetings.txt, use <code>cat</code><ul>
+<li><code>cat greeting.txt</code> ahoy thar</li>
+</ul>
+</li>
+<li>you can redirect the output of any program to a file<ul>
+<li><code>ls / &gt; list.txt</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>append to a file</p>
+<ul>
+<li>The <code>&gt;</code> redirect operator will overwrite a file with new contents if it already exits</li>
+<li>This is a <code>&gt;&gt;</code> operator that appends to the end of a file if it already exist</li>
+</ul>
+</li>
+<li><p>read from a file</p>
+<ul>
+<li>You can read a file into the stdin of a program with <code>&lt;</code></li>
+<li>Remember that if <code>wc</code> dosen’t get a file as an argument, it will read from stdin. We can load a file into <code>wc</code> with <code>&lt;</code> instead</li>
+</ul>
+</li>
+</ul>
+<h2 id="Pipes"><a href="#Pipes" class="headerlink" title="Pipes"></a>Pipes</h2><ul>
+<li>pipes!<ul>
+<li>The last but most important kind of redirect is the pipe operator <code>|</code></li>
+<li>With <code>|</code> you can feed the output of one program to the input of the next</li>
+<li>For example, the <code>ls -1</code> command will list files, one per line, to stdout. The <code>wc -l</code>command, meanwhile, will count the number of lines</li>
+</ul>
+</li>
+</ul>
+<h3 id="Curl-Grep-and-Pipeline"><a href="#Curl-Grep-and-Pipeline" class="headerlink" title="Curl, Grep and Pipeline"></a>Curl, Grep and Pipeline</h3><ul>
+<li>&#96;curl<ul>
+<li>Here’s an example using two new commands <code>curl</code> and <code>sed</code> that will fetch Moby Dick from Project Gutenberg and count the number of occurences of “whale”, case-insensitive:</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ curl -s http://www.gutenberg.org/cache/epub/2701/pg2701.txt | gunzip | sed  <span class="string">&#x27;s/\s+/\n/g&#x27;</span> | grep -i whale | <span class="built_in">wc</span> -l</span><br><span class="line">    1599</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>pipeline breakdown: <code>curl</code><ul>
+<li>Here’s a breakdown of each part of the pipeline and what it does:</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -s http://www.gutenberg.org/cache/epub/2701/pg2701.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>fetch Moby Dick from project Gutenberg and prints the results to stdout</p>
+</li>
+<li><p>pipeline breakdown: <code>sed</code></p>
+<ul>
+<li><code>sed -r &#39;s/\s+/\n/g&#39;</code></li>
+<li>converts all whitespace(tabs, spaces, newlines) into newlines</li>
+<li>This mean that each word gets its own line</li>
+</ul>
+</li>
+<li><p>pipeline breakdown: <code>grep</code></p>
+<ul>
+<li><code>grep -i whale</code></li>
+<li>filters the output so that only lines that contain the word “whale” will be shown. <code>-i</code> makes the search case-insensitive</li>
+</ul>
+</li>
+<li><p>pipeline breakdown: <code>wc -l</code></p>
+<ul>
+<li>counts the number of lines from stdin and prints the result</li>
+</ul>
+</li>
+</ul>
+<h3 id="head-and-tail-Commands"><a href="#head-and-tail-Commands" class="headerlink" title="head and tail Commands"></a>head and tail Commands</h3><ul>
+<li><p><code>head</code></p>
+<ul>
+<li>the <code>head</code> command prints the first part of a file</li>
+<li>If a file isn’t given, <code>head</code> reads from stdin</li>
+<li>Read the first 3 lines of a file with <code>head -n3</code></li>
+</ul>
+</li>
+<li><p><code>tail</code></p>
+<ul>
+<li>the tail command prints the last part of a file</li>
+<li>If a file isn’t given, <code>tail</code> reads from stdin</li>
+<li>Read the last 4 lines of a file with <code>tail -n4</code></li>
+<li>Read the last 9 bytes of a file with <code>tail -c9</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Calendar-and-Dates"><a href="#Calendar-and-Dates" class="headerlink" title="Calendar and Dates"></a>Calendar and Dates</h3><ul>
+<li><code>cal</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ cal</span><br><span class="line">      九月 2019</span><br><span class="line">日 一 二 三 四 五 六  </span><br><span class="line"> 1  2  3  4  5  6  7  </span><br><span class="line"> 8  9 10 11 12 13 14  </span><br><span class="line">15 16 17 18 19 20 21  </span><br><span class="line">22 23 24 25 26 27 28  </span><br><span class="line">29 30</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>date</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$  <span class="built_in">date</span></span><br><span class="line">2019年 9月30日 星期一 10时24分01秒 CST</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">date</span> +<span class="string">&#x27;%H:%M:%S&#x27;</span></span><br><span class="line">10:25:33</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">date</span> +<span class="string">&#x27;%F %T&#x27;</span></span><br><span class="line">2019-09-30 10:26:50</span><br></pre></td></tr></table></figure>
+
+<h3 id="Shorten-Lines"><a href="#Shorten-Lines" class="headerlink" title="Shorten Lines"></a>Shorten Lines</h3><ul>
+<li><code>fold</code><ul>
+<li>sometimes it’s handy to break long lines into shorter lines</li>
+</ul>
+</li>
+</ul>
+<h3 id="More-Curl-and-Grep"><a href="#More-Curl-and-Grep" class="headerlink" title="More Curl and Grep"></a>More Curl and Grep</h3><ul>
+<li><p><code>curl</code></p>
+<ul>
+<li>curl is a handy little tool for making HTTP requests</li>
+</ul>
+</li>
+<li><p><code>grep</code></p>
+<ul>
+<li>You can search for patterns in files or from stdin with the <code>grep</code> command</li>
+<li>The first argument is the pattern to search for as a regular experssion</li>
+<li>Regular expression are a language for pattern matching</li>
+</ul>
+</li>
+</ul>
+<h3 id="Backticks-and-Arithmetic"><a href="#Backticks-and-Arithmetic" class="headerlink" title="Backticks and Arithmetic"></a>Backticks and Arithmetic</h3><ul>
+<li><p>backticks &#96;&#96;</p>
+<ul>
+<li>Sometimes it’s useful to include the output of a program in the arguments list of another</li>
+<li>For Example with the date command we can print the current year<ul>
+<li><code>date +%Y</code></li>
+</ul>
+</li>
+<li>and we can use this value in a message with echo<ul>
+<li>echo Greetings from the year `date +%Y`</li>
+<li>Greeting from the yare 2019</li>
+<li>echo Greetings from the year $(date)</li>
+<li>Greetings from the year 2019年 9月30日 星期一 10时47分20秒 CST</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>arithmetics</p>
+<ul>
+<li>With <code>$((...))</code> expressions, you can do simple arithmetic on the command line<ul>
+<li><code>echo $((4*5+1))</code></li>
+<li>21</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Environment-Variables"><a href="#Environment-Variables" class="headerlink" title="Environment Variables"></a>Environment Variables</h3><ul>
+<li>Environment variables<ul>
+<li>environment variables are defined by the shell and shell scripts</li>
+<li>To list the current environment variables, type <code>export</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Quotes"><a href="#Quotes" class="headerlink" title="Quotes"></a>Quotes</h3><ul>
+<li>quotes<ul>
+<li>If you want to use characters like <code>&lt;</code> or <code>&gt;</code> in the arguments to a program, you will need to use quotes so that the shell doesn’t try to interpret them</li>
+<li>for example, to echo the string <code>&lt;b&gt;wow&lt;/b&gt;</code> we can use single quotes<ul>
+<li><code>echo &#39;&lt;b&gt;wow&lt;/b&gt;&#39;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Bash-Shell-Scripts"><a href="#Bash-Shell-Scripts" class="headerlink" title="Bash Shell Scripts"></a>Bash Shell Scripts</h2><h3 id="Introducing-Scripts"><a href="#Introducing-Scripts" class="headerlink" title="Introducing Scripts"></a>Introducing Scripts</h3><ul>
+<li>Whenever you find yourself typing the same sequence of commands servel times, consider making a scripts!</li>
+<li>Just put the commands you would normally type into a file and add <code>#!/bin/bash</code> to the top of the file</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">mkdir</span> wow</span><br><span class="line"><span class="built_in">cd</span> wow</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;yay&quot;</span> &gt; zing.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="Read-Loops-and-While"><a href="#Read-Loops-and-While" class="headerlink" title="Read, Loops and While"></a>Read, Loops and While</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">read</span> MESSAGE</span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$MESSAGE</span></span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span> <span class="built_in">date</span>; <span class="built_in">sleep</span> 1; <span class="keyword">done</span></span><br><span class="line">2019年10月 2日 星期三 06时45分55秒 CST</span><br><span class="line">2019年10月 2日 星期三 06时45分56秒 CST</span><br><span class="line">2019年10月 2日 星期三 06时45分57秒 CST</span><br><span class="line">2019年10月 2日 星期三 06时45分58秒 CST</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> x <span class="keyword">in</span> &#123;0..3&#125;; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$x</span>; <span class="keyword">done</span></span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span> node server.js; <span class="keyword">done</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PATH"><a href="#PATH" class="headerlink" title="#PATH"></a>#PATH</h3><ul>
+<li><p><code>$PATH</code></p>
+<ul>
+<li>There is a special environment variable called <code>$PATH</code></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$PATH</span></span><br><span class="line">/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>This variable contains a list of places separated by <code>:</code> that bash will look when you type a command</li>
+</ul>
+</li>
+</ul>
+<h3 id="Permissions"><a href="#Permissions" class="headerlink" title="Permissions"></a>Permissions</h3><ul>
+<li><p>permissons</p>
+<ul>
+<li>Each file on a UNIX system belongs to a user and a group</li>
+<li>users are accounts on the system, like the one you logged with, groups are collections of users</li>
+</ul>
+</li>
+<li><p>To see what group you belong to, just type <code>groups</code></p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">groups</span></span><br><span class="line">staff everyone localaccounts _appserverusr admin _appserveradm _lpadmin com.apple.sharepoint.group.1 _appstore _lpoperator _developer _analyticsusers com.apple.access_ftp com.apple.access_screensharing com.apple.access_ssh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>To inspect the permissions on a file, use <code>ls -l</code></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ls</span> -l</span><br><span class="line">total 32</span><br><span class="line">-rw-r--r--  1 liuyong  staff      0  9 29 10:49 beep.txt</span><br><span class="line">-rw-r--r--  1 liuyong  staff      0  9 29 10:49 boop.txt</span><br><span class="line">-rw-r--r--  1 liuyong  staff  12485 10  2 06:33 note.md</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Here we can see that the file <code>beep.txt</code> is owned by the user <code>liuyong</code> and the group <code>staff</code>. There is also this part on the left:</p>
+<ul>
+<li><code>-rw-r--r--</code></li>
+</ul>
+</li>
+<li><p>This string describes the permissions of the file</p>
+</li>
+<li><p>The first character is reserved for some fancy users, but after that there are 3 groups of 3 characters</p>
+<ul>
+<li><code>rwxrwxrwx</code></li>
+</ul>
+</li>
+<li><p>Each character describes a permission: (<strong>r</strong>)ead, (<strong>w</strong>)rite, and e(<strong>x</strong>)ecute. A <code>-</code> in place of one of those letters means the permission is not available.</p>
+</li>
+<li><p>If the e(<strong>x</strong>)ecute bit is enable on a file for a user, it means the user can execute the file</p>
+</li>
+<li><p>If the e(<strong>x</strong>)ecute bit is enable on a directory for a user, it means the user can list the files in that directory</p>
+<ul>
+<li>The first <code>rwx</code> says what the owner can do</li>
+<li>The second <code>rwx</code> says what user in the group can do</li>
+<li>The thied <code>rwx</code> says what everyone else can do</li>
+</ul>
+</li>
+<li><p>These three categories are called user(<strong>u</strong>), group(<strong>g</strong>), and other(<strong>o</strong>)</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 644</span><br><span class="line"><span class="comment"># add 4 for wirte</span></span><br><span class="line"><span class="comment"># add 2 for read</span></span><br><span class="line"><span class="comment"># add 1 for execute</span></span><br><span class="line"><span class="comment"># user can 4(write) + 2(read) = 6</span></span><br><span class="line"><span class="comment"># group can 4(write)</span></span><br><span class="line"><span class="comment"># other can 4(write)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>chmod</code></p>
+<ul>
+<li>To change the permission on a file, first figure out which capabilities you want to grant or revoke(rwx) from which categories of users(ugo)</li>
+</ul>
+</li>
+<li><p>To allow the owner of a file to  execute a script you can do</p>
+<ul>
+<li><code>chmod u+x script.sh</code></li>
+</ul>
+</li>
+<li><p>which is the same as</p>
+<ul>
+<li><code>chmod +x script.sh</code></li>
+</ul>
+</li>
+<li><p>beaucase the <code>u</code> is implied if not specified</p>
+</li>
+<li><p>You can also revoke permissions with a <code>-</code>. To make it so that other users can’t write to a file:</p>
+<ul>
+<li><code>chmod o-w wow.txt</code></li>
+</ul>
+</li>
+<li><p>You can grant and revoke permissions at the same time. Here we’re adding read and execute permissions to the user while simultaneously revoking read and write from the group:</p>
+<ul>
+<li><code>chmod u+rxg-rw status.sh</code></li>
+</ul>
+</li>
+<li><p>You can change the owner of a file with <code>chown</code> and the group with <code>chgrp</code></p>
+</li>
+</ul>
+<h3 id="Exit-Codes-Operators-and-Subshells"><a href="#Exit-Codes-Operators-and-Subshells" class="headerlink" title="Exit Codes, Operators and Subshells"></a>Exit Codes, Operators and Subshells</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br><span class="line"><span class="comment"># 上条命令是否执行成功，成功为0，失败不为0</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">test</span> -f boop.txt &amp;&amp; <span class="built_in">echo</span> file exist</span><br><span class="line">file exist</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">test</span> -f abc.txt || <span class="built_in">echo</span> <span class="string">&quot;file dosen&#x27;t exist&quot;</span></span><br><span class="line">file dosen<span class="string">&#x27;t exist</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">if</span> <span class="built_in">test</span> -f abc.txt; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="literal">true</span>; <span class="keyword">else</span> <span class="built_in">echo</span> <span class="literal">false</span>; <span class="keyword">fi</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ (<span class="keyword">if</span> <span class="built_in">test</span> -f abc.txt; <span class="keyword">then</span> <span class="built_in">exit</span> 1; <span class="keyword">else</span> <span class="built_in">exit</span> 2; <span class="keyword">fi</span>); <span class="built_in">echo</span> $?</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<h3 id="Job-Control"><a href="#Job-Control" class="headerlink" title="Job Control"></a>Job Control</h3><ul>
+<li><p>Bash is built to handle multiple programs running in parallel</p>
+</li>
+<li><p>ctrl-c</p>
+<ul>
+<li>Terminate a process in the foreground</li>
+</ul>
+</li>
+<li><p>ctrl-z</p>
+<ul>
+<li>Put a process in the background</li>
+</ul>
+</li>
+<li><p>When you background a process with ctrl-z, the shell prints a message with <code>[N]</code>, <code>N</code> is the job id. Use <code>N</code> to refer a particular job or</p>
+<ul>
+<li><code>%%</code> - the most recent job</li>
+</ul>
+</li>
+<li><p><code>&amp;</code></p>
+<ul>
+<li>Another way to background a process is to use <code>&amp;</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ node &amp;</span><br><span class="line">[1] 15627</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>The job id of <code>node</code> is 1 and the process id is 15627, Job ids are local to a shell session, but process ids are global across the entire system</p>
+</li>
+<li><p>fg JOB</p>
+<ul>
+<li>Move a process from the background to the foreground by its JOB</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">jobs</span></span><br><span class="line"><span class="comment">#当前后台任务</span></span><br><span class="line"><span class="built_in">fg</span> %1</span><br><span class="line"><span class="comment">#恢复任务号为1的任务</span></span><br><span class="line">vi cool.txt</span><br><span class="line"><span class="comment"># ctrl z</span></span><br><span class="line">[1]  + 13439 suspended  vi cool.txt</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">kill</span> -9 %1</span><br><span class="line">[1]  + 13439 killed     vi cool.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>pgrep</code></p>
+<ul>
+<li>Search for a process by its name</li>
+</ul>
+</li>
+<li><p><code>pkill</code></p>
+<ul>
+<li>Kill the process by its name</li>
+</ul>
+</li>
+<li><p><code>kill ID</code></p>
+<ul>
+<li>Kill a process by its process or job id</li>
+</ul>
+</li>
+</ul>
+<h3 id="Screen"><a href="#Screen" class="headerlink" title="Screen"></a>Screen</h3><ul>
+<li><p>Install screen</p>
+<ul>
+<li><code>sudo apt-get install screen</code></li>
+</ul>
+</li>
+<li><p>create a new named screen</p>
+<ul>
+<li><code>screen -S website</code></li>
+</ul>
+</li>
+<li><p>list screen</p>
+<ul>
+<li><code>screen -list</code></li>
+</ul>
+</li>
+<li><p>connect to a screen</p>
+<ul>
+<li><code>screen -x website</code></li>
+</ul>
+</li>
+<li><p>detach from a screen</p>
+<ul>
+<li>From inside of a screen, press CTRL + A then d.</li>
+</ul>
+</li>
+<li><p>create a new window inside screen</p>
+<ul>
+<li>CTRL + A c</li>
+</ul>
+</li>
+<li><p>go to the next window</p>
+<ul>
+<li>CTRL + A n</li>
+</ul>
+</li>
+<li><p>go to the previous window</p>
+<ul>
+<li>CTRL + A p</li>
+</ul>
+</li>
+<li><p>close a window</p>
+<ul>
+<li>Just type <code>exit</code> to close a window</li>
+</ul>
+</li>
+</ul>
+<h2 id="Regular-Expressions"><a href="#Regular-Expressions" class="headerlink" title="Regular Expressions"></a>Regular Expressions</h2><h3 id="Introducing-Regular-Expressions"><a href="#Introducing-Regular-Expressions" class="headerlink" title="Introducing Regular Expressions"></a>Introducing Regular Expressions</h3><p><a target="_blank" rel="noopener" href="https://github.com/substack/fmmn/blob/master/day1/regex.md">notes</a></p>
+<ul>
+<li><p>regex is a pattern-matching language</p>
+</li>
+<li><p>many programming languages and system tools have a regex engine</p>
+</li>
+<li><p>System tools with regex</p>
+<ul>
+<li>grep</li>
+<li>sed</li>
+<li>perl</li>
+<li>vim</li>
+<li>less</li>
+</ul>
+</li>
+</ul>
+<h3 id="Regular-Expressions-in-JavaScript"><a href="#Regular-Expressions-in-JavaScript" class="headerlink" title="Regular Expressions in JavaScript"></a>Regular Expressions in JavaScript</h3><ul>
+<li><p>Regex in JavaScript</p>
+<ul>
+<li>str.split(re)</li>
+<li>str.match(re)</li>
+<li>str.replace(re, )</li>
+<li>re.test(str)</li>
+<li>re.exec(str)</li>
+</ul>
+</li>
+<li><p>replacing in JavaScript</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;1 two three\n&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/1/</span>, <span class="string">&#x27;one&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;one two three\n&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>similar to</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;1 two three&#x27;</span> | sed <span class="string">&#x27;s/1/one/&#x27;</span></span><br><span class="line">one two three</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>match testing in JavaScript</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="regexp">/^-(h|-help)$/</span>.<span class="title function_">test</span>(process.<span class="property">argv</span>[<span class="number">2</span>])) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;usage:...&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>capturing in JavaScript</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> m = <span class="regexp">/^hello (\S+)/</span>.<span class="title function_">exec</span>(<span class="string">&#x27;hello cat&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(m[<span class="number">1</span>]) <span class="comment">// cat</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>splitting in JavaScript</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;one_two-three&#x27;</span>.<span class="title function_">split</span>(<span class="regexp">/[_-]/</span>)</span><br><span class="line"><span class="comment">// [ &#x27;one&#x27;, &#x27;two&#x27;, &#x27;three&#x27; ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Flags-Metacharacters-and-Quantifiers"><a href="#Flags-Metacharacters-and-Quantifiers" class="headerlink" title="Flags, Metacharacters and Quantifiers"></a>Flags, Metacharacters and Quantifiers</h3><ul>
+<li>flags</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/PATTERN/FLAGS</span><br><span class="line">s/PATTERN/REP/FLAGS</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>i</code> - case insensitive</p>
+</li>
+<li><p><code>g</code> - match all occurences(global)</p>
+</li>
+<li><p><code>m</code> - treat string as multiple lines</p>
+</li>
+<li><p><code>s</code> - treat string as a single line</p>
+</li>
+<li><p>metacharacters</p>
+<ul>
+<li><code>.</code> matches any character</li>
+<li><code>?</code> zero or one time</li>
+<li><code>*</code> zero or more times</li>
+<li><code>+</code> one or more times</li>
+<li><code>[]</code> character class</li>
+<li><code>^</code> anchor at the beginning</li>
+<li><code>$</code> anchor to the end</li>
+<li><code>(a|b)</code> match a or b</li>
+<li><code>()</code> capture group</li>
+<li><code>(?:)</code> non capture group</li>
+<li><code>\d</code> digit <code>[0-9]</code></li>
+<li><code>\w</code> word <code>[A-Za-z0-9_]</code></li>
+<li><code>\s</code> whitespace <code>[ \t\n\r\f]</code></li>
+</ul>
+</li>
+<li><p><code>.</code> matches any character</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> hello beep boop | sed <span class="string">&#x27;s/b..p/XXXX/g&#x27;</span></span><br><span class="line">hello XXXX XXXX</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>quantifiers<ul>
+<li><code>?</code> - zero or one time</li>
+<li><code>*</code> - zero or more times</li>
+<li><code>+</code> - zero or more times</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;dog and doge&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/doge?/g</span>, <span class="string">&#x27;DOGE&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;DOGE and DOGE&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;beep bp beeeep&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/be*p/g</span>, <span class="string">&#x27;BEEP&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;BEEP BEEP BEEP&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;beep bp beeeep&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/be+p/g</span>, <span class="string">&#x27;BEEP&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;BEEP bp BEEP&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Character-Class-Ranges"><a href="#Character-Class-Ranges" class="headerlink" title="Character Class Ranges"></a>Character Class Ranges</h3><ul>
+<li><code>[...]</code><ul>
+<li>Any characters inside the square brackets will match</li>
+<li>For example, to match a vowel character: <code>[aeiou]</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;beep and boop&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/b[aeiou]+p/g</span>, <span class="string">&#x27;BXXP&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;BXXP and BXXP&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> password = <span class="string">&#x27;abc432!A&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">isLongerThan8</span> = (<span class="params">str</span>) =&gt; <span class="regexp">/^[\w!@$%^&amp;*\-+]&#123;8,&#125;$/</span>.<span class="title function_">test</span>(str)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">hasAnyLowercase</span> = (<span class="params">str</span>) =&gt; <span class="regexp">/[a-z]/</span>.<span class="title function_">test</span>(str)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">hasAnyUppercase</span> = (<span class="params">str</span>) =&gt; <span class="regexp">/[A-Z]/</span>.<span class="title function_">test</span>(str)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">hasNumber</span> = (<span class="params">str</span>) =&gt; <span class="regexp">/\d/</span>.<span class="title function_">test</span>(str)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">hasSymbols</span> = (<span class="params">str</span>) =&gt; <span class="regexp">/[!@$%^&amp;*\-]/</span>.<span class="title function_">test</span>(str)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">isPasswordLegel</span> = (<span class="params">pwd</span>) =&gt; <span class="title function_">isLongerThan8</span>(pwd) &amp;&amp; <span class="title function_">hasAnyLowercase</span>(pwd) &amp;&amp; <span class="title function_">hasAnyUppercase</span>(pwd) &amp;&amp; <span class="title function_">hasNumber</span>(pwd) &amp;&amp; <span class="title function_">hasSymbols</span>(pwd)</span><br><span class="line"></span><br><span class="line"><span class="title function_">isPasswordLegel</span>(password) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">password = <span class="string">&#x27;abc&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">isPasswordLegel</span>(password) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>negated character class<ul>
+<li><code>[^...]</code></li>
+<li>put a <code>^</code> after the opening square bracket in a character calss to negate it</li>
+<li>for example, to match a non-vowel character: <code>[^aeiou]</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;beep boop&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/[^aeiou]/g</span>, <span class="string">&#x27;Z&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;ZeeZZZooZ&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;cool &lt;beans&gt; zzzz&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/&lt;[^&gt;]+&gt;/</span>, <span class="string">&#x27;XXX&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;cool XXX zzzz&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;cool &quot;beans&quot; zzzz&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/&quot;[^&quot;]+&quot;/</span>, <span class="string">&#x27;XXX&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;cool XXX zzzz&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>character class sequences<ul>
+<li>Regex engines provide many pre-defined character class sequences</li>
+<li><code>\w</code> - work character: <code>[A-Za-z0-9_]</code></li>
+<li><code>\W</code> - non-word character: <code>[^A-Za-z0-9_]</code></li>
+<li><code>\s</code> - whitespace: <code>[ \t\r\n\f]</code></li>
+<li><code>\d</code> - digit: <code>[0-9]</code></li>
+<li><code>\D</code> - non-digit: <code>[^0-9]</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Anchors-Groups-and-sed"><a href="#Anchors-Groups-and-sed" class="headerlink" title="Anchors, Groups and sed"></a>Anchors, Groups and sed</h3><ul>
+<li><p>anchors</p>
+<ul>
+<li><code>^</code> - anchor at the beginning</li>
+<li><code>$</code> - anchor to the end</li>
+</ul>
+</li>
+<li><p>groups</p>
+<ul>
+<li><code>(a|b)</code> - match a or b</li>
+<li><code>()</code> capture group</li>
+<li><code>(?:)</code> non capture group</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;beep boop&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/b(oo|ee)p/g</span>, <span class="string">&#x27;XXX&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;XXX XXX&#x27;</span></span><br><span class="line"><span class="string">&#x27;beep boop&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/b(o|e)&#123;2&#125;p/g</span>, <span class="string">&#x27;XXX&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;XXX XXX&#x27;</span></span><br><span class="line"><span class="string">&#x27;cool &lt;beans&gt; zzz&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/&lt;([^&gt;]+)&gt; (\w+)/g</span>, <span class="string">&#x27;&quot;$1&quot;:$2&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;cool &quot;beans&quot;:zzz&#x27;</span></span><br><span class="line"><span class="string">&#x27;cat cat dog dog bird&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/(\w+) \1/g</span>, <span class="string">&#x27;$1&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;cat dog bird&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h2><h3 id="Introducing-Vim"><a href="#Introducing-Vim" class="headerlink" title="Introducing Vim"></a>Introducing Vim</h3><ul>
+<li><p>vim</p>
+<ul>
+<li>vim is a popular command-line text editor</li>
+</ul>
+</li>
+<li><p>vim cheat sheet</p>
+<ul>
+<li>Keep this handy as you experiment with vim<ul>
+<li><a target="_blank" rel="noopener" href="http://www.fprintf.net/vimCheatSheet.html">http://www.fprintf.net/vimCheatSheet.html</a></li>
+</ul>
+</li>
+<li>Here is another guide that covers the commands incrementally<ul>
+<li><a target="_blank" rel="noopener" href="http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/">http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Why vim?</p>
+<ul>
+<li>edit files on a remote server over ssh</li>
+<li>works without a graphical desktop environment</li>
+<li>many programming-specific features</li>
+<li>really fast editing</li>
+</ul>
+</li>
+<li><p>Remote editing</p>
+<ul>
+<li>When you log in over ssh to administer a server, all you’ve got is a command-line interface</li>
+<li>If you are comfortable with vim, you can work on the remote system with the same ease and familiarity as your local environment</li>
+</ul>
+</li>
+<li><p>Graphics not required</p>
+<ul>
+<li>Not all systems have graphical environments!</li>
+<li>What do you do if the graphical environment on your computer stops working?</li>
+<li>What if you want to configure a device that doesn’t have a graphics card?</li>
+</ul>
+</li>
+<li><p>Programming-specific features</p>
+<ul>
+<li>Vim is very carefullly tuned to be effetive for programming<ul>
+<li>easily change the indentation on blocks of text</li>
+<li>syntax highlighting for many programming languages</li>
+<li>fluid interface with the system shell</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Really fast editing</p>
+<ul>
+<li>vim is designed from the ground-up to be very fast to use once you’ve learned its terse commands</li>
+<li>Many of the commands are designed to keep your fingers on the home row of the keyboard so that you can drift seemlessly between editing and typing</li>
+</ul>
+</li>
+<li><p>alternatives</p>
+<ul>
+<li>Here are some other command-line text editors<ul>
+<li>nano</li>
+<li>emacs</li>
+<li>vi</li>
+</ul>
+</li>
+<li>nano is much easier to learn than vim beaucase it doesn’t have many features</li>
+<li>emacs has a huge number of features and is very configurable</li>
+<li>vi is a precursor to vim from 1983. vi’s features are a subset of vim, and vi tends to already be installed on many systems</li>
+</ul>
+</li>
+<li><p>interface</p>
+<ul>
+<li>Unlike many command-line programs, vim is interactive</li>
+<li>vim uses ANSI codes to control a cuisor and position blocks of text on the screen</li>
+</ul>
+</li>
+<li><p>ansi codes</p>
+<ul>
+<li>ANSI codes are special instructions that your terminal interprets and renders</li>
+<li>ANSI codes can:<ul>
+<li>move the text cursor around</li>
+<li>change colors</li>
+<li>set modes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ansi codes - colors!</p>
+<ul>
+<li>Try this command:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -e <span class="string">&#x27;\x1b[38;5;44mwow&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>also try changing “44” to some other values</li>
+<li>Try stacking multiple color codes:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -e <span class="string">&#x27;\x1b[38;5;44mso \ x1b[38;5;33mcool&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ansi codes</p>
+<ul>
+<li>Applications like vim make heavy use of ansi codes</li>
+</ul>
+</li>
+</ul>
+<h3 id="Using-Vim"><a href="#Using-Vim" class="headerlink" title="Using Vim"></a>Using Vim</h3><ul>
+<li>and now: let’s learn vim!<ul>
+<li>First: type <code>vim</code></li>
+<li>If that doesn’t work, install vim</li>
+<li>On a debian or ubuntu system do:<ul>
+<li><code>sudo apt-get install vim vim-common</code></li>
+</ul>
+</li>
+<li>to get vim plus extras like syntax highlighting</li>
+</ul>
+</li>
+</ul>
+<!-- markdownlint-disable md033-->
+<ul>
+<li><p>now we’re in vim!</p>
+<ul>
+<li>Type <kbd>i</kbd> to go into insert mode</li>
+<li>Now you can type normally</li>
+</ul>
+</li>
+<li><p>saving and quitting</p>
+<ul>
+<li>Hit <kbd>esc</kbd> to get out of insert mode</li>
+<li>Now type:<ul>
+<li><code>:w foo.txt</code></li>
+</ul>
+</li>
+<li>to save your file as <code>foo.txt</code></li>
+</ul>
+</li>
+<li><p>You can go back into insert mode by typing <kbd>i</kbd> again or you can quit by typing</p>
+<ul>
+<li><code>:q</code></li>
+</ul>
+</li>
+<li><p>Once you’ve quit, you can open your file back up again by running:</p>
+<ul>
+<li><code>vim foo.txt</code></li>
+</ul>
+</li>
+<li><p>or you can do just <code>vim</code> and then from command mode do:</p>
+<ul>
+<li><code>:o foo.txt</code></li>
+</ul>
+</li>
+<li><p>If you’ve opened a file already, you can just type <code>:w</code> to save the file, you don’t need to type its name every time</p>
+</li>
+</ul>
+<h3 id="Modes-and-Moving-Around"><a href="#Modes-and-Moving-Around" class="headerlink" title="Modes and Moving Around"></a>Modes and Moving Around</h3><ul>
+<li><p>Modes</p>
+<ul>
+<li>Time to recap what just happened</li>
+<li>The first thing you’ll notice is how we used 2 modes: command mode and insert mode</li>
+<li>If you’re in command mode, press <kbd>i</kbd> to go into insert mode</li>
+<li>If you’re in insert mode, press <kbd>esc</kbd> to go into command mode</li>
+</ul>
+</li>
+<li><p>If it says <code>-- INSERT --</code> at the bottom left of your terminal, you’re in insert mode</p>
+</li>
+<li><p>Otherwise you’re in command mode</p>
+</li>
+<li><p>vim is a language</p>
+<ul>
+<li>Next, let’s combine some commands</li>
+<li>Try <code>:wq</code> to save and then quit</li>
+<li>Try <code>:q!</code> to quit without saving</li>
+</ul>
+</li>
+<li><p>moving around - <code>hjkl</code></p>
+<ul>
+<li>In insert mode, the arrow keys do work, but you should practice not using them!</li>
+<li>Instead, in command mode:<ul>
+<li><code>h</code> - moves left one character</li>
+<li><code>j</code> - moves down one line</li>
+<li><code>k</code> - moves up one line</li>
+<li><code>l</code> - moves right one character</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>hjkl</code> elsewhere</p>
+<ul>
+<li>the <code>less</code> command uses <code>j</code> and <code>k</code> for up and down</li>
+<li><a target="_blank" rel="noopener" href="https://twitter.com/">https://twitter.com</a> - <code>j</code> and <code>k</code></li>
+<li>many thing window managers such as xmonad</li>
+</ul>
+</li>
+<li><p>Moving around - even more!</p>
+<ul>
+<li>you can move all kinds of places quickly in command mode:<ul>
+<li><code>^</code> or <code>0</code> - move to the start of the current line</li>
+<li><code>$</code> - move to the end of the current line</li>
+<li><code>gg</code> jump to the beginning of the file</li>
+<li><code>G</code> - jump to the end of the file</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Deleting-and-Searching"><a href="#Deleting-and-Searching" class="headerlink" title="Deleting and Searching"></a>Deleting and Searching</h3><ul>
+<li><p>delete</p>
+<ul>
+<li>There are so many ways to delete!<ul>
+<li><code>x</code> - delete the character under the cursor</li>
+<li><code>dd</code> - delete the current line</li>
+<li><code>d$</code> or <code>D</code> - delete from the cursor to the end of the current line</li>
+<li><code>d0</code> or <code>d^</code> - delete from the cursor to the start of the current line</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>You’ll notice that we’ve already seen <code>0</code> and <code>$</code> before! You can repurpose each of the moving around commands to delete text</p>
+</li>
+<li><p>These all work:</p>
+<ul>
+<li><code>dG</code> - delete from the current position to the end of the file</li>
+<li><code>dgg</code> - delete from the current position to the start of the file</li>
+<li><code>dj</code> - delete the current line and the line below</li>
+<li><code>dk</code> - delete the current line and the line above</li>
+<li><code>2dd</code>, <code>3dd</code> etc - delete the next N lines</li>
+</ul>
+</li>
+<li><p>searching</p>
+<ul>
+<li>You can search for text using regular expressions<ul>
+<li><code>/PATTERN</code> - search for forward for PATTERN</li>
+<li><code>?PATTERN</code> - search for backword for PATTERN</li>
+</ul>
+</li>
+<li>Press:<ul>
+<li><code>n</code> - jump to the next match</li>
+<li><code>N</code> - jump to the previous match</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>PATTERN is a regular expression, but you can just treat it as an ordinary text match for the most part</p>
+</li>
+<li><p>You can combine searching with deleting too:</p>
+<ul>
+<li><code>d/PATTERN</code> - delete to the next match of PATTERN</li>
+<li><code>d?PATTERN</code> - delete to the previous match of PATTERN</li>
+<li><code>dn</code> - delete to the next already matched pattern</li>
+<li><code>dN</code> - delete to the previous already matched pattern</li>
+</ul>
+</li>
+<li><p>jumping</p>
+<ul>
+<li>You can also skip ahead to individual characters in a simple way on the current line”<ul>
+<li>f + CHAR - search forward on the current line to CHAR</li>
+<li>t + CHAR - search forward on the current line to the character before CHAR</li>
+<li>F + CHAR - search backward on the current line to CHAR</li>
+<li>T + CHAR - search backward on the current line to the character after CHAR</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>These are very useful in combination with the delete operators! They combine as you might expect:</p>
+<ul>
+<li>df + CHAR - delete forward on the current line to CHAR</li>
+<li>dt + CHAR - delete forward on the current line to the character before CHAR</li>
+<li>dF + CHAR - delete backward on the current line to CHAR</li>
+<li>dT + CHAR - delete backward on the current line to the character after CHAR</li>
+</ul>
+</li>
+</ul>
+<h3 id="Search-and-Replace"><a href="#Search-and-Replace" class="headerlink" title="Search and Replace"></a>Search and Replace</h3><ul>
+<li><p>search and replace</p>
+<ul>
+<li><code>:s/PATTERN/REPLACEMENT/FLAGS/</code></li>
+</ul>
+</li>
+<li><p>Try these on a line with the string cats:</p>
+<ul>
+<li><code>:s/cat/dog/</code></li>
+<li><code>:s/cat/dog/g</code></li>
+<li><code>:s/cat/dog/i</code></li>
+</ul>
+</li>
+<li><p>replace everything</p>
+<ul>
+<li><code>:%s/cat/dog/ig</code></li>
+<li>Replaces “cat” with dog everywhere in the entire file, case insensitively</li>
+</ul>
+</li>
+<li><p>regex flags</p>
+<ul>
+<li><code>i</code> - case insensitive</li>
+<li><code>g</code> - global repalce(per line)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Visual-Select"><a href="#Visual-Select" class="headerlink" title="Visual Select"></a>Visual Select</h3><ul>
+<li><p>visual select</p>
+<ul>
+<li>Press <kbd>v</kbd> to go into visual select mode</li>
+<li>Move the cursor around to select text</li>
+<li>Once you’ve selected a block, you can press:<ul>
+<li><code>y</code> - “yank” the text into the paste buffer</li>
+<li><code>x</code> or <code>d</code> - delete the selected text</li>
+<li><code>&gt;&gt;</code> - indent the text right by shiftwidth</li>
+<li><code>&lt;&lt;</code> - indent the text left by shiftwidth</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>visual modes</p>
+<ul>
+<li><code>v</code> - select by characters</li>
+<li><code>V</code> - select by lines</li>
+<li>ctrl + v - select in a block</li>
+</ul>
+</li>
+</ul>
+<h3 id="Paste-Buffer-and-Insert-Modes"><a href="#Paste-Buffer-and-Insert-Modes" class="headerlink" title="Paste Buffer and Insert Modes"></a>Paste Buffer and Insert Modes</h3><ul>
+<li><p>Once you’ve populated the paste buffer by yanking or deleting, press <kbd>p</kbd> to paste</p>
+</li>
+<li><p>More insert modes</p>
+<ul>
+<li>There are more ways to insert mode than just <code>i</code>:</li>
+<li><code>o</code> - go into insert mode, inserting a new line below the current line</li>
+<li><code>O</code> - go into insert mode, inserting a new line above the current line</li>
+<li><code>a</code> - go into insert mode at one character to the right</li>
+<li><code>A</code> - go into insert mode at the end of the current line</li>
+</ul>
+</li>
+<li><p>fancy odds and ends</p>
+<ul>
+<li><code>J</code> - move the next line to the end of the current line</li>
+<li>` + . - jump to the last edit</li>
+</ul>
+</li>
+<li><p>insert a file</p>
+<ul>
+<li>You can insert a file at the cursor position with:<ul>
+<li><code>:r otherfile.txt</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>insert with a command in place</p>
+<ul>
+<li>You can insert the output of a command at the cursor position with <code>:r!</code></li>
+<li>For example, to insert the output of the <code>pwd</code> command:<ul>
+<li><code>:r!pwd</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>.vimrc</code></p>
+<ul>
+<li>autoindento</li>
+<li>expandtab</li>
+<li>tabstop</li>
+<li>shiftwidth(sw)</li>
+</ul>
+</li>
+<li><p><code>set -o vi</code></p>
+<ul>
+<li>You can use vi shorthand in bash too</li>
+<li>just do:<ul>
+<li><code>set -o vi</code></li>
+</ul>
+</li>
+<li>now press esc and hjkl your way around</li>
+</ul>
+</li>
+<li><p>escape is too far away</p>
+<ul>
+<li>It’s common for vim users to remap their keyboards</li>
+<li>One common thing to do is swap the caps lock key with the escape key because escape is such a common key in vim</li>
+</ul>
+</li>
+<li><p>xmodmap for escape</p>
+<ul>
+<li>In linux you can use xmodmap to remap your keys</li>
+<li>Save this text to a file called <code>.xmodmap</code> in your home directory:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">remove Lock = Caps_Lock</span><br><span class="line">keysym Escape = Caps_Lock</span><br><span class="line">keysym Caps_Lock = Escape</span><br><span class="line">add Lock = Caps_Lock</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>now run <code>xmodmap ~/.xmodmap</code> to enable your swapped keys</li>
+<li>Add this command to your login scripts so that each time you log in you won’t need to remember to run the command every time you log in</li>
+</ul>
+</li>
+<li><p>built-in escape alternative</p>
+<ul>
+<li>you can alse use ctrl + ] to get out of insert mode</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/bash/" rel="tag"># bash</a>
+              <a href="/tags/vim/" rel="tag"># vim</a>
+              <a href="/tags/regular-expressions/" rel="tag"># regular expressions</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/09/25/JS%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E7%9A%84%E6%97%B6%E6%9C%BA/" rel="prev" title="JS函数执行的时机">
+                  <i class="fa fa-chevron-left"></i> JS函数执行的时机
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/10/04/Sass-Fundamentals/" rel="next" title="Sass Fundamentals">
+                  Sass Fundamentals <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

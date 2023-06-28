@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Introduction This is a course for keeping your state manageable when it’s no longer a toy application.  In this course, we’ll be working with pure React.  So, what are we going to do today?  Think dee">
+<meta property="og:type" content="article">
+<meta property="og:title" content="State Management In Pure React, v2">
+<meta property="og:url" content="http://yoursite.com/2020/03/07/State-Management-In-Pure-React-v2/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introduction This is a course for keeping your state manageable when it’s no longer a toy application.  In this course, we’ll be working with pure React.  So, what are we going to do today?  Think dee">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-07T06:51:11.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.329Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="React Hooks">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/03/07/State-Management-In-Pure-React-v2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2020/03/07/State-Management-In-Pure-React-v2/","path":"2020/03/07/State-Management-In-Pure-React-v2/","title":"State Management In Pure React, v2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>State Management In Pure React, v2 | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Type-of-State"><span class="nav-number">1.1.</span> <span class="nav-text">Type of State</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class-Based-State"><span class="nav-number">2.</span> <span class="nav-text">Class-Based State</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#setState-amp-Class"><span class="nav-number">2.1.</span> <span class="nav-text">setState &amp; Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setState-amp-Asynchronous"><span class="nav-number">2.2.</span> <span class="nav-text">setState &amp; Asynchronous</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setState-amp-Function"><span class="nav-number">2.3.</span> <span class="nav-text">setState &amp; Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setState-amp-Callback"><span class="nav-number">2.4.</span> <span class="nav-text">setState &amp; Callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setState-amp-Helper-Function"><span class="nav-number">2.5.</span> <span class="nav-text">setState &amp; Helper Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setState-Patterns"><span class="nav-number">2.6.</span> <span class="nav-text">setState Patterns</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hooks-State"><span class="nav-number">3.</span> <span class="nav-text">Hooks State</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactoring-amp-Hooks"><span class="nav-number">3.1.</span> <span class="nav-text">Refactoring &amp; Hooks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useEffect-amp-Dependencies"><span class="nav-number">3.2.</span> <span class="nav-text">useEffect &amp; Dependencies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactoring-amp-Custom-Hook"><span class="nav-number">3.3.</span> <span class="nav-text">Refactoring &amp; Custom Hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Persisting-State-amp-useRef"><span class="nav-number">3.4.</span> <span class="nav-text">Persisting State &amp; useRef</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useEffect-amp-Cleanup"><span class="nav-number">3.5.</span> <span class="nav-text">useEffect &amp; Cleanup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reducers"><span class="nav-number">3.6.</span> <span class="nav-text">Reducers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reducer-Action-amp-State"><span class="nav-number">3.7.</span> <span class="nav-text">Reducer Action &amp; State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reducer-Action-Keys-amp-dispatch"><span class="nav-number">3.8.</span> <span class="nav-text">Reducer Action Keys &amp; dispatch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-memo-amp-useCallback"><span class="nav-number">3.9.</span> <span class="nav-text">React.memo &amp; useCallback</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context"><span class="nav-number">4.</span> <span class="nav-text">Context</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prop-Drilling-amp-Context-API"><span class="nav-number">4.1.</span> <span class="nav-text">Prop Drilling &amp; Context API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-Context-Provider"><span class="nav-number">4.2.</span> <span class="nav-text">Creating a Context Provider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Context-amp-useContext-Hook"><span class="nav-number">4.3.</span> <span class="nav-text">Context &amp; useContext Hook</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Fetching"><span class="nav-number">5.</span> <span class="nav-text">Data Fetching</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Fetching-amp-useEffect-Hook"><span class="nav-number">5.1.</span> <span class="nav-text">Data Fetching &amp; useEffect Hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactoring-to-a-Custom-Reducer"><span class="nav-number">5.2.</span> <span class="nav-text">Refactoring to a Custom Reducer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thunks"><span class="nav-number">6.</span> <span class="nav-text">Thunks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-a-Thunk"><span class="nav-number">6.1.</span> <span class="nav-text">What is a Thunk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Routing-amp-Thunks"><span class="nav-number">6.2.</span> <span class="nav-text">Routing &amp; Thunks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementing-Undo-amp-Redo"><span class="nav-number">6.3.</span> <span class="nav-text">Implementing Undo &amp; Redo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managing-State-in-a-Form"><span class="nav-number">6.4.</span> <span class="nav-text">Managing State in a Form</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wrapping-Up"><span class="nav-number">7.</span> <span class="nav-text">Wrapping Up</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/07/State-Management-In-Pure-React-v2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="State Management In Pure React, v2 | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          State Management In Pure React, v2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-03-07 14:51:11" itemprop="dateCreated datePublished" datetime="2020-03-07T14:51:11+08:00">2020-03-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li><p>This is a course for keeping your state manageable when it’s no longer a toy application.</p>
+</li>
+<li><p>In this course, we’ll be working with pure React.</p>
+</li>
+<li><p>So, what are we going to do today?</p>
+<ul>
+<li>Think deeply about what “state” even means in a React application.</li>
+<li>Learn a bit about the inner workings of <code>this.setState</code>.</li>
+<li>How class-based component state and hooks differ.</li>
+<li>Explore APIs for navigating around prop-drilling.</li>
+<li>Use reducers for advanced state management.</li>
+<li>Write our own custom hooks for managing state.</li>
+<li>Store state in Local Storage.</li>
+<li>Store state in the URL using query parameters.</li>
+<li>Fetch state from a server-because that’s a thing.<span id="more"></span></li>
+</ul>
+</li>
+<li><p>And now… Understanding State</p>
+</li>
+<li><p>The main job of React is to take your application state and turn it into DOM nodes.</p>
+<ul>
+<li>在之前，我们可能通过JQuery来获取页面上UI所保存的数据并通过对其操作来构建应用状态管理。</li>
+<li>在一些现代框架中，我们通过一些JS的数据结构来保存应用转态并将其映射到UI中。</li>
+<li>rules(data) &#x3D;&gt; ui</li>
+</ul>
+</li>
+</ul>
+<h3 id="Type-of-State"><a href="#Type-of-State" class="headerlink" title="Type of State"></a>Type of State</h3><ul>
+<li><p>There are many kinds of state.</p>
+<ul>
+<li>Model data: The nouns in your application.</li>
+<li>View&#x2F;UI state: Are those nouns sorted in ascending or descending order?</li>
+<li>Session state: Is the user even logged in?</li>
+<li>Communication: Are we in the process of fetching the nouns from the server?</li>
+<li>Location: Where are we in the application? Which nouns are we looking at?</li>
+</ul>
+</li>
+<li><p>Or, it might make sense to think about state relative to time.</p>
+<ul>
+<li>Model state: This is likely the data in your application. This could be the items in a given list.</li>
+<li>Ephemeral state: Stuff like the value of an input field that will be wiped away when you hit “enter”. This could be the order in which a given list is sorted.</li>
+</ul>
+</li>
+<li><p>Spoiler alert: There is no silver bullet.</p>
+</li>
+</ul>
+<h2 id="Class-Based-State"><a href="#Class-Based-State" class="headerlink" title="Class-Based State"></a>Class-Based State</h2><h3 id="setState-amp-Class"><a href="#setState-amp-Class" class="headerlink" title="setState &amp; Class"></a>setState &amp; Class</h3><ul>
+<li><p>And now… An Uncomfortably Close Look at React Component State</p>
+</li>
+<li><p>Let’s start with the world’s simplest React component.</p>
+</li>
+<li><p><code>https://github.com/stevekinney/simple-counter</code></p>
+</li>
+<li><p>Oh, wow -  it looks like it’s time for a pop quiz, already</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Counter</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">count</span>: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="setState-amp-Asynchronous"><a href="#setState-amp-Asynchronous" class="headerlink" title="setState &amp; Asynchronous"></a>setState &amp; Asynchronous</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; <span class="attr">count</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">count</span> + <span class="number">1</span>&#125;);</span><br><span class="line"><span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; <span class="attr">count</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">count</span> + <span class="number">1</span>&#125;);</span><br><span class="line"><span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; <span class="attr">count</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">count</span> + <span class="number">1</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">count</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>如果我们在一个方法中多次执行setState对同一个state进行操作，那么打印出来的值是什么？</p>
+</li>
+<li><p>答案是 0</p>
+</li>
+<li><p><code>this.setState()</code> is asynchronous.</p>
+</li>
+<li><p>React is trying to avoid unnecessary re-renders.</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Counter</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; <span class="attr">count</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">count</span> + <span class="number">1</span>&#125;);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; <span class="attr">count</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">count</span> + <span class="number">1</span>&#125;);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; <span class="attr">count</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">count</span> + <span class="number">1</span>&#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>What will the count be after the user’s clicks the “Increment” button?</p>
+<ul>
+<li>We may expect get “3” but actually get “1”</li>
+</ul>
+</li>
+<li><p>Effectively, you’re queuing up state changes.</p>
+</li>
+<li><p>React will batch them up, figure out the result and then efficiently make that change.</p>
+</li>
+<li><p>实际上述过程可能类似如下代码</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Object</span>.<span class="title function_">assign</span>(</span><br><span class="line">  &#123;&#125;,</span><br><span class="line">  firstCallToSetState,</span><br><span class="line">  secondCallToSetState,</span><br><span class="line">  thirdCallToSetState, <span class="comment">// 最后一个参数对象的属性值会覆盖之前的属性值</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="setState-amp-Function"><a href="#setState-amp-Function" class="headerlink" title="setState &amp; Function"></a>setState &amp; Function</h3><ul>
+<li>There is actually a bit more to <code>this.setState()</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Counter</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="function">(<span class="params">state</span>) =&gt;</span> &#123; <span class="keyword">return</span> &#123; <span class="attr">count</span>: state.<span class="property">count</span> + <span class="number">1</span> &#125; &#125;)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="function">(<span class="params">state</span>) =&gt;</span> &#123; <span class="keyword">return</span> &#123; <span class="attr">count</span>: state.<span class="property">count</span> + <span class="number">1</span> &#125; &#125;)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="function">(<span class="params">state</span>) =&gt;</span> &#123; <span class="keyword">return</span> &#123; <span class="attr">count</span>: state.<span class="property">count</span> + <span class="number">1</span> &#125; &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>By use a function in setState, we can get “3” this time.</p>
+</li>
+<li><p>When you pass functions to <code>this.setState()</code>, it plays through each of them.</p>
+</li>
+<li><p>因为传递的是一个回调函数，所以我们可以在函数内进行一些判断或其他操作</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Counter</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="function"><span class="params">state</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(state.<span class="property">count</span> &gt;= <span class="number">5</span>) <span class="keyword">return</span>;</span><br><span class="line">      <span class="keyword">return</span> &#123; <span class="attr">count</span>: state.<span class="property">count</span> + <span class="number">1</span> &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我们还可以通过回调的第二个参数获取当前组件的参数对象，所以我们可以进行如下操作</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="function">(<span class="params">state, props</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;max, step&#125; = props</span><br><span class="line">    <span class="keyword">const</span> &#123;count&#125; = state</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(count &gt;= max) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">count</span>: count + step &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>又因为回调函数只是一个普通函数，所以我们也可以将其抽离出来以便进行测试。</li>
+</ul>
+<h3 id="setState-amp-Callback"><a href="#setState-amp-Callback" class="headerlink" title="setState &amp; Callback"></a>setState &amp; Callback</h3><ul>
+<li><code>this.setState</code>不仅可以接受一个参数，还可以接受第二个参数作为改变state之后的回调函数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="function">(<span class="params">&#123; count &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">count</span>: count + <span class="number">1</span> &#125;</span><br><span class="line">  &#125;, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">count</span>) <span class="comment">// 异步执行，打印值为1</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">count</span>) <span class="comment">// 同步执行，打印值为0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="setState-amp-Helper-Function"><a href="#setState-amp-Helper-Function" class="headerlink" title="setState &amp; Helper Function"></a>setState &amp; Helper Function</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">getStateFromLocalStorage</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> storage = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;counterState&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span> (storage) <span class="keyword">return</span> <span class="title class_">JSON</span>.<span class="title function_">parse</span>(storage);</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">count</span>: <span class="number">0</span> &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Counter</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = <span class="title function_">getStateFromLocalStorage</span>()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  increment = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(</span><br><span class="line">      <span class="function">(<span class="params">&#123; count &#125;</span>) =&gt;</span> (&#123; <span class="attr">count</span>: count + <span class="number">1</span> &#125;),</span><br><span class="line">      <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;counterState&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(<span class="variable language_">this</span>.<span class="property">state</span>))</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="setState-Patterns"><a href="#setState-Patterns" class="headerlink" title="setState Patterns"></a>setState Patterns</h3><ul>
+<li>Patterns and anti-patterns<ul>
+<li>When we’re working with props, we have PropTypes. That’s not the case with state.*</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">shouldIKeepSomethingInReactState</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="title function_">canICalculateItFromProps</span>()) &#123;</span><br><span class="line">    <span class="comment">// Don&#x27;t duplicate data from props in state</span></span><br><span class="line">    <span class="comment">// Calculate what you can in render() method</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(!<span class="title function_">amIUsingItInRenderMethod</span>()) &#123;</span><br><span class="line">    <span class="comment">// Don&#x27;t keep something in the state</span></span><br><span class="line">    <span class="comment">// If you don&#x27;t use it for rendering.</span></span><br><span class="line">    <span class="comment">// For example, API subscriptions are</span></span><br><span class="line">    <span class="comment">// better off as custom private fields</span></span><br><span class="line">    <span class="comment">// or variables in external modules.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// You can use React state for this!</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Don’t use <code>this.state</code> for derivations of props.</p>
+</li>
+<li><p>Bad example</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">User</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">fullName</span>: props.<span class="property">firstName</span> + <span class="string">&#x27; &#x27;</span> + props.<span class="property">lastName</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Don’t do this. Instead, derive computed properties directly from the props themselves.</p>
+</li>
+<li><p>Good</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">User</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; firstName, lastName &#125; = <span class="variable language_">this</span>.<span class="property">props</span></span><br><span class="line">    <span class="keyword">const</span> fullName = firstName + <span class="string">&#x27; &#x27;</span> + lastName</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;fullName&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Alternatively</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">User</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="keyword">get</span> <span class="title function_">fullName</span>() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; firstName, lastName &#125; = <span class="variable language_">this</span>.<span class="property">props</span></span><br><span class="line">    <span class="keyword">return</span> firstName + <span class="string">&#x27; &#x27;</span> + lastName</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;this.fullName&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>You don’t need to shove everything into your render method.</p>
+</li>
+<li><p>You can break things out into helper methods</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserList</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; users &#125; = <span class="variable language_">this</span>.<span class="property">props</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">section</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">VeryImportantUserControls</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123; users.map(user =&gt; (</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">UserProfile</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">key</span>=<span class="string">&#123;user.id&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">photograph</span>=<span class="string">&#123;user.mugshot&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">onLayoff</span>=<span class="string">&#123;handleLayoff&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          /&gt;</span></span></span><br><span class="line"><span class="language-xml">        )) &#125;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">SomeSpecialFooter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    )</span></span><br><span class="line"><span class="language-xml">  &#125;</span></span><br><span class="line"><span class="language-xml">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>to</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserList</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">renderUserProfile</span>(<span class="params">user</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">UserProfile</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">key</span>=<span class="string">&#123;user.id&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">photograph</span>=<span class="string">&#123;user.mugshot&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">onLayoff</span>=<span class="string">&#123;handleLayoff&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; users &#125; = <span class="variable language_">this</span>.<span class="property">props</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">section</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">VeryImportantUserControls</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123; users.map(this.renderUserProfile) &#125;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">SomeSpecialFooter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    )</span></span><br><span class="line"><span class="language-xml">  &#125;</span></span><br><span class="line"><span class="language-xml">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>or</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">renderUserProfile</span> = user =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">UserProfile</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">key</span>=<span class="string">&#123;user.id&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">photograph</span>=<span class="string">&#123;user.mugshot&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">onLayoff</span>=<span class="string">&#123;handleLayoff&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    /&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">UserList</span> = (<span class="params">&#123;users&#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">section</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">VeryImportantUserControls</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123; users.map(this.renderUserProfile) &#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">SomeSpecialFooter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  )</span></span><br><span class="line"><span class="language-xml">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Don’t use state for things you’re not going to render.</p>
+</li>
+<li><p>Use sensible defaults.</p>
+</li>
+</ul>
+<h2 id="Hooks-State"><a href="#Hooks-State" class="headerlink" title="Hooks State"></a>Hooks State</h2><h3 id="Refactoring-amp-Hooks"><a href="#Refactoring-amp-Hooks" class="headerlink" title="Refactoring &amp; Hooks"></a>Refactoring &amp; Hooks</h3><ul>
+<li>And now…</li>
+<li>An Equally Uncomfortably Close Look at React Hooks</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [count, setCount] = <span class="title class_">React</span>.<span class="title function_">useState</span>(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">increment</span> = (<span class="params"></span>) =&gt; <span class="title function_">setCount</span>(count + <span class="number">1</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">decrement</span> = (<span class="params"></span>) =&gt; <span class="title function_">setCount</span>(count - <span class="number">1</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">reset</span> = (<span class="params"></span>) =&gt; <span class="title function_">setCount</span>(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">increment</span> = (<span class="params"></span>) =&gt; <span class="title function_">setCount</span>(<span class="function"><span class="params">c</span> =&gt;</span> c + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里与this.setState类似同样可以传入一个函数，注意与class component不同的是必须要有返回值，否则state会变为undefined.</li>
+</ul>
+<h3 id="useEffect-amp-Dependencies"><a href="#useEffect-amp-Dependencies" class="headerlink" title="useEffect &amp; Dependencies"></a>useEffect &amp; Dependencies</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">title</span> = count;</span><br><span class="line">&#125;, [count]); <span class="comment">// count变化时执行前面的回调</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Refactoring-amp-Custom-Hook"><a href="#Refactoring-amp-Custom-Hook" class="headerlink" title="Refactoring &amp; Custom Hook"></a>Refactoring &amp; Custom Hook</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">useLocalStorage</span> = (<span class="params">initialState, key</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">get</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> storage = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(key) <span class="comment">// count: &#123;value: 1&#125;</span></span><br><span class="line">    <span class="keyword">if</span>(storage) <span class="keyword">return</span> <span class="title class_">JSON</span>.<span class="title function_">parse</span>(storage).<span class="property">value</span></span><br><span class="line">    <span class="keyword">return</span> initialState</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> [value, setValue] = <span class="title function_">useState</span>(<span class="title function_">get</span>())</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(key, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; value &#125;))</span><br><span class="line">  &#125;, [])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> [value, setValue]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Persisting-State-amp-useRef"><a href="#Persisting-State-amp-useRef" class="headerlink" title="Persisting State &amp; useRef"></a>Persisting State &amp; useRef</h3><ul>
+<li><p>如果我们在一个类组件的<code>componentDidUpdate()</code>生命周期中延时三秒打印<code>this.state.count</code>, 并同时连续点击按钮使count自增，</p>
+</li>
+<li><p>那么结果会打印出什么？</p>
+</li>
+<li><p>如果点击七次，那么会输出七次7</p>
+</li>
+<li><p>说明我们虽然改变了this.state.count的值，但是仍保持了同一个引用</p>
+</li>
+<li><p>如果我们使用函数组件的useState保存状态，同样在useEffect内延时三秒打印，这次会输出什么？</p>
+</li>
+<li><p>答案是点击时的数据</p>
+</li>
+<li><p>这其实是基于JS的基本原理而不是React的独创，使用类组件我们在this.state这一个对象中保存数据，所以this.state永远指向同一对象，那么获取属性时会获取这个对象属性的最新值。而hooks变量保存状态，所以每次改变时都指向不同的值。</p>
+</li>
+<li><p>那么有时我们需要获取到当前状态和之前状态，例如进行比较或者撤销，显然useState是无法做到的</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">Counter</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = <span class="title function_">useState</span>(<span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> countRef = <span class="title class_">React</span>.<span class="title function_">useRef</span>()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 此时我们可以比较当前与之前状态的大小</span></span><br><span class="line">  <span class="keyword">const</span> message = countRef.<span class="property">current</span> &lt; count ? <span class="string">&#x27;Higher&#x27;</span> : <span class="string">&#x27;Lower&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 在此之前countRef.current保存的仍是上一个count的值</span></span><br><span class="line">  countRef.<span class="property">current</span> = count</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="useEffect-amp-Cleanup"><a href="#useEffect-amp-Cleanup" class="headerlink" title="useEffect &amp; Cleanup"></a>useEffect &amp; Cleanup</h3><ul>
+<li>在类组件中我们有componentWillUnmount来清理一些副作用，类似计时器或者websocket链接</li>
+<li>在函数组件中，我们可以使用useEffect的第一个参数也就是回调函数的返回值来清理副作用</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Count: <span class="subst">$&#123;count&#125;</span>`</span>)</span><br><span class="line">  &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;. [count])</span><br><span class="line"><span class="comment">// 如果我们此时更改了count的值，回调会重新执行，也就是注册一个新的计时器</span></span><br><span class="line"><span class="comment">// 控制台一秒内会同时打印多个值</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我们可以清理副作用</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> id = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Count: <span class="subst">$&#123;count&#125;</span>`</span>)</span><br><span class="line">  &#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 返回一个函数清理副作用</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">clearInterval</span>(id)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, [count])</span><br></pre></td></tr></table></figure>
+
+<h3 id="Reducers"><a href="#Reducers" class="headerlink" title="Reducers"></a>Reducers</h3><ul>
+<li><p>And now…</p>
+</li>
+<li><p>The joy of useReducer</p>
+</li>
+<li><p>由于js对于Object类型传递的为引用而不是具体值，所以如果我们只是单纯的mutate一个数组(原生API push等方法)，setState无法侦测到state的变化，也就无法进行重新渲染，所以我们要使用一些immutable的方法，创建新的引用。</p>
+</li>
+<li><p>例如以下代码</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">Application</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [grudges, setGrudges] = <span class="title function_">useState</span>(initialState);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">addGrudge</span> = grudge =&gt; &#123;</span><br><span class="line">    grudge.<span class="property">id</span> = <span class="title function_">id</span>();</span><br><span class="line">    grudge.<span class="property">forgiven</span> = <span class="literal">false</span>;</span><br><span class="line">    <span class="title function_">setGrudges</span>([grudge, ...grudges]);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">toggleForgiveness</span> = id =&gt; &#123;</span><br><span class="line">    <span class="title function_">setGrudges</span>(</span><br><span class="line">      grudges.<span class="title function_">map</span>(<span class="function"><span class="params">grudge</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (grudge.<span class="property">id</span> !== id) <span class="keyword">return</span> grudge;</span><br><span class="line">        <span class="keyword">return</span> &#123; ...grudge, <span class="attr">forgiven</span>: !grudge.<span class="property">forgiven</span> &#125;;</span><br><span class="line">      &#125;)</span><br><span class="line">    );</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;Application&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">NewGrudge</span> <span class="attr">onSubmit</span>=<span class="string">&#123;addGrudge&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Grudges</span> <span class="attr">grudges</span>=<span class="string">&#123;grudges&#125;</span> <span class="attr">onForgive</span>=<span class="string">&#123;toggleForgiveness&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>当单个grudge改变时，这个列表会重新渲染，这显然不是我们想要的。</li>
+</ul>
+<h3 id="Reducer-Action-amp-State"><a href="#Reducer-Action-amp-State" class="headerlink" title="Reducer Action &amp; State"></a>Reducer Action &amp; State</h3><ul>
+<li><p>Reducer Function</p>
+</li>
+<li><p>Reducer的概念本身非常简单，就是一个函数，接收两个参数，一个是当前state，一个是action，最终返回新的state。</p>
+</li>
+<li><p>当与React结合起来时，就是每当新的state产生，就通过重新传递props的方式来通知React重新渲染子组件</p>
+</li>
+<li><p>一个简单的reducer可能如下</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">reducer</span> = (<span class="params">state, action</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> state</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可见reducer只是一个普通函数，我们可以与useReducer结合使用，同时也因为其只是一个简单函数，我们可以方便的编写测试用例进行测试</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [grudges, dispatch] = <span class="title function_">useReducer</span>(reducer, initialState)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Reducer-Action-Keys-amp-dispatch"><a href="#Reducer-Action-Keys-amp-dispatch" class="headerlink" title="Reducer Action Keys &amp; dispatch"></a>Reducer Action Keys &amp; dispatch</h3><ul>
+<li><p>因为reducer的action使用字符串作为属性，推荐将字符串保存为常量，以提供更加好的代码提示与纠错</p>
+</li>
+<li><p>我们可以使用useReducer将上述功能修改为如下</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">GRUDGE_ADD</span> = <span class="string">&#x27;GRUDGE_ADD&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">GRUDGE_FORGIVE</span> = <span class="string">&#x27;GRUDGE_FORGIVE&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">reducer</span> = (<span class="params">state, action</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (action.<span class="property">type</span> === <span class="variable constant_">GRUDGE_ADD</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> [action.<span class="property">payload</span>, ...state];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (action.<span class="property">type</span> === <span class="variable constant_">GRUDGE_FORGIVE</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> state.<span class="title function_">map</span>(<span class="function"><span class="params">grudge</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (grudge.<span class="property">id</span> !== action.<span class="property">payload</span>.<span class="property">id</span>) <span class="keyword">return</span> grudge;</span><br><span class="line">      <span class="keyword">return</span> &#123; ...grudge, <span class="attr">forgiven</span>: !grudge.<span class="property">forgiven</span> &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> state;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// const [grudges, setGrudges] = useState(initialState);</span></span><br><span class="line"><span class="comment">// 使用useReducer替代useState</span></span><br><span class="line"><span class="keyword">const</span> [grudges, dispatch] = <span class="title function_">useReducer</span>(reducer, initialState);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">addGrudge</span> = (<span class="params">&#123; person, reason &#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="title function_">dispatch</span>(&#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="variable constant_">GRUDGE_ADD</span>,</span><br><span class="line">    <span class="attr">payload</span>: &#123;</span><br><span class="line">      person,</span><br><span class="line">      reason,</span><br><span class="line">      <span class="attr">forgiven</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">id</span>: <span class="title function_">id</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">toggleForgiveness</span> = id =&gt; &#123;</span><br><span class="line">  <span class="title function_">dispatch</span>(&#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="variable constant_">GRUDGE_FORGIVE</span>,</span><br><span class="line">    <span class="attr">payload</span>: &#123;</span><br><span class="line">      id</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="React-memo-amp-useCallback"><a href="#React-memo-amp-useCallback" class="headerlink" title="React.memo &amp; useCallback"></a>React.memo &amp; useCallback</h3><ul>
+<li>我们希望如果当前属性值与上次相同，那么就不在重新渲染依赖属性值的子组件。React提供了几种方式<ul>
+<li>React.memo()</li>
+<li>useCallback</li>
+<li>useMemo</li>
+</ul>
+</li>
+</ul>
+<h2 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h2><h3 id="Prop-Drilling-amp-Context-API"><a href="#Prop-Drilling-amp-Context-API" class="headerlink" title="Prop Drilling &amp; Context API"></a>Prop Drilling &amp; Context API</h3><ul>
+<li><p>And now… The Perils Prop Drilling</p>
+</li>
+<li><p>Prop drilling occurs when you have deep component trees</p>
+</li>
+<li><p>And now… The Context API</p>
+</li>
+</ul>
+<h3 id="Creating-a-Context-Provider"><a href="#Creating-a-Context-Provider" class="headerlink" title="Creating a Context Provider"></a>Creating a Context Provider</h3><ul>
+<li><p>Context provides a way to pass data through the component tree without having to pass props down manually at every level</p>
+</li>
+<li><p>react.createContext() &#x3D;&gt; provider + consumer</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span>  <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">SuperCoolContext</span> = <span class="title class_">React</span>.<span class="title function_">createContext</span>()</span><br><span class="line"></span><br><span class="line"><span class="title class_">SuperCoolContext</span>.<span class="property">Provider</span></span><br><span class="line"><span class="title class_">SuperCoolContext</span>.<span class="property">Consumer</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">CountContext.Provider</span> <span class="attr">value</span>=<span class="string">&#123;0&#125;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">CountContext.Consumer</span>&gt;</span></span><br><span class="line">      &#123; value =&gt; <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;value&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span>&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">CountContext.Consumer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">CountContext.Provider</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Example</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">CountContext</span> = <span class="title function_">createContext</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CountProvider</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  state = &#123; <span class="attr">count</span>: <span class="number">0</span> &#125;</span><br><span class="line"></span><br><span class="line">  increment = <span class="function">() =&gt;</span> <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="function">(<span class="params">&#123; count &#125;</span>) =&gt;</span> (&#123; <span class="attr">count</span>: count + <span class="number">1</span>&#125;))</span><br><span class="line">  decrement = <span class="function">() =&gt;</span> <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="function">(<span class="params">&#123; count &#125;</span>) =&gt;</span> (&#123; <span class="attr">count</span>: count - <span class="number">1</span>&#125;))</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; increment, decrement &#125; = <span class="variable language_">this</span></span><br><span class="line">    <span class="keyword">const</span> &#123; count &#125; = <span class="variable language_">this</span>.<span class="property">state</span></span><br><span class="line">    <span class="keyword">const</span> value = &#123; count, increment, decrement &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">CountContext.Provider</span> <span class="attr">value</span>=<span class="string">&#123;value&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;this.props.children&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">CountContext.Provider</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<!-- markdownlint-disable md033 -->
+<details>
+<summary>GrudgeContext</summary>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; createContext &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> id <span class="keyword">from</span> <span class="string">&#x27;uuid/v4&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> initialState <span class="keyword">from</span> <span class="string">&#x27;./initialState&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title class_">GrudgeContext</span> = <span class="title function_">createContext</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">GRUDGE_ADD</span> = <span class="string">&#x27;GRUDGE_ADD&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">GRUDGE_FORGIVE</span> = <span class="string">&#x27;GRUDGE_FORGIVE&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">reducer</span> = (<span class="params">state, action</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (action.<span class="property">type</span> === <span class="variable constant_">GRUDGE_ADD</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> [action.<span class="property">payload</span>, ...state];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (action.<span class="property">type</span> === <span class="variable constant_">GRUDGE_FORGIVE</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> state.<span class="title function_">map</span>(<span class="function"><span class="params">grudge</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (grudge.<span class="property">id</span> !== action.<span class="property">payload</span>.<span class="property">id</span>) <span class="keyword">return</span> grudge;</span><br><span class="line">      <span class="keyword">return</span> &#123; ...grudge, <span class="attr">forgiven</span>: !grudge.<span class="property">forgiven</span> &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> state;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">GrudgeProvider</span> = (<span class="params">&#123; children &#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [grudges, dispatch] = <span class="title function_">useReducer</span>(reducer, initialState);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">addGrudge</span> = (<span class="params">&#123; person, reason &#125;</span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">dispatch</span>(&#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="variable constant_">GRUDGE_ADD</span>,</span><br><span class="line">      <span class="attr">payload</span>: &#123;</span><br><span class="line">        person,</span><br><span class="line">        reason,</span><br><span class="line">        <span class="attr">forgiven</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">id</span>: <span class="title function_">id</span>()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">toggleForgiveness</span> = id =&gt; &#123;</span><br><span class="line">    <span class="title function_">dispatch</span>(&#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="variable constant_">GRUDGE_FORGIVE</span>,</span><br><span class="line">      <span class="attr">payload</span>: &#123;</span><br><span class="line">        id</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> value = &#123;</span><br><span class="line">    grudges,</span><br><span class="line">    addGrudge,</span><br><span class="line">    toggleForgiveness</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">GrudgeContext.Provider</span> <span class="attr">value</span>=<span class="string">&#123;value&#125;</span>&gt;</span>&#123;children&#125;<span class="tag">&lt;/<span class="name">GrudgeContext.Provider</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="Context-amp-useContext-Hook"><a href="#Context-amp-useContext-Hook" class="headerlink" title="Context &amp; useContext Hook"></a>Context &amp; useContext Hook</h3><p>当使用context时，优点是我们不必像之前一样到传递状态并担心状态在传递中是否正确。因此我们可以随意移动我们的UI组件并不必担心状态传递的问题。</p>
+<ul>
+<li>Some Testing Notes<ul>
+<li>We lost all of our performance optimizations when moving to the Context API.</li>
+<li>What’s the right answer? It’s a trade off.</li>
+<li>Grudge List might seem like a toy application, but it could also represent a smaller part of a larger system.</li>
+<li>Could you use the Context API to get things all of the way down to this level and then use the approach we had previously?</li>
+</ul>
+</li>
+</ul>
+<h2 id="Data-Fetching"><a href="#Data-Fetching" class="headerlink" title="Data Fetching"></a>Data Fetching</h2><h3 id="Data-Fetching-amp-useEffect-Hook"><a href="#Data-Fetching-amp-useEffect-Hook" class="headerlink" title="Data Fetching &amp; useEffect Hook"></a>Data Fetching &amp; useEffect Hook</h3><ul>
+<li><p>And now… What about fetching data?</p>
+</li>
+<li><p>useEffect is your friend</p>
+</li>
+<li><p>useEffect第二个参数一般来说不可省略，否则组件会不停重复加载</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">useFetch</span> = url =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [response, setResponse] = <span class="title function_">useState</span>(<span class="literal">null</span>)</span><br><span class="line">  <span class="keyword">const</span> [loading, setLoading] = <span class="title function_">useState</span>(<span class="literal">true</span>)</span><br><span class="line">  <span class="keyword">const</span> [error, setError] = <span class="title function_">useState</span>(<span class="literal">null</span>)</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">setLoading</span>(<span class="literal">true</span>)</span><br><span class="line">    <span class="title function_">setResponse</span>(<span class="literal">null</span>)</span><br><span class="line">    <span class="title function_">setError</span>(<span class="literal">null</span>)</span><br><span class="line"></span><br><span class="line">    <span class="title function_">fetch</span>(url)</span><br><span class="line">      .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">      .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">setLoading</span>(<span class="literal">false</span>)</span><br><span class="line">        <span class="title function_">setResponse</span>(response)</span><br><span class="line">      &#125;)</span><br><span class="line">      .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">setLoading</span>(<span class="literal">false</span>)</span><br><span class="line">        <span class="title function_">setError</span>(error)</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;, [])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> [response, loading, error]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Refactoring-to-a-Custom-Reducer"><a href="#Refactoring-to-a-Custom-Reducer" class="headerlink" title="Refactoring to a Custom Reducer"></a>Refactoring to a Custom Reducer</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">LOADING</span> = <span class="string">&quot;LOADING&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">RESPONSE_COMPLETE</span> = <span class="string">&quot;RESPONSE_COMPLETE&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">ERROR</span> = <span class="string">&quot;ERROR&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> initialDetailState = &#123;</span><br><span class="line">  <span class="attr">result</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">loading</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">error</span>: <span class="literal">null</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">fetchDetailReducer</span> = (<span class="params">state, action</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (action.<span class="property">type</span> === <span class="variable constant_">LOADING</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">result</span>: <span class="literal">null</span>,</span><br><span class="line">      <span class="attr">loading</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">error</span>: <span class="literal">null</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (action.<span class="property">type</span> === <span class="variable constant_">RESPONSE_COMPLETE</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">result</span>: action.<span class="property">payload</span>.<span class="property">response</span>,</span><br><span class="line">      <span class="attr">loading</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">error</span>: <span class="literal">null</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (action.<span class="property">type</span> === <span class="variable constant_">ERROR</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">result</span>: <span class="literal">null</span>,</span><br><span class="line">      <span class="attr">loading</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">error</span>: action.<span class="property">payload</span>.<span class="property">error</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> state;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">useFetchDetail</span> = (<span class="params">&#123; url &#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [state, dispatch] = <span class="title function_">useReducer</span>(fetchDetailReducer, initialDetailState);</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">dispatch</span>(&#123; <span class="attr">type</span>: <span class="variable constant_">LOADING</span> &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">fetchUrl</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetch</span>(url);</span><br><span class="line">        <span class="keyword">const</span> data = <span class="keyword">await</span> response.<span class="title function_">json</span>();</span><br><span class="line">        <span class="title function_">dispatch</span>(&#123; <span class="attr">type</span>: <span class="variable constant_">RESPONSE_COMPLETE</span>, <span class="attr">payload</span>: &#123; <span class="attr">response</span>: data &#125; &#125;);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="title function_">dispatch</span>(&#123; <span class="attr">type</span>: <span class="variable constant_">ERROR</span>, <span class="attr">payload</span>: &#123; error &#125; &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">fetchUrl</span>();</span><br><span class="line">  &#125;, [url]);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> [state.<span class="property">result</span>, state.<span class="property">loading</span>, state.<span class="property">error</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="Thunks"><a href="#Thunks" class="headerlink" title="Thunks"></a>Thunks</h2><h3 id="What-is-a-Thunk"><a href="#What-is-a-Thunk" class="headerlink" title="What is a Thunk"></a>What is a Thunk</h3><ul>
+<li><strong>thunk(noun):</strong> a function returned from another function</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">definitelyNotAThunk</span>(<span class="params"></span>) &#123; <span class="comment">// 顾名思义，这个函数不是thunk</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">aThunk</span>(<span class="params"></span>) &#123; <span class="comment">// 这个返回值才是thunk</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello, I am a thunk.&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>But, why is this useful?</p>
+</li>
+<li><p>The major idea behind a thunk is that it is code to be executed later</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">useThunkReducer</span> = (<span class="params">reducer, initialState</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [state, dispatch] = <span class="title function_">useReducer</span>(reducer, initialState);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> enhancedDispatch = <span class="title function_">useCallback</span>(<span class="function"><span class="params">action</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">isFunction</span>(action)) &#123;</span><br><span class="line">      <span class="title function_">action</span>(dispatch);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="title function_">dispatch</span>(action);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> [state, enhancedDispatch];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">fetchCharacters</span> = dispatch =&gt; &#123;</span><br><span class="line">  <span class="title function_">dispatch</span>(&#123; <span class="attr">type</span>: <span class="string">&#x27;LOADING&#x27;</span> &#125;)</span><br><span class="line">  <span class="title function_">fetch</span>(someUrl)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> response.<span class="property">json</span>)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span></span><br><span class="line">      <span class="title function_">dispatch</span>(&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;RESPONSE_COMPLETE&#x27;</span>,</span><br><span class="line">        <span class="attr">payload</span>: &#123; <span class="attr">characters</span>: response.<span class="property">characters</span> &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    ).<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">dispatch</span>(&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;Error&#x27;</span>,</span><br><span class="line">        <span class="attr">payload</span>: &#123; error &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Routing-amp-Thunks"><a href="#Routing-amp-Thunks" class="headerlink" title="Routing &amp; Thunks"></a>Routing &amp; Thunks</h3><h3 id="Implementing-Undo-amp-Redo"><a href="#Implementing-Undo-amp-Redo" class="headerlink" title="Implementing Undo &amp; Redo"></a>Implementing Undo &amp; Redo</h3><ul>
+<li>And now… Advanced Patterns: Implementing Undo &amp; Redo</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">past</span>: [allPastStates],</span><br><span class="line">  <span class="attr">present</span>: currentStateOfTheWorld,</span><br><span class="line">  <span class="attr">future</span>: [anyAndAllFutureStates]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">useUndoReducer</span> = (<span class="params">reducer, initialState</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> undoState = &#123;</span><br><span class="line">    <span class="attr">past</span>: [],</span><br><span class="line">    <span class="attr">present</span>: initialState,</span><br><span class="line">    <span class="attr">future</span>: []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">undoReducer</span> = (<span class="params">state, action</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> newPresent = <span class="title function_">reducer</span>(state.<span class="property">present</span>, action)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(action.<span class="property">type</span> === <span class="string">&#x27;UNDO&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> [newPresent, ...newPast] = state.<span class="property">past</span></span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">past</span>: newPast,</span><br><span class="line">        <span class="attr">present</span>: newPresent,</span><br><span class="line">        <span class="attr">future</span>: [state.<span class="property">present</span>, ...state.<span class="property">future</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(action.<span class="property">type</span> === <span class="string">&#x27;REDO&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> [newPresent, ...newFuture] = state.<span class="property">future</span></span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">past</span>: [state.<span class="property">present</span>, ...state.<span class="property">past</span>],</span><br><span class="line">        <span class="attr">present</span>: newPresent,</span><br><span class="line">        <span class="attr">future</span>: newFuture</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">past</span>: [state.<span class="property">present</span>, ...state.<span class="property">past</span>],</span><br><span class="line">      <span class="attr">present</span>: newPresent,</span><br><span class="line">      <span class="attr">future</span>: []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">useReducer</span>(undoReducer, undoState)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里说了句俏皮话<ul>
+<li>A week of coding save us hours of planning.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Managing-State-in-a-Form"><a href="#Managing-State-in-a-Form" class="headerlink" title="Managing State in a Form"></a>Managing State in a Form</h3><ul>
+<li>当我们使useState来维护一个表单组件时，可能我们要维护多个state。我们可以编写一个useSetState来解决这个问题</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">reducer</span> = (<span class="params">previousState = &#123;&#125;, updateState = &#123;&#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;...previousState, ...updateState&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">useSetState</span> = (<span class="params">initialState = &#123;&#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [state, dispatch] = <span class="title function_">useReducer</span>(reducer, initialState)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">setState</span> = updatedState =&gt; &#123;</span><br><span class="line">    <span class="title function_">dispatch</span>(updatedState)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> [state, setState]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> initialState = &#123;</span><br><span class="line">  <span class="attr">userName</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">email</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">password</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">passwordConfirm</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">UserSignUp</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [state, setState] = <span class="title function_">useSetState</span>(initialState)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleSubmit</span> = (<span class="params">e</span>) =&gt; &#123;</span><br><span class="line">    e.<span class="title function_">preventDefault</span>()</span><br><span class="line">    <span class="title function_">clear</span>()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleChange</span> = (<span class="params">e</span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setState</span>(&#123;</span><br><span class="line">      [e.<span class="property">target</span>.<span class="property">name</span>]: e.<span class="property">target</span>.<span class="property">value</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">clear</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setState</span>(initialState)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Wrapping-Up"><a href="#Wrapping-Up" class="headerlink" title="Wrapping Up"></a>Wrapping Up</h2><ul>
+<li>And now… The Ecosystem of Third-Party Hooks</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://nikgraf.github.io/react-hooks/">https://nikgraf.github.io/react-hooks/</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/React/" rel="tag"># React</a>
+              <a href="/tags/React-Hooks/" rel="tag"># React Hooks</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/12/29/Vue%E4%B8%AD%E7%9A%84sync%E4%BF%AE%E9%A5%B0%E7%AC%A6/" rel="prev" title="Vue中的sync修饰符">
+                  <i class="fa fa-chevron-left"></i> Vue中的sync修饰符
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/29/Interviewing-For-Front-End-Engineers/" rel="next" title="Interviewing For Front-End Engineers">
+                  Interviewing For Front-End Engineers <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

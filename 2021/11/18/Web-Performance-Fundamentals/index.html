@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="IntroductionPart 1: UnderstandingPart 2: ImprovingPart 3: Planning Elements of PerformanceWhy Care About Web PerformancePart 1: Understanding  Psychology of performance Measuring performance Interpret">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Performance Fundamentals">
+<meta property="og:url" content="http://yoursite.com/2021/11/18/Web-Performance-Fundamentals/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="IntroductionPart 1: UnderstandingPart 2: ImprovingPart 3: Planning Elements of PerformanceWhy Care About Web PerformancePart 1: Understanding  Psychology of performance Measuring performance Interpret">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-18T13:20:05.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.330Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="performance">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2021/11/18/Web-Performance-Fundamentals/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2021/11/18/Web-Performance-Fundamentals/","path":"2021/11/18/Web-Performance-Fundamentals/","title":"Web Performance Fundamentals"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Web Performance Fundamentals | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elements-of-Performance"><span class="nav-number">2.</span> <span class="nav-text">Elements of Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-Care-About-Web-Performance"><span class="nav-number">2.1.</span> <span class="nav-text">Why Care About Web Performance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Perceived-Performance"><span class="nav-number">2.2.</span> <span class="nav-text">Perceived Performance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Psychology-of-Waiting"><span class="nav-number">2.3.</span> <span class="nav-text">Psychology of Waiting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Vitals"><span class="nav-number">2.4.</span> <span class="nav-text">Web Vitals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lighthouse"><span class="nav-number">2.5.</span> <span class="nav-text">Lighthouse</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Metrics"><span class="nav-number">3.</span> <span class="nav-text">Metrics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Where-to-Measure-Performance"><span class="nav-number">3.1.</span> <span class="nav-text">Where to Measure Performance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chrome-User-Experience"><span class="nav-number">3.2.</span> <span class="nav-text">Chrome User Experience</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interpreting-Field-Data"><span class="nav-number">3.3.</span> <span class="nav-text">Interpreting Field Data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Improving-Performance"><span class="nav-number">4.</span> <span class="nav-text">Improving Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Business-Objectives"><span class="nav-number">4.1.</span> <span class="nav-text">Web Business Objectives</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Performance-API"><span class="nav-number">4.2.</span> <span class="nav-text">Performance API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Performance-Analytics"><span class="nav-number">4.3.</span> <span class="nav-text">Performance Analytics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimizing-Metrics"><span class="nav-number">5.</span> <span class="nav-text">Optimizing Metrics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Improving-FCP"><span class="nav-number">5.1.</span> <span class="nav-text">Improving FCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improving-LCP"><span class="nav-number">5.2.</span> <span class="nav-text">Improving LCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Responsive-Images"><span class="nav-number">5.3.</span> <span class="nav-text">Responsive Images</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP2-Catching-and-Pre-Loading"><span class="nav-number">5.4.</span> <span class="nav-text">HTTP2, Catching, and Pre-Loading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improving-CLS"><span class="nav-number">5.5.</span> <span class="nav-text">Improving CLS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improving-FID"><span class="nav-number">5.6.</span> <span class="nav-text">Improving FID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Beyond-Spreadsheets"><span class="nav-number">5.7.</span> <span class="nav-text">Data Beyond Spreadsheets</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Planing"><span class="nav-number">6.</span> <span class="nav-text">Planing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Performance-Panel"><span class="nav-number">6.1.</span> <span class="nav-text">Performance Panel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Performance-Culture"><span class="nav-number">6.2.</span> <span class="nav-text">Performance Culture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Goals-amp-Performance-Budget"><span class="nav-number">6.3.</span> <span class="nav-text">Goals &amp; Performance Budget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Performance-Scenarios"><span class="nav-number">6.4.</span> <span class="nav-text">Performance Scenarios</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Web-Performance-Fundamentals/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Web Performance Fundamentals | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Web Performance Fundamentals
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-18 21:20:05" itemprop="dateCreated datePublished" datetime="2021-11-18T21:20:05+08:00">2021-11-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Part 1: Understanding<br>Part 2: Improving<br>Part 3: Planning</p>
+<h2 id="Elements-of-Performance"><a href="#Elements-of-Performance" class="headerlink" title="Elements of Performance"></a>Elements of Performance</h2><h3 id="Why-Care-About-Web-Performance"><a href="#Why-Care-About-Web-Performance" class="headerlink" title="Why Care About Web Performance"></a>Why Care About Web Performance</h3><p>Part 1: Understanding</p>
+<ul>
+<li>Psychology of performance</li>
+<li>Measuring performance</li>
+<li>Interpreting performance data<span id="more"></span>
+Why is performance important?</li>
+</ul>
+<p>You can see lot of charts that try to explain how is performance improvement improve the business but <strong>correction !&#x3D; causation</strong></p>
+<p>Why is performance important #1</p>
+<ul>
+<li>Google says so<ul>
+<li>Google will rank you on your performance</li>
+</ul>
+</li>
+</ul>
+<p>Why is performance important #2</p>
+<ul>
+<li>Angry and frustrated users don’t stick around long</li>
+</ul>
+<h3 id="Perceived-Performance"><a href="#Perceived-Performance" class="headerlink" title="Perceived Performance"></a>Perceived Performance</h3><p>Analysis</p>
+<ul>
+<li>What behavior on the website slowed down your experience?</li>
+<li>How might the business model of each site contribute to their site’s performance?</li>
+</ul>
+<h3 id="Psychology-of-Waiting"><a href="#Psychology-of-Waiting" class="headerlink" title="Psychology of Waiting"></a>Psychology of Waiting</h3><p>Wait time feels subjective</p>
+<ol>
+<li>People want to start</li>
+<li>Board waits feel slower</li>
+<li>Anxious waits feel slower</li>
+<li>Unexplained waits feel slower</li>
+<li>Uncertain waits feel slower</li>
+<li>People will wait for value</li>
+</ol>
+<h3 id="Web-Vitals"><a href="#Web-Vitals" class="headerlink" title="Web Vitals"></a>Web Vitals</h3><p>Measuring Web Performance</p>
+<ul>
+<li><p>The Old Way: Page load</p>
+<ul>
+<li>Gaming the metrics – Lazy loading</li>
+</ul>
+</li>
+<li><p>The New Way: Web vitals</p>
+<ul>
+<li>Start -&gt; FCP -&gt; LCP -&gt; CLS</li>
+<li>FID(First Input Delay)</li>
+</ul>
+</li>
+<li><p>First Contentful Paint(FCP)</p>
+<ul>
+<li>The time until the user sees an indication that the page is loading</li>
+</ul>
+</li>
+<li><p>Largest Contentful Paint(LCP)</p>
+<ul>
+<li>The time until the user sees most of the page and believes it is (almost) ready</li>
+</ul>
+</li>
+<li><p>Cumulative Layout Shift(CLS)</p>
+<ul>
+<li>The movement distance and impact of page elements during the entire lifetime of the document the user sees</li>
+</ul>
+</li>
+</ul>
+<p>How might this impact Client-Side Rendering?</p>
+<ul>
+<li><p>First Input Delay(FID)</p>
+<ul>
+<li>The browser time delay between the user’s first click and execution of application code</li>
+</ul>
+</li>
+<li><p>FCP -&gt; Respond quick</p>
+</li>
+<li><p>LCP -&gt; Get to the point</p>
+</li>
+<li><p>CLS -&gt; Don’t move stuff</p>
+</li>
+<li><p>FID -&gt; Don’t load too much</p>
+</li>
+<li><p>Loading</p>
+<ul>
+<li>LCP</li>
+<li>Good &lt; 2.5s &lt; Needs improve &lt; 4.0s &lt; Poor</li>
+</ul>
+</li>
+<li><p>Interactivity</p>
+<ul>
+<li>FID</li>
+<li>Good &lt; 100ms &lt; Needs improve &lt; 300ms &lt; Poor</li>
+</ul>
+</li>
+<li><p>Visual Stability</p>
+<ul>
+<li>CLS</li>
+<li>Good &lt; 0.1 &lt; Needs improve &lt; 0.25 &lt; Poor</li>
+</ul>
+</li>
+</ul>
+<h3 id="Lighthouse"><a href="#Lighthouse" class="headerlink" title="Lighthouse"></a>Lighthouse</h3><p>Chrome lighthouse quirks and gotchas</p>
+<ul>
+<li>Relative to your machine, network</li>
+<li>Chrome window size</li>
+<li>Chrome application priority</li>
+</ul>
+<h2 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h2><h3 id="Where-to-Measure-Performance"><a href="#Where-to-Measure-Performance" class="headerlink" title="Where to Measure Performance"></a>Where to Measure Performance</h3><p>Where do we measure from?</p>
+<ul>
+<li>Server -&gt; User(Usually we just use local dev environment to test not user environment)</li>
+<li>Synthetic Data(Use a test server to measure performance)</li>
+<li>Field Data(Sent user data to a monitoring server ps.RUM tools like requestmetrrics.com)</li>
+</ul>
+<h3 id="Chrome-User-Experience"><a href="#Chrome-User-Experience" class="headerlink" title="Chrome User Experience"></a>Chrome User Experience</h3><p>Signal to noise</p>
+<ul>
+<li>Signal: Lab data &lt; Synth Data &lt; Field Data</li>
+<li>Noise: Lab data &lt; Synth Data &lt; Field Data</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://web.dev/">web.dev</a></p>
+<h3 id="Interpreting-Field-Data"><a href="#Interpreting-Field-Data" class="headerlink" title="Interpreting Field Data"></a>Interpreting Field Data</h3><p>If we got 95 lighthouse score in lab data, we may got serval field data score like 98&#x2F;96&#x2F;86…</p>
+<ul>
+<li>Understanding the sample</li>
+<li>Averages</li>
+<li>Median and percentiles<ul>
+<li>May be we should most care about the P95 user’s experience</li>
+</ul>
+</li>
+</ul>
+<h2 id="Improving-Performance"><a href="#Improving-Performance" class="headerlink" title="Improving Performance"></a>Improving Performance</h2><h3 id="Web-Business-Objectives"><a href="#Web-Business-Objectives" class="headerlink" title="Web Business Objectives"></a>Web Business Objectives</h3><p>Part 2: Improving</p>
+<ul>
+<li>Business objectives</li>
+<li>Improving each web vital</li>
+<li>Code demos and exercises</li>
+</ul>
+<p>Web Business Objectives(Where the money comes from)</p>
+<ul>
+<li>Awareness</li>
+<li>Retention</li>
+<li>Conversion</li>
+<li>Competition</li>
+</ul>
+<p>For short time durations, the difference must be at least 20% for most people to care.</p>
+<p><a target="_blank" rel="noopener" href="https://www.lightest.app/">lightest.app</a></p>
+<h3 id="Performance-API"><a href="#Performance-API" class="headerlink" title="Performance API"></a>Performance API</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/performance_property">Performance API Doc</a></p>
+<p>Performance API - Entry Timings</p>
+<ul>
+<li><code>performance.getEntries()</code></li>
+<li><code>performance.getEntriesByType()</code></li>
+<li><code>performance.getEntriesByName()</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Prompt for unload</th>
+<th>redirect</th>
+<th>App cache</th>
+<th>DNS</th>
+<th>TCP</th>
+<th>Request</th>
+<th>Response</th>
+<th>Processing</th>
+<th>Onload</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>navigationStart</td>
+<td>redirectStart&#x2F;redirectEnd</td>
+<td>fetchStart</td>
+<td>domainLookupStart&#x2F;domainLookupEnd</td>
+<td>connectStart&#x2F;(secureConnectionStart)&#x2F;connectEnd</td>
+<td>requestStart</td>
+<td>responseStart&#x2F;responseEnd</td>
+<td>domLoading&#x2F;domInteractive&#x2F;domContentLoaded&#x2F;domComplete</td>
+<td>loadEventStart&#x2F;loadEventEnd</td>
+</tr>
+</tbody></table>
+<p>Performance API - Performance Observer</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="function">(<span class="params">entryList</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> entries = entryList.<span class="title function_">getEntries</span>();</span><br><span class="line">&#125;).<span class="title function_">observe</span>(opts);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Performance-Analytics"><a href="#Performance-Analytics" class="headerlink" title="Performance Analytics"></a>Performance Analytics</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params">ready</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">readyState</span> === <span class="string">&#x27;complete&#x27;</span> ||</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">readyState</span> === <span class="string">&#x27;interactive&#x27;</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="title function_">ready</span>();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;readystatechange&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">document</span>.<span class="property">readyState</span> === <span class="string">&#x27;complete&#x27;</span>) &#123;</span><br><span class="line">        <span class="title function_">ready</span>();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)(<span class="keyword">function</span> <span class="title function_">perf</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> data = &#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span>,</span><br><span class="line">    <span class="attr">dcl</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">load</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">fcp</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">lcp</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">cls</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">fid</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> fcpObserver = <span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="keyword">function</span> <span class="title function_">handleFCP</span>(<span class="params">entryList</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> entries = entryList.<span class="title function_">getEntries</span>() || [];</span><br><span class="line"></span><br><span class="line">    entries.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">entry</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (entry.<span class="property">entryType</span> === <span class="string">&#x27;first-contentful-paint&#x27;</span>) &#123;</span><br><span class="line">        data.<span class="property">fcp</span> = entry.<span class="property">startTime</span>;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;first-contentful-paint&#x27;</span>, data.<span class="property">fcp</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;).<span class="title function_">observe</span>(&#123; <span class="attr">type</span>: <span class="string">&#x27;paint&#x27;</span>, <span class="attr">buffered</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> lcpObserver = <span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="keyword">function</span> <span class="title function_">handleLCP</span>(<span class="params">entryList</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> entries = entryList.<span class="title function_">getEntries</span>() || [];</span><br><span class="line"></span><br><span class="line">    entries.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">entry</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (entry.<span class="property">entryType</span> === <span class="string">&#x27;largest-contentful-paint&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (entry.<span class="property">startTime</span> &gt; data.<span class="property">lcp</span>) &#123;</span><br><span class="line">          data.<span class="property">lcp</span> = entry.<span class="property">startTime</span>;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;largest-contentful-paint&#x27;</span>, data.<span class="property">fcp</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;).<span class="title function_">observe</span>(&#123; <span class="attr">type</span>: <span class="string">&#x27;largest-contentful-paint&#x27;</span>, <span class="attr">buffered</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> clsObserver = <span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="keyword">function</span> <span class="title function_">handleCLS</span>(<span class="params">entryList</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> entries = entryList.<span class="title function_">getEntries</span>() || [];</span><br><span class="line"></span><br><span class="line">    entries.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">entry</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!entry.<span class="property">hadRecentInput</span>) &#123;</span><br><span class="line">        data.<span class="property">cls</span> += entry.<span class="property">value</span>;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Increased CLS Performance&#x27;</span>, data.<span class="property">cls</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;).<span class="title function_">observe</span>(&#123; <span class="attr">type</span>: <span class="string">&#x27;layout-shift&#x27;</span>, <span class="attr">buffered</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> fidObserver = <span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="keyword">function</span> <span class="title function_">handleFID</span>(<span class="params">entryList</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> entries = entryList.<span class="title function_">getEntries</span>() || [];</span><br><span class="line"></span><br><span class="line">    entries.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">entry</span>) &#123;</span><br><span class="line">      data.<span class="property">fid</span> = entry.<span class="property">processingStart</span> - entry.<span class="property">startTime</span>;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Recorded FID Performance&#x27;</span>, data.<span class="property">fid</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;).<span class="title function_">observe</span>(&#123; <span class="attr">type</span>: <span class="string">&#x27;first-input&#x27;</span>, <span class="attr">buffered</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;beforeunload&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> navEntry = <span class="variable language_">this</span>.<span class="property">performance</span>.<span class="title function_">getEntriesByType</span>(<span class="string">&#x27;navigation&#x27;</span>)[<span class="number">0</span>];</span><br><span class="line">    data.<span class="property">dcl</span> = navEntry.<span class="property">domContentLoadedEventStart</span>;</span><br><span class="line">    data.<span class="property">load</span> = navEntry.<span class="property">loadEventStart</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> payload = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data);</span><br><span class="line">    navigator.<span class="title function_">sendBeacon</span>(<span class="string">&#x27;/api/perf&#x27;</span>, payload);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Sending performance&#x27;</span>, payload);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Performance Analytics Conclusions</p>
+<ul>
+<li>CLS is inversely correlated to Session Time</li>
+<li>LCP is inversely correlated to Bounce Rate</li>
+</ul>
+<p>Note: this is only for some site, not a universal rule</p>
+<h2 id="Optimizing-Metrics"><a href="#Optimizing-Metrics" class="headerlink" title="Optimizing Metrics"></a>Optimizing Metrics</h2><p>How to improve performance?</p>
+<ul>
+<li><strong>Do fewer things!</strong></li>
+</ul>
+<h3 id="Improving-FCP"><a href="#Improving-FCP" class="headerlink" title="Improving FCP"></a>Improving FCP</h3><p>First contentful paint</p>
+<ul>
+<li>The time until the user sees an indication that the page is loading.</li>
+<li>Response quick</li>
+</ul>
+<p>Requirement</p>
+<ul>
+<li>Quick server</li>
+<li>Small files</li>
+<li>short transport</li>
+</ul>
+<p>Server side:</p>
+<ul>
+<li>Sized correctly</li>
+<li>Minimal processing</li>
+<li>Network bandwidth</li>
+</ul>
+<p>Small documents:</p>
+<ul>
+<li>Content size</li>
+<li>Compression</li>
+</ul>
+<p>Short transmission</p>
+<ul>
+<li>Use CDNs(USA East coast to West coast is 200-300ms)</li>
+</ul>
+<h3 id="Improving-LCP"><a href="#Improving-LCP" class="headerlink" title="Improving LCP"></a>Improving LCP</h3><p>Largest contentful paint</p>
+<ul>
+<li>The time until the user sees most of the page and believe it is(almost) ready</li>
+<li>Get to the point</li>
+</ul>
+<p>Methods:</p>
+<ol>
+<li>Defer resources until later</li>
+<li>Optimize images</li>
+<li>Reduce request overhead</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- use async attribute will still block the render --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">scr</span>=<span class="string">&quot;main.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- use defer will just fetch the file and not execute until the initial render is done --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">scr</span>=<span class="string">&quot;main.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- set loading attribute to lazy to fetch the image after the initial render --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;image.jpg&quot;</span> <span class="attr">loading</span>=<span class="string">&quot;lazy&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Safari and ie doesn’t support loading attribute!</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * lazyLoader</span></span><br><span class="line"><span class="comment"> * Check for elements in the document to be loaded later when visible to the user.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@example</span></span></span><br><span class="line"><span class="comment"> *   &lt;element src=&quot;&quot; data-src=&quot;/url/&quot; data-srcset=&quot;...&quot; /&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">(<span class="keyword">function</span> (<span class="params">ready</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">readyState</span> === <span class="string">&#x27;complete&#x27;</span> ||</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">readyState</span> === <span class="string">&#x27;interactive&#x27;</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="title function_">ready</span>();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, ready);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)(<span class="keyword">function</span> <span class="title function_">lazyLoader</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> lazyEls = [].<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;[data-src]&#x27;</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">HTMLElement</span>&#125; <span class="variable">el</span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">load</span>(<span class="params">el</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> src = el.<span class="title function_">getAttribute</span>(<span class="string">&#x27;data-src&#x27;</span>);</span><br><span class="line">    <span class="keyword">var</span> srcset = el.<span class="title function_">getAttribute</span>(<span class="string">&#x27;data-srcset&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (src) &#123;</span><br><span class="line">      el.<span class="title function_">setAttribute</span>(<span class="string">&#x27;src&#x27;</span>, src);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (srcset) &#123;</span><br><span class="line">      el.<span class="title function_">setAttribute</span>(<span class="string">&#x27;srcset&#x27;</span>, srcset);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    el.<span class="title function_">removeAttribute</span>(<span class="string">&#x27;data-src&#x27;</span>);</span><br><span class="line">    el.<span class="title function_">removeAttribute</span>(<span class="string">&#x27;data-srcset&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="string">&#x27;IntersectionObserver&#x27;</span> <span class="keyword">in</span> <span class="variable language_">window</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> lazyObserver = <span class="keyword">new</span> <span class="title class_">IntersectionObserver</span>(<span class="keyword">function</span> (<span class="params">entries, observer</span>) &#123;</span><br><span class="line">      entries.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">entry</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (entry.<span class="property">isIntersecting</span>) &#123;</span><br><span class="line">          <span class="keyword">var</span> el = entry.<span class="property">target</span>;</span><br><span class="line">          <span class="title function_">load</span>(el);</span><br><span class="line">          lazyObserver.<span class="title function_">unobserve</span>(el);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    lazyEls.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">el</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (el.<span class="property">tagName</span> === <span class="string">&#x27;SCRIPT&#x27;</span>) &#123;</span><br><span class="line">        <span class="title function_">load</span>(el);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        lazyObserver.<span class="title function_">observe</span>(el);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    lazyEls.<span class="title function_">forEach</span>(load);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Responsive-Images"><a href="#Responsive-Images" class="headerlink" title="Responsive Images"></a>Responsive Images</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">&quot;pic-1200.jpg&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">srcset</span>=<span class="string">&quot;pic-600.jpg 600w, pic-900.jpg 900w, pic-1200.jpg 1200w&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">sizes</span>=<span class="string">&quot;(max-width: 600px) 600px,</span></span></span><br><span class="line"><span class="string"><span class="tag">         (max-width: 900px) 900px,</span></span></span><br><span class="line"><span class="string"><span class="tag">         1200px&quot;</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Also, we can use tinyPNG or other tools to crunch images</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>).<span class="property">promises</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> imagemin = <span class="built_in">require</span>(<span class="string">&#x27;imagemin&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> imageminJpegtran = <span class="built_in">require</span>(<span class="string">&#x27;imagemin-jpegtran&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> imageminPngquant = <span class="built_in">require</span>(<span class="string">&#x27;imagemin-pngquant&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> imageminSvgo = <span class="built_in">require</span>(<span class="string">&#x27;imagemin-svgo&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> imageminGifsicle = <span class="built_in">require</span>(<span class="string">&#x27;imagemin-gifsicle&#x27;</span>);</span><br><span class="line"></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> files = <span class="keyword">await</span> <span class="title function_">imagemin</span>(</span><br><span class="line">    [<span class="string">&#x27;public/assets/images/**/!(*.min).&#123;jpg,png,svg,gif&#125;&#x27;</span>],</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">plugins</span>: [</span><br><span class="line">        <span class="title function_">imageminJpegtran</span>(),</span><br><span class="line">        <span class="title function_">imageminPngquant</span>(&#123;</span><br><span class="line">          <span class="attr">strip</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">quality</span>: [<span class="number">0.2</span>, <span class="number">0.6</span>],</span><br><span class="line">        &#125;),</span><br><span class="line">        <span class="title function_">imageminSvgo</span>(&#123;</span><br><span class="line">          <span class="attr">plugins</span>: [&#123; <span class="attr">removeViewBox</span>: <span class="literal">false</span> &#125;],</span><br><span class="line">        &#125;),</span><br><span class="line">        <span class="title function_">imageminGifsicle</span>(),</span><br><span class="line">      ],</span><br><span class="line">    &#125;</span><br><span class="line">  ).<span class="title function_">then</span>(<span class="function">(<span class="params">files</span>) =&gt;</span> &#123;</span><br><span class="line">    files.<span class="title function_">forEach</span>(<span class="keyword">async</span> (file) =&gt; &#123;</span><br><span class="line">      <span class="keyword">const</span> source = path.<span class="title function_">parse</span>(file.<span class="property">sourcePath</span>);</span><br><span class="line">      file.<span class="property">destinationPath</span> = <span class="string">`<span class="subst">$&#123;source.dir&#125;</span>/<span class="subst">$&#123;source.name&#125;</span>.min<span class="subst">$&#123;source.ext&#125;</span>`</span>;</span><br><span class="line">      <span class="keyword">await</span> fs.<span class="title function_">writeFile</span>(file.<span class="property">destinationPath</span>, file.<span class="property">data</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTTP2-Catching-and-Pre-Loading"><a href="#HTTP2-Catching-and-Pre-Loading" class="headerlink" title="HTTP2, Catching, and Pre-Loading"></a>HTTP2, Catching, and Pre-Loading</h3><p>Reduce overhead with HTTP&#x2F;2</p>
+<table>
+<thead>
+<tr>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Faster</td>
+<td>Server setup + Compatibility</td>
+</tr>
+<tr>
+<td>Reuse connections</td>
+<td>SSL Required</td>
+</tr>
+</tbody></table>
+<p>Reduce overhead with caching</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cache-control: max-age=600</span><br><span class="line">expires: Wed, 20 Jan 2021 03:13:21 GMT</span><br><span class="line">etag: &quot;6005a4af-c96f&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Reduce overhead with preloading</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preconnect&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://fonts.gstatic.com&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preload&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./icons.css&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Improving-CLS"><a href="#Improving-CLS" class="headerlink" title="Improving CLS"></a>Improving CLS</h3><p>Cumulative layout shift</p>
+<ul>
+<li>The movement distance and impact of page elements during the entire lifetime of the document the user sees.</li>
+<li>Don’t move stuff</li>
+</ul>
+<p>Before vs. after LCP</p>
+<ul>
+<li>Layout hints</li>
+</ul>
+<p>Demonstration: Banner positioning</p>
+<h3 id="Improving-FID"><a href="#Improving-FID" class="headerlink" title="Improving FID"></a>Improving FID</h3><p>First Input Delay</p>
+<ul>
+<li><p>The browser time delay between the user’s first click and execution of application code</p>
+</li>
+<li><p>Don’t load too much</p>
+</li>
+<li><p>We got this issue because we moving deckchairs</p>
+</li>
+<li><p>But will users wait for that?</p>
+<ul>
+<li>How anxious are they?</li>
+<li>How valuable is it to them?</li>
+<li>Do they understand the wait?</li>
+</ul>
+</li>
+</ul>
+<h3 id="Data-Beyond-Spreadsheets"><a href="#Data-Beyond-Spreadsheets" class="headerlink" title="Data Beyond Spreadsheets"></a>Data Beyond Spreadsheets</h3><p>After above optimizations, did we improve performance?</p>
+<p>Business projections</p>
+<ul>
+<li>Improving session time</li>
+<li>Improving bounce rates</li>
+</ul>
+<p>Data beyond spreadsheets</p>
+<ul>
+<li>Flame distribution</li>
+<li>Web vitals</li>
+<li>Time breakdown</li>
+</ul>
+<h2 id="Planing"><a href="#Planing" class="headerlink" title="Planing"></a>Planing</h2><ul>
+<li>Performance culture</li>
+<li>Working with non-tech folks</li>
+<li>Designing new applications</li>
+</ul>
+<h3 id="Performance-Panel"><a href="#Performance-Panel" class="headerlink" title="Performance Panel"></a>Performance Panel</h3><p><a target="_blank" rel="noopener" href="https://frontendmasters.com/courses/chrome-dev-tools-v2/">Course</a></p>
+<h3 id="Performance-Culture"><a href="#Performance-Culture" class="headerlink" title="Performance Culture"></a>Performance Culture</h3><p>Performance is a team value</p>
+<ul>
+<li>It’s not a task</li>
+<li>Performance is like security and quality has to do cross the entire circle<ul>
+<li>Test performance early</li>
+<li>Test performance often</li>
+<li>Monitor performance always</li>
+</ul>
+</li>
+<li>You need data</li>
+<li>Fast is part of planning</li>
+</ul>
+<h3 id="Goals-amp-Performance-Budget"><a href="#Goals-amp-Performance-Budget" class="headerlink" title="Goals &amp; Performance Budget"></a>Goals &amp; Performance Budget</h3><p>Setting your goals</p>
+<ul>
+<li>Who are your users?</li>
+<li>What device(s) do they have?</li>
+<li>How long will they wait?</li>
+<li>How fast would impress?</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.performancebudget.io/">performancebudtget.io</a></p>
+<h3 id="Performance-Scenarios"><a href="#Performance-Scenarios" class="headerlink" title="Performance Scenarios"></a>Performance Scenarios</h3><p>Scenario: Marketing wants to add another third-party pixel service</p>
+<ul>
+<li>You need data<ul>
+<li>Not a performance chart</li>
+<li>Maybe you need a bounce and session time chart</li>
+<li>You definitely need a revenue and checkout chart</li>
+</ul>
+</li>
+<li>Without data, you might be wrong</li>
+</ul>
+<p>Scenario: Designing a new web app</p>
+<ul>
+<li>Business objective</li>
+<li>Import metrics</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/performance/" rel="tag"># performance</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/12/Developer-Productivity/" rel="prev" title="Developer Productivity">
+                  <i class="fa fa-chevron-left"></i> Developer Productivity
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/05/17/hello-world/" rel="next" title="Hello World">
+                  Hello World <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

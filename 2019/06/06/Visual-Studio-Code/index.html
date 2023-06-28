@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Visual Studio CodeIntroductionmike-works&#x2F;vscode-fundamentals Course outline and slides View course outline hereView slides here Editor FeatureOver time we’re seeing support for:  Task running Wor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Visual-Studio-Code">
+<meta property="og:url" content="http://yoursite.com/2019/06/06/Visual-Studio-Code/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Visual Studio CodeIntroductionmike-works&#x2F;vscode-fundamentals Course outline and slides View course outline hereView slides here Editor FeatureOver time we’re seeing support for:  Task running Wor">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/grocer.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/emmet/click-for-more.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/debugging/netbeans.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/debugging/chrome-as-sublime.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/debugging/sublime-as-chrome.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/debugging/atom.jpg">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/tasks/problems.png">
+<meta property="og:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/tasks/redline.png">
+<meta property="article:published_time" content="2019-06-06T03:27:19.000Z">
+<meta property="article:modified_time" content="2023-05-17T14:12:23.330Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="Markdown">
+<meta property="article:tag" content="Editor">
+<meta property="article:tag" content="VS Code">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/mike-works/vscode-fundamentals/raw/master/public/grocer.png">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/06/06/Visual-Studio-Code/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2019/06/06/Visual-Studio-Code/","path":"2019/06/06/Visual-Studio-Code/","title":"Visual-Studio-Code"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Visual-Studio-Code | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Studio-Code"><span class="nav-number">1.</span> <span class="nav-text">Visual Studio Code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Editor-Feature"><span class="nav-number">1.2.</span> <span class="nav-text">Editor Feature</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Developer-Focus"><span class="nav-number">1.3.</span> <span class="nav-text">Developer Focus</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#It%E2%80%99s-built-using-web-technology-for-web-developers-the-Open-Source-way"><span class="nav-number">1.3.1.</span> <span class="nav-text">It’s built using web technology, for web developers, the Open Source way</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Learning-from-past-lessons"><span class="nav-number">1.3.2.</span> <span class="nav-text">Learning from past lessons</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Up-and-Running"><span class="nav-number">1.4.</span> <span class="nav-text">Up and Running</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Not-just-a-new-twist"><span class="nav-number">1.4.1.</span> <span class="nav-text">Not just a new twist</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Course-Agenda"><span class="nav-number">1.5.</span> <span class="nav-text">Course Agenda</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#How-this-course-is-going-to-work"><span class="nav-number">1.5.1.</span> <span class="nav-text">How this course is going to work</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Using-Visual-Studio-Code"><span class="nav-number">1.5.2.</span> <span class="nav-text">Using Visual Studio Code</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setting-Up"><span class="nav-number">1.6.</span> <span class="nav-text">Setting Up</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-best-way-to-get-to-know-this-editor"><span class="nav-number">1.6.1.</span> <span class="nav-text">The best way to get to know this editor</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Documents"><span class="nav-number">2.</span> <span class="nav-text">Documents</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown"><span class="nav-number">2.1.</span> <span class="nav-text">Markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Images"><span class="nav-number">2.1.1.</span> <span class="nav-text">Images</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Alignment"><span class="nav-number">2.1.2.</span> <span class="nav-text">Alignment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lists"><span class="nav-number">2.1.3.</span> <span class="nav-text">Lists</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Unordered-Lists"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">Unordered Lists</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Ordered-Lists"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">Ordered Lists</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Description-Lists-lt-dl-gt"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">Description Lists (&lt;dl&gt;)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Details-x2F-Summary"><span class="nav-number">2.1.4.</span> <span class="nav-text">Details&#x2F;Summary</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Most-useful-Detail-second-Align"><span class="nav-number">2.1.5.</span> <span class="nav-text">Most useful Detail, second Align</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Emmet-amp-Html"><span class="nav-number">2.2.</span> <span class="nav-text">Emmet &amp; Html</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Emmet-Autocompletions"><span class="nav-number">2.2.1.</span> <span class="nav-text">Emmet Autocompletions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Emmet-HTML-Elements"><span class="nav-number">2.2.2.</span> <span class="nav-text">Emmet: HTML Elements</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nesting-amp-Sibling"><span class="nav-number">2.2.3.</span> <span class="nav-text">Nesting &amp; Sibling</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Emmet-CSS"><span class="nav-number">2.3.</span> <span class="nav-text">Emmet: CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Emmet-Styles"><span class="nav-number">2.3.1.</span> <span class="nav-text">Emmet: Styles</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tips-for-Productive-Emmet-use"><span class="nav-number">2.3.2.</span> <span class="nav-text">Tips for Productive Emmet use</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-1-Rapid-Expansion"><span class="nav-number">2.4.</span> <span class="nav-text">Challenge 1: Rapid Expansion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Navigation-amp-Refactoring"><span class="nav-number">3.</span> <span class="nav-text">Code Navigation &amp; Refactoring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Go-To"><span class="nav-number">3.1.</span> <span class="nav-text">Go To</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Selection"><span class="nav-number">3.2.</span> <span class="nav-text">Selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-Cursor-amp-Line-Manipulation"><span class="nav-number">3.3.</span> <span class="nav-text">Multi-Cursor &amp; Line Manipulation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-Cursor"><span class="nav-number">3.3.1.</span> <span class="nav-text">Multi-Cursor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Line-Manipulation"><span class="nav-number">3.3.2.</span> <span class="nav-text">Line Manipulation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Peek-Editing"><span class="nav-number">3.4.</span> <span class="nav-text">Peek Editing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Renaming"><span class="nav-number">3.5.</span> <span class="nav-text">Renaming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-2-Refactoring"><span class="nav-number">3.6.</span> <span class="nav-text">Challenge 2: Refactoring</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Type-Checking"><span class="nav-number">4.</span> <span class="nav-text">Type Checking</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-Type-Checking"><span class="nav-number">4.1.</span> <span class="nav-text">Introducing Type Checking</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Typechecking"><span class="nav-number">4.1.1.</span> <span class="nav-text">Typechecking</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benefits-of-Types"><span class="nav-number">4.2.</span> <span class="nav-text">Benefits of Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Categories-of-Type-Systems"><span class="nav-number">4.3.</span> <span class="nav-text">Categories of Type Systems</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Nominal-Typing"><span class="nav-number">4.3.1.</span> <span class="nav-text">Nominal Typing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Structural-Typing"><span class="nav-number">4.3.2.</span> <span class="nav-text">Structural Typing</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Type-Checking-in-VS-Code"><span class="nav-number">4.4.</span> <span class="nav-text">Type Checking in VS Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Annotating-Types"><span class="nav-number">4.5.</span> <span class="nav-text">Annotating Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Functions"><span class="nav-number">4.6.</span> <span class="nav-text">Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generics"><span class="nav-number">4.7.</span> <span class="nav-text">Generics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Types"><span class="nav-number">4.8.</span> <span class="nav-text">Custom Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-3-Data-Layer-Types"><span class="nav-number">4.9.</span> <span class="nav-text">Challenge 3: Data Layer Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debugging"><span class="nav-number">4.10.</span> <span class="nav-text">Debugging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Debugging-Node"><span class="nav-number">4.10.1.</span> <span class="nav-text">Debugging Node</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debugging-Node-with-Editors"><span class="nav-number">4.11.</span> <span class="nav-text">Debugging Node with Editors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debugging-Node-with-VS-Code"><span class="nav-number">4.12.</span> <span class="nav-text">Debugging Node with VS Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debugging-Chrome-with-VS-Code"><span class="nav-number">4.13.</span> <span class="nav-text">Debugging Chrome with VS Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-4-Muliti-Process-Debugging"><span class="nav-number">4.14.</span> <span class="nav-text">Challenge 4: Muliti-Process Debugging</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Workspace-Customization"><span class="nav-number">5.</span> <span class="nav-text">Workspace Customization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Benefits-of-Customization"><span class="nav-number">5.1.</span> <span class="nav-text">Benefits of Customization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-Customize-Your-Workspace"><span class="nav-number">5.1.1.</span> <span class="nav-text">Why Customize Your Workspace</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Levels-of-customization"><span class="nav-number">5.1.2.</span> <span class="nav-text">Levels of customization</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VS-Code-Themes"><span class="nav-number">5.2.</span> <span class="nav-text">VS Code Themes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Fonts"><span class="nav-number">5.3.</span> <span class="nav-text">Custom Fonts</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Setting-up-a-custom-font"><span class="nav-number">5.3.1.</span> <span class="nav-text">Setting up a custom font</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Bindings"><span class="nav-number">5.4.</span> <span class="nav-text">Key Bindings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-Snippets"><span class="nav-number">5.5.</span> <span class="nav-text">Code Snippets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-5-VS-Code-Tune-Up"><span class="nav-number">5.6.</span> <span class="nav-text">Challenge 5: VS Code Tune-Up</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tasks"><span class="nav-number">6.</span> <span class="nav-text">Tasks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducting-Custom-VS-Code-Tasks"><span class="nav-number">6.1.</span> <span class="nav-text">Introducting Custom VS Code Tasks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#About-Tasks"><span class="nav-number">6.1.1.</span> <span class="nav-text">About Tasks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Custom-tasks-in-tasks-json"><span class="nav-number">6.1.2.</span> <span class="nav-text">Custom tasks in tasks.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tasks-Shell-Command-Arguments"><span class="nav-number">6.1.3.</span> <span class="nav-text">Tasks: Shell Command Arguments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tasks-Capturing-output-into-problems"><span class="nav-number">6.1.4.</span> <span class="nav-text">Tasks: Capturing output into &quot;problems&quot;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Cheat-sheet"><span class="nav-number">6.1.4.1.</span> <span class="nav-text">Cheat sheet</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Let%E2%80%99s-figure-out-the-appropriate-regex"><span class="nav-number">6.1.5.</span> <span class="nav-text">Let’s figure out the appropriate regex</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-6-TSLint-Problems"><span class="nav-number">6.2.</span> <span class="nav-text">Challenge 6: TSLint Problems</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Launch-Confirguration"><span class="nav-number">7.</span> <span class="nav-text">Launch Confirguration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Launch-Setting"><span class="nav-number">7.1.</span> <span class="nav-text">Launch Setting</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#quot-type-quot"><span class="nav-number">7.1.1.</span> <span class="nav-text">&quot;type:&quot; ?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#runtimeExecutable-quot"><span class="nav-number">7.1.2.</span> <span class="nav-text">runtimeExecutable:&quot; ?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#quot-restart-quot-Node"><span class="nav-number">7.1.3.</span> <span class="nav-text">&quot;restart:&quot; ? (Node)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Console-Options"><span class="nav-number">7.1.4.</span> <span class="nav-text">Console Options</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Arguments-amp-Environment"><span class="nav-number">7.1.5.</span> <span class="nav-text">Arguments &amp; Environment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Variables"><span class="nav-number">7.1.6.</span> <span class="nav-text">Variables</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-7-Analyze-amp-Monitor"><span class="nav-number">7.2.</span> <span class="nav-text">Challenge 7: Analyze &amp; Monitor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wrapping-Up-VS-Code"><span class="nav-number">8.</span> <span class="nav-text">Wrapping Up VS Code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VS-Code-Extension-Recommendations"><span class="nav-number">8.1.</span> <span class="nav-text">VS Code Extension Recommendations</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/06/Visual-Studio-Code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Visual-Studio-Code | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Visual-Studio-Code
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-06-06 11:27:19" itemprop="dateCreated datePublished" datetime="2019-06-06T11:27:19+08:00">2019-06-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-17 22:12:23" itemprop="dateModified" datetime="2023-05-17T22:12:23+08:00">2023-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p><a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals">mike-works&#x2F;vscode-fundamentals</a></p>
+<p>Course outline and slides</p>
+<p><a target="_blank" rel="noopener" href="https://mike.works/course/vs-code-607be6c">View course outline here</a><br><a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/tree/master/docs">View slides here</a></p>
+<h3 id="Editor-Feature"><a href="#Editor-Feature" class="headerlink" title="Editor Feature"></a>Editor Feature</h3><p>Over time we’re seeing support for:</p>
+<ul>
+<li>Task running</li>
+<li>Workspace-specific settings</li>
+<li>A rich plugin ecosystem</li>
+<li>Things that analyze your code in the background</li>
+<li>A wide range of programming languages<span id="more"></span></li>
+</ul>
+<h3 id="Developer-Focus"><a href="#Developer-Focus" class="headerlink" title="Developer Focus"></a>Developer Focus</h3><h4 id="It’s-built-using-web-technology-for-web-developers-the-Open-Source-way"><a href="#It’s-built-using-web-technology-for-web-developers-the-Open-Source-way" class="headerlink" title="It’s built using web technology, for web developers, the Open Source way"></a>It’s built using web technology, for web developers, the Open Source way</h4><p>👩‍💻 Delivering on features and an ecosystem that’s easy to jump into</p>
+<p>🔌 Talks to web technologies more easily (i.e., Node talking to Node)</p>
+<p>📖 Binaries are proprietary, but source code is open source</p>
+<p>🗣 Close collaboration between the VS Code, Edge, Visual Studio and TypeScript teams’</p>
+<h4 id="Learning-from-past-lessons"><a href="#Learning-from-past-lessons" class="headerlink" title="Learning from past lessons"></a>Learning from past lessons</h4><ul>
+<li><p>🚫 Don’t make ANOTHER heavy IDE</p>
+</li>
+<li><p>🔒 Don’t impose lots of opinions onto users</p>
+<ul>
+<li>⌨️ Bring your keybindings with you</li>
+</ul>
+</li>
+<li><p>🤝 Favor open standards over proprietary formats</p>
+<ul>
+<li>i.e., .jsconfig, .editorconfig</li>
+</ul>
+</li>
+</ul>
+<h3 id="Up-and-Running"><a href="#Up-and-Running" class="headerlink" title="Up and Running"></a>Up and Running</h3><h4 id="Not-just-a-new-twist"><a href="#Not-just-a-new-twist" class="headerlink" title="Not just a new twist"></a>Not just a new twist</h4><p>🙌 Best cross-platform TypeScript development experience available</p>
+<ul>
+<li>Leverages TypeScript technology to give you insight into your regular JavaScript</li>
+</ul>
+<p>👌 A great .NET development experience on OS X and Linux</p>
+<ul>
+<li>finally an OS maker that doesn’t lock us in</li>
+</ul>
+<p>⏩ Doesn’t require a week of tweaking&#x2F;config to get “right”</p>
+<p>🚢 Shipping new features at an incredible rate!</p>
+<h3 id="Course-Agenda"><a href="#Course-Agenda" class="headerlink" title="Course Agenda"></a>Course Agenda</h3><h4 id="How-this-course-is-going-to-work"><a href="#How-this-course-is-going-to-work" class="headerlink" title="How this course is going to work"></a>How this course is going to work</h4><p>Agenda is as follows:</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/1_using/README.md">Using It</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/2_customizing/README.md">Customizing It</a></li>
+</ol>
+<p>New code editing tricks (i.e. ⌘ + D along the way)</p>
+<p>We’ll be working with JavaScript and TypeScript.</p>
+<ul>
+<li>It’s OK (maybe even better) if you don’t know TS yet</li>
+</ul>
+<h4 id="Using-Visual-Studio-Code"><a href="#Using-Visual-Studio-Code" class="headerlink" title="Using Visual Studio Code"></a>Using Visual Studio Code</h4><ul>
+<li>📄 <a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/1_using/markdown.md">Awesome Documents</a></li>
+<li>⏩ <a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/1_using/emmet.md">Emmet</a></li>
+<li>🎛 <a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/1_using/refactoring.md">Refactoring</a></li>
+<li>✅ <a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/1_using/type-checking.md">Type-Checking</a></li>
+<li>🐞 <a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/1_using/debugging.md">Debugging</a></li>
+</ul>
+<h3 id="Setting-Up"><a href="#Setting-Up" class="headerlink" title="Setting Up"></a>Setting Up</h3><h4 id="The-best-way-to-get-to-know-this-editor"><a href="#The-best-way-to-get-to-know-this-editor" class="headerlink" title="The best way to get to know this editor"></a>The best way to get to know this editor</h4><p>Let’s use it to do some stuff!</p>
+<p>Here’s the example we will be working with - a grocery app!</p>
+<p><img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/grocer.png" alt="a grocery app"></p>
+<p>It’s a client&#x2F;server app, built with bleeding edge versions of the following:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/facebook/react/issues/10294">React 16 (beta)</a></li>
+<li><a target="_blank" rel="noopener" href="https://webpack.js.org/">Webpack 3</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/typescript/2017/08/31/announcing-typescript-2-5/">TypeScript 2.5</a></li>
+<li><a target="_blank" rel="noopener" href="https://koajs.com/">Koa</a></li>
+</ul>
+<p>This is intended to show you the most modern web tools🔧 available. 95% of this can be done in older versions too!</p>
+<p>Take a moment now to ensure you’re all set up. First, make sure you’re running a recent version of Node.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">control + ` <span class="comment"># 打开terminal的快捷键</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node --version <span class="comment"># v8.0.0 or newer</span></span><br></pre></td></tr></table></figure>
+
+<p>And we need a library called sqlite3 for our database. You can check your version by running</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># If you don&#x27;t have it yet</span></span><br><span class="line">brew install sqlite3</span><br><span class="line"><span class="comment"># If you already have it</span></span><br><span class="line">sqlite3 --version <span class="comment"># 3.16.0 2016-11-04...</span></span><br></pre></td></tr></table></figure>
+
+<p>And it’s helpful to have a package manager called yarn</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># If you don&#x27;t have it yet</span></span><br><span class="line">brew install yarn</span><br><span class="line"><span class="comment"># If you already have it</span></span><br><span class="line">yarn --version <span class="comment"># 0.27.5</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/mike-north/vscode-fundamentals vscode</span><br><span class="line"><span class="built_in">cd</span> vscode</span><br><span class="line">yarn</span><br><span class="line">npm start</span><br><span class="line"><span class="comment"># Open http://localhost:3000</span></span><br></pre></td></tr></table></figure>
+
+<p>NEXT: 📄 <a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/1_using/markdown.md">Awesome Documents</a></p>
+<h2 id="Documents"><a href="#Documents" class="headerlink" title="Documents"></a>Documents</h2><h3 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h3><h4 id="Images"><a href="#Images" class="headerlink" title="Images"></a>Images</h4><p>Normal markdown images</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">VS Code</span>](<span class="link">../../public/vscode.png</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png" alt="vscode"></p>
+<p>The HTML <code>&lt;img&gt;</code> tag can be used as well. Many attributes will be respected in most markdown renderers (including GitHub)</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../../public/vscode.png&quot;</span> <span class="attr">height</span>=<span class="string">50</span> <span class="attr">align</span>=<span class="string">right</span> <span class="attr">vspace</span>=<span class="string">20/</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../../public/vscode.png&quot;</span> <span class="attr">height</span>=<span class="string">100/</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<!-- markdownlint-disable MD033 -->
+<img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png" height=50 align=right vspace=20/>
+
+<img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png" height=100/>
+
+<p>👉 Keep in mind that, in this case, GitHub wraps each image in</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;./myimage.jpg&quot;</span>&gt;</span></span></span><br><span class="line"><span class="code">    &lt;!--image--&gt;</span></span><br><span class="line"><span class="code">  &lt;/a&gt;</span></span><br><span class="line"><span class="code">&lt;/p&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Alignment"><a href="#Alignment" class="headerlink" title="Alignment"></a>Alignment</h4><p>The <code>align</code> attribute can be used on a variety of HTML tags</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">align</span>=<span class="string">right</span>&gt;</span></span>right ➡<span class="language-xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span></span>⬅ center ➡<span class="language-xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">align</span>=<span class="string">left</span>&gt;</span></span>⬅ left<span class="language-xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p align=right>right ➡</p>
+<p align=center>⬅ center ➡</p>
+<p align=left>⬅ left</p>
+
+<p>If you wrap multiple inline elements in a <code>&lt;p&gt;</code> tag, it’s possible to do some interesting things with vertical align attribute values</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../../public/vscode.png&quot;</span> <span class="attr">height</span>=<span class="string">50</span> <span class="attr">align</span>=<span class="string">top</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../../public/vscode.png&quot;</span> <span class="attr">height</span>=<span class="string">50</span> <span class="attr">align</span>=<span class="string">bottom</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../../public/vscode.png&quot;</span> <span class="attr">height</span>=<span class="string">100/</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>
+  <img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png" height=50 align=top />
+  <img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png" height=50 align=bottom />
+  <img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/vscode.png" height=100/>
+</p>
+
+<h4 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h4><h5 id="Unordered-Lists"><a href="#Unordered-Lists" class="headerlink" title="Unordered Lists"></a>Unordered Lists</h5><p>These can be nested to create a multi-level outline</p>
+<blockquote>
+<p>Markdown Lint的规则是使用加号</p>
+</blockquote>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">*</span> one</span><br><span class="line"><span class="bullet">*</span> two</span><br><span class="line"><span class="bullet">  *</span> three</span><br><span class="line"><span class="bullet">    *</span> four</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>one</li>
+<li>two<ul>
+<li>three<ul>
+<li>four</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="Ordered-Lists"><a href="#Ordered-Lists" class="headerlink" title="Ordered Lists"></a>Ordered Lists</h5><p>These cannot be nested in most markdown rendering engines</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> first</span><br><span class="line"><span class="bullet">1.</span> second</span><br><span class="line"><span class="bullet">1.</span> third</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>first</li>
+<li>second</li>
+<li>third</li>
+</ol>
+<p>but, if you use HTML, you can fix this, and customize the list “type”</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">type</span>=<span class="string">&#x27;A&#x27;</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span> first <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span> second <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span> third<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ol</span> <span class="attr">type</span>=<span class="string">&#x27;a&#x27;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span> fourth <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ol</span> <span class="attr">type</span>=<span class="string">&#x27;i&#x27;</span> &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span> fifth <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol type='A' >
+  <li> first </li>
+  <li> second </li>
+  <li> third</li>
+  <ol type='a' >
+    <li> fourth </li>
+    <ol type='i' >
+      <li> fifth </li>
+    </ol>
+  </ol>
+</ol>
+
+<h5 id="Description-Lists-lt-dl-gt"><a href="#Description-Lists-lt-dl-gt" class="headerlink" title="Description Lists (&lt;dl&gt;)"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl">Description Lists</a> (<code>&lt;dl&gt;</code>)</h5><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">dt</span>&gt;</span></span>Images<span class="language-xml"><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">dd</span>&gt;</span></span>.jpg, .gif, .png<span class="language-xml"><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">dt</span>&gt;</span></span>Styles<span class="language-xml"><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">dd</span>&gt;</span></span>.css<span class="language-xml"><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">dt</span>&gt;</span></span>Scripts<span class="language-xml"><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">dd</span>&gt;</span></span>.js<span class="language-xml"><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">dt</span>&gt;</span></span>Documents<span class="language-xml"><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">dd</span>&gt;</span></span>.html<span class="language-xml"><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<dl>
+  <dt>Images</dt>
+  <dd>.jpg, .gif, .png</dd>
+  <dt>Styles</dt>
+  <dd>.css</dd>
+  <dt>Scripts</dt>
+  <dd>.js</dd>
+  <dt>Documents</dt>
+  <dd>.html</dd>
+</dl>
+
+<h4 id="Details-x2F-Summary"><a href="#Details-x2F-Summary" class="headerlink" title="Details&#x2F;Summary"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/details">Details</a>&#x2F;Summary</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">details</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">summary</span>&gt;</span></span>Click me for something absolutely amazing<span class="language-xml"><span class="tag">&lt;/<span class="name">summary</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="code">```ts</span></span><br><span class="line"><span class="code">  let Hello : string = &#x27;World&#x27;;</span></span><br><span class="line"><span class="code">```</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">details</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<details>
+  <summary>Click me for something absolutely amazing</summary>
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="title class_">Hello</span> : <span class="built_in">string</span> = <span class="string">&#x27;World&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| Item      | Price | Qty |</span><br><span class="line">|-----------|-------|-----|</span><br><span class="line">| 🍇 Grapes | $2.99 | 3   |</span><br><span class="line">| 🍐 Pears  | $4.15 | 1   |</span><br><span class="line">| 🍋 Lemons | $0.99 | 2   |</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Price</th>
+<th>Qty</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🍇 Grapes</td>
+<td>$2.99</td>
+<td>3</td>
+</tr>
+<tr>
+<td>🍐 Pears</td>
+<td>$4.15</td>
+<td>1</td>
+</tr>
+<tr>
+<td>🍋 Lemons</td>
+<td>$0.99</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<p>Thanks to folks who posted tips I didn’t know about!</p>
+<p>NEXT: ⏩ <a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/1_using/emmet.md">Emmet</a></p>
+<h4 id="Most-useful-Detail-second-Align"><a href="#Most-useful-Detail-second-Align" class="headerlink" title="Most useful Detail, second Align"></a>Most useful Detail, second Align</h4><h3 id="Emmet-amp-Html"><a href="#Emmet-amp-Html" class="headerlink" title="Emmet &amp; Html"></a>Emmet &amp; Html</h3><h4 id="Emmet-Autocompletions"><a href="#Emmet-Autocompletions" class="headerlink" title="Emmet Autocompletions"></a>Emmet Autocompletions</h4><ul>
+<li>Speed up repetitive task with <code>TAB</code></li>
+<li>Plugins for most editors</li>
+<li>Built into VS Code</li>
+<li>Works in JSX</li>
+</ul>
+<h4 id="Emmet-HTML-Elements"><a href="#Emmet-HTML-Elements" class="headerlink" title="Emmet: HTML Elements"></a>Emmet: HTML Elements</h4><ul>
+<li>Think of as CSS selectors for DOM generation</li>
+<li>Cursor usually ends up placed just where you want it to be next</li>
+</ul>
+<p><code>div</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>.foo</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;foo&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>span.foo#bar</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;foo&quot;</span> <span class="attr">id</span>=<span class="string">&quot;bar&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>img</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Nesting-amp-Sibling"><a href="#Nesting-amp-Sibling" class="headerlink" title="Nesting &amp; Sibling"></a>Nesting &amp; Sibling</h4><ul>
+<li>Just like in CSS, we can use…</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Selector</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&gt;</code></td>
+<td>Direct decendant selector</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>Sibling selector</td>
+</tr>
+</tbody></table>
+<p><code>ul&gt;li.special-item</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;special-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>.navbar+.content+.footer</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;navbar&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>We can also use the “climb up” operator: <code>^</code></p>
+<p><code>div+div&gt;p&gt;span+em^bq</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">blockquote</span>&gt;</span><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Personally, I prefer using parentheses (grouping) rather than climb-up</p>
+<p><code>div+div&gt;(p&gt;(span+em))+bq</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">blockquote</span>&gt;</span><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>There’s a feature called “multiplication” that’s useful for lists</p>
+<p><code>ul.col&gt;li.col-item*5</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;col-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;col-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;col-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;col-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;col-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>And you can even add text to the body of elements, with a placeholder for number in the list</p>
+<p><code>ul.col&gt;li.col-item*5&#123;Item $&#125;</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;col-item&quot;</span>&gt;</span>Item 1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;col-item&quot;</span>&gt;</span>Item 2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;col-item&quot;</span>&gt;</span>Item 3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;col-item&quot;</span>&gt;</span>Item 4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;col-item&quot;</span>&gt;</span>Item 5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Emmet-CSS"><a href="#Emmet-CSS" class="headerlink" title="Emmet: CSS"></a>Emmet: CSS</h3><h4 id="Emmet-Styles"><a href="#Emmet-Styles" class="headerlink" title="Emmet: Styles"></a>Emmet: Styles</h4><ul>
+<li>Lots of different combinations(too many to remember)</li>
+<li>Value aliases are pretty easy to get used to</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>p</code></td>
+<td>Percent</td>
+</tr>
+<tr>
+<td><code>e</code></td>
+<td>em</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>rem</td>
+</tr>
+<tr>
+<td><code>px</code></td>
+<td>px</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Rule of thumb: first letter of each word for a property</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Emmet</th>
+<th>Evaluates to</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>w100p!</code></td>
+<td><code>width: 100% !important</code></td>
+</tr>
+<tr>
+<td><code>lh1.5r</code></td>
+<td><code>line-height: 1.5rem</code></td>
+</tr>
+<tr>
+<td><code>op50p</code></td>
+<td><code>opacity: 50%</code></td>
+</tr>
+</tbody></table>
+<h4 id="Tips-for-Productive-Emmet-use"><a href="#Tips-for-Productive-Emmet-use" class="headerlink" title="Tips for Productive Emmet use"></a>Tips for Productive Emmet use</h4><ul>
+<li>No newlines or spaces</li>
+<li>You can create custom shortcuts(more on this later)</li>
+<li>Aim for several small expansions, rather than one huge expansion</li>
+<li>Start basic, and add new shortcuts over time</li>
+</ul>
+<h3 id="Challenge-1-Rapid-Expansion"><a href="#Challenge-1-Rapid-Expansion" class="headerlink" title="Challenge 1: Rapid Expansion"></a>Challenge 1: Rapid Expansion</h3><img align=right width=150 src='https://github.com/mike-works/vscode-fundamentals/raw/master/public/emmet/click-for-more.png'>
+
+<blockquote>
+<p>We want to add a new tile to the right of each category row, as shown here 👉<br>You’ll need to edit the <code>render</code> function in <a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/client/routes/home/category-row/index.tsx">client&#x2F;routes&#x2F;home&#x2F;category-row&#x2F;index.tsx</a><br>There’s a per-category image you can use, which take the form <code>/images/fallback-&lt;lowercase-category-name&gt;.png</code>. (i.e., <a target="_blank" rel="noopener" href="http://localhost:3000/images/fallback-frozen.png">http://localhost:3000/images/fallback-frozen.png</a>)<br>Use Emmet autocompletions to build the appropriate HTML structure</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;GroceryItem mui-panel&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h4</span> <span class="attr">class</span>=<span class="string">&quot;item-name&quot;</span>&gt;</span></span><br><span class="line">    Click Here for More</span><br><span class="line">  <span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;click-for-more&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&#x27;item-image&#x27;</span> <span class="attr">src</span>=<span class="string">?</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>⚠️ React likes <code>className=</code> not <code>class=</code><br>⚠️ You interpolate dynamic and static values in JSX like this</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img alt=&#123;<span class="string">`my value is <span class="subst">$&#123;<span class="number">3</span> + <span class="number">4</span>&#125;</span>`</span>&#125; /&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Code-Navigation-amp-Refactoring"><a href="#Code-Navigation-amp-Refactoring" class="headerlink" title="Code Navigation &amp; Refactoring"></a>Code Navigation &amp; Refactoring</h2><h3 id="Go-To"><a href="#Go-To" class="headerlink" title="Go To"></a>Go To</h3><p><a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/1_using/refactoring.md">🎛 Refactoring</a></p>
+<ul>
+<li>…file</li>
+<li>…definition</li>
+<li>…type definition</li>
+<li>…symbol<ul>
+<li>…in file</li>
+<li>…in workspace</li>
+</ul>
+</li>
+<li>…line(by number)</li>
+</ul>
+<h3 id="Selection"><a href="#Selection" class="headerlink" title="Selection"></a>Selection</h3><ul>
+<li>Select All <kbd>Cmd + A</kbd></li>
+<li>Select Next Occurrence <kbd>Cmd + D</kbd></li>
+<li>Select All Occurrence <kbd>Shift + Cmd + L</kbd></li>
+</ul>
+<h3 id="Multi-Cursor-amp-Line-Manipulation"><a href="#Multi-Cursor-amp-Line-Manipulation" class="headerlink" title="Multi-Cursor &amp; Line Manipulation"></a>Multi-Cursor &amp; Line Manipulation</h3><h4 id="Multi-Cursor"><a href="#Multi-Cursor" class="headerlink" title="Multi-Cursor"></a>Multi-Cursor</h4><ul>
+<li>Add cursor @ position <kbd>Opt + Click</kbd></li>
+<li>Box select <kbd>Opt + Shift + Click</kbd></li>
+<li>Undo last cursor <kbd>Cmd + U</kbd></li>
+</ul>
+<h4 id="Line-Manipulation"><a href="#Line-Manipulation" class="headerlink" title="Line Manipulation"></a>Line Manipulation</h4><ul>
+<li>Move line up <kbd>Opt + ⬆️</kbd></li>
+<li>Move line down <kbd>Opt + ⬇️</kbd></li>
+<li>Copy line below <kbd>Opt + Shift + ⬇️</kbd></li>
+</ul>
+<h3 id="Peek-Editing"><a href="#Peek-Editing" class="headerlink" title="Peek Editing"></a>Peek Editing</h3><ul>
+<li>Opens up a split in editor</li>
+<li>Peek at type definition</li>
+<li>Find all References</li>
+</ul>
+<h3 id="Renaming"><a href="#Renaming" class="headerlink" title="Renaming"></a>Renaming</h3><ul>
+<li>Level 1: Find&#x2F;Replace <kbd>Cmd + F</kbd></li>
+<li>Level 2: <kbd>Cmd + D</kbd> for selection</li>
+<li>Level 3: “Extract into function” and <kbd>F2</kbd> for rename in ALL FILES</li>
+</ul>
+<h3 id="Challenge-2-Refactoring"><a href="#Challenge-2-Refactoring" class="headerlink" title="Challenge 2: Refactoring"></a>Challenge 2: Refactoring</h3><blockquote>
+<ul>
+<li>Make the following changes to <a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/client/data/listener-support.js">&#x2F;client&#x2F;data&#x2F;listener-support.js</a><ul>
+<li><code>register</code> and <code>unregister</code> should be changed to <code>registerListener</code> and <code>unregisterListener</code>, respectively</li>
+<li><code>fire</code> should be passed an object of the structure <code>&#123;data: object[]&#125;</code><ul>
+<li>Ensure that all places in the code that call <code>fire</code> are updated to use this new structure</li>
+<li>No code that registers listeners should need to be altered as a consequence of this change</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="Type-Checking"><a href="#Type-Checking" class="headerlink" title="Type Checking"></a>Type Checking</h2><h3 id="Introducing-Type-Checking"><a href="#Introducing-Type-Checking" class="headerlink" title="Introducing Type Checking"></a>Introducing Type Checking</h3><p><a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/1_using/type-checking.md">✅ Type-Checking</a></p>
+<h4 id="Typechecking"><a href="#Typechecking" class="headerlink" title="Typechecking"></a>Typechecking</h4><ul>
+<li>VS Code has TypeScript at its core</li>
+<li>TypeChecking is becoming increasingly popular<ul>
+<li>React’s <a target="_blank" rel="noopener" href="https://reactjs.org/docs/typechecking-with-proptypes.html">proptypes</a>(runtime)</li>
+<li>Facebook’s <a target="_blank" rel="noopener" href="https://github.com/facebook/flow">flow</a>(static)</li>
+<li>Microsoft’s <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/">TypeScript</a>(static)</li>
+</ul>
+</li>
+</ul>
+<p><br/><br/></p>
+<ul>
+<li>TypeScript is a <em>typed superset</em> of JavaScript<ul>
+<li>It heavily relies on <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Type_inference">type inference</a> - the automatic deduction of the data type of an expression</li>
+</ul>
+</li>
+<li>As of <a target="_blank" rel="noopener" href="https://github.com/Microsoft/TypeScript/wiki/Type-Checking-JavaScript-Files">TypeScript 2.3</a> VS Code can apply type checking to your JavaScript</li>
+<li>Type information can be added via <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/46519b0499c3">JSDoc</a> comments!</li>
+</ul>
+<h3 id="Benefits-of-Types"><a href="#Benefits-of-Types" class="headerlink" title="Benefits of Types"></a>Benefits of Types</h3><p><em>Why would I want to use Types?</em></p>
+<ul>
+<li>Catch more bugs at compile time</li>
+<li>Better developer experience</li>
+<li>Your code becomes a better expression of your intent<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">x, y</span>) &#123; <span class="comment">/* ? */</span>&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>Avoid common situations where your code is de-optimized</li>
+</ul>
+<h3 id="Categories-of-Type-Systems"><a href="#Categories-of-Type-Systems" class="headerlink" title="Categories of Type Systems"></a>Categories of Type Systems</h3><h4 id="Nominal-Typing"><a href="#Nominal-Typing" class="headerlink" title="Nominal Typing"></a>Nominal Typing</h4><p>Decisions about whether types are equivalent are made based on their name - Nominal type system</p>
+<h4 id="Structural-Typing"><a href="#Structural-Typing" class="headerlink" title="Structural Typing"></a>Structural Typing</h4><p>Decisions about whether types are equivalent are made based on their structure - Structural type system</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">CartItem</span> &#123;</span><br><span class="line">  <span class="attr">item</span>: &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">    <span class="attr">description</span>: <span class="built_in">string</span></span><br><span class="line">    <span class="attr">price</span>: <span class="built_in">number</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="attr">quantity</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Because VS Code uses TypeScript to check our code, it uses <strong>structural</strong> type system.</p>
+<h3 id="Type-Checking-in-VS-Code"><a href="#Type-Checking-in-VS-Code" class="headerlink" title="Type Checking in VS Code"></a>Type Checking in VS Code</h3><p><em>Activating Type-Checking in VS Code</em>.</p>
+<ul>
+<li>If your project already is set up for typescript, just add <code>&quot;checkJs&quot;: true</code> to your <code>tsconfig.json</code>.</li>
+<li>Otherwise, add a comment at the top of your JS file.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @ts-check</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Annotating-Types"><a href="#Annotating-Types" class="headerlink" title="Annotating Types"></a>Annotating Types</h3><p><em>Annotating Types with JSDoc</em>.</p>
+<ul>
+<li>Types can be added with comments</li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** <span class="doctag">@type</span> &#123;<span class="type">number</span>&#125; */</span></span><br><span class="line"><span class="keyword">let</span> value</span><br><span class="line"></span><br><span class="line">value = <span class="number">21</span> <span class="comment">// ✅ Ok</span></span><br><span class="line">value = <span class="string">&#x27;21&#x27;</span> <span class="comment">// 🚫 not Ok</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Constructors are regarded as types too!</li>
+<li>Remember, this is still structural!<ul>
+<li>TypeScript has a bulit-in type definition for the DOM API and other common JavaScript constructs</li>
+</ul>
+</li>
+</ul>
+ <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** <span class="doctag">@type</span> &#123;<span class="type">Element</span>&#125; */</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="variable language_">document</span>.<span class="title function_">querySelecto</span>(<span class="string">&#x27;.passwordField&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><br/><br/></p>
+<ul>
+<li>Sometimes we work with code that provides us with a less specific type than what we want</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">getFruit</span>(<span class="string">&#x27;orange&#x27;</span>); <span class="comment">// 🍊</span></span><br><span class="line"><span class="title function_">getFruit</span>(<span class="string">&#x27;pear&#x27;</span>);   <span class="comment">// 🍐</span></span><br><span class="line"><span class="title function_">getFruit</span>(<span class="string">&#x27;grapes&#x27;</span>); <span class="comment">// 🍇</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>In the above class, perhaps we really wanted the JavaScript representation of an <code>&lt;input&gt;</code>, not just a generic element!</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** <span class="doctag">@type</span> &#123;<span class="type">HTMLInputElement</span>&#125; */</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.passwordField&#x27;</span>)</span><br><span class="line"><span class="comment">// 🛑 Type &#x27;Element&#x27; is not assignable to type &#x27;HTMLInputElement&#x27;</span></span><br><span class="line"><span class="comment">// 🛑 Property &#x27;accept&#x27; is missing in type &#x27;Element&#x27;.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>This would be no problem if <code>Element</code>‘s structure was a superset of <code>HTMLInputElement</code>‘s, but it’s the other way around.</li>
+<li>The TypeScript compiler has found that <code>Element</code> is lacking the <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input">accept</a> property.</li>
+<li>We can perform an explicit type conversion(type casting)</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** <span class="doctag">@type</span> &#123;<span class="type">HTMLInputElement</span>&#125; */</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="comment">/** <span class="doctag">@type</span> &#123;<span class="type">HTMLInputElement</span>&#125; */</span>(</span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;passwordField&#x27;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>At this point, the explicit declaration dosen’t add any value</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="comment">/** <span class="doctag">@type</span> &#123;<span class="type">HTMLInputElement</span>&#125; */</span>(</span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;passwordField&#x27;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><ul>
+<li>Function is a first-class value type</li>
+<li>We can also define a structure of a function(arguments)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** <span class="doctag">@type</span> &#123;<span class="type">function(MouseEvent)[]</span>&#125; */</span></span><br><span class="line"><span class="keyword">let</span> mouseListeners = []</span><br><span class="line"></span><br><span class="line"><span class="title function_">addEventListeners</span>(<span class="string">&#x27;keypress&#x27;</span>, <span class="keyword">function</span>(<span class="params">evt</span>) &#123;</span><br><span class="line">  mouseListeners.<span class="title function_">forEach</span>(<span class="function"><span class="params">ml</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">ml</span>(evt)</span><br><span class="line">    <span class="comment">// 🛑 Argument of type &#x27;KeyboardEvent&#x27; is not assignable to parameter of type &#x27;MouseEvent&#x27;.</span></span><br><span class="line">    <span class="comment">//    Property &#x27;button&#x27; is missing in type &#x27;KeyboardEvent&#x27;.</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Arrow functions &#x3D;&gt; can also be used to define argument types</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** <span class="doctag">@type</span> &#123;<span class="type">(request: Request) =&gt; Response</span>&#125; */</span></span><br><span class="line"><span class="keyword">let</span> requestHandler = <span class="keyword">function</span>(<span class="params">x</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="string">&#x27;&lt;h1&gt;Hello World&lt;/h1&gt;&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Note that we have defined a return type as well here. We could also have used @return</li>
+<li><strong>Keep in mind:</strong> this is just static analysis. Function passed as arguments aren’t checked for argument type alignment.</li>
+</ul>
+<h3 id="Generics"><a href="#Generics" class="headerlink" title="Generics"></a>Generics</h3><ul>
+<li>Operate across many types</li>
+<li>Still maintain compile-time type safety</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns an array containing 5 of whatever you want</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@template</span> <span class="variable">T</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">T</span>&#125; <span class="variable">item</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">T[]</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">gimmieFive</span>(<span class="params">item</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">5</span>).<span class="title function_">fill</span>(item, <span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> students = <span class="title function_">gimmieFive</span>(<span class="string">&#x27;students&#x27;</span>)</span><br><span class="line">students.<span class="title function_">push</span>(<span class="string">&#x27;teacher&#x27;</span>) <span class="comment">// ✅</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> objects = <span class="title function_">gimmieFive</span>(&#123;<span class="attr">key</span>: <span class="string">&#x27;Object&#x27;</span>&#125;)</span><br><span class="line">objects.<span class="title function_">push</span>(&#123;&#125;)</span><br><span class="line"><span class="comment">// 🛑 Argument of type &#x27;&#123;&#125;&#x27; is not assignable to parameter of type &#x27;&#123; key: string; &#125;&#x27;.</span></span><br><span class="line"><span class="comment">//   Property &#x27;key&#x27; is missing in type &#x27;&#123;&#125;&#x27;.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Promises and other things that wrap other values (which have their own types) are defined using this concept of generics</li>
+<li>Be careful when mixing types with <a target="_blank" rel="noopener" href="https://zh-hans.reactjs.org/docs/introducing-jsx.html">JSX</a>!</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** <span class="doctag">@type</span> &#123;<span class="type">PromiseLike&lt;string&gt;</span>&#125; */</span></span><br><span class="line"><span class="keyword">let</span> x</span><br><span class="line">x = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;hello world&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Custom-Types"><a href="#Custom-Types" class="headerlink" title="Custom Types"></a>Custom Types</h3><p><em>Defining our own named types</em>.</p>
+<ul>
+<li>We can use @typedef to create a new named type of our own</li>
+<li>Two ways to do this:</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@typedef</span> &#123;<span class="type">Object</span>&#125; <span class="variable">InventoryItem</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@prop</span> &#123;<span class="type">string</span>&#125; <span class="variable">name</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@prop</span> &#123;<span class="type">number</span>&#125; <span class="variable">price</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@typedef</span> &#123;<span class="type">&#123;qty: number, item: InventoryItem</span>&#125;&#125; InvoiceItem</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/** <span class="doctag">@type</span> &#123;<span class="type">InvoiceItem[]</span>&#125; */</span></span><br><span class="line"><span class="keyword">let</span> invoice = [];</span><br><span class="line">invoice.<span class="title function_">push</span>(&#123;</span><br><span class="line">  <span class="attr">qty</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">item</span>: &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Apple&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">1.32</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;); <span class="comment">// ✅</span></span><br><span class="line"></span><br><span class="line">invoice.<span class="title function_">push</span>(&#123;<span class="attr">bad</span>: <span class="string">&#x27;thing&#x27;</span>&#125;); <span class="comment">// 🛑</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Challenge-3-Data-Layer-Types"><a href="#Challenge-3-Data-Layer-Types" class="headerlink" title="Challenge 3: Data Layer Types"></a>Challenge 3: Data Layer Types</h3><ul>
+<li>Updata the TypeScript compiler configuration to<ul>
+<li><code>&quot;CheckJs&quot;: true</code> - Type-check JavaScript files</li>
+<li><code>&quot;noImplicitAny&quot;: true</code> - Complain about “implicit any” types (i.e, require us to provide an explicit type in spots where the compiler can’t infer well enough)</li>
+</ul>
+</li>
+<li>Add a variety of JSDoc type annotations to<ul>
+<li>client&#x2F;data&#x2F;listener-support.js<ul>
+<li>Type of <code>this._listeners</code> be an array of function <strong>with argument types specified</strong>.</li>
+</ul>
+</li>
+<li>client&#x2F;data&#x2F;grocery-item-store.js</li>
+<li>client&#x2F;data&#x2F;cart-store.js<ul>
+<li>You may find that you need to define a “grocery item” type in this file <strong>and</strong> <code>grocery-item-store.js</code>.</li>
+<li>This is fine</li>
+</ul>
+</li>
+<li>client&#x2F;data&#x2F;order-store.js</li>
+</ul>
+</li>
+<li>Eliminate all complaints about implicit use of the <code>any</code> type (visible in the <code>problem</code> and <code>terminal</code>)</li>
+<li>HINT: <code>ArrayLike&lt;T&gt;</code> covers things like <code>ReadonlyArray&lt;T&gt;</code> and <code>Array&lt;T&gt;</code></li>
+</ul>
+<h3 id="Debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</h3><h4 id="Debugging-Node"><a href="#Debugging-Node" class="headerlink" title="Debugging Node"></a>Debugging Node</h4><p><a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/1_using/debugging.md">🐞 Debugging</a></p>
+<p>Node has no GUI, so the built-in debugging experience is 🤢 (vomoticon). Let’s take a look!</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run debug</span><br></pre></td></tr></table></figure>
+
+<p>Thankfully, in <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=x8u0n4dT-WI&feature=youtu.be&t=2571">May 2016</a> we got a new flag that basically</p>
+<ul>
+<li>🛑 Suspends global node.js execution on the first line of code</li>
+<li>🔗 Gives us a URL to open w&#x2F; chrome</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run debug:attach</span><br></pre></td></tr></table></figure>
+
+<p>Under the hood, this runs <code>node --inspect --inspect-brk</code>.</p>
+<h3 id="Debugging-Node-with-Editors"><a href="#Debugging-Node-with-Editors" class="headerlink" title="Debugging Node with Editors"></a>Debugging Node with Editors</h3><p>This still involves a ton of context switching</p>
+<ul>
+<li>👎 Yes, this is a bad thing</li>
+<li>🔫 Multitasking stockholm syndrome(斯德哥尔摩综合症)</li>
+<li>🐟 Seems like we’ve been floundering around for a decade trying to get this right</li>
+</ul>
+<p><img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/debugging/netbeans.png" alt="NetBeansIDE"></p>
+<p><img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/debugging/chrome-as-sublime.png" alt="DeceloperTools"></p>
+<p><img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/debugging/sublime-as-chrome.png" alt="SublimeText"></p>
+<p>👆 This one was&#x2F;is actually really cool, but…</p>
+<ul>
+<li>insanely hard to set up</li>
+<li>and brittle</li>
+<li>and looks like it works</li>
+<li>but it doesn’t really</li>
+</ul>
+<p>There are some <a target="_blank" rel="noopener" href="https://atom.io/packages/node-debugger">community sourced Atom plugins</a></p>
+<p><img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/debugging/atom.jpg" alt="AtomDebuuger"></p>
+<p>But these plugins are complex and need a HUGE amount of effort to get right</p>
+<ul>
+<li>sourcemaps</li>
+<li>advanced debugging features</li>
+<li>asynchrony</li>
+<li>multiple threads</li>
+<li>multiple debugging sessions</li>
+</ul>
+<h3 id="Debugging-Node-with-VS-Code"><a href="#Debugging-Node-with-VS-Code" class="headerlink" title="Debugging Node with VS Code"></a>Debugging Node with VS Code</h3><ul>
+<li>Start node with same <code>--inspect</code> and <code>--inspect-brk</code> flags</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run debug:inspect</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Open the <strong>Debugger</strong> side panel</li>
+<li>Create a new “lanuch configuration” that looks like this</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;attach&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Attach&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sourceMaps&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;port&quot;</span><span class="punctuation">:</span> <span class="number">9229</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;protocol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;inspector&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Now press the <kbd>Lunch▶️</kbd> button to attach the Node runtime<ul>
+<li>Inspector vs Legacy Protocol</li>
+<li>Launch vs. Attach</li>
+<li>Conditional breakpoints</li>
+<li>Restart Frame</li>
+<li>Column Breakpoints</li>
+<li>Skipping Code</li>
+</ul>
+</li>
+</ul>
+<h3 id="Debugging-Chrome-with-VS-Code"><a href="#Debugging-Chrome-with-VS-Code" class="headerlink" title="Debugging Chrome with VS Code"></a>Debugging Chrome with VS Code</h3><p>We just need another launch configuration</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;chrome&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;launch&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Launch Chrome&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://localhost:3000&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;webRoot&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceRoot&#125;&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>We can lunch this at the same time as our node debugger</p>
+<h3 id="Challenge-4-Muliti-Process-Debugging"><a href="#Challenge-4-Muliti-Process-Debugging" class="headerlink" title="Challenge 4: Muliti-Process Debugging"></a>Challenge 4: Muliti-Process Debugging</h3><ul>
+<li>Try adding something to the cart. There’s a suble bug involving a misunderstanding between client &amp; server about &gt; data format</li>
+<li>Set a breakpoint in &#x2F;client&#x2F;data&#x2F;cart-store.js’s <code>_saveCart()</code> function right before the <code>PUT</code> request is sent</li>
+<li>Set a breakpoint in &#x2F;server&#x2F;routes&#x2F;cart.js’s <code>.put(&quot;/items&quot;)</code> handler, keeping an eye on the body of the HTTP request as it lands</li>
+<li>Use the above guidelines to create “attach” launch configurations for both Chrome and Node</li>
+<li>Find and fix the problem</li>
+<li>You should be able to (almost) step from one breakpoint to the other</li>
+</ul>
+<h2 id="Workspace-Customization"><a href="#Workspace-Customization" class="headerlink" title="Workspace Customization"></a>Workspace Customization</h2><h3 id="Benefits-of-Customization"><a href="#Benefits-of-Customization" class="headerlink" title="Benefits of Customization"></a>Benefits of Customization</h3><p><a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/2_customizing/workspace.md">🎨 Workspace Customization</a></p>
+<h4 id="Why-Customize-Your-Workspace"><a href="#Why-Customize-Your-Workspace" class="headerlink" title="Why Customize Your Workspace"></a>Why Customize Your Workspace</h4><ul>
+<li>Developer spend LOTS of time in their editor</li>
+<li>What can confirguration do for you?<ul>
+<li>Speed up your workflow</li>
+<li>Make it easier to read code</li>
+<li>Spot errors</li>
+<li>Reduce fatigue</li>
+</ul>
+</li>
+</ul>
+<h4 id="Levels-of-customization"><a href="#Levels-of-customization" class="headerlink" title="Levels of customization"></a>Levels of customization</h4><ul>
+<li>🖥Workspace <code>./.vscode/setting.json</code></li>
+<li>👨‍💻‍User<ul>
+<li>Windows <code>%APPDATA%\Code\User\settings.json</code></li>
+<li>Mac <code>$HOME/Library/Application Support/Code/User/settings.json</code></li>
+<li>Linux <code>$HOME/.config/Code/User/settings.json</code></li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/getstarted/settings#_copy-of-default-settings">Defualt</a> that ship with the editor</li>
+<li>Edit via <kbd>Cmd + ,</kbd></li>
+</ul>
+<h3 id="VS-Code-Themes"><a href="#VS-Code-Themes" class="headerlink" title="VS Code Themes"></a>VS Code Themes</h3><ul>
+<li>🎨 Color Theme</li>
+<li>🗂 File Icon Theme</li>
+<li>⚙️ Customize colors in settings</li>
+<li>📚 <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/intellisense">IntelliSense</a>, a variety of code editing features will be helpful here</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;workbench.colorCustomizations&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;contrastActiveBorder&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#0ff&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>🖍 Syntax Highlighting Customizations</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;editor.tokenColorCustomizations&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;comments&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#aaa&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;types&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#f66&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;textMateRules&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;scope&quot;</span><span class="punctuation">:</span> <span class="string">&quot;variable.parameter&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;fontStyle&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bold&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;foreground&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#FF0000&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;functions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;fontStyle&quot;</span><span class="punctuation">:</span> <span class="string">&quot;italic&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Custom-Fonts"><a href="#Custom-Fonts" class="headerlink" title="Custom Fonts"></a>Custom Fonts</h3><h4 id="Setting-up-a-custom-font"><a href="#Setting-up-a-custom-font" class="headerlink" title="Setting up a custom font"></a>Setting up a custom font</h4><ul>
+<li>Lots of FREE fonts specifically for developers<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/tonsky/FiraCode">Fira Code</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/adobe-fonts/source-code-pro">Source Code Pro</a></li>
+<li><a target="_blank" rel="noopener" href="http://terminus-font.sourceforge.net/">Terminus</a></li>
+<li><a target="_blank" rel="noopener" href="http://sourcefoundry.org/hack/">Hack</a></li>
+<li><a target="_blank" rel="noopener" href="http://input.fontbureau.com/">Input</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;editor.fontFamily&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Fira Code&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;editor.fontLigatures&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// optional</span></span><br><span class="line"><span class="attr">&quot;terminal.integrated.fontLigatures&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// optional</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Key-Bindings"><a href="#Key-Bindings" class="headerlink" title="Key Bindings"></a>Key Bindings</h3><ul>
+<li>Start with a Keymap from your preferred editor<ul>
+<li>Search for extensions: <code>@recommended:keymaps</code></li>
+</ul>
+</li>
+<li>Basic customizations in Keyboard Shortcuts <kbd>Cmd + K</kbd> <kbd>Cmd + S</kbd></li>
+<li>Advanced customizations in <code>keybindings.json</code></li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cmd+z&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;undo&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;when&quot;</span><span class="punctuation">:</span> <span class="string">&quot;editorTextFocus &amp;&amp; !editorReadonly&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/getstarted/keybindings">Key Bindings for Visual Studio Code</a></p>
+<h3 id="Code-Snippets"><a href="#Code-Snippets" class="headerlink" title="Code Snippets"></a>Code Snippets</h3><ul>
+<li>Prefix is what you’ll type (and then hit <kbd>Tab<kbd>)</li>
+<li><code>$&#123;1:300&#125;</code> means "first placeholder, which initially has a value of 300"</li>
+<li>When filling out this templete, repeated use of a given placeholder is updated</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;For Loop&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;for&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;for (var $&#123;1:index&#125; = 0; $&#123;1:index&#125; &lt; $&#123;2:array&#125;.length; $&#123;1:index&#125;++) &#123;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;\tvar $&#123;3:element&#125; = $&#123;2:array&#125;[$&#123;1:index&#125;];&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;\t$0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;&#125;&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;For Loop&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Challenge-5-VS-Code-Tune-Up"><a href="#Challenge-5-VS-Code-Tune-Up" class="headerlink" title="Challenge 5: VS Code Tune-Up"></a>Challenge 5: VS Code Tune-Up</h3><ul>
+<li>Make some UI color customizations, that apply across all projects<ul>
+<li>Panel: background <code>#033</code></li>
+<li>Badge: foreground <code>#000</code>, background: <code>#ff0</code></li>
+<li>Status bar while debugging: foreground #000, background: <code>#ff0</code></li>
+<li>Currently active editor tab: foreground: <code>#0ff</code></li>
+<li>Peek editor: background: <code>#311</code></li>
+</ul>
+</li>
+<li>Design your own syntax highlighting scheme. If you need ideas: <a target="_blank" rel="noopener" href="https://coolors.co/browser/best/1">https://coolors.co/browser/best/1</a></li>
+<li>Disable the minimap</li>
+<li>Disable the indent guides</li>
+<li>Create a code snippet for a placeholder image in HTML files<ul>
+<li>Shortcut: ph</li>
+<li>Result: <code>&lt;img src=&#39;http://placecorgi.com/&#123;x&#125;/&#123;y&#125;&#39; /&gt;</code> where x and y default to 300</li>
+</ul>
+</li>
+</ul>
+<h2 id="Tasks"><a href="#Tasks" class="headerlink" title="Tasks"></a>Tasks</h2><h3 id="Introducting-Custom-VS-Code-Tasks"><a href="#Introducting-Custom-VS-Code-Tasks" class="headerlink" title="Introducting Custom VS Code Tasks"></a>Introducting Custom VS Code Tasks</h3><p><a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/2_customizing/tasks.md">🗒 Tasks</a></p>
+<h4 id="About-Tasks"><a href="#About-Tasks" class="headerlink" title="About Tasks"></a>About Tasks</h4><ul>
+<li>Run build steps, linting, testing, deploying scripts from within VS Code</li>
+<li>Anything in a <code>gruntfile</code>, <code>Gulpfile</code>, <a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/package.json">package.json</a> ("scripts") should be auto-detected</li>
+<li>Where's the best place for these files to live?<ul>
+<li>Main stuff: <code>package.json</code> or <a target="_blank" rel="noopener" href="https://github.com/testdouble/scripty">Scripty</a></li>
+<li>VS Code specifics layered on top</li>
+</ul>
+</li>
+<li>Ability to parse "problems" from output, linking to file and line number</li>
+</ul>
+<h4 id="Custom-tasks-in-tasks-json"><a href="#Custom-tasks-in-tasks-json" class="headerlink" title="Custom tasks in tasks.json"></a>Custom tasks in tasks.json</h4><ul>
+<li>Define one or more things in the <code>tasks</code> array</li>
+<li>Basic Example of a <code>&quot;type&quot;: &quot;shell&quot;</code> task</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;taskName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo Hello&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Tasks-Shell-Command-Arguments"><a href="#Tasks-Shell-Command-Arguments" class="headerlink" title="Tasks: Shell Command Arguments"></a>Tasks: Shell Command Arguments</h4><ul>
+<li>It's best to use the <code>&quot;args&quot;</code> property to ensure arguments are properly quoted</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;taskName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;I said, &#x27;Hello world&#x27;&quot;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>We can add a working directory option as well, to ensure this runs at our project root folder</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;taskName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;I said, &#x27;Hello world&#x27;&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceRoot&#125;&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Tasks-Capturing-output-into-problems"><a href="#Tasks-Capturing-output-into-problems" class="headerlink" title="Tasks: Capturing output into "problems""></a>Tasks: Capturing output into "problems"</h4><ul>
+<li>If the output of this command printed indications of problems in our code (at a particular file/line), we can use <kbd>Command</kbd> + Click 🖲 on a file path to open that file</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;taskName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shell&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="string">&quot;client/index.tsx,LINE:8,this line stinks&quot;</span></span><br><span class="line"><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceRoot&#125;&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>But what about pointing out problems by line&#x2F;column?</li>
+</ul>
+<p>This task would output something like this:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client/index.tsx,LINE:8,this line stinks</span><br></pre></td></tr></table></figure>
+
+<p>What we need is a regular expression with <a target="_blank" rel="noopener" href="https://www.regular-expressions.info/refcapture.html">capture groups</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a></li>
+<li><a target="_blank" rel="noopener" href="http://regexr.com/">http://regexr.com/</a></li>
+</ul>
+<h5 id="Cheat-sheet"><a href="#Cheat-sheet" class="headerlink" title="Cheat sheet"></a>Cheat sheet</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[0-9]        any number</span><br><span class="line">[w]+         1 or more <span class="string">&quot;w&quot;</span> characters</span><br><span class="line">[w]*         0 or more <span class="string">&quot;w&quot;</span> characters</span><br><span class="line">[\s\w]+      1 or more <span class="string">&quot;word&quot;</span> or <span class="string">&quot;space&quot;</span></span><br><span class="line">LINE:([0-9]+)  grab digits after <span class="string">&quot;LINE:&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>EXAMPLE:</strong> If our string is <code>LINE:31</code>, and we use a regex:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LINE:([0-9]+)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Group 0: “LINE:31”</li>
+<li>Group 1: “31”</li>
+</ul>
+<h4 id="Let’s-figure-out-the-appropriate-regex"><a href="#Let’s-figure-out-the-appropriate-regex" class="headerlink" title="Let’s figure out the appropriate regex"></a>Let’s figure out the appropriate regex</h4><p>Once we have this, we can use it within our task to detect the files, line #s, and specific details for any problems that are found:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;taskName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;problemMatcher&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;owner&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ts&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;pattern&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;regexp&quot;</span><span class="punctuation">:</span> `&lt;the regex&gt;`<span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;file&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;line&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="number">3</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>And we should see the following in our “problems” tab</p>
+<p><img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/tasks/problems.png" alt="problems"></p>
+<p>and clicking on the problem should take us right to the appropriate line in the appropriate file</p>
+<p><img src="https://github.com/mike-works/vscode-fundamentals/raw/master/public/tasks/redline.png" alt="redline"></p>
+<h3 id="Challenge-6-TSLint-Problems"><a href="#Challenge-6-TSLint-Problems" class="headerlink" title="Challenge 6: TSLint Problems"></a>Challenge 6: TSLint Problems</h3><ul>
+<li>Think of it as “ESLint for TypeScript”</li>
+<li>You can run this via <code>./node_modules/.bin/tslint --project &lt;root of your workspace&gt;</code></li>
+<li><details>
+<summary>click for sample output</summary>
+<pre>
+ERROR: /Users/northm/Development/workshops/vscode/client/components/app-header/index.tsx[22, 7]: Identifier 'cartIcon' is never reassigned; use 'const' instead of 'let'.
+</pre>
+</details></li>
+</ul>
+<ol>
+<li>Create a custom task to run TSLint</li>
+<li>Define a regex-based Problem Matcher to capture output, so that any issues found are shown in the “problems” panel</li>
+<li>Fix all the bugs it points out (Cycle through problems with <kbd>F8</kbd>)</li>
+</ol>
+<h2 id="Launch-Confirguration"><a href="#Launch-Confirguration" class="headerlink" title="Launch Confirguration"></a>Launch Confirguration</h2><h3 id="Launch-Setting"><a href="#Launch-Setting" class="headerlink" title="Launch Setting"></a>Launch Setting</h3><p><a target="_blank" rel="noopener" href="https://github.com/mike-works/vscode-fundamentals/blob/master/docs/2_customizing/launch-configuration.md">🚀 Launch Configuration</a></p>
+<ul>
+<li><code>launch.json</code> is where launch confirgurations live</li>
+<li>We’ve dealt with launch &amp; config in Debugging exercise 4</li>
+<li>Let’s break it down:</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node&quot;</span><span class="punctuation">,</span> <span class="comment">// Use the &quot;node&quot; debugger</span></span><br><span class="line">  <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;attach&quot;</span><span class="punctuation">,</span> <span class="comment">// &quot;attach&quot; instead of &quot;launch&quot;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Start my app&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sourceMaps&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// Use sourcemaps for breakpoints</span></span><br><span class="line">  <span class="attr">&quot;port&quot;</span><span class="punctuation">:</span> <span class="number">9229</span><span class="punctuation">,</span> <span class="comment">// Connect on :9229</span></span><br><span class="line">  <span class="attr">&quot;protocol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;inspector&quot;</span> <span class="comment">// Use the V8 inspector protocol, not the old V8 debugger protocl</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="quot-type-quot"><a href="#quot-type-quot" class="headerlink" title="&quot;type:&quot; ?"></a><code>&quot;type:&quot; ?</code></h4><ul>
+<li>You will only need to worry about two types for now:<ul>
+<li><code>&quot;node&quot;</code> for Node</li>
+<li><code>&quot;chrome&quot;</code> for Chrome</li>
+</ul>
+</li>
+<li>Others can be added via extensions</li>
+</ul>
+<h4 id="runtimeExecutable-quot"><a href="#runtimeExecutable-quot" class="headerlink" title="runtimeExecutable:&quot; ?"></a><code>runtimeExecutable:&quot; ?</code></h4><ul>
+<li>This is the runtime that you pass your code into, to run</li>
+<li>Default value: determined by <code>&quot;type</code> of debugger</li>
+<li>Practical Example: <code>./node_modules/.bin/ts-node</code></li>
+<li>Usually accompanied by something like <code>&quot;program&quot;: &quot;./index.js&quot;</code></li>
+</ul>
+<h4 id="quot-restart-quot-Node"><a href="#quot-restart-quot-Node" class="headerlink" title="&quot;restart:&quot; ? (Node)"></a><code>&quot;restart:&quot; ?</code> (Node)</h4><ul>
+<li>Automatically re-executes the command when Node terminates</li>
+<li>In an <code>&quot;attach&quot;</code> mode, VS Code will start listening for connections again and preserve your breakpoints</li>
+</ul>
+<h4 id="Console-Options"><a href="#Console-Options" class="headerlink" title="Console Options"></a>Console Options</h4><ul>
+<li>Where does the output go?</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;console&quot;</span><span class="punctuation">:</span> <span class="string">&quot;integratedTerminal&quot;</span> <span class="comment">// &quot;Terminal&quot;</span></span><br><span class="line">  | <span class="string">&quot;externalTerminal&quot;</span> <span class="comment">// your own terminal (must config)</span></span><br><span class="line">  | <span class="string">&quot;integratedConsole&quot;</span> <span class="comment">// &quot;Debug Console&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>How the console at the bottom of the editor is dealt with:</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;internalConsoleOptions&quot;</span><span class="punctuation">:</span> <span class="string">&quot;neverOpen&quot;</span> <span class="comment">// Don&#x27;t open</span></span><br><span class="line">  | <span class="string">&quot;openOnFirstSessionStart&quot;</span> <span class="comment">// Open at first</span></span><br><span class="line">  | <span class="string">&quot;openOnSessionStart&quot;</span> <span class="comment">// Open on every &quot;restart&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Arguments-amp-Environment"><a href="#Arguments-amp-Environment" class="headerlink" title="Arguments &amp; Environment"></a>Arguments &amp; Environment</h4><ul>
+<li><code>&quot;args&quot;: []</code> property takes care of quoting properly</li>
+<li><code>&quot;env&quot;: &#123;&#125;</code> object is for environment variables</li>
+<li><code>&quot;cwd&quot;: &quot;./&quot;</code> for working directory<ul>
+<li>Default to <code>&quot;$&#123;workspaceRoot&#125;&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h4><ul>
+<li><code>$&#123;workspaceRoot&#125;</code> - the path of the folder opened in VS Code</li>
+<li><code>$&#123;workspaceRootFolderName&#125;</code> - the name of the folder opened in VS Code without any slashes (&#x2F;)</li>
+<li><code>$&#123;file&#125;</code> - the current opened file</li>
+<li><code>$&#123;relativeFile&#125;</code> - the current opened file relative to workspaceRoot</li>
+<li><code>$&#123;fileBasename&#125;</code> - the current opened file’s basename</li>
+<li><code>$&#123;fileBasenameNoExtension&#125;</code> - the current opened file’s basename with no file extension</li>
+<li><code>$&#123;fileDirname&#125;</code> - the current opened file’s dirname</li>
+<li><code>$&#123;fileExtname&#125;</code> - the current opened file’s extension</li>
+<li><code>$&#123;cwd&#125;</code> - the task runner’s current working directory on startup</li>
+<li><code>$&#123;lineNumber&#125;</code> - the current selected line number in the active file</li>
+</ul>
+<h3 id="Challenge-7-Analyze-amp-Monitor"><a href="#Challenge-7-Analyze-amp-Monitor" class="headerlink" title="Challenge 7: Analyze &amp; Monitor"></a>Challenge 7: Analyze &amp; Monitor</h3><p>Build two new launch configurations</p>
+<ul>
+<li>Show a bundle analysis visualization<ul>
+<li>Ultimately this command needs to be run <code>ANALYIZE=true node ./server/index.js</code> (ANALYZE is an environment variable)</li>
+<li>We don’t want to have to “attach” to this. Just let it run</li>
+</ul>
+</li>
+<li>Launch our server, but use <code>nodemon</code> to have it restart as we save files<ul>
+<li>You’ll need to install the <code>nodemon</code> npm package globally (<code>npm install -g nodemon</code>)</li>
+<li>Ultimately the command you’ll need to run is something like <code>nodemon ./server/index.js</code></li>
+<li>Running this should result in the debug console opening, but only when we “launch”, not on every restart</li>
+<li>We shouldn’t have to “attach” to this. It should be a one-click launch</li>
+</ul>
+</li>
+</ul>
+<h2 id="Wrapping-Up-VS-Code"><a href="#Wrapping-Up-VS-Code" class="headerlink" title="Wrapping Up VS Code"></a>Wrapping Up VS Code</h2><h3 id="VS-Code-Extension-Recommendations"><a href="#VS-Code-Extension-Recommendations" class="headerlink" title="VS Code Extension Recommendations"></a>VS Code Extension Recommendations</h3><p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client">REST Client</a></p>
+<p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=kisstkondoros.csstriggers">css-triggers</a></p>
+<p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner">Code Runner</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/Markdown/" rel="tag"># Markdown</a>
+              <a href="/tags/Editor/" rel="tag"># Editor</a>
+              <a href="/tags/VS-Code/" rel="tag"># VS Code</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/05/30/Full-Stack-for-Front-End-Engineers/" rel="prev" title="Full Stack for Front End Engineers">
+                  <i class="fa fa-chevron-left"></i> Full Stack for Front End Engineers
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/06/17/Complete-intro-to-React-v5/" rel="next" title="Complete-intro-to-React-v5">
+                  Complete-intro-to-React-v5 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
