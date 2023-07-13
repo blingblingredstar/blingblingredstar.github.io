@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Introduction Course website Course repo  What is Accessibility? Web accessibility means that people with disabilities can use the web. &gt; 网页无障碍意味着残疾人可以使用网页。  More specially, web accessibility means">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Website Accessibility v2">
+<meta property="og:url" content="http://yoursite.com/2023/07/09/Website-Accessibility-v2/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="Introduction Course website Course repo  What is Accessibility? Web accessibility means that people with disabilities can use the web. &gt; 网页无障碍意味着残疾人可以使用网页。  More specially, web accessibility means">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-09T07:04:47.000Z">
+<meta property="article:modified_time" content="2023-07-13T16:08:42.299Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta property="article:tag" content="a11y">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2023/07/09/Website-Accessibility-v2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2023/07/09/Website-Accessibility-v2/","path":"2023/07/09/Website-Accessibility-v2/","title":"Website Accessibility v2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Website Accessibility v2 | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Accessibility"><span class="nav-number">1.1.</span> <span class="nav-text">What is Accessibility?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ways-People-Use-the-Web"><span class="nav-number">1.2.</span> <span class="nav-text">Ways People Use the Web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Curb-Cut-Effect"><span class="nav-number">1.3.</span> <span class="nav-text">Curb Cut Effect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Accessibility-Standards"><span class="nav-number">1.4.</span> <span class="nav-text">Accessibility Standards</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Screen-Readers"><span class="nav-number">2.</span> <span class="nav-text">Screen Readers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Alternative-Text-and-Captions"><span class="nav-number">2.1.</span> <span class="nav-text">Alternative Text and Captions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Alternative-Text"><span class="nav-number">2.1.1.</span> <span class="nav-text">Alternative Text</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Skipping-over-images"><span class="nav-number">2.1.2.</span> <span class="nav-text">Skipping over images</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Captions-for-audio"><span class="nav-number">2.1.3.</span> <span class="nav-text">Captions for audio</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise"><span class="nav-number">2.2.</span> <span class="nav-text">Exercise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accessible-HTML"><span class="nav-number">3.</span> <span class="nav-text">Accessible HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Semantic-HTML"><span class="nav-number">3.1.</span> <span class="nav-text">Semantic HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Accessible-Form-Field-Labels"><span class="nav-number">3.2.</span> <span class="nav-text">Accessible Form Field Labels</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Screen-reader-only-content"><span class="nav-number">3.2.1.</span> <span class="nav-text">Screen reader only content</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buttons"><span class="nav-number">3.3.</span> <span class="nav-text">Buttons</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-1"><span class="nav-number">3.4.</span> <span class="nav-text">Exercise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Aria"><span class="nav-number">4.</span> <span class="nav-text">Aria</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Labels"><span class="nav-number">4.1.</span> <span class="nav-text">Labels</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Roles-States-and-Properties"><span class="nav-number">4.2.</span> <span class="nav-text">Roles, States, and Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Live-Regions"><span class="nav-number">4.3.</span> <span class="nav-text">Live Regions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-2"><span class="nav-number">4.4.</span> <span class="nav-text">Exercise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Focus-Management"><span class="nav-number">5.</span> <span class="nav-text">Focus Management</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Keyboard-shortcuts"><span class="nav-number">5.1.</span> <span class="nav-text">Keyboard shortcuts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Skip-links"><span class="nav-number">5.2.</span> <span class="nav-text">Skip links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tab-Navigation"><span class="nav-number">5.3.</span> <span class="nav-text">Tab Navigation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-3"><span class="nav-number">5.4.</span> <span class="nav-text">Exercise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Considerations"><span class="nav-number">6.</span> <span class="nav-text">Visual Considerations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Color-Contrast"><span class="nav-number">6.1.</span> <span class="nav-text">Color Contrast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Visual-Impairments-gt-%E8%A7%86%E8%A7%89%E9%9A%9C%E7%A2%8D"><span class="nav-number">6.2.</span> <span class="nav-text">Visual Impairments &gt; 视觉障碍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setting-the-language"><span class="nav-number">6.3.</span> <span class="nav-text">Setting the language</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fixing-Markup-Errors"><span class="nav-number">6.4.</span> <span class="nav-text">Fixing Markup Errors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neurocognitive-gt-%E7%A5%9E%E7%BB%8F%E8%AE%A4%E7%9F%A5"><span class="nav-number">6.5.</span> <span class="nav-text">Neurocognitive &gt; 神经认知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-4"><span class="nav-number">6.6.</span> <span class="nav-text">Exercise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tooling"><span class="nav-number">7.</span> <span class="nav-text">Tooling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Accessibility-Linters-amp-Dev-Tools"><span class="nav-number">7.1.</span> <span class="nav-text">Accessibility Linters &amp; Dev Tools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Additional-Resources"><span class="nav-number">7.2.</span> <span class="nav-text">Additional Resources</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">149</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/07/09/Website-Accessibility-v2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Website Accessibility v2 | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Website Accessibility v2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-09 15:04:47" itemprop="dateCreated datePublished" datetime="2023-07-09T15:04:47+08:00">2023-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-14 00:08:42" itemprop="dateModified" datetime="2023-07-14T00:08:42+08:00">2023-07-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://learn-a11y.netlify.app/">Course website</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jkup/learn-a11y">Course repo</a></li>
+</ul>
+<h3 id="What-is-Accessibility"><a href="#What-is-Accessibility" class="headerlink" title="What is Accessibility?"></a>What is Accessibility?</h3><blockquote>
+<p>Web accessibility means that people with disabilities can use the web. &gt; 网页无障碍意味着残疾人可以使用网页。</p>
+</blockquote>
+<p>More specially, web accessibility means that people with disabilities can <strong>perceive</strong>, <strong>understand</strong>, <strong>navigate</strong>, and <strong>interact</strong> with the web, and that they can contribute to the web. &gt; 更具体地说，网页无障碍意味着残疾人可以感知、理解、导航和与网页交互，并且他们可以为网页做出贡献。</p>
+<span id="more"></span>
+
+<ul>
+<li><p>Types of disabilities &gt; 残疾类型</p>
+<ul>
+<li>Mobility and physical &gt; 肢体和身体</li>
+<li>Cognitive and neurological &gt; 认知和神经</li>
+<li>visual &gt; 视觉</li>
+<li>hearing &gt; 听觉</li>
+</ul>
+</li>
+<li><p>Reasons developers should learn accessibility &gt; 开发者应该学习无障碍的原因</p>
+<ul>
+<li>It’s fun! &gt; 有趣</li>
+<li>We’re the ones making it inaccessible &gt; 我们是使其无法访问的人</li>
+<li>Human rights &gt; 人权</li>
+<li>Legal issues &gt; 法律问题</li>
+<li>Reach a larger audience &gt; 覆盖更广泛的受众</li>
+<li>Impactful &gt; 有影响力的</li>
+<li>Makes you a specialist &gt; 使你成为专家</li>
+</ul>
+</li>
+</ul>
+<h3 id="Ways-People-Use-the-Web"><a href="#Ways-People-Use-the-Web" class="headerlink" title="Ways People Use the Web"></a>Ways People Use the Web</h3><ul>
+<li>Keyboard Only &gt; 只用键盘</li>
+<li>Head Wand &gt; 头部杖</li>
+<li>Mouth Stick &gt; 嘴棍</li>
+<li>Single Switch &gt; 单开关</li>
+<li>Screen Reader &gt; 屏幕阅读器</li>
+</ul>
+<h3 id="Curb-Cut-Effect"><a href="#Curb-Cut-Effect" class="headerlink" title="Curb Cut Effect"></a>Curb Cut Effect</h3><blockquote>
+<p>The Curb-Cut Effect, in its essence, asserts that an investment in one group can cascade out and up and be a substantial investment in the broader well-being of a nation – one whose policies and practices create an equitable economy, a healthy community of opportunity, and just society. &gt; 路边切割效应本质上断言，对一个群体的投资可以向外扩散并向上扩散，并且是对一个国家整体福祉的重大投资——其政策和做法创造了一个公平的经济、一个充满机会的健康社区和一个公正的社会。</p>
+</blockquote>
+<h3 id="Accessibility-Standards"><a href="#Accessibility-Standards" class="headerlink" title="Accessibility Standards"></a>Accessibility Standards</h3><ul>
+<li>Web Content Accessibility Guidelines (WCAG) &gt; 网页内容无障碍指南<ul>
+<li><a target="_blank" rel="noopener" href="https://www.w3.org/WAI/standards-guidelines/wcag/">WCAG</a> specifies three different <a target="_blank" rel="noopener" href="https://www.w3.org/WAI/WCAG21/Understanding/conformance#levels">conformance levels</a> they are:<ul>
+<li>A (lowest)</li>
+<li>AA (mid range)</li>
+<li>AAA (highest)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>WebAIM<ul>
+<li><a target="_blank" rel="noopener" href="https://webaim.org/">WebAIM</a> provides a handy <a target="_blank" rel="noopener" href="https://webaim.org/standards/wcag/checklist">checklist</a> with their recommendations. &gt; WebAIM 提供了一个方便的清单，其中包含他们的建议。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Screen-Readers"><a href="#Screen-Readers" class="headerlink" title="Screen Readers"></a>Screen Readers</h2><ul>
+<li><p>How they work</p>
+<blockquote>
+<p>Screen readers convert digital text into synthesized speech. They empower users to hear content and navigate with the keyboard. The technology helps people who are blind or who have low vision to use information technology with the same level of independence and privacy as anyone else. &gt; 屏幕阅读器将数字文本转换为合成语音。它们使用户能够听到内容并使用键盘进行导航。该技术帮助盲人或视力低下的人使用信息技术，与其他任何人一样独立和保护隐私。</p>
+</blockquote>
+</li>
+<li><p>Popular screen readers</p>
+<ul>
+<li>JAWS</li>
+<li>NVDA</li>
+<li>VoiceOver</li>
+<li>ZoomText</li>
+<li>System Access or SA To Go</li>
+<li>Window-Eyes</li>
+<li>ChromeVox</li>
+<li>Narrator</li>
+<li>Other</li>
+</ul>
+</li>
+</ul>
+<h3 id="Alternative-Text-and-Captions"><a href="#Alternative-Text-and-Captions" class="headerlink" title="Alternative Text and Captions"></a>Alternative Text and Captions</h3><h4 id="Alternative-Text"><a href="#Alternative-Text" class="headerlink" title="Alternative Text"></a>Alternative Text</h4><p>By default, when a screen reader encounters an image, if it can’t find <code>alt</code> text it will read the image’s file name. &gt; 默认情况下，当屏幕阅读器遇到图像时，如果找不到 <code>alt</code> 文本，它将读取图像的文件名。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;logo.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;logo&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Skipping-over-images"><a href="#Skipping-over-images" class="headerlink" title="Skipping over images"></a>Skipping over images</h4><p>Sometimes your website will have images that are strictly for decorative purposes. In these cases, you can add <code>alt=&quot;&quot;</code> to the image to tell the screen reader to skip over it. &gt; 有时，您的网站将具有严格用于装饰目的的图像。在这些情况下，您可以向图像添加 <code>alt=&quot;&quot;</code>，以告诉屏幕阅读器跳过它。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;logo.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Captions-for-audio"><a href="#Captions-for-audio" class="headerlink" title="Captions for audio"></a>Captions for audio</h4><p>Remember not all content on the web is visual! If your application has video content, be sure to use a captioning service to add closed captioning. &gt; 记住，网页上的所有内容不全是可视的！如果您的应用程序具有视频内容，请务必使用字幕服务添加闭路字幕。</p>
+<h3 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://learn-a11y.netlify.app/exercises/1.html">Screen reader exercise</a></li>
+</ul>
+<h2 id="Accessible-HTML"><a href="#Accessible-HTML" class="headerlink" title="Accessible HTML"></a>Accessible HTML</h2><h3 id="Semantic-HTML"><a href="#Semantic-HTML" class="headerlink" title="Semantic HTML"></a>Semantic HTML</h3><ul>
+<li>Some elements have semantic meaning but no special functionality. &gt; 一些元素具有语义意义，但没有特殊功能。<ul>
+<li><code>&lt;main&gt;</code></li>
+<li><code>&lt;article&gt;</code></li>
+<li><code>&lt;footer&gt;</code></li>
+<li><code>&lt;header&gt;</code></li>
+<li>…</li>
+</ul>
+</li>
+<li>Other’s provide a lot of builtin functionality. &gt; 其他的提供了很多内置功能。<ul>
+<li><code>&lt;button&gt;</code></li>
+<li><code>&lt;input&gt;</code></li>
+<li><code>&lt;select&gt;</code></li>
+<li><code>&lt;textarea&gt;</code></li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<h3 id="Accessible-Form-Field-Labels"><a href="#Accessible-Form-Field-Labels" class="headerlink" title="Accessible Form Field Labels"></a>Accessible Form Field Labels</h3><p>Form fields can be confusing for screen reader users. There are many ways to label form fields so the label is read out loud whenever the field has focus. &gt; 对于屏幕阅读器用户来说，表单字段可能会令人困惑。有许多方法可以标记表单字段，以便在字段具有焦点时将标签读出来。</p>
+<ul>
+<li>Visual only labels &gt; 仅视觉标签<ul>
+<li>A common pattern is using div’s or paragraph tags to label form fields. &gt; 一种常见的模式是使用 div 或段落标签来标记表单字段。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>First Name<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Last Name<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Submit&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>A better option is to use the HTML <code>label</code> tag which will allow screen readers to recite the label when the field is focused. &gt; 更好的选择是使用 HTML <code>label</code> 标签，这将允许屏幕阅读器在字段聚焦时朗读标签。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;first-name&quot;</span>&gt;</span>First Name<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;first-name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;last-name&quot;</span>&gt;</span>Last Name<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;last-name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Submit&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>implicit label</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">    First Name</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">    Last Name</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Submit&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>The label tag can only works with ‘labelable’ elements. &gt; label 标签只能与 ‘labelable’ 元素一起使用。</p>
+<ul>
+<li><code>&lt;button&gt;</code></li>
+<li><code>&lt;input&gt;</code></li>
+<li><code>&lt;keygen&gt;</code></li>
+<li><code>&lt;meter&gt;</code></li>
+<li><code>&lt;output&gt;</code></li>
+<li><code>&lt;progress&gt;</code></li>
+<li><code>&lt;select&gt;</code></li>
+<li><code>&lt;textarea&gt;</code></li>
+</ul>
+</li>
+<li><p>If you ever need to label an element not on that list, use <code>aria-label</code> instead. &gt; 如果您需要标记不在该列表中的元素，请改用 <code>aria-label</code>。</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">aria-label</span>=<span class="string">&quot;Interactive div&quot;</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Screen-reader-only-content"><a href="#Screen-reader-only-content" class="headerlink" title="Screen reader only content"></a>Screen reader only content</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.sr-only</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: -<span class="number">10000px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">top</span>: auto;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Buttons"><a href="#Buttons" class="headerlink" title="Buttons"></a>Buttons</h3><ul>
+<li>Original button</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;Hello&#x27;)&quot;</span>&gt;</span>Click Me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Rewrite button with a div</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;Hello&#x27;)&quot;</span>&gt;</span>Click Me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Add <code>role=&quot;button&quot;</code> to the div</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">role</span>=<span class="string">&quot;button&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;Hello&#x27;)&quot;</span>&gt;</span>Click Me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Add <code>tabindex=&quot;0&quot;</code> to the div to make it focusable with the keyboard</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">role</span>=<span class="string">&quot;button&quot;</span> <span class="attr">tabindex</span>=<span class="string">&quot;0&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;Hello&#x27;)&quot;</span>&gt;</span>Click Me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Add keyboard support</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">role</span>=<span class="string">&quot;button&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">tabindex</span>=<span class="string">&quot;0&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;Hello&#x27;)&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">onkeyup</span>=<span class="string">&quot;if (event.keyCode === 13) alert(&#x27;Hello&#x27;)&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  Click Me</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Add <code>aria-label</code> for screen reader users</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">role</span>=<span class="string">&quot;button&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">tabindex</span>=<span class="string">&quot;0&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">aria-label</span>=<span class="string">&quot;Alert Hello&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;Hello&#x27;)&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">onkeyup</span>=<span class="string">&quot;if (event.keyCode === 13) alert(&#x27;Hello&#x27;)&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  Click Me</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise"></a>Exercise</h3><p><a target="_blank" rel="noopener" href="https://learn-a11y.netlify.app/exercises/2.html">Accessible HTML exercise</a></p>
+<h2 id="Aria"><a href="#Aria" class="headerlink" title="Aria"></a>Aria</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">MDN ARIA</a><br><a target="_blank" rel="noopener" href="https://www.w3.org/TR/wai-aria-1.1/">Official ARIA</a><br><a target="_blank" rel="noopener" href="https://www.w3.org/TR/html-aria/#aria-table">Aria table</a></p>
+<h3 id="Labels"><a href="#Labels" class="headerlink" title="Labels"></a>Labels</h3><ul>
+<li><code>aria-label</code> &gt; 用于提供元素的可读标签。</li>
+<li><code>aria-labelledby</code> &gt; 用于提供元素的可读标签的 ID。</li>
+<li><code>aria-describedby</code> &gt; 用于提供元素的描述性文本的 ID。</li>
+</ul>
+<p>What is the difference between <code>aria-labelledby</code> and <code>aria-describedby</code>? &gt; <code>aria-labelledby</code> 和 <code>aria-describedby</code> 之间有什么区别？</p>
+<ul>
+<li><code>aria-labelledby</code> is used to label an element. &gt; <code>aria-labelledby</code> 用于标记元素。</li>
+<li><code>aria-describedby</code> is used to describe an element. &gt; <code>aria-describedby</code> 用于描述元素。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;label&quot;</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;description&quot;</span>&gt;</span>Click to submit the form<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">aria-labelledby</span>=<span class="string">&quot;label&quot;</span> <span class="attr">aria-describedby</span>=<span class="string">&quot;description&quot;</span>&gt;</span>Click Me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Roles-States-and-Properties"><a href="#Roles-States-and-Properties" class="headerlink" title="Roles, States, and Properties"></a>Roles, States, and Properties</h3><p>Aria also provides roles which can be applied to any element, example:</p>
+<ul>
+<li><p>button</p>
+</li>
+<li><p>checkbox</p>
+</li>
+<li><p>tree</p>
+</li>
+<li><p>banner</p>
+</li>
+<li><p>aria-autocomplete</p>
+</li>
+<li><p>aria-haspopup</p>
+</li>
+<li><p>[see here] for full list(<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques">https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques</a>)</p>
+</li>
+<li><p>Using <code>aria</code> attributes with css</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.dropdown</span><span class="selector-attr">[aria-expanded=<span class="string">&#x27;true&#x27;</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Live-Regions"><a href="#Live-Regions" class="headerlink" title="Live Regions"></a>Live Regions</h3><ul>
+<li><code>aria-live</code> &gt; 用于标记元素的内容是否会动态更改。<ul>
+<li><code>aria-live=&quot;off&quot;</code> &gt; 默认值，不会通知屏幕阅读器。</li>
+<li><code>aria-live=&quot;polite&quot;</code> &gt; 会通知屏幕阅读器，但不会打断用户的操作。</li>
+<li><code>aria-live=&quot;assertive&quot;</code> &gt; 会通知屏幕阅读器，并打断用户的操作。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise"></a>Exercise</h3><p><a target="_blank" rel="noopener" href="https://learn-a11y.netlify.app/exercises/3.html">Accessible Aria exercise</a></p>
+<h2 id="Focus-Management"><a href="#Focus-Management" class="headerlink" title="Focus Management"></a>Focus Management</h2><p>As users navigate around using only the keyboard, focus rings provide a necessary clue as to the currently active item. &gt; 当用户仅使用键盘导航时，焦点环提供了有关当前活动项的必要线索。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">  <span class="attribute">outline</span>: <span class="number">2px</span> solid blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Keyboard-shortcuts"><a href="#Keyboard-shortcuts" class="headerlink" title="Keyboard shortcuts"></a>Keyboard shortcuts</h3><p>Keyboard shortcuts are another curb cut example. Sites like Twitter and Facebook offer keyboard shortcuts for almost any action which are great for both keyboard only users and and power users! &gt; 键盘快捷键是另一个 curb cut 示例。Twitter 和 Facebook 等网站为几乎所有操作提供了键盘快捷键，这对于仅使用键盘的用户和高级用户都非常有用！</p>
+<h3 id="Skip-links"><a href="#Skip-links" class="headerlink" title="Skip links"></a>Skip links</h3><p>Skip links are a way to allow keyboard users to skip over large sections of content. They are hidden by default and only show when focused.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#main&quot;</span> <span class="attr">class</span>=<span class="string">&quot;sr-only&quot;</span>&gt;</span>Skip to main content<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.sr-only</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: -<span class="number">10000px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">top</span>: auto;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sr-only</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: auto;</span><br><span class="line">  <span class="attribute">height</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>How to make a skip link<ul>
+<li>Create a link with a <code>href</code> attribute that points to the main content. &gt; 创建一个链接，其中 <code>href</code> 属性指向主内容。</li>
+<li>Prepend it to the body of the page. &gt; 将其预置到页面的 body 中。</li>
+<li>Make it invisible by default. &gt; 默认情况下使其不可见。</li>
+<li>Make it visible when focused. &gt; 聚焦时可见。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Tab-Navigation"><a href="#Tab-Navigation" class="headerlink" title="Tab Navigation"></a>Tab Navigation</h3><p>You can use <key>Tab</key> to navigate to the next tabbable element and <key>Shift</key> + <key>Tab</key> to navigate to the previous tabbable element. &gt; 您可以使用 <key>Tab</key> 导航到下一个可制表元素，使用 <key>Shift</key> + <key>Tab</key> 导航到上一个可制表元素。</p>
+<ul>
+<li><p>Tabbable elements</p>
+<ul>
+<li><code>&lt;a&gt;</code></li>
+<li><code>&lt;button&gt;</code></li>
+<li><code>&lt;input&gt;</code></li>
+<li><code>&lt;select&gt;</code></li>
+<li><code>&lt;textarea&gt;</code></li>
+<li><code>[iframe]</code></li>
+</ul>
+</li>
+<li><p>Making an element tabbable</p>
+<ul>
+<li>Add <code>tabindex=&quot;0&quot;</code> to the element. &gt; 将 <code>tabindex=&quot;0&quot;</code> 添加到元素中。</li>
+</ul>
+</li>
+<li><p>Tabindex values</p>
+<ul>
+<li>A negative means that the element should be focusable, but should not be reachable via sequential keyboard navigation. &gt; 负数表示元素应该是可聚焦的，但不应该通过顺序键盘导航可达。</li>
+<li><code>0</code> means that the element should be focusable and reachable via sequential keyboard navigation, but its relative order is defined by the platform convention. &gt; <code>0</code> 表示元素应该是可聚焦的，并且可以通过顺序键盘导航可达，但其相对顺序由平台约定定义。</li>
+<li>A positive value means that the element should be focusable and reachable via sequential keyboard navigation, with its order defined by the value of the number. &gt; 正值表示元素应该是可聚焦的，并且可以通过顺序键盘导航可达，其顺序由数字的值定义。</li>
+</ul>
+</li>
+<li><p>Active Element</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Assuming there is modal is about to be opened</span></span><br><span class="line"><span class="comment">// Store the current news item</span></span><br><span class="line"><span class="keyword">const</span> currentNewsItem = <span class="variable language_">document</span>.<span class="property">activeElement</span>;</span><br><span class="line"><span class="comment">// Open the modal</span></span><br><span class="line"><span class="comment">// On modal close, refocus the news item</span></span><br><span class="line">currentNewsItem.<span class="title function_">focus</span>();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Tap trapping &gt; 点击陷阱</li>
+</ul>
+<p>Another useful concept is tab trapping. Consider opening a modal on a page which contains a form. A keyboard only user will want to tab around the form but unless we help, tabbing while focused on the last form element will send us all the way back to the main document. &gt; 另一个有用的概念是 tab 陷阱。想像假如在页面上打开一个包含表单的模态框。仅使用键盘的用户将想要尽在表单之中使用 tab 键导航，但是除非我们帮助，否则在最后一个表单元素上聚焦时，按 tab 键将会将我们带回到主文档。（注：使用 js 进行判断，当用 tab 导航到第一个&#x2F;最后一个元素时，再次按下 tab 键时，将焦点聚焦到模态框内的第一个&#x2F;最后一个元素上）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> focusableElements = modal.<span class="title function_">querySelectorAll</span>(</span><br><span class="line">  <span class="string">&#x27;a[href], button, textarea, input[type=&quot;text&quot;], input[type=&quot;radio&quot;], input[type=&quot;checkbox&quot;], select, [tabindex]:not([tabindex=&quot;-1&quot;])&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> firstFocusableElement = focusableElements[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> lastFocusableElement = focusableElements[focusableElements.<span class="property">length</span> - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;keydown&#x27;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> isTabPressed = e.<span class="property">key</span> === <span class="string">&#x27;Tab&#x27;</span> || e.<span class="property">keyCode</span> === <span class="number">9</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!isTabPressed) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (e.<span class="property">shiftKey</span>) &#123;</span><br><span class="line">    <span class="comment">/* shift + tab */</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">document</span>.<span class="property">activeElement</span> === firstFocusableElement) &#123;</span><br><span class="line">      lastFocusableElement.<span class="title function_">focus</span>();</span><br><span class="line">      e.<span class="title function_">preventDefault</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">/* tab */</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">document</span>.<span class="property">activeElement</span> === lastFocusableElement) &#123;</span><br><span class="line">      firstFocusableElement.<span class="title function_">focus</span>();</span><br><span class="line">      e.<span class="title function_">preventDefault</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise"></a>Exercise</h3><p><a target="_blank" rel="noopener" href="https://learn-a11y.netlify.app/exercises/4.html">Accessible Focus Management exercise</a></p>
+<h2 id="Visual-Considerations"><a href="#Visual-Considerations" class="headerlink" title="Visual Considerations"></a>Visual Considerations</h2><h3 id="Color-Contrast"><a href="#Color-Contrast" class="headerlink" title="Color Contrast"></a>Color Contrast</h3><ul>
+<li><p>WebAIM</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://webaim.org/resources/contrastchecker/">Color Contrast Checker</a></li>
+</ul>
+</li>
+<li><p>Chrome DevTools</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/docs/devtools/css/color/">Color</a></li>
+</ul>
+</li>
+<li><p>Colors and forms</p>
+<ul>
+<li>An important consideration for colorblind users is making sure that color isn’t the only way users can tell if there is an error with the form. For example, a red ring is not enough. Consider adding an icon or an error label. &gt; 对色盲用户来说，一个重要的考虑因素是确保颜色不是用户能够判断表单是否有错误的唯一方式。例如，红色的圆圈是不够的。考虑添加一个图标或错误标签。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Visual-Impairments-gt-视觉障碍"><a href="#Visual-Impairments-gt-视觉障碍" class="headerlink" title="Visual Impairments &gt; 视觉障碍"></a>Visual Impairments &gt; 视觉障碍</h3><p>To simulate visual impairments, you can use the Firefox add-on <a target="_blank" rel="noopener" href="https://addons.mozilla.org/en-US/firefox/addon/nocoffee/">NoCoffee</a>. &gt; 要模拟视觉障碍，您可以使用 Firefox 插件 <a target="_blank" rel="noopener" href="https://addons.mozilla.org/en-US/firefox/addon/nocoffee/">NoCoffee</a>。</p>
+<h3 id="Setting-the-language"><a href="#Setting-the-language" class="headerlink" title="Setting the language"></a>Setting the language</h3><p>Remember to set the lang attribute on the top level html tag as well as any sections where the language deviates from it. &gt; 请记住，在顶级 html 标签以及任何语言与之不同的部分上设置 lang 属性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">lang</span>=<span class="string">&quot;fr&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Fixing-Markup-Errors"><a href="#Fixing-Markup-Errors" class="headerlink" title="Fixing Markup Errors"></a>Fixing Markup Errors</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://validator.w3.org/">W3C Markup Validation Service</a></li>
+</ul>
+<h3 id="Neurocognitive-gt-神经认知"><a href="#Neurocognitive-gt-神经认知" class="headerlink" title="Neurocognitive &gt; 神经认知"></a>Neurocognitive &gt; 神经认知</h3><p>Prefers Reduced Motion</p>
+<p>Users can set a “prefers reduced motion” setting in their operating system (Windows, Mac, Linux) and we can read that setting in CSS and swap out animations with more subtle effects. &gt; 用户可以在其操作系统（Windows、Mac、Linux）中设置“偏好减少动作”，我们可以在 CSS 中读取该设置，并用更细微的效果替换动画。</p>
+<p>This is important both as a preference and also to avoid causing issues for users who may suffer from seizures. &gt; 这对于偏好和避免给癫痫患者造成问题都很重要。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion">prefers-reduced-motion</a></li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.animation</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: pulse <span class="number">1s</span> linear infinite both;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-reduced-motion</span>: reduce) &#123;</span><br><span class="line">  <span class="selector-class">.animation</span> &#123;</span><br><span class="line">    <span class="attribute">animation</span>: none;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Prefers Color Scheme</p>
+<p>Users can set a “prefers color scheme” setting in their operating system (Windows, Mac, Linux) and we can read that setting in CSS and swap out colors to match. &gt; 用户可以在其操作系统（Windows、Mac、Linux）中设置“偏好颜色方案”，我们可以在 CSS 中读取该设置，并交换颜色以匹配。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">prefers-color-scheme</a></li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: white;</span><br><span class="line">  <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: dark) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: black;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise"></a>Exercise</h3><p><a target="_blank" rel="noopener" href="https://learn-a11y.netlify.app/exercises/5.html">Exercise 5</a></p>
+<h2 id="Tooling"><a href="#Tooling" class="headerlink" title="Tooling"></a>Tooling</h2><h3 id="Accessibility-Linters-amp-Dev-Tools"><a href="#Accessibility-Linters-amp-Dev-Tools" class="headerlink" title="Accessibility Linters &amp; Dev Tools"></a>Accessibility Linters &amp; Dev Tools</h3><ul>
+<li>Linters<ul>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/eslint-plugin-jsx-a11y">eslint-plugin-jsx-a11y</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/eslint-plugin-vuejs-accessibility">eslint-plugin-vuejs-accessibility</a></li>
+</ul>
+</li>
+<li>Accessible Design System<ul>
+<li><a target="_blank" rel="noopener" href="https://react-spectrum.adobe.com/react-spectrum/index.html">Adobe React Spectrum</a></li>
+<li><a target="_blank" rel="noopener" href="https://material.io/">Google Material Design</a></li>
+</ul>
+</li>
+<li>Accessibility Dev Tools<ul>
+<li><a target="_blank" rel="noopener" href="https://www.deque.com/axe/devtools/">axe DevTools</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.google.com/web/tools/lighthouse">Google Lighthouse</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Additional-Resources"><a href="#Additional-Resources" class="headerlink" title="Additional Resources"></a>Additional Resources</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.w3.org/WAI/standards-guidelines/wcag/">Web Content Accessibility Guidelines (WCAG) Overview</a></li>
+<li><a target="_blank" rel="noopener" href="https://webaim.org/">WebAIM</a></li>
+<li><a target="_blank" rel="noopener" href="https://inclusive.microsoft.design/">Microsoft Inclusive Design</a></li>
+<li><a target="_blank" rel="noopener" href="https://accessibility.day/">Global Accessibility Awareness Day</a></li>
+<li><a target="_blank" rel="noopener" href="https://frontendmasters.com/courses/javascript-accessibility/">Accessibility in JavaScript Applications</a></li>
+<li><a target="_blank" rel="noopener" href="https://egghead.io/courses/start-building-accessible-web-applications-today">Start Building Accessible Web Applications Today</a></li>
+<li><a target="_blank" rel="noopener" href="https://egghead.io/courses/accessibility-tips-tricks-49286904">Accessibility Tips and Tricks</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/docs/lighthouse/accessibility/">Google Accessibility Audits</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+              <a href="/tags/a11y/" rel="tag"># a11y</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/29/Java-Fundamentals/" rel="prev" title="Java Fundamentals">
+                  <i class="fa fa-chevron-left"></i> Java Fundamentals
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
