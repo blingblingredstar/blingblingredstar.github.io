@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="The Hard Parts of UI DevelopmentIntroductionIn UI Hard Parts we develop an under-the-hood understanding of building user interfaces in the web browser. &gt; 在 UI Hard Parts 中，我们将在 Web 浏览器中构建用户界面的底层工作原">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Hard Parts of UI Development">
+<meta property="og:url" content="http://yoursite.com/2023/07/15/The-Hard-Parts-of-UI-Development/index.html">
+<meta property="og:site_name" content="刘勇的博客">
+<meta property="og:description" content="The Hard Parts of UI DevelopmentIntroductionIn UI Hard Parts we develop an under-the-hood understanding of building user interfaces in the web browser. &gt; 在 UI Hard Parts 中，我们将在 Web 浏览器中构建用户界面的底层工作原">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-15T05:15:48.000Z">
+<meta property="article:modified_time" content="2023-08-06T16:09:38.055Z">
+<meta property="article:author" content="刘勇">
+<meta property="article:tag" content="FrontEndMasters">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2023/07/15/The-Hard-Parts-of-UI-Development/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2023/07/15/The-Hard-Parts-of-UI-Development/","path":"2023/07/15/The-Hard-Parts-of-UI-Development/","title":"The Hard Parts of UI Development"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>The Hard Parts of UI Development | 刘勇的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">刘勇的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Hard-Parts-of-UI-Development"><span class="nav-number">1.</span> <span class="nav-text">The Hard Parts of UI Development</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Principles-of-Engineering"><span class="nav-number">1.1.1.</span> <span class="nav-text">Principles of Engineering</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#State-and-View"><span class="nav-number">1.2.</span> <span class="nav-text">State and View</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Interface-Dev-Overview"><span class="nav-number">1.2.1.</span> <span class="nav-text">User Interface Dev Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Display-Content"><span class="nav-number">1.2.2.</span> <span class="nav-text">Display Content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rendering-HTML-Under-the-Hood"><span class="nav-number">1.2.3.</span> <span class="nav-text">Rendering HTML Under the Hood</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSSOM-for-Styling"><span class="nav-number">1.2.4.</span> <span class="nav-text">CSSOM for Styling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enabling-Change-of-Content"><span class="nav-number">1.2.5.</span> <span class="nav-text">Enabling Change of Content</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-DOM-amp-Events"><span class="nav-number">1.3.</span> <span class="nav-text">JavaScript, DOM &amp; Events</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Store-Data-in-JavaScript"><span class="nav-number">1.3.1.</span> <span class="nav-text">Store Data in JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebIDL-amp-WebCore"><span class="nav-number">1.3.2.</span> <span class="nav-text">WebIDL &amp; WebCore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Updating-DOM-Elements-with-JavaScript"><span class="nav-number">1.3.3.</span> <span class="nav-text">Updating DOM Elements with JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handling-User-Interaction"><span class="nav-number">1.3.4.</span> <span class="nav-text">Handling User Interaction</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Binding-In-the-UI"><span class="nav-number">1.4.</span> <span class="nav-text">Data-Binding In the UI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-Way-Data-Binding"><span class="nav-number">1.4.1.</span> <span class="nav-text">One-Way Data Binding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Separate-Data-amp-View-Updates"><span class="nav-number">1.4.2.</span> <span class="nav-text">Separate Data &amp; View Updates</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Virtual-DOM"><span class="nav-number">1.5.</span> <span class="nav-text">Virtual DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Auto-Updating-Views-UI"><span class="nav-number">1.5.1.</span> <span class="nav-text">Auto-Updating Views UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Understanding-UI-Component"><span class="nav-number">1.5.2.</span> <span class="nav-text">Understanding UI Component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Emulate-HTML-with-String-Interpolation"><span class="nav-number">1.5.3.</span> <span class="nav-text">Emulate HTML with String Interpolation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-JavaScript-Virtual-DOM"><span class="nav-number">1.5.4.</span> <span class="nav-text">Creating a JavaScript Virtual DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Declarative-UI-as-a-Paradigm"><span class="nav-number">1.5.5.</span> <span class="nav-text">Declarative UI as a Paradigm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Composition-amp-Functional-Components"><span class="nav-number">1.6.</span> <span class="nav-text">Composition &amp; Functional Components</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Lists-for-UI-Components"><span class="nav-number">1.6.1.</span> <span class="nav-text">Using Lists for UI Components</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lists-are-central-to-UI-development-gt-%E5%88%97%E8%A1%A8%E6%98%AF-UI-%E5%BC%80%E5%8F%91%E7%9A%84%E6%A0%B8%E5%BF%83"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">Lists are central to UI development &gt; 列表是 UI 开发的核心</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Composable-Code-with-Map-and-Spread"><span class="nav-number">1.6.2.</span> <span class="nav-text">Composable Code with Map and Spread</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%98Mapping%E2%80%99-over-our-vDOM-and-%E2%80%98spreading%E2%80%99-resulting-array"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">‘Mapping’ over our vDOM and ‘spreading’ resulting array</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Performance-Improvements-Hooks-diffing-amp-reconciliation"><span class="nav-number">1.7.</span> <span class="nav-text">Performance Improvements(Hooks, diffing &amp; reconciliation)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-the-DOM-on-Data-Changes"><span class="nav-number">1.7.1.</span> <span class="nav-text">Update the DOM on Data Changes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Automatic-Updates-with-Hooks"><span class="nav-number">1.7.2.</span> <span class="nav-text">Automatic Updates with Hooks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Performance-Gains-Using-Diffing"><span class="nav-number">1.7.3.</span> <span class="nav-text">Performance Gains Using Diffing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Finally-descriptive-amp-composable-UI-that%E2%80%99s-not-a-disaster"><span class="nav-number">1.7.3.1.</span> <span class="nav-text">Finally - descriptive &amp; composable UI that’s not a disaster!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#We-have-a-groundbreaking-approach-to-UI"><span class="nav-number">1.7.3.2.</span> <span class="nav-text">We have a groundbreaking approach to UI</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘勇"
+      src="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+  <p class="site-author-name" itemprop="name">刘勇</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">149</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/blingblingredstar" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;blingblingredstar" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:564447023@qq.com" title="E-Mail → mailto:564447023@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/07/15/The-Hard-Parts-of-UI-Development/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/43870278?s=400&u=7e0e1bf1f3550a08fa79cb6368718793280eb5eb&v=4">
+      <meta itemprop="name" content="刘勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="The Hard Parts of UI Development | 刘勇的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          The Hard Parts of UI Development
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-15 13:15:48" itemprop="dateCreated datePublished" datetime="2023-07-15T13:15:48+08:00">2023-07-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-07 00:09:38" itemprop="dateModified" datetime="2023-08-07T00:09:38+08:00">2023-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="The-Hard-Parts-of-UI-Development"><a href="#The-Hard-Parts-of-UI-Development" class="headerlink" title="The Hard Parts of UI Development"></a>The Hard Parts of UI Development</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>In UI Hard Parts we develop an under-the-hood understanding of building user interfaces in the web browser. &gt; 在 UI Hard Parts 中，我们将在 Web 浏览器中构建用户界面的底层工作原理。</p>
+<h3 id="Principles-of-Engineering"><a href="#Principles-of-Engineering" class="headerlink" title="Principles of Engineering"></a>Principles of Engineering</h3><ul>
+<li>Analytical problem solving &gt; 分析性解决问题<ul>
+<li>Can you break down complex challenges and develop a strategy for solving the problems. &gt; 你能分解复杂的挑战并制定解决问题的策略吗？</li>
+</ul>
+</li>
+<li>Technical communication &gt; 技术沟通<ul>
+<li>Can I implement your approach from your explanation? &gt; 我能根据你的解释实现你的方法吗？</li>
+</ul>
+</li>
+<li>Engineering approach &gt; 工程方法<ul>
+<li>How you handle “not knowing”, debugging, code structure and working w&#x2F;docs. &gt; 如何处理“不知道”，调试，代码结构和使用文档。</li>
+</ul>
+</li>
+<li>Non-technical communication &gt; 非技术沟通<ul>
+<li>Empathetic and thoughtful communication, supportive approach to the community. &gt; 有同理心和深思熟虑的沟通，对社区的支持性方法。</li>
+</ul>
+</li>
+<li>JavaScript and programming experience &gt; JavaScript 和编程经验<ul>
+<li>Concepts like closure &amp; data structures, state &amp; view. &gt; 诸如闭包和数据结构，状态和视图之类的概念。</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="State-and-View"><a href="#State-and-View" class="headerlink" title="State and View"></a>State and View</h2><h3 id="User-Interface-Dev-Overview"><a href="#User-Interface-Dev-Overview" class="headerlink" title="User Interface Dev Overview"></a>User Interface Dev Overview</h3><ul>
+<li><p>State, View, JavaScript, Dom &amp; Events</p>
+<ul>
+<li>Two goals to UI engineering: Display content - state&#x2F;data - so the user can ‘view’ it, then let them interact with it. &gt; UI 工程的两个目标：显示内容 - 状态&#x2F;数据 - 以便用户可以“查看”它，然后让他们与之交互。</li>
+</ul>
+</li>
+<li><p>The web browser’s ad hoc history has led to the features that let us do this being spread across languages, APIs and environments. &gt; Web 浏览器的临时历史导致了让我们能够在语言、API 和环境之间进行分布的功能。</p>
+</li>
+<li><p>Requires JavaScript and the DOM to combine with help of WebCore, Web IDL, the DOM API, Event API. &gt; 需要 JavaScript 和 DOM 与 WebCore、Web IDL、DOM API、Event API 的帮助结合起来。</p>
+</li>
+<li><p>But lets us build dynamic interactive experience at the center of all modern applications. &gt; 但是让我们在所有现代应用程序的中心构建动态交互体验。</p>
+</li>
+<li><p>Almost every piece of technology needs a visual “user interface”(UI). &gt; 几乎每一种技术都需要一个视觉“用户界面”（UI）。</p>
+<ul>
+<li>Content displayed on a screen(output from the computer) that a user can change by doing something. &gt; 屏幕上显示的内容（计算机的输出），用户可以通过做某事来更改。<ul>
+<li>Video stream from zoom. &gt; 来自 zoom 的视频流。</li>
+<li>Likes on tweet. &gt; 推文上的喜欢。</li>
+<li>Comments in a chat. &gt; 聊天中的评论。</li>
+<li>Mario’s position on the screen. &gt; Mario 在屏幕上的位置。</li>
+</ul>
+</li>
+<li>What are other UIs and what’s the interactivity. &gt; 其他 UI 是什么，交互性是什么。<ul>
+<li>A video game. &gt; 电子游戏。</li>
+<li>A website. &gt; 网站。</li>
+<li>A mobile app. &gt; 移动应用程序。</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Just two “simple” goals</p>
+<ol>
+<li>Display content(data inside computer&#x2F;from internet) on screen. &gt; 在屏幕上显示内容（计算机&#x2F;互联网中的数据）。</li>
+<li>Enable the user to interact(tap, click, etc) with the content they see and change it(presumably change the underlying data - otherwise it’d be inconsistent). &gt; 让用户与他们看到的内容进行交互（点击、点击等），并改变它（假设改变底层数据 - 否则它将不一致）。</li>
+</ol>
+</li>
+</ul>
+<h3 id="Display-Content"><a href="#Display-Content" class="headerlink" title="Display Content"></a>Display Content</h3><p>Code to display content</p>
+<ol>
+<li>What’s on your mind?</li>
+<li>Input field</li>
+<li>Submit button</li>
+</ol>
+<p>But we still have to think about the location(coordinates), browser &amp; device variations… &gt; 但是我们仍然必须考虑位置（坐标）、浏览器和设备的变化…</p>
+<h3 id="Rendering-HTML-Under-the-Hood"><a href="#Rendering-HTML-Under-the-Hood" class="headerlink" title="Rendering HTML Under the Hood"></a>Rendering HTML Under the Hood</h3><p>Solution: A list of elements in C++ to add to the page - the DOM. &gt; 解决方案：在 C++ 中添加到页面的元素列表 - DOM。</p>
+<p>Web Core: converts the DOM(stored in C++) into a visual representation on the screen. &gt; Web Core：将 DOM（存储在 C++ 中）转换为屏幕上的视觉表示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;input&quot;</span>&gt;</span>What&#x27;s on your mind?<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;input&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DOM</span></span><br><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    type: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">    props: &#123;&#125;,</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">        type: <span class="string">&#x27;label&#x27;</span>,</span><br><span class="line">        props: &#123; <span class="keyword">for</span>: <span class="string">&#x27;input&#x27;</span> &#125;,</span><br><span class="line">        children: [<span class="string">&#x27;What&#x27;</span>s on your mind?<span class="string">&#x27;],</span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">      &#123;</span></span><br><span class="line"><span class="string">        type: &#x27;</span>input<span class="number">&#x27;</span>,</span><br><span class="line">        props: &#123; id: <span class="string">&#x27;input&#x27;</span>, type: <span class="string">&#x27;text&#x27;</span> &#125;,</span><br><span class="line">        children: [],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        type: <span class="string">&#x27;button&#x27;</span>,</span><br><span class="line">        props: &#123; type: <span class="string">&#x27;submit&#x27;</span> &#125;,</span><br><span class="line">        children: [<span class="string">&#x27;Submit&#x27;</span>],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>DOM - ordered list(object) of page(document) elements we can add to using HTML &gt; DOM - 我们可以使用 HTML 添加到的页面（文档）元素的有序列表（对象）</p>
+<ul>
+<li>Order&#x2F;structures set by where we write each HTML line. &gt; 通过我们编写每个 HTML 行的位置设置顺序&#x2F;结构。</li>
+</ul>
+<p>Layout engine - works out page layout for specific browser&#x2F;screen. &gt; 布局引擎 - 为特定的浏览器&#x2F;屏幕计算页面布局。</p>
+<p>Render engine - produces the composite ‘image’ for graphics card. &gt; 渲染引擎 - 为图形卡生成复合“图像”。</p>
+<h3 id="CSSOM-for-Styling"><a href="#CSSOM-for-Styling" class="headerlink" title="CSSOM for Styling"></a>CSSOM for Styling</h3><p>Adding CSSOM(CSS Object Model) for styling and formatting. &gt; 添加 CSSOM 用于样式和格式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">form</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CSSOM</span></span><br><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    selector: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">    declarations: [</span><br><span class="line">      &#123; property: <span class="string">&#x27;display&#x27;</span>, value: <span class="string">&#x27;flex&#x27;</span> &#125;,</span><br><span class="line">      &#123; property: <span class="string">&#x27;flex-direction&#x27;</span>, value: <span class="string">&#x27;column&#x27;</span> &#125;,</span><br><span class="line">      &#123; property: <span class="string">&#x27;align-items&#x27;</span>, value: <span class="string">&#x27;flex-start&#x27;</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>CSSOM - ordered list(object) of page(document) styles we can add to using CSS &gt; CSSOM - 我们可以使用 CSS 添加到的页面（文档）样式的有序列表（对象）</p>
+<p>So far, we finish goal 1 - display content by using HTML and CSS. &gt; 到目前为止，我们通过使用 HTML 和 CSS 完成了目标 1 - 显示内容。</p>
+<h3 id="Enabling-Change-of-Content"><a href="#Enabling-Change-of-Content" class="headerlink" title="Enabling Change of Content"></a>Enabling Change of Content</h3><p>Problem: Pixels !&#x3D; Data. &gt; 问题：像素！&#x3D; 数据。</p>
+<ul>
+<li>We’re trained to think so by the real world where metaphysical and epistemic are tied. &gt; 我们通过现实世界的形而上学和认识论联系在一起来思考。</li>
+<li>“Data” as “View”. &gt; “数据”作为“视图”。</li>
+</ul>
+<p>But HTML 1x display&#x2F;paint of content, user can change what they see e.g. input field. &gt; 但是 HTML 1x 显示&#x2F;绘制内容，用户可以更改他们看到的内容，例如输入字段。</p>
+<p>Step 2 impossible w&#x2F; our approach to Step 1. &gt; 用我们的方法完成步骤 1 后，步骤 2 是不可能的。</p>
+<ul>
+<li>HTML 1x display&#x2F;paint of content. &gt; HTML 1x 显示&#x2F;绘制内容。</li>
+<li>DOM - Display “data” but can’t run code. &gt; DOM - 显示“数据”但无法运行代码。</li>
+</ul>
+<p>We have to use JavaScript to: &gt; 我们必须使用 JavaScript 来：</p>
+<ul>
+<li>Create &amp; save content&#x2F;data. &gt; 创建和保存内容&#x2F;数据。</li>
+<li>Run code to change it. &gt; 运行代码来改变它。</li>
+</ul>
+<h2 id="JavaScript-DOM-amp-Events"><a href="#JavaScript-DOM-amp-Events" class="headerlink" title="JavaScript, DOM &amp; Events"></a>JavaScript, DOM &amp; Events</h2><h3 id="Store-Data-in-JavaScript"><a href="#Store-Data-in-JavaScript" class="headerlink" title="Store Data in JavaScript"></a>Store Data in JavaScript</h3><p>Data(and code to change it) is only available in JavaScript. &gt; 数据（以及更改它的代码）仅在 JavaScript 中可用。</p>
+<ul>
+<li>JS file of code added using HTML code. &gt; 使用 HTML 代码添加的 JS 代码文件。</li>
+<li>JavaScript is an entire runtime. &gt; JavaScript 是一个完整的运行时。<ul>
+<li>Thread of execution to run code. &gt; 执行线程以运行代码。</li>
+<li>Memory for data. &gt; 数据内存。</li>
+<li>Call stack &amp; event loop to allow code(functions) to run asynchronously. &gt; 调用堆栈和事件循环允许代码（函数）异步运行。</li>
+</ul>
+</li>
+<li>We have data now - but how do we display it? &gt; 我们现在有数据了 - 但是我们如何显示它？<ul>
+<li>With WebIDL &amp; WebCore. &gt; 使用 WebIDL 和 WebCore。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><figcaption><span>// App.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;app.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> post = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">post = <span class="string">&#x27;Something else&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(post);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DOM</span></span><br><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    type: <span class="string">&#x27;script&#x27;</span>,</span><br><span class="line">    props: &#123; src: <span class="string">&#x27;app.js&#x27;</span> &#125;,</span><br><span class="line">    children: [],</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// CSSOM</span></span><br><span class="line">[];</span><br></pre></td></tr></table></figure>
+
+<h3 id="WebIDL-amp-WebCore"><a href="#WebIDL-amp-WebCore" class="headerlink" title="WebIDL &amp; WebCore"></a>WebIDL &amp; WebCore</h3><p>WebCore - converts the DOM(stored in C++) into a visual representation on the screen. &gt; WebCore - 将 DOM（存储在 C++ 中）转换为屏幕上的视觉表示。</p>
+<p>Web IDL - an interface description language (IDL) format for describing application programming interfaces (APIs) that are intended to be implemented in web browsers. &gt; Web IDL - 用于描述应用程序编程接口（API）的接口描述语言（IDL）格式，这些接口旨在在 Web 浏览器中实现。</p>
+<details>
+
+<summary>WebCore gives JavaScript access to the DOM & pixels</summary>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;app.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">let</span> post = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> jsDiv = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">jsDiv.<span class="property">textContent</span> = post;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(jsDiv);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Updating-DOM-Elements-with-JavaScript"><a href="#Updating-DOM-Elements-with-JavaScript" class="headerlink" title="Updating DOM Elements with JavaScript"></a>Updating DOM Elements with JavaScript</h3><p>WebCore gives JavaScript access to the DOM &amp; pixels. &gt; WebCore 使 JavaScript 可以访问 DOM 和像素。</p>
+<ul>
+<li>Goal 1: Display content&#x2F;data to user<ol>
+<li>Data created &amp; stored in JS: <code>post = &#39;Hello World&#39;</code></li>
+<li>Get DOM element(a link in JS):<code>document.querySelector(&#39;div&#39;)</code></li>
+<li>Store link to element, in JS: <code>const jsDiv</code></li>
+<li>Use built-in “property-methods” to add content&#x2F;data from JS to DOM element: <code>jsDiv.textContent = post</code></li>
+<li>DOM automatically displays content on page(the “view”)</li>
+</ol>
+</li>
+</ul>
+<h3 id="Handling-User-Interaction"><a href="#Handling-User-Interaction" class="headerlink" title="Handling User Interaction"></a>Handling User Interaction</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;app.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">let</span> post = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> jsInput = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;input&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> jsDiv = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleInput</span>(<span class="params"></span>) &#123;</span><br><span class="line">  post = jsInput.<span class="property">value</span>;</span><br><span class="line">  <span class="comment">// we have to sync the DOM with the data manually</span></span><br><span class="line">  <span class="comment">// we can&#x27;t just change the data and expect the DOM to update</span></span><br><span class="line">  jsDiv.<span class="property">textContent</span> = post;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">jsInput.<span class="property">oninput</span> = handleInput;</span><br></pre></td></tr></table></figure>
+
+<p>Solving for Goal 2: Users can change what they see(&amp; underlying data) by interacting &gt; 解决目标 2：用户可以通过交互来更改他们看到的内容（和底层数据）</p>
+<p>User interaction(typing, clicking etc) is “registered” by DOM elements(they know when they’re tapped) &gt; 用户交互（键入，单击等）由 DOM 元素“注册”（它们知道何时被点击）</p>
+<p>But how can this cause a change in data which is elsewhere(in JavaScript)? &gt; 但是这如何导致数据（在 JavaScript 中的其他位置）发生变化？</p>
+<p>DOM events and handler functions - let user action&#x2F;input(“events”) change data in JavaScript &gt; DOM 事件和处理程序函数 - 让用户操作&#x2F;输入（“事件”）更改 JavaScript 中的数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsInput.<span class="property">oninput</span> = handleInput;</span><br></pre></td></tr></table></figure>
+
+<p>By saving a function definition to the DOM element - when the user action(“event”) happens, the function will be “called back” into JS and executed automatically. &gt; 通过将函数定义保存到 DOM 元素 - 当用户操作（“事件”）发生时，该函数将“回调”到 JS 并自动执行。</p>
+<p>We’ve solved for UI goals 1 &amp; 2! &gt; 我们已经解决了 UI 目标 1 和 2！</p>
+<p>User actions can trigger running JS code to:</p>
+<ol>
+<li>Save&#x2F;change underlying data(in JS) &gt; 保存&#x2F;更改底层数据（在 JS 中）</li>
+<li>Change what data is displayed(in DOM) &gt; 更改显示的数据（在 DOM 中）</li>
+</ol>
+<ul>
+<li>Note that we have to manually re-update the DOM with our data - there is no “propagation”. &gt; 请注意，我们必须手动使用我们的数据重新更新 DOM - 没有“传播”。</li>
+</ul>
+<p>We have a full user interface(UI). &gt; 我们有一个完整的用户界面（UI）。</p>
+<p>Goal 1: Display content(data inside computer&#x2F;from internet) as the “view” for user to see. &gt; 目标 1：将内容（计算机&#x2F;互联网中的数据）显示为用户查看的“视图”。<br>Goal 2: Enable the user to interact(tap, click etc) with the “view” they see and change it (by changing the underlying data &amp; updating the view). &gt; 目标 2：使用户能够与他们看到的“视图”进行交互（点击，单击等）并更改它（通过更改底层数据并更新视图）。</p>
+<h2 id="Data-Binding-In-the-UI"><a href="#Data-Binding-In-the-UI" class="headerlink" title="Data-Binding In the UI"></a>Data-Binding In the UI</h2><h3 id="One-Way-Data-Binding"><a href="#One-Way-Data-Binding" class="headerlink" title="One-Way Data Binding"></a>One-Way Data Binding</h3><p>Let’s expand our UI to be more sophisticated. &gt; 让我们扩展我们的 UI 以使其更加复杂。</p>
+<p>Adding another handler - this one for clicks &gt; 添加另一个处理程序 - 这是点击的处理程序</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> post = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> jsInput = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;input&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> jsDiv = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line"></span><br><span class="line">jsInput.<span class="property">value</span> = <span class="string">&#x27;Hello World&#x27;</span>; <span class="comment">// we may update the DOM accidentally</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleInput</span>(<span class="params"></span>) &#123;</span><br><span class="line">  post = jsInput.<span class="property">value</span>;</span><br><span class="line">  jsDiv.<span class="property">textContent</span> = post;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleClick</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// post = &#x27;&#x27;; // we may forget to update the data</span></span><br><span class="line">  jsDiv.<span class="property">textContent</span> = post;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">jsInput.<span class="property">oninput</span> = handleInput;</span><br><span class="line">jsDiv.<span class="property">onclick</span> = handleClick;</span><br></pre></td></tr></table></figure>
+
+<p>We’re changing our “view” based on multiple possible user interactions. In practice there will be 1000s that can all affect data&#x2F;view. &gt; 我们正在根据多种可能的用户交互来更改我们的“视图”。 在实践中，将有数千个可以影响数据&#x2F;视图的数据。</p>
+<p>We need a way to make these changes as predictable as we possibly can. &gt; 我们需要一种尽可能可预测地进行这些更改的方法。</p>
+<ul>
+<li>One-way Data Binding<ul>
+<li>Popular paradigm for tackling the essential UI engineering challenge - data&#x2F;view consistency. &gt; 解决基本 UI 工程挑战 - 数据&#x2F;视图一致性的流行范例。</li>
+<li>Invaluable at scale(state&#x2F;view with 1000s of points of interaction) &amp; implemented in React, Angular &amp; Vue. &gt; 在规模上是无价的（具有 1000 多个交互点的状态&#x2F;视图）并在 React、Angular 和 Vue 中实现。</li>
+<li>Enables us to build scalable apps with or without frameworks, debug complex UIs &amp; answer the toughest interview Qs. &gt; 使我们能够构建可扩展的应用程序，无论是否使用框架，都可以调试复杂的 UI 并回答最难的面试问题。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Separate-Data-amp-View-Updates"><a href="#Separate-Data-amp-View-Updates" class="headerlink" title="Separate Data &amp; View Updates"></a>Separate Data &amp; View Updates</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> post = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">const</span> jsInput = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;input&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> jsDiv = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">dataToView</span>(<span class="params"></span>) &#123;</span><br><span class="line">  jsInput.<span class="property">value</span> = post === <span class="literal">undefined</span> ? <span class="string">&#x27;&#x27;</span> : post;</span><br><span class="line">  jsDiv.<span class="property">textContent</span> = post === <span class="literal">undefined</span> ? <span class="string">&#x27;&#x27;</span> : post;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleClick</span>(<span class="params"></span>) &#123;</span><br><span class="line">  post = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="title function_">dataToView</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleInput</span>(<span class="params"></span>) &#123;</span><br><span class="line">  post = jsInput.<span class="property">value</span>;</span><br><span class="line">  <span class="title function_">dataToView</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">jsInput.<span class="property">oninput</span> = handleInput;</span><br><span class="line">jsDiv.<span class="property">onclick</span> = handleClick;</span><br><span class="line"><span class="title function_">dataToView</span>();</span><br></pre></td></tr></table></figure>
+
+<p>Restrict every change to view to be via (1) An update of “data” and (2) A run of a single dataToView convertor function. &gt; 限制对视图的每次更改为（1）“数据”的更新和（2）单个 dataToView 转换器函数的运行。</p>
+<ul>
+<li>This is just one approach - but an immensely popular one(React, Next, Vue, Angular, Svelte). &gt; 这只是一种方法 - 但是非常受欢迎（React、Next、Vue、Angular、Svelte）。</li>
+<li>Tees us up for semi-visual coding with a virtual DOM. &gt; 为我们提供了一个半可视化的虚拟 DOM。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Or we can sync the data for every 15ms</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleInput</span>(<span class="params"></span>) &#123;</span><br><span class="line">  post = jsInput.<span class="property">value</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleClick</span>(<span class="params"></span>) &#123;</span><br><span class="line">  post = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(dataToView, <span class="number">15</span>);</span><br></pre></td></tr></table></figure>
+
+<p>We’ve added predictability to our Data and View flow</p>
+<ul>
+<li>1000s of ways for users to interact in a modern app &gt; 现代应用程序中用户交互有数千种方式<ul>
+<li>Each piece of “view”(element on page) can be clicked&#x2F;typed&#x2F;moused over - all of which need to change data and view - exponential complexity &gt; 每个“视图”（页面上的元素）都可以点击&#x2F;键入&#x2F;鼠标悬停 - 所有这些都需要更改数据和视图 - 指数复杂性</li>
+</ul>
+</li>
+<li>We need a predictable structure &gt; 我们需要一个可预测的结构<ul>
+<li>Better to be restricted but predictable than overly flexible and it be impossible to identify which line of code caused our view&#x2F;data to change. &gt; 最好是受限但可预测，而不是过于灵活，以至于无法确定哪行代码导致我们的视图&#x2F;数据发生更改。</li>
+</ul>
+</li>
+<li>Every interaction must change JS data and then update all dependent views. &gt; 每个交互都必须更改 JS 数据，然后更新所有相关视图。<ul>
+<li>Changes to views via (1) And update of “data” and (2) A run of a single dataToView convertor. &gt; 通过（1）更新“数据”和（2）单个 dataToView 转换器的运行来更改视图。</li>
+</ul>
+</li>
+<li>One-way data binding &gt; 单向数据绑定<ul>
+<li>Restricting all our user’s changes to flow to associated underlying data and all changes of view to flow through a single dataToView convertor is a restrictive but powerful step to simplify our reasoning about UI by order of magnitude. &gt; 将所有用户更改限制为流到相关的底层数据，并将所有视图更改限制为通过单个 dataToView 转换器流动是简化 UI 推理的一种限制但强大的步骤。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Virtual-DOM"><a href="#Virtual-DOM" class="headerlink" title="Virtual DOM"></a>Virtual DOM</h2><ul>
+<li>Virtual DOM<ul>
+<li>Most misunderstood concept in UI development &gt; UI 开发中最被误解的概念</li>
+<li>Enables us to have a more visual(or declarative) experience of coding UIs with JavaScript &gt; 使我们能够使用 JavaScript 更直观（或声明性）地编码 UI</li>
+<li>Requires significant optimizations(diffing, reconciliation) to be performative &gt; 需要进行高效的优化（差异，协调）才能执行</li>
+</ul>
+</li>
+</ul>
+<h3 id="Auto-Updating-Views-UI"><a href="#Auto-Updating-Views-UI" class="headerlink" title="Auto-Updating Views UI"></a>Auto-Updating Views UI</h3><p>Returning to our full UI with auto updating views(from data) &gt; 返回到具有自动更新视图（来自数据）的完整 UI</p>
+<ul>
+<li>We’re describing a key part of the UI in dataToView &gt; 我们正在描述 UI 的关键部分<ul>
+<li>THe contents(data) and how to display it &gt; 内容（数据）及其显示方式</li>
+</ul>
+</li>
+<li>But even our “containers” are “data” of sorts &gt; 但是即使是我们的“容器”也是某种“数据”</li>
+<li>What if we also described the element as well than our dataToView convertor is a complete description of the data + view? &gt; 如果我们也描述了元素，那么我们的 dataToView 转换器就是数据 + 视图的完整描述？</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;app.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> post = <span class="string">&#x27;&#x27;</span>; <span class="comment">// data</span></span><br><span class="line"><span class="keyword">const</span> jsInput = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;input&#x27;</span>); <span class="comment">// view</span></span><br><span class="line"><span class="keyword">const</span> jsDiv = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;div&#x27;</span>); <span class="comment">// view</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// affect view</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">dataToView</span>(<span class="params"></span>) &#123;</span><br><span class="line">  jsInput.<span class="property">value</span> = post;</span><br><span class="line">  jsDiv.<span class="property">textContent</span> = post;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleInput</span>(<span class="params"></span>) &#123;</span><br><span class="line">  post = jsInput.<span class="property">value</span>;</span><br><span class="line">  <span class="keyword">if</span> (post === <span class="string">&#x27;will&#x27;</span>) &#123;</span><br><span class="line">    jsDiv.<span class="title function_">remove</span>(); <span class="comment">// view!</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">jsInput.<span class="property">oninput</span> = handleInput;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(dataToView, <span class="number">15</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Understanding-UI-Component"><a href="#Understanding-UI-Component" class="headerlink" title="Understanding UI Component"></a>Understanding UI Component</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> post = <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  jsInput,</span><br><span class="line">  jsDiv;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">dataToView</span>(<span class="params"></span>) &#123;</span><br><span class="line">  jsInput = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;input&#x27;</span>);</span><br><span class="line">  jsDiv = post === <span class="string">&#x27;Will&#x27;</span> ? <span class="string">&#x27;&#x27;</span> : <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">  jsInput.<span class="property">value</span> = post;</span><br><span class="line">  jsDiv.<span class="property">textContent</span> = post;</span><br><span class="line">  jsInput.<span class="property">oninput</span> = handleInput;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">replaceChildren</span>(jsInput, jsDiv);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleInput</span>(<span class="params"></span>) &#123;</span><br><span class="line">  post = jsInput.<span class="property">value</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(dataToView, <span class="number">15</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/memory-problems/">Detached Element Tool</a></p>
+</li>
+<li><p>Function that fully creates element &amp; relates data&#x2F;view is known as a UI component &gt; 完全创建元素并关联数据&#x2F;视图的函数称为 UI 组件</p>
+<ul>
+<li>Combines everything into 1 function - Creates, sets their data&#x2F;contents, attaches handlers &amp; displays via DOM &gt; 将所有内容组合到 1 个函数中 - 通过 DOM 创建、设置其数据&#x2F;内容、附加处理程序并显示</li>
+<li>Ties data to view - handles how user can change data(here, via input) then re-runs to update view with new data. &gt; 将数据绑定到视图 - 处理用户如何更改数据（此处通过输入），然后重新运行以使用新数据更新视图。</li>
+<li>React, Angular, Vue, Svelte all have these. &gt; React、Angular、Vue、Svelte 都有这些。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Emulate-HTML-with-String-Interpolation"><a href="#Emulate-HTML-with-String-Interpolation" class="headerlink" title="Emulate HTML with String Interpolation"></a>Emulate HTML with String Interpolation</h3><ul>
+<li>String interpolation gives us ‘visual’ code &gt; 字符串插值给我们提供了“可视化”代码</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">&#x27;Jo&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> textToDisplay = <span class="string">&#x27;Hello, &#x27;</span>;</span><br><span class="line">textToDisplay = textToDisplay.<span class="title function_">concat</span>(name);</span><br><span class="line">textToDisplay = textToDisplay.<span class="title function_">concat</span>(<span class="string">&#x27;!&#x27;</span>);</span><br><span class="line"><span class="comment">// textToDisplay = &quot;Hello, Jo!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Alternatively</span></span><br><span class="line">textToDisplay = <span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>!`</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Could we emulate HTML with semi-visual coding</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">&#x27;Jo&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> divInfo = [<span class="string">&#x27;div&#x27;</span>, <span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>!`</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">convert</span>(<span class="params">node</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [element, ...children] = node;</span><br><span class="line">  <span class="keyword">const</span> el = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(element);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> child <span class="keyword">of</span> children) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> child === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">      el.<span class="title function_">appendChild</span>(<span class="variable language_">document</span>.<span class="title function_">createTextNode</span>(child));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      el.<span class="title function_">appendChild</span>(<span class="title function_">convert</span>(child));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> jsDiv = <span class="title function_">convert</span>(divInfo);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Creating-a-JavaScript-Virtual-DOM"><a href="#Creating-a-JavaScript-Virtual-DOM" class="headerlink" title="Creating a JavaScript Virtual DOM"></a>Creating a JavaScript Virtual DOM</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> jsInput = <span class="literal">null</span>,</span><br><span class="line">  jsDiv = <span class="literal">null</span>,</span><br><span class="line">  vDOM = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createVDOM</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> [</span><br><span class="line">    [<span class="string">&#x27;input&#x27;</span>, name, handle],</span><br><span class="line">    [<span class="string">&#x27;div&#x27;</span>, <span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>!`</span>],</span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handle</span>(<span class="params"></span>) &#123;</span><br><span class="line">  name = jsInput.<span class="property">value</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updateDOM</span>(<span class="params"></span>) &#123;</span><br><span class="line">  vDOM = <span class="title function_">createVDOM</span>();</span><br><span class="line">  jsInput = <span class="title function_">convert</span>(vDOM[<span class="number">0</span>]);</span><br><span class="line">  jsDiv = <span class="title function_">convert</span>(vDOM[<span class="number">1</span>]);</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">replaceChildren</span>(jsInput, jsDiv);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">convert</span>(<span class="params">node</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [element, content, handler] = node;</span><br><span class="line">  <span class="keyword">const</span> el = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(element);</span><br><span class="line">  <span class="keyword">if</span> (element === <span class="string">&#x27;input&#x27;</span>) &#123;</span><br><span class="line">    el.<span class="property">value</span> = content;</span><br><span class="line">    el.<span class="property">oninput</span> = handler;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (element === <span class="string">&#x27;div&#x27;</span>) &#123;</span><br><span class="line">    el.<span class="property">textContent</span> = content;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> el;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(updateDOM, <span class="number">15</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Create a JavaScript (‘virtual’) DOM &gt; 创建 JavaScript（’虚拟’）DOM</li>
+</ul>
+<ol>
+<li>Blocks of code representing each piece of ‘view’ &gt; 表示每个“视图”部分的代码块<ul>
+<li>JavaScript array with all the details &gt; 具有所有细节的 JavaScript 数组</li>
+<li>Function that takes in that array and produces a DOM element &gt; 接受该数组并生成 DOM 元素的函数</li>
+</ul>
+</li>
+<li>Then where we place them in the code mirrors the order they show up on the page &gt; 然后我们在代码中放置它们的位置与它们在页面上显示的顺序相同</li>
+</ol>
+<h3 id="Declarative-UI-as-a-Paradigm"><a href="#Declarative-UI-as-a-Paradigm" class="headerlink" title="Declarative UI as a Paradigm"></a>Declarative UI as a Paradigm</h3><p>Declarative UI as a programming paradigm &gt; 声明性 UI 作为编程范例</p>
+<ul>
+<li>Goal: See a JS nested list representation 1 of your actual DOM elements(and contents) so you can get semi-visual coding &gt; 目标：查看 JS 嵌套列表表示形式 1 您的实际 DOM 元素（及其内容），以便您可以获得半可视化编码<ul>
+<li>Via nested objects or arrays of info(as we default to in UIHP(UI Hard Part)) - or functional components in React &gt; 通过嵌套的对象或信息数组（如 UIHP 中默认的） - 或 React 中的功能组件</li>
+</ul>
+</li>
+<li>For it to be guaranteed accurate(&amp; not out of sync) - you need your data in JS to be the only source of truth &gt; 为了保证准确（而不是不同步），您需要将 JS 中的数据作为唯一的真相来源<ul>
+<li>You can only do a JS “DOM” if you’ve set on ‘one-way data binding’ - otherwise it’s not guaranteed to be reflective of the actual DOM(which has been altered by the user) &gt; 如果您已设置为“单向数据绑定”，则只能执行 JS“DOM” - 否则，它不能保证反映实际 DOM（已由用户更改）</li>
+</ul>
+</li>
+<li>So we literally take any change to the DOM(e.g. user action like typing letters in an input field) and immediately replace it by &gt; 因此，我们实际上采取了对 DOM 的任何更改（例如，用户操作，例如在输入字段中键入字母）并立即替换它<ul>
+<li>sending the info to ‘data’ store in JS &gt; 将信息发送到 JS 中的“数据”存储</li>
+<li>have that update contents of the JS DOM &gt; 更新 JS DOM 的内容</li>
+<li>convert that to the DOM(view) &gt; 将其转换为 DOM（视图）</li>
+</ul>
+</li>
+<li>We have semi-visual coding - our JS DOM contents and positioning on the JS page is reflected in our actual view &gt; 我们有半可视化编码 - 我们的 JS DOM 内容和 JS 页面上的定位反映在我们的实际视图中<ul>
+<li>We ‘declare’ (a) what page structure we want and (b) how we want its contents to depend on our data &gt; 我们“声明”（a）我们想要的页面结构以及（b）我们希望其内容依赖于我们的数据</li>
+<li>And then it appears on the page(even an empty form field is the propagation of data - our ‘empty string’) &gt; 然后它出现在页面上（即使是空的表单字段也是数据的传播 - 我们的“空字符串”）</li>
+</ul>
+</li>
+</ul>
+<h2 id="Composition-amp-Functional-Components"><a href="#Composition-amp-Functional-Components" class="headerlink" title="Composition &amp; Functional Components"></a>Composition &amp; Functional Components</h2><h3 id="Using-Lists-for-UI-Components"><a href="#Using-Lists-for-UI-Components" class="headerlink" title="Using Lists for UI Components"></a>Using Lists for UI Components</h3><ul>
+<li>Our JavaScript code mirrors our output with our JS DOM - we can make it flexible by mapping over it. &gt; 我们的 JavaScript 代码与我们的 JS DOM 输出相匹配 - 我们可以通过对其进行映射来使其灵活。</li>
+<li>We can use reuseable functions to create JS(V)DOM elements each with specific data. &gt; 我们可以使用可重用的函数来创建具有特定数据的 JS（V）DOM 元素。</li>
+<li>We get UI composition with units of UI(data, view and handlers) that we can reuse and combine flexibly to build out our applications. &gt; 我们使用 UI 组合来获取 UI 单元（数据、视图和处理程序），我们可以重用和灵活组合以构建应用程序。</li>
+</ul>
+<h4 id="Lists-are-central-to-UI-development-gt-列表是-UI-开发的核心"><a href="#Lists-are-central-to-UI-development-gt-列表是-UI-开发的核心" class="headerlink" title="Lists are central to UI development &gt; 列表是 UI 开发的核心"></a>Lists are central to UI development &gt; 列表是 UI 开发的核心</h4><p>We have a list of 2 arrays with their element details - but in reality it will likely be many(49 video elements in a zoom meeting, 100 tweets in a timeline) &gt; 我们有一个包含其元素详细信息的 2 个数组的列表 - 但实际上它可能是许多（49 个视频元素在 zoom 会议中，100 个推文在时间轴中）</p>
+<p>We need tools for dealing with lists &gt; 我们需要处理列表的工具</p>
+<ul>
+<li>To apply code(functionality) to each element - here to take the info and connect to a DOM element <code>vDOM.map()</code> &gt; 将代码（功能）应用于每个元素 - 在此处获取信息并连接到 DOM 元素 <code>vDOM.map()</code></li>
+<li>To convert an array elements to individual inputs(arguments) to a function(for functions that don’t take in arrays) spread syntax <code>...</code> &gt; 将数组元素转换为函数的单个输入（参数）（对于不接受数组的函数）扩展语法 <code>...</code></li>
+</ul>
+<h3 id="Composable-Code-with-Map-and-Spread"><a href="#Composable-Code-with-Map-and-Spread" class="headerlink" title="Composable Code with Map and Spread"></a>Composable Code with Map and Spread</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  vDOM,</span><br><span class="line">  elements;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createVDOM</span>(<span class="params"></span>) &#123;</span><br><span class="line">  vDOM = [</span><br><span class="line">    [<span class="string">&#x27;input&#x27;</span>, name, handle],</span><br><span class="line">    [<span class="string">&#x27;div&#x27;</span>, <span class="string">`Hello <span class="subst">$&#123;name&#125;</span>`</span>][(<span class="string">&#x27;div&#x27;</span>, <span class="string">`Goodbye <span class="subst">$&#123;name&#125;</span>`</span>)],</span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handle</span>(<span class="params"></span>) &#123;</span><br><span class="line">  name = jsInput.<span class="property">value</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">convert</span>(<span class="params">node</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [element, content, handler] = node;</span><br><span class="line">  <span class="keyword">const</span> el = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(element);</span><br><span class="line">  <span class="keyword">if</span> (element === <span class="string">&#x27;input&#x27;</span>) &#123;</span><br><span class="line">    el.<span class="property">value</span> = content;</span><br><span class="line">    el.<span class="property">oninput</span> = handler;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (element === <span class="string">&#x27;div&#x27;</span>) &#123;</span><br><span class="line">    el.<span class="property">textContent</span> = content;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> el;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updateDOM</span>(<span class="params"></span>) &#123;</span><br><span class="line">  vDOM = <span class="title function_">createVDOM</span>();</span><br><span class="line">  elements = vDOM.<span class="title function_">map</span>(convert);</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">replaceChildren</span>(...elements);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(updateDOM, <span class="number">15</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="‘Mapping’-over-our-vDOM-and-‘spreading’-resulting-array"><a href="#‘Mapping’-over-our-vDOM-and-‘spreading’-resulting-array" class="headerlink" title="‘Mapping’ over our vDOM and ‘spreading’ resulting array"></a>‘Mapping’ over our vDOM and ‘spreading’ resulting array</h4><ul>
+<li><p>Now adding new ‘elements’ doesn’t require any new code</p>
+</li>
+<li><p>The map call will handle as many elements in the vDOM as there are. &gt; map 调用将处理 vDOM 中的任意数量的元素。</p>
+</li>
+<li><p>To add our array of DOM elements we need to convert them to individual arguments. &gt; 要添加 DOM 元素数组，我们需要将它们转换为单个参数。</p>
+</li>
+<li><p>Spread syntax allows an iterable such as an array expression or string to be expanded. &gt; Spread 语法允许扩展可迭代对象，例如数组表达式或字符串。</p>
+</li>
+<li><p>To work with the append method(which can’t handle arrays). &gt; 与无法处理数组的 append 方法一起使用。</p>
+</li>
+<li><p>Without our new element-flexible code we can ‘compose’ our code</p>
+<ul>
+<li>Adding to our list of arrays each new element we want to see in order on our page. &gt; 将我们要按顺序在页面上看到的每个新元素添加到我们的数组列表中。</li>
+<li>They’ll show up on the page exactly as they’re placed in code. &gt; 它们将按照它们在代码中的位置显示在页面上。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> posts = [<span class="string">&#x27;Ginger&#x27;</span>, <span class="string">&#x27;Gez&#x27;</span>, <span class="string">&#x27;Ursy&#x27;</span>, <span class="string">&#x27;Fen&#x27;</span>];</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Post</span>(<span class="params">msg</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> [<span class="string">&#x27;div&#x27;</span>, msg];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Input</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> [<span class="string">&#x27;input&#x27;</span>, name, handle];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createDOM</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> [<span class="title class_">Input</span>, ...posts.<span class="title function_">map</span>(<span class="title class_">Post</span>)];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Const Input = () =&gt; &lt;input value=&#123;name&#125; onChange=&#123;handle&#125; /&gt;</span></span><br><span class="line"><span class="comment"> * Const Post = (&#123;msg&#125;) =&gt; &lt;div&gt;&#123;msg&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="comment"> * Const App = () =&gt; &lt;&gt;&lt;Input /&gt;&#123;posts.map(Post)&#125;&lt;/&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Even more composition - creating multiple(similar) VDOM elements each with different data. &gt; 更多组合 - 创建具有不同数据的多个（类似的）VDOM 元素。<ul>
+<li>We can produce our VDOM elements with a function so that we can easily add new elements. &gt; 我们可以使用函数生成 VDOM 元素，以便我们可以轻松添加新元素。</li>
+<li>Post defines data -&gt; view relationship where the data(each element in the array posts) changes for each of the posts. &gt; Post 定义数据-&gt;视图关系，其中数据（数组 posts 中的每个元素）对每个帖子都会更改。</li>
+<li>Can also add more logic to the Post&#x2F;Input functions to make them more powerful. &gt; 还可以向 Post&#x2F;Input 函数添加更多逻辑，使其更加强大。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Performance-Improvements-Hooks-diffing-amp-reconciliation"><a href="#Performance-Improvements-Hooks-diffing-amp-reconciliation" class="headerlink" title="Performance Improvements(Hooks, diffing &amp; reconciliation)"></a>Performance Improvements(Hooks, diffing &amp; reconciliation)</h2><h3 id="Update-the-DOM-on-Data-Changes"><a href="#Update-the-DOM-on-Data-Changes" class="headerlink" title="Update the DOM on Data Changes"></a>Update the DOM on Data Changes</h3><ul>
+<li><p>We love the vDOM for semi-visual coding - however performance is a nightmare - we need some improvements. &gt; 我们喜欢 vDOM 用于半可视化编码 - 但性能是一场噩梦 - 我们需要一些改进。</p>
+</li>
+<li><p>We’re updating DOM every 15ms(handlers, CSS animations &amp; smooth scrolling is at risk). We can ‘simulate’ auto-updating view from data change with a state hook. &gt; 我们每 15ms 更新一次 DOM（处理程序、CSS 动画和平滑滚动处于危险之中）。我们可以使用状态钩子“模拟”从数据更改自动更新视图。</p>
+</li>
+<li><p>Only some of our DOM elements need recreating from scratch - we can compare(w&#x2F;‘diffing algorithm’) archived VDOMs and workout what changes to actually make using an algorithm. &gt; 只有一些 DOM 元素需要从头开始重新创建 - 我们可以比较（’diffing 算法’）存档的 VDOMs，并使用算法计算出实际要进行的更改。</p>
+</li>
+<li><p>Automatic update on data change without looping &gt; 不适用循环的数据更改自动更新</p>
+<ul>
+<li>instead of directly updating name, we run a function <code>updateName</code> to do so. &gt; 而不是直接更新名称，我们运行一个函数 <code>updateName</code> 来这样做。</li>
+<li>And of course it’s low key running updateDOM for us. &gt; 当然，它正在为我们运行 updateDOM。</li>
+<li>As long as we restrict our team from every changing data directly and only let them do so using the update function then we’re fine. &gt; 只要我们限制团队不直接更改数据，并且只允许他们使用更新函数这样做，那么我们就没问题了。</li>
+<li>We’d likely lock down name so that it can’t be accessed directly. &gt; 我们可能会锁定名称，以便无法直接访问它。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updateName</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  name = value;</span><br><span class="line">  <span class="title function_">updateDOM</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handler</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="title function_">updateName</span>(e.<span class="property">target</span>.<span class="property">value</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Automatic-Updates-with-Hooks"><a href="#Automatic-Updates-with-Hooks" class="headerlink" title="Automatic Updates with Hooks"></a>Automatic Updates with Hooks</h3><ul>
+<li>Turning it into something we can use with any data. &gt; 将其转换为我们可以使用的任何数据。<ul>
+<li>We can make our <code>updateName</code> function an <code>updateData</code> function and have it work for any piece of data in our app - we just hook into it. &gt; 我们可以使我们的 <code>updateName</code> 函数成为 <code>updateData</code> 函数，并使其适用于应用程序中的任何数据 - 我们只需将其连接起来。</li>
+<li>So they call it a hook… &gt; 所以他们称之为钩子…</li>
+<li>We could alternatively switch to running <code>requestAnimationFrame</code> rather than updateDOM directly on data change - so it never prioritizes over animations(CSS etc) - truly optimized wrt other priorities now. &gt; 或者，我们可以在数据更改时切换到运行 <code>requestAnimationFrame</code> 而不是直接更新 DOM - 因此它永远不会优先于动画（CSS 等） - 现在真正优化了其他优先级。<ul>
+<li><code>requestAnimationFrame(updateDOM)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123; <span class="attr">name</span>: <span class="string">&#x27;&#x27;</span> &#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updateData</span>(<span class="params">label, value</span>) &#123;</span><br><span class="line">  data[label] = value;</span><br><span class="line">  <span class="title function_">updateDOM</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createVDOM</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> [</span><br><span class="line">    [<span class="string">&#x27;input&#x27;</span>, data.<span class="property">name</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> <span class="title function_">updateData</span>(<span class="string">&#x27;name&#x27;</span>, e.<span class="property">target</span>.<span class="property">value</span>)],</span><br><span class="line">    [<span class="string">&#x27;div&#x27;</span>, <span class="string">`Hello <span class="subst">$&#123;data.name&#125;</span>`</span>],</span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Performance-Gains-Using-Diffing"><a href="#Performance-Gains-Using-Diffing" class="headerlink" title="Performance Gains Using Diffing"></a>Performance Gains Using Diffing</h3><p>All the benefit of composition - but it’s still dangerously inefficient. &gt; 所有组合的好处 - 但仍然非常低效。</p>
+<ul>
+<li>Only some of our elements need recreating from scratch</li>
+<li>Couldn’t we recreate our vDOM from scratch to give us ‘composition’ but then: &gt; 我们不能从头开始重新创建 vDOM 来给我们“组合”，但是：<ul>
+<li>Write an ‘algorithm’(smart instructions) to check what elements actually differ - and only change the DOM elements that need updating. &gt; 编写一个“算法”（智能指令）来检查实际上有什么元素不同 - 并且仅更改需要更新的 DOM 元素。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createVDOM</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&#x27;input&#x27;</span>,</span><br><span class="line">      name,</span><br><span class="line">      <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">        name = e.<span class="property">target</span>.<span class="property">value</span>;</span><br><span class="line">        <span class="title function_">updateDOM</span>();</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">    [<span class="string">&#x27;div&#x27;</span>, <span class="string">`Hello <span class="subst">$&#123;name&#125;</span>`</span>],</span><br><span class="line">    [<span class="string">&#x27;div&#x27;</span>, <span class="string">&#x27;Good job!&#x27;</span>],</span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">findDiff</span>(<span class="params">prev, current</span>) &#123;</span><br><span class="line">  current.<span class="title function_">forEach</span>(<span class="function">(<span class="params">el, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(el) !== <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(prev[i])) &#123;</span><br><span class="line">      <span class="comment">// change the actual DOM element</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vDOM1 = <span class="title function_">createVDOM</span>();</span><br><span class="line">name = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> vDOM2 = <span class="title function_">createVDOM</span>();</span><br><span class="line"><span class="title function_">findDiff</span>(vDOM1, vDOM2);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Finally-descriptive-amp-composable-UI-that’s-not-a-disaster"><a href="#Finally-descriptive-amp-composable-UI-that’s-not-a-disaster" class="headerlink" title="Finally - descriptive &amp; composable UI that’s not a disaster!"></a>Finally - descriptive &amp; composable UI that’s not a disaster!</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123; <span class="attr">name</span>: <span class="string">&#x27;&#x27;</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> vDOM = <span class="title function_">createVDOM</span>();</span><br><span class="line"><span class="keyword">let</span> prevVDOM;</span><br><span class="line"><span class="keyword">let</span> elements;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updateData</span>(<span class="params">label, value</span>) &#123;</span><br><span class="line">  data[label] = value;</span><br><span class="line">  <span class="title function_">requestAnimationFrame</span>(updateDOM);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createVDOM</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> [</span><br><span class="line">    [<span class="string">&#x27;input&#x27;</span>, data.<span class="property">name</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> <span class="title function_">updateData</span>(<span class="string">&#x27;name&#x27;</span>, e.<span class="property">target</span>.<span class="property">value</span>)],</span><br><span class="line">    [<span class="string">&#x27;div&#x27;</span>, <span class="string">`Hello <span class="subst">$&#123;data.name&#125;</span>`</span>],</span><br><span class="line">    [<span class="string">&#x27;div&#x27;</span>, <span class="string">&#x27;Good job!&#x27;</span>],</span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updateDOM</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (elements === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    elements = vDOM.<span class="title function_">map</span>(convert);</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">append</span>(...elements);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    prevVDOM = [...vDOM];</span><br><span class="line">    vDOM = <span class="title function_">createVDOM</span>();</span><br><span class="line">    <span class="title function_">findDiff</span>(prevVDOM, vDOM);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">convert</span>(<span class="params">element</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [tag, content, handler] = element;</span><br><span class="line">  <span class="keyword">const</span> el = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(tag);</span><br><span class="line">  <span class="keyword">if</span> (tag === <span class="string">&#x27;input&#x27;</span>) &#123;</span><br><span class="line">    el.<span class="property">value</span> = content;</span><br><span class="line">    el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;input&#x27;</span>, handler);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (tag === <span class="string">&#x27;div&#x27;</span>) &#123;</span><br><span class="line">    el.<span class="property">textContent</span> = content;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> el;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">findDiff</span>(<span class="params">prev, current</span>) &#123;</span><br><span class="line">  current.<span class="title function_">forEach</span>(<span class="function">(<span class="params">el, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(el) !== <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(prev[i])) &#123;</span><br><span class="line">      <span class="keyword">const</span> [tag, content, ...rest] = el;</span><br><span class="line">      <span class="keyword">const</span> currentEl = elements[i];</span><br><span class="line">      <span class="keyword">if</span> (tag === <span class="string">&#x27;input&#x27;</span>) &#123;</span><br><span class="line">        currentEl.<span class="property">value</span> = content;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (tag === <span class="string">&#x27;div&#x27;</span>) &#123;</span><br><span class="line">        currentEl.<span class="property">textContent</span> = content;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">updateDOM</span>();</span><br></pre></td></tr></table></figure>
+
+<h4 id="We-have-a-groundbreaking-approach-to-UI"><a href="#We-have-a-groundbreaking-approach-to-UI" class="headerlink" title="We have a groundbreaking approach to UI"></a>We have a groundbreaking approach to UI</h4><ul>
+<li>Single source of truth for our data. &gt; 数据的单一真相来源。<ul>
+<li>Everything the user sees stems from the data. It’s restrictive but desperately predictable - and enables data propagation to the view. &gt; 用户看到的所有内容都源于数据。它是有限的，但是非常可预测 - 并且可以将数据传播到视图。</li>
+</ul>
+</li>
+<li>Enables UI composition with JavaScript. &gt; 使用 JavaScript 组合 UI。<ul>
+<li>A JavaScript DOM that enables a semi visual form of coding our UIs - where units of code that describe units of view can be positioned in the code to indicate their order on the webpage. &gt; JavaScript DOM 可以实现半可视化的 UI 编码形式 - 在代码中可以放置描述视图单元的代码单元，以指示它们在网页上的顺序。</li>
+</ul>
+</li>
+<li>Makes reasoning about state&#x2F;view much easier. &gt; 使状态&#x2F;视图的推理变得更加容易。<ul>
+<li>The downside of semi-visual code is it takes the data and info on the view at this moment and creates it in full(that’s why it’s so easy to reason about - we don’t have to figure out the change from the previous data&#x2F;view - just current data generating current view). &gt; 半可视化代码的缺点是它获取此刻的数据和视图信息，并将其完整地创建出来（这就是为什么它很容易推理的原因 - 我们不必弄清楚从先前的数据&#x2F;视图中的更改 - 只需当前数据生成当前视图）。</li>
+</ul>
+</li>
+<li>But requires hooks &amp; VDOM diffing for efficiency. &gt; 但是需要钩子和 VDOM diffing 来提高效率。<ul>
+<li>If we rebuilt the DOM every time data changed that would be entirely unnecessary. Instead we spot actual difference &amp; only change those(DOM reconciliation). &gt; 如果我们每次更改数据时都重建 DOM，那将是完全不必要的。相反，我们会发现实际的差异，并仅更改这些（DOM 协调）。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEndMasters/" rel="tag"># FrontEndMasters</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/09/Website-Accessibility-v2/" rel="prev" title="Website Accessibility v2">
+                  <i class="fa fa-chevron-left"></i> Website Accessibility v2
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
