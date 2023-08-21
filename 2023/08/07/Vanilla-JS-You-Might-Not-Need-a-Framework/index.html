@@ -28,7 +28,7 @@
 <meta property="og:description" content="Vanilla JS - You Might Not Need a FrameworkIntroduction What we’ll cover &gt; 我们将会学习什么  Vanilla JS &gt; 原生 JS DOM API Fetch Design Patterns &gt; 设计模式 Single page applications &gt; 单页应用 Web Components">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-07T13:53:46.000Z">
-<meta property="article:modified_time" content="2023-08-07T14:40:01.974Z">
+<meta property="article:modified_time" content="2023-08-21T16:16:43.750Z">
 <meta property="article:author" content="刘勇">
 <meta property="article:tag" content="FrontEndMasters">
 <meta property="article:tag" content="Vanilla JS">
@@ -114,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vanilla-JS-You-Might-Not-Need-a-Framework"><span class="nav-number">1.</span> <span class="nav-text">Vanilla JS - You Might Not Need a Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vanilla-JS"><span class="nav-number">1.2.</span> <span class="nav-text">Vanilla JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Vanilla-JavaScript"><span class="nav-number">1.2.1.</span> <span class="nav-text">What is Vanilla JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-Vanilla-JavaScript"><span class="nav-number">1.2.2.</span> <span class="nav-text">Why Vanilla JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-DOM-API"><span class="nav-number">1.2.3.</span> <span class="nav-text">The DOM API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM-Essentials"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">DOM Essentials</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vanilla-JS-You-Might-Not-Need-a-Framework"><span class="nav-number">1.</span> <span class="nav-text">Vanilla JS - You Might Not Need a Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vanilla-JS"><span class="nav-number">1.2.</span> <span class="nav-text">Vanilla JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Vanilla-JavaScript"><span class="nav-number">1.2.1.</span> <span class="nav-text">What is Vanilla JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-Vanilla-JavaScript"><span class="nav-number">1.2.2.</span> <span class="nav-text">Why Vanilla JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-DOM-API"><span class="nav-number">1.2.3.</span> <span class="nav-text">The DOM API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM-Essentials"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">DOM Essentials</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Finding-Elements-in-the-DOM"><span class="nav-number">1.2.4.</span> <span class="nav-text">Finding Elements in the DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modifying-DOM"><span class="nav-number">1.2.5.</span> <span class="nav-text">Modifying DOM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-DOM"><span class="nav-number">1.3.</span> <span class="nav-text">The DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Course-Project-Overview"><span class="nav-number">1.3.1.</span> <span class="nav-text">Course Project Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scoping-querySelector"><span class="nav-number">1.3.2.</span> <span class="nav-text">Scoping querySelector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adding-Scripts-Async-amp-Defer"><span class="nav-number">1.3.3.</span> <span class="nav-text">Adding Scripts Async &amp; Defer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Main-Script-Setup"><span class="nav-number">1.3.4.</span> <span class="nav-text">Main Script Setup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-Binding-amp-Handlers"><span class="nav-number">1.3.5.</span> <span class="nav-text">Event Binding &amp; Handlers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-Event-Handling"><span class="nav-number">1.3.6.</span> <span class="nav-text">Advanced Event Handling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Helpful-Utils"><span class="nav-number">1.3.7.</span> <span class="nav-text">Helpful Utils</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Routing"><span class="nav-number">1.4.</span> <span class="nav-text">Routing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Browser-Routing-amp-History-API"><span class="nav-number">1.4.1.</span> <span class="nav-text">Browser Routing &amp; History API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Components"><span class="nav-number">1.5.</span> <span class="nav-text">Web Components</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-amp-Custom-Elements"><span class="nav-number">1.5.1.</span> <span class="nav-text">Overview &amp; Custom Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Web-Component"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">Web Component</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Custom-Elements"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">Custom Elements</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-Template"><span class="nav-number">1.5.2.</span> <span class="nav-text">HTML Template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shadow-DOM"><span class="nav-number">1.5.3.</span> <span class="nav-text">Shadow DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Declarative-Shadow-DOM"><span class="nav-number">1.5.4.</span> <span class="nav-text">Declarative Shadow DOM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reactive-Programming-with-Proxies"><span class="nav-number">1.6.</span> <span class="nav-text">Reactive Programming with Proxies</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-Proxy"><span class="nav-number">1.6.1.</span> <span class="nav-text">Creating a Proxy</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -203,9 +203,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-08-07 21:53:46 / 修改时间：22:40:01" itemprop="dateCreated datePublished" datetime="2023-08-07T21:53:46+08:00">2023-08-07</time>
+      <time title="创建时间：2023-08-07 21:53:46" itemprop="dateCreated datePublished" datetime="2023-08-07T21:53:46+08:00">2023-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-22 00:16:43" itemprop="dateModified" datetime="2023-08-22T00:16:43+08:00">2023-08-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,8 +317,310 @@
 </ul>
 <h4 id="DOM-Essentials"><a href="#DOM-Essentials" class="headerlink" title="DOM Essentials"></a>DOM Essentials</h4><p>The Document Object Modal connects web pages to JavaScript by representing the structure of a document in memory. &gt; 文档对象模型通过在内存中表示文档的结构来将 web 页面连接到 JavaScript</p>
 <ul>
-<li>DOM API<ul>
+<li><p>DOM API</p>
+<ul>
 <li>A browser API exposed to developers to manipulate the DOM from an scripting language. &gt; 暴露给开发人员的浏览器 API，用于使用脚本语言操作 DOM</li>
+</ul>
+</li>
+<li><p>The DOM API is available on many objects &gt; DOM API 可用于许多对象上</p>
+<ul>
+<li><code>window</code> global object</li>
+<li><code>document</code> object</li>
+<li>One object per HTML element and other nodes in your document</li>
+</ul>
+</li>
+<li><p>Each element is represented by an object of HTMLElement interface or other interface that inherit it. &gt; 每个元素由 HTMLElement 接口的对象或继承它的其他接口表示</p>
+</li>
+<li><p>They have instance properties and methods. &gt; 它们有实例属性和方法</p>
+</li>
+<li><p>Changes in properties or children will trigger updates in the user interface <strong>when you release the thread</strong>. &gt; 属性或子元素的更改将在释放线程时触发用户界面的更新</p>
+</li>
+<li><p>We can listen to events happening in that element and react in consequence. &gt; 我们可以监听发生在该元素中的事件，并做出相应的反应</p>
+</li>
+<li><p>To work with DOM elements, we can &gt; 要使用 DOM 元素，我们可以</p>
+<ul>
+<li>Pick them from the current DOM &gt; 从当前 DOM 中选择它们</li>
+<li>Create them, and then inject them into the DOM &gt; 创建它们，然后将它们注入到 DOM 中</li>
+</ul>
+</li>
+<li><p>When we have a reference to an Element, we can &gt; 当我们持有一个元素的引用时，我们可以</p>
+<ul>
+<li>Read its content &gt; 读取它的内容</li>
+<li>Change its content &gt; 改变它的内容</li>
+<li>Remove it &gt; 删除它</li>
+<li>Add new elements into it &gt; 向其中添加新元素</li>
+</ul>
+</li>
+</ul>
+<h3 id="Finding-Elements-in-the-DOM"><a href="#Finding-Elements-in-the-DOM" class="headerlink" title="Finding Elements in the DOM"></a>Finding Elements in the DOM</h3><ul>
+<li><p>By id - <code>document.getElementById(&#39;id&#39;)</code></p>
+</li>
+<li><p>By class name - <code>document.getElementsByClassName(&#39;class&#39;)</code></p>
+</li>
+<li><p>By name - <code>document.getElementsByName(&#39;name&#39;)</code></p>
+</li>
+<li><p>By CSS selector - <code>document.querySelector(&#39;selector&#39;)</code></p>
+</li>
+<li><p>Navigating DOM structure - <code>element.parentElement</code>…</p>
+</li>
+<li><p>When selecting elements, some functions return…</p>
+<ul>
+<li>One HTML Element(HTMLElement) &gt; 一个 HTML 元素</li>
+<li>A live HTML Collection(HTMLCollection) &gt; 一个活动的 HTML 集合</li>
+<li>Static Element collection(NodeList) &gt; 静态元素集合</li>
+</ul>
+</li>
+<li><p>When you use a function that returns one element, it can also return null if no node was found. &gt; 当你使用返回一个元素的函数时，如果没有找到节点，它也可以返回 null</p>
+</li>
+<li><p>When you use a function that returns multiple elements, it can also return an empty collection if no elements were found. &gt; 当你使用返回多个元素的函数时，如果没有找到元素，它也可以返回一个空集合</p>
+</li>
+<li><p><code>HTMLCollection</code>(live) don’t have all the modern Array interface, such as <code>filter</code>, <code>map</code>, <code>reduce</code>, etc. &gt; <code>HTMLCollection</code>(live) 没有所有现代数组接口，如 <code>filter</code>、<code>map</code>、<code>reduce</code> 等</p>
+</li>
+<li><p><code>NodeList</code>(static) have all the modern Array interface, such as <code>filter</code>, <code>map</code>, <code>reduce</code>, etc. &gt; <code>NodeList</code>(static) 有所有现代数组接口，如 <code>filter</code>、<code>map</code>、<code>reduce</code> 等</p>
+</li>
+<li><p>With an HTML element in JavaScript, you can &gt; 用 JavaScript 中的 HTML 元素，你可以</p>
+<ul>
+<li>Read and change attributes’ values &gt; 读取和更改属性的值</li>
+<li>Read and change styles &gt; 读取和更改样式</li>
+<li>Hook event listeners &gt; 挂载事件监听器</li>
+<li>Add, remove or move children &gt; 添加、删除或移动子元素</li>
+<li>Read and change content &gt; 读取和更改内容</li>
+<li>More…</li>
+</ul>
+</li>
+</ul>
+<h3 id="Modifying-DOM"><a href="#Modifying-DOM" class="headerlink" title="Modifying DOM"></a>Modifying DOM</h3><ul>
+<li><p>How to read or change attributes of a DOM element &gt; 如何读取或更改 DOM 元素的属性</p>
+<ul>
+<li>You can use dot syntax to access properties mapped from HTML attributes. &gt; 你可以使用点语法来访问从 HTML 属性映射的属性<ul>
+<li>Most of the time, the property name is the same as the attribute name. &gt; 大多数情况下，属性名与属性名相同</li>
+<li>Some properties are different, such as <code>class</code> and <code>className</code>. &gt; 有些属性是不同的，如 <code>class</code> 和 <code>className</code></li>
+</ul>
+</li>
+<li>You can use dot syntax to access a style object. &gt; 你可以使用点语法来访问样式对象<ul>
+<li>That object will have a map to every CSS property you can inline in HTML. &gt; 该对象将有一个映射到你可以在 HTML 中内联的每个 CSS 属性</li>
+</ul>
+</li>
+<li>You can use dot syntax and bind a function to an event name using <code>addEventListener</code>. There is a list of standard events. &gt; 你可以使用点语法和 <code>addEventListener</code> 将函数绑定到事件名。有一个标准事件列表</li>
+</ul>
+</li>
+<li><p>Accessing and Editing Contents of Elements &gt; 访问和编辑元素内容</p>
+<ul>
+<li>Accessing <code>textContent</code> &gt; 访问 <code>textContent</code></li>
+<li>Accessing <code>innerHTML</code> &gt; 访问 <code>innerHTML</code></li>
+<li>Using DOM APIs to create new nodes &gt; 使用 DOM API 创建新节点</li>
+</ul>
+</li>
+</ul>
+<h2 id="The-DOM"><a href="#The-DOM" class="headerlink" title="The DOM"></a>The DOM</h2><h3 id="Course-Project-Overview"><a href="#Course-Project-Overview" class="headerlink" title="Course Project Overview"></a>Course Project Overview</h3><ul>
+<li><p>Our Project</p>
+<ul>
+<li>APP: Coffee Master</li>
+<li>Web app for a coffee shop</li>
+<li>Menu of products</li>
+<li>Details for each product</li>
+<li>Order with Cart</li>
+<li>HTML and CSS provided</li>
+<li>Data in JSON</li>
+<li>No JavaScript written yet</li>
+</ul>
+</li>
+<li><p>HTML and DOM are not same thing exactly. &gt; HTML 和 DOM 不是完全相同的东西</p>
+<ul>
+<li>HTML is a markup language, plain text. &gt; HTML 是一种标记语言，纯文本</li>
+<li>DOM is a representation of the HTML document in memory. &gt; DOM 是 HTML 文档在内存中的表示</li>
+</ul>
+</li>
+<li><p>HTML parser will auto insert the first visible element into the <code>document.body</code> &gt; HTML 解析器将自动将第一个可见元素插入到 <code>document.body</code> 中</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Will parse to --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Scoping-querySelector"><a href="#Scoping-querySelector" class="headerlink" title="Scoping querySelector"></a>Scoping querySelector</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Search in the whole document</span></span><br><span class="line"><span class="keyword">const</span> header = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;h1&#x27;</span>);</span><br><span class="line"><span class="comment">// Search in the head</span></span><br><span class="line">header.<span class="title function_">querySelector</span>(<span class="string">&#x27;h1&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Adding-Scripts-Async-amp-Defer"><a href="#Adding-Scripts-Async-amp-Defer" class="headerlink" title="Adding Scripts Async &amp; Defer"></a>Adding Scripts Async &amp; Defer</h3><ul>
+<li>Old school - put script tag in the bottom of body &gt; 将 script 标签放在 body 底部</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;app.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Async - load script asynchronously &gt; 异步加载脚本</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">&quot;app.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Defer - load script after HTML parsing &gt; 在 HTML 解析后加载脚本</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">&quot;app.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>If you are not sure, use defer. &gt; 如果你不确定，使用 defer<ul>
+<li>Async will execute the script as soon as it is downloaded. It will block the HTML parsing. &gt; 异步将在下载脚本后立即执行脚本。它将阻塞 HTML 解析</li>
+<li>Defer will execute the script after the HTML parsing is done. &gt; Defer 将在 HTML 解析完成后执行脚本</li>
+</ul>
+</li>
+</ul>
+<h3 id="Main-Script-Setup"><a href="#Main-Script-Setup" class="headerlink" title="Main Script Setup"></a>Main Script Setup</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;DOM fully loaded and parsed, can manipulate DOM here&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Event-Binding-amp-Handlers"><a href="#Event-Binding-amp-Handlers" class="headerlink" title="Event Binding &amp; Handlers"></a>Event Binding &amp; Handlers</h3><ul>
+<li><p>Basic: load, click, dbclick</p>
+</li>
+<li><p>Value: change</p>
+</li>
+<li><p>Keyboard: keyup, keydown, keypress</p>
+</li>
+<li><p>Mouse: mouseup, mousedown, mousemove, mouseenter, mouseleave</p>
+</li>
+<li><p>Pointer and Touch: pointerup, pointerdown, pointermove, pointerenter, pointerleave, touchstart, touchend, touchmove</p>
+</li>
+<li><p>Focus: focus, blur, focusin, focusout</p>
+</li>
+<li><p>Scroll: scroll</p>
+</li>
+<li><p>Special: DOMContentLoaded, popstate in window, submit in form, resize in window, hashchange in window</p>
+</li>
+<li><p>More: <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Events">https://developer.mozilla.org/en-US/docs/Web/Events</a></p>
+</li>
+<li><p>The spec’s naming pattern is to use lowercase with no word separator. &gt; 规范的命名模式是使用小写字母而没有单词分隔符</p>
+<ul>
+<li><code>webkitcurrentplaybacktargetiswirelesschanged</code></li>
+</ul>
+</li>
+<li><p>Two way to bind event handlers &gt; 两种绑定事件处理程序的方法</p>
+<ul>
+<li>Inline like <code>element.onclick = () =&gt; &#123;&#125;</code></li>
+<li>Using <code>addEventListener</code> &gt; 使用 <code>addEventListener</code></li>
+</ul>
+</li>
+<li><p><code>addEventListener</code> can bind multiple handlers to the same event. &gt; <code>addEventListener</code> 可以将多个处理程序绑定到同一事件</p>
+</li>
+<li><p>Inline event handlers can only bind one handler to the same event. &gt; 内联事件处理程序只能将一个处理程序绑定到同一事件</p>
+</li>
+</ul>
+<h3 id="Advanced-Event-Handling"><a href="#Advanced-Event-Handling" class="headerlink" title="Advanced Event Handling"></a>Advanced Event Handling</h3><ul>
+<li>Event Options &gt; 事件选项<ul>
+<li><code>capture</code> - the event will be captured on the way down the DOM tree. &gt; 事件将在 DOM 树下行时捕获</li>
+<li><code>once</code> - the event will only be fired once. &gt; 事件只会触发一次</li>
+<li><code>passive</code> - the event will not call <code>preventDefault</code>, so it will not block the browser from doing its default behavior. Better not change the DOM in this handler. &gt; 事件不会调用 <code>preventDefault</code>，因此它不会阻止浏览器执行其默认行为。最好不要在此处理程序中更改 DOM</li>
+</ul>
+</li>
+<li>Dispatch Custom Events &gt; 分派自定义事件<ul>
+<li><code>new Event(&#39;name&#39;)</code></li>
+<li><code>element.dispatchEvent(event)</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Helpful-Utils"><a href="#Helpful-Utils" class="headerlink" title="Helpful Utils"></a>Helpful Utils</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">$</span> = (<span class="params">...args</span>) =&gt; <span class="variable language_">document</span>.<span class="property">querySelector</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, ...args);</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">$$</span> = (<span class="params">...args</span>) =&gt; <span class="variable language_">document</span>.<span class="property">querySelectorAll</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, ...args);</span><br><span class="line"><span class="title class_">HTMLElement</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$</span> = <span class="function">(<span class="params">...args</span>) =&gt;</span> <span class="variable language_">this</span>.<span class="property">querySelector</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, ...args);</span><br><span class="line"><span class="title class_">HTMLElement</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$$</span> = <span class="function">(<span class="params">...args</span>) =&gt;</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">querySelectorAll</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, ...args);</span><br><span class="line"><span class="title class_">HTMLElement</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">on</span> = <span class="function">(<span class="params">...args</span>) =&gt;</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">addEventListener</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, ...args);</span><br><span class="line"><span class="title class_">HTMLElement</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">off</span> = <span class="function">(<span class="params">...args</span>) =&gt;</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">removeEventListener</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, ...args);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><h3 id="Browser-Routing-amp-History-API"><a href="#Browser-Routing-amp-History-API" class="headerlink" title="Browser Routing &amp; History API"></a>Browser Routing &amp; History API</h3><ul>
+<li><p>SPA: How to change content &gt; 如何更改内容</p>
+<ul>
+<li>Remove Previous page and inject new page into the DOM &gt; 删除上一页并将新页注入到 DOM 中</li>
+<li>Hide Previous page and show new page &gt; 隐藏上一页并显示新页</li>
+</ul>
+</li>
+<li><p>Single page application and router &gt; 单页应用和路由</p>
+<ul>
+<li>We want to change the content of the page based on what user select: &gt; 我们想根据用户的选择更改页面的内容<ul>
+<li>Homepage: menu</li>
+<li>Detail page: product detail</li>
+<li>Order: cart and order form</li>
+</ul>
+</li>
+<li>We won’t have multiple HTML file, we will use the DOM APIs and web components. &gt; 我们不会有多个 HTML 文件，我们将使用 DOM API 和 web 组件</li>
+<li>We will use the history API to push the new entries to the navigation history. &gt; 我们将使用 history API 将新条目推送到导航历史记录中</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">history.<span class="title function_">pushState</span>(state, title, url);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;popstate&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Handle back button</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Note: popstate won’t be fired if the user clicks on an external link or change the URL manually. &gt; 注意：如果用户单击外部链接或手动更改 URL，则不会触发 popstate</p>
+</li>
+<li><p>If you are creating a SPA, configure your server properly and check the URL when the whole page loads for the first time. &gt; 如果您正在创建 SPA，请正确配置服务器并在第一次加载整个页面时检查 URL</p>
+</li>
+<li><p>Make the router reuseable by receiving a collection of routes(path as a regex and component to render). &gt; 通过接收路由集合（路径作为正则表达式和要渲染的组件）使路由器可重用</p>
+</li>
+</ul>
+<h2 id="Web-Components"><a href="#Web-Components" class="headerlink" title="Web Components"></a>Web Components</h2><h3 id="Overview-amp-Custom-Elements"><a href="#Overview-amp-Custom-Elements" class="headerlink" title="Overview &amp; Custom Elements"></a>Overview &amp; Custom Elements</h3><h4 id="Web-Component"><a href="#Web-Component" class="headerlink" title="Web Component"></a>Web Component</h4><ul>
+<li>A modular, reuseable building block for web development that encapsulates a set of related functionality and user interface elements. &gt; 一种模块化、可重用的 web 开发构建块，它封装了一组相关的功能和用户界面元素</li>
+<li>Compatible with every browser. &gt; 与每个浏览器兼容</li>
+<li>It’s actually a set of standards. &gt; 它实际上是一组标准<ul>
+<li>Custom Elements &gt; 自定义元素</li>
+<li>HTML Templates &gt; HTML 模板</li>
+<li>Shadow DOM &gt; Shadow DOM</li>
+<li>Declarative Shadow DOM &gt; 声明式 Shadow DOM</li>
+</ul>
+</li>
+<li>It’s similar to the idea of components on most of the library for JavaScript. &gt; 它类似于大多数 JavaScript 库的组件思想</li>
+<li>We have freedom of choice on how to define them and use them. &gt; 我们可以自由选择如何定义它们和使用它们</li>
+</ul>
+<h4 id="Custom-Elements"><a href="#Custom-Elements" class="headerlink" title="Custom Elements"></a>Custom Elements</h4><p>A way to define new, reuseable HTML elements with custom behavior and functionality using JavaScript. &gt; 使用 JavaScript 定义具有自定义行为和功能的新的可重用 HTML 元素的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyElement</span> <span class="keyword">extends</span> <span class="title class_ inherited__">HTMLElement</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>();</span><br><span class="line">    <span class="comment">// Define your element&#x27;s behavior here</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">customElements.<span class="title function_">define</span>(<span class="string">&#x27;my-element&#x27;</span>, <span class="title class_">MyElement</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-element</span>&gt;</span><span class="tag">&lt;/<span class="name">my-element</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;my-element&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyElement</span> <span class="keyword">extends</span> <span class="title class_ inherited__">HTMLElement</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>();</span><br><span class="line">    <span class="comment">// Define your element&#x27;s behavior here</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">connectedCallback</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Called when the element is connected to the DOM</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">disconnectedCallback</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Called when the element is disconnected from the DOM</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">attributeChangedCallback</span>(<span class="params">name, oldValue, newValue</span>) &#123;</span><br><span class="line">    <span class="comment">// Called when an attribute is added, removed, updated, or replaced</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">adoptedCallback</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Called when the element is moved to a new document</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">get</span> <span class="title function_">observedAttributes</span>() &#123;</span><br><span class="line">    <span class="comment">// Return an array of attribute names to observe</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTML-Template"><a href="#HTML-Template" class="headerlink" title="HTML Template"></a>HTML Template</h3><p>Fragments of markup that can be cloned and inserted into the document at runtime, with reuseable HTML content that can be rendered and modified dynamically. &gt; 可以在运行时克隆并插入到文档中的标记片段，具有可重用的 HTML 内容，可以动态地渲染和修改</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">&quot;my-template&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> template = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;my-template&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> clone = template.<span class="property">content</span>.<span class="title function_">cloneNode</span>(<span class="literal">true</span>);</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(clone);</span><br></pre></td></tr></table></figure>
+
+<p>By default, the nodes of our custom element are part of the same page’s DOM, so CSS style declaration applies to all the document. &gt; 默认情况下，我们自定义元素的节点是同一页面 DOM 的一部分，因此 CSS 样式声明适用于整个文档</p>
+<h3 id="Shadow-DOM"><a href="#Shadow-DOM" class="headerlink" title="Shadow DOM"></a>Shadow DOM</h3><p>A private, isolated DOM tree within a web component that is separate from the main document’s DOM tree. &gt; 一个私有的、与主文档 DOM 树分离的 web 组件内部的隔离 DOM 树</p>
+<ul>
+<li><p>Allows more control over styling and encapsulation of functionality of a Custom Element. &gt; 允许更多地控制自定义元素的样式和功能的封装</p>
+</li>
+<li><p>By default, CSS declared in the main DOM won’t be applied to the Shadow DOM. &gt; 默认情况下，主 DOM 中声明的 CSS 不会应用于 Shadow DOM</p>
+</li>
+<li><p>There are new pseudo-classed and pseudo-element to allow communication between DOMs in stylesheets. &gt; 有新的伪类和伪元素来允许样式表中的 DOM 之间的通信</p>
+</li>
+<li><p>It can be opened or closed defining visibility from the outer DOM. &gt; 它可以通过从外部 DOM 定义可见性来打开或关闭</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyElement</span> <span class="keyword">extends</span> <span class="title class_ inherited__">HTMLElement</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>();</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">root</span> = <span class="variable language_">this</span>.<span class="title function_">attachShadow</span>(&#123; <span class="attr">mode</span>: <span class="string">&#x27;open&#x27;</span> &#125;);</span><br><span class="line">    <span class="comment">// Define your element&#x27;s behavior here</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">connectedCallback</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Called when the element is connected to the DOM</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">root</span>.<span class="title function_">appendChild</span>(<span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;h1&#x27;</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Where to define HTML for a custom element &gt; 在哪里定义自定义元素的 HTML</p>
+<ul>
+<li>There are several alternatives &gt; 有几种选择<ul>
+<li>Use DOM APIs &gt; 使用 DOM API</li>
+<li>Use a <code>&lt;template&gt;</code> tag in the main HTML &gt; 在主 HTML 中使用 <code>&lt;template&gt;</code> 标签</li>
+<li>Use an external HTML file loaded with fetch(it can be prefetched) &gt; 使用 fetch 加载的外部 HTML 文件（它可以被预取）<ul>
+<li>Using <code>innerHTML</code> &gt; 使用 <code>innerHTML</code></li>
+<li>Using DOM parser &gt; 使用 DOM 解析器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Declarative-Shadow-DOM"><a href="#Declarative-Shadow-DOM" class="headerlink" title="Declarative Shadow DOM"></a>Declarative Shadow DOM</h3><p>A way to define shadow DOM directly in HTML markup using a new set of attributes and tags. &gt; 一种使用一组新的属性和标签直接在 HTML 标记中定义 shadow DOM 的方法</p>
+<ul>
+<li>Where to define CSS for a custom element &gt; 在哪里定义自定义元素的 CSS</li>
+<li>There are several alternatives &gt; 有几种选择<ul>
+<li>Use CSSOM APIs &gt; 使用 CSSOM API</li>
+<li>Add a <code>&lt;style&gt;</code> tag to a <code>&lt;template&gt;</code>. &gt; 将 <code>&lt;style&gt;</code> 标签添加到 <code>&lt;template&gt;</code> 中</li>
+<li>Add a <code>&lt;link&gt;</code> in the <code>&lt;template&gt;</code>. &gt; 在 <code>&lt;template&gt;</code> 中添加 <code>&lt;link&gt;</code></li>
+<li>Use an external CSS file loaded with fetch(it can be prefetched) and injected in the shadow DOM as a <code>&lt;style&gt;</code>. &gt; 使用 fetch 加载的外部 CSS 文件（它可以被预取）并将其作为 <code>&lt;style&gt;</code> 注入到 shadow DOM 中</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reactive-Programming-with-Proxies"><a href="#Reactive-Programming-with-Proxies" class="headerlink" title="Reactive Programming with Proxies"></a>Reactive Programming with Proxies</h2><h3 id="Creating-a-Proxy"><a href="#Creating-a-Proxy" class="headerlink" title="Creating a Proxy"></a>Creating a Proxy</h3><ul>
+<li>Proxy<ul>
+<li>A wrapper object that lets you intercept and modify operations performed on the wrapped object, allowing you to add custom behavior or validation to the object’s properties and methods. &gt; 一个包装对象，它允许你拦截和修改对包装对象执行的操作，从而允许你向对象的属性和方法添加自定义行为或验证</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> original = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">32</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> s = <span class="keyword">new</span> <span class="title class_">Proxy</span>(original, &#123;</span><br><span class="line">  <span class="title function_">get</span>(<span class="params">target, prop</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (prop === <span class="string">&#x27;age&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;target[prop]&#125;</span> years old`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> target[prop];</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(s.<span class="property">age</span>); <span class="comment">// 32 years old</span></span><br></pre></td></tr></table></figure>
+
+<p>Proxies work with objects only. If you want to do something similar with primitives, you can use classes with getter and setters. &gt; 代理只适用于对象。如果你想用原始值做类似的事情，你可以使用带有 getter 和 setter 的类</p>
+<ul>
+<li>Proxy handler<ul>
+<li>Object that contains traps for intercepting and customizing operations performed on a JavaScript proxy object. &gt; 包含用于拦截和自定义对 JavaScript 代理对象执行的操作的陷阱的对象</li>
+</ul>
+</li>
+<li>Proxy trap<ul>
+<li>Method on a proxy handler object that intercepts and customizes a specific operation performed on the target object. &gt; 代理处理程序对象上的方法，用于拦截和自定义对目标对象执行的特定操作</li>
 </ul>
 </li>
 </ul>
